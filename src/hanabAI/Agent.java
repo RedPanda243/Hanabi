@@ -16,6 +16,10 @@ public interface Agent{
    * */
   public Action doAction(State s);
 
+  String getKnownColours(int i);
+
+  String getKnownValues(int i);
+
 }
 
 

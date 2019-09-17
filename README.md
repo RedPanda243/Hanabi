@@ -110,7 +110,7 @@ Good luck.
 - Your agent class should be in the package agents, and import the package hanabAI.
 - To compile use your favorite IDE, or from the command line, use:
  `javac -d bin src/*/*.java`
-- To run a game, you can edit the main method in hanabAI.Hanabi to use your agents, rather than agents.BasicAgent.
+- To run a game, you can edit the main method in hanabAI.Hanabi to use your agents, rather than agents.AbstractAgent.
 However, it is better to build a contest class in the default package to run extensive experiments.
 - To run the main method in hanabAI.Hanabi, use your favorite IDE, or from the commandline, use:
  `java -cp bin hanabAI.Hanabi`

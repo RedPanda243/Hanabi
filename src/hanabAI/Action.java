@@ -14,13 +14,13 @@ public class Action{
   private ActionType type;
   //The position of the card played/discarded
   private int card;
-  //The player recieving the hint, if the action is a hint
+  //The player recieving the hintPlayable, if the action is a hintPlayable
   private int hintee;
-  //The cards hinted at, if the action is a hint
+  //The cards hinted at, if the action is a hintPlayable
   private boolean[] cards;
-  //The Colour hinted, if the action is a colour hint
+  //The Colour hinted, if the action is a colour hintPlayable
   private Colour colour;
-  //The value hinted, if the action is a value hint.
+  //The value hinted, if the action is a value hintPlayable.
   private int value;
 
   //common constructor for all actions
@@ -47,8 +47,8 @@ public class Action{
    * @param player the index of the player performing the action
    * @param playerName the naem of the player performing the action
    * @param type the type of the action, must be ActionType.HINT_COLOUR
-   * @param hintReceiver the index of the player recieving the hint
-   * @param cards an array of booleans, such that the ith value is true if and only if the ith card in the hintee's hand matches the hint
+   * @param hintReceiver the index of the player recieving the hintPlayable
+   * @param cards an array of booleans, such that the ith value is true if and only if the ith card in the hintee's hand matches the hintPlayable
    * @param hint the colour hinted at.
    * @throws IllegalActionException if the wrong ActionType is given
    * */
@@ -64,8 +64,8 @@ public class Action{
    * @param player the index of the player performing the action
    * @param playerName the naem of the player performing the action
    * @param type the type of the action, must be ActionType.HINT_VALUE
-   * @param hintReceiver the index of the player recieving the hint
-   * @param cards an array of booleans, such that the ith value is true if and only if the ith card in the hintee's hand matches the hint
+   * @param hintReceiver the index of the player recieving the hintPlayable
+   * @param cards an array of booleans, such that the ith value is true if and only if the ith card in the hintee's hand matches the hintPlayable
    * @param hint the value hinted at.
    * @throws IllegalActionException if the wrong ActionType is given
    * */
@@ -101,22 +101,22 @@ public class Action{
 
 
   /**
-   * gets the index ofthe player receiving the hint
-   * @return the index of the player receiving the hint
+   * gets the index ofthe player receiving the hintPlayable
+   * @return the index of the player receiving the hintPlayable
    * @throws IllegalActionException if the action type is not HINT_COLOUR or HINT_VALUE
    **/ 
   public int getHintReceiver() throws IllegalActionException{
-    if(type != ActionType.HINT_COLOUR && type!= ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a hint");
+    if(type != ActionType.HINT_COLOUR && type!= ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a hintPlayable");
     return hintee;
   }
 
   /**
-   * gets an array of booleans indicating the cards that are the subject of the hint
-   * @return an array of booleans, such that the ith valeu is true if and only if the ith card in the hintReceivers hand matches the hint (indexing from 0)
+   * gets an array of booleans indicating the cards that are the subject of the hintPlayable
+   * @return an array of booleans, such that the ith valeu is true if and only if the ith card in the hintReceivers hand matches the hintPlayable (indexing from 0)
    * @throws IllegalActionException if the action type is not HINT_COLOUR or HINT_VALUE
    **/ 
   public boolean[] getHintedCards() throws IllegalActionException{
-    if(type != ActionType.HINT_COLOUR && type!= ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a hint");
+    if(type != ActionType.HINT_COLOUR && type!= ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a hintPlayable");
     return cards.clone();
   }
 
@@ -126,7 +126,7 @@ public class Action{
    * @throws IllegalActionException if the action type is not HINT_COLOUR
    **/ 
   public Colour getColour() throws IllegalActionException{
-    if(type != ActionType.HINT_COLOUR) throw new IllegalActionException("Action is not a colour hint");
+    if(type != ActionType.HINT_COLOUR) throw new IllegalActionException("Action is not a colour hintPlayable");
     return colour;
   }
 
@@ -136,7 +136,7 @@ public class Action{
    * @throws IllegalActionException if the action type is not HINT_VALUE
    **/ 
   public int getValue() throws IllegalActionException{
-    if(type != ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a value hint");
+    if(type != ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a value hintPlayable");
     return value;
   }
 

@@ -43,28 +43,27 @@ public class Main
 		log = new StringBuffer();
 	}
 
-	public int play(boolean wait)
+	public int play(boolean turnlog)
 	{
 		if (state == null)
 			throw new IllegalStateException("Game not initialized");
 		running = true;
-//		log.append(state).append("\n");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Action a;
+		for (Agent agent:players)
+			agent.init(state);
 		try{
 			while(!state.gameOver()){
-				log.append(state.toString());
 				int p = state.getNextPlayer();
-				State localState = state.hideHand(p);
-				state = state.nextState(players[p].doAction(localState),deck);
-				if (wait) {
-					log.append("\nPress ENTER to see next turn...\n");
-					System.out.print(log);
-					log = new StringBuffer();
-					try {
-						br.readLine();
-					}catch(IOException e){}
-				}
+				log.append("Player ").append(p).append(" turn\n");
+				log.append(state.toString());
+				if (turnlog)
+					printLog();
+				a = players[p].doAction(state);
+				log.append(a).append("\n\n");
+				state = state.nextState(a,deck);
 			}
+			log.append(state).append("\n");
 			running = false;
 			return state.getScore();
 		}
@@ -75,11 +74,18 @@ public class Main
 		}
 	}
 
+	private void printLog()
+	{
+		System.out.print(log);
+		log = new StringBuffer();
+	}
+
 	public static void main(String[] args){
 //		Agent[] agents = {new agents.AbstractAgent(),new agents.AbstractAgent(), new agents.AbstractAgent(), new agents.AbstractAgent(), new agents.AbstractAgent()};
-		Agent[] agents = {new BasicAgent(),new BasicAgent()};
+		Agent[] agents = {new HumanAgent(),new BasicAgent()};
+		boolean turnlog = true;
 		Main game= new Main(agents);
-		int result = game.play(true);
+		int result = game.play(turnlog);
 		game.log.append("The final score is "+result+".\n");
 		game.log.append(Hanabi.critique(result));
 		System.out.print(game.log);

@@ -37,7 +37,7 @@ public class Hanabi{
 		try{
 			while(!state.gameOver()){
 				int p = state.getNextPlayer();
-				State localState = state.hideHand(p);
+				State localState = (State)state./*hideHand(p)*/clone();
 				state = state.nextState(players[p].doAction(localState),deck);
 			}
 			return state.getScore();
@@ -56,7 +56,7 @@ public class Hanabi{
 		try{
 			while(!state.gameOver()){
 				int p = state.getNextPlayer();
-				State localState = state.hideHand(p);
+				State localState = (State)state./*hideHand(p)*/clone();
 				state = state.nextState(players[p].doAction(localState),deck);
 				log.append(state.toString());
 			}

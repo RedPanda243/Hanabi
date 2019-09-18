@@ -23,7 +23,7 @@ public class HumanAgent extends AbstractAgent
 	@Override
 	public Action chooseAction(State s) throws IllegalActionException
 	{
-		System.out.println(s+"\nChoose one action: (play <cardnum> | discard <cardnum> | hint <playernum> (<color>|<value>))");
+		System.out.println("\nChoose one action: (play <cardnum> | discard <cardnum> | hint <playernum> (<color>|<value>))");
 /*		List<Action> available = new ArrayList<>();
 		Action a;
 		a = this.playKnown(s);

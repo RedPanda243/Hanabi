@@ -1,10 +1,14 @@
 package agents;
+import game.Action;
+import game.Card;
+import game.Color;
+import game.State;
 import hanabAI.*;
 
 
 public abstract class AbstractAgent implements Agent{
 
-	protected Colour[] colours;
+	protected Color[] colors;
 	protected int[] values;
 	protected boolean firstAction = true;
 	protected int numPlayers;
@@ -22,22 +26,16 @@ public abstract class AbstractAgent implements Agent{
 	public void init(State s){
 		numPlayers = s.getPlayers().length;
 		if(numPlayers>3){
-			colours = new Colour[4];
+			colors = new Color[4];
 			values = new int[4];
 		}
 		else{
-			colours = new Colour[5];
+			colors = new Color[5];
 			values = new int[5];
 		}
-		index = s.getNextPlayer();
+		index = s.getCurrentPlayer();
 		firstAction = false;
 	}
-
-	/**
-	 * Returns this agent's name.
-	 * @return the agent's name as String
-	 * */
-	public String toString(){return this.getClass().getName();}
 
 	public abstract Action chooseAction(State s) throws IllegalActionException;
 
@@ -48,7 +46,7 @@ public abstract class AbstractAgent implements Agent{
 		}
 		*/
 		//Assume players index is sgetNextPlayer()
-		index = s.getNextPlayer();
+		index = s.getCurrentPlayer();
 //		getHints(s);
 		try
 		{
@@ -60,18 +58,20 @@ public abstract class AbstractAgent implements Agent{
 		}
 	}
 
-	//updates colours and values from hints received
+	public abstract String getName();
+
+	//updates colors and values from hints received
 /*	public void getHints(State s){
 		try{
 			State t = (State) s.clone();
 			for(int i = 0; i<Math.min(numPlayers-1,s.getOrder());i++){
 				Action a = t.getPreviousAction();
-				if((a.getType()==ActionType.HINT_COLOUR || a.getType() == ActionType.HINT_VALUE) && a.getHintReceiver()==index){
+				if((a.getType()==ActionType.HINT_COLOR || a.getType() == ActionType.HINT_VALUE) && a.getHintReceiver()==index){
 					boolean[] hints = t.getPreviousAction().getHintedCards();
 					for(int j = 0; j<hints.length; j++){
 						if(hints[j]){
-							if(a.getType()==ActionType.HINT_COLOUR)
-								colours[j] = a.getColour();
+							if(a.getType()==ActionType.HINT_COLOR)
+								colors[j] = a.getColor();
 							else
 								values[j] = a.getValue();
 						}
@@ -84,7 +84,7 @@ public abstract class AbstractAgent implements Agent{
 	}
 */
 	//returns the value of the next playable card of the given colour
-	public int playable(State s, Colour c){
+	public int playable(State s, Color c){
 		java.util.Stack<Card> fw = s.getFirework(c);
 		if (fw.size()==5) return -1;
 		else return fw.size()+1;
@@ -92,26 +92,26 @@ public abstract class AbstractAgent implements Agent{
 
 	public Action play(int i) throws IllegalActionException
 	{
-		colours[i] = null;
+		colors[i] = null;
 		values[i] = 0;
 		return new Action(index, toString(), ActionType.PLAY,i);
 	}
 
 	public Action discard(int i) throws IllegalActionException
 	{
-		colours[i] = null;
+		colors[i] = null;
 		values[i] = 0;
 		return new Action(index, toString(), ActionType.DISCARD,i);
 	}
 
-	public Action hint(State s, Colour c, int hintReceiver) throws IllegalActionException
+	public Action hint(State s, Color c, int hintReceiver) throws IllegalActionException
 	{
 		Card[] hand = s.getHand(hintReceiver);
 		boolean[] col = new boolean[hand.length];
 		for(int k = 0; k< col.length; k++){
-			col[k]=c.equals((hand[k]==null?null:hand[k].getColour()));
+			col[k]=c.equals((hand[k]==null?null:hand[k].getColor()));
 		}
-		return new Action(index,toString(),ActionType.HINT_COLOUR,hintReceiver,col,c);
+		return new Action(index,toString(),ActionType.HINT_COLOR,hintReceiver,col,c);
 	}
 
 	public Action hint(State s, int v, int hintReceiver) throws IllegalActionException

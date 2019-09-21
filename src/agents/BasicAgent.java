@@ -1,5 +1,8 @@
 package agents;
 
+import game.Action;
+import game.Card;
+import game.State;
 import hanabAI.*;
 
 public class BasicAgent extends AbstractAgent
@@ -22,8 +25,8 @@ public class BasicAgent extends AbstractAgent
 	public Action discardGuess(State s) throws IllegalActionException{
 		if (s.getHintTokens() != 8) {
 			java.util.Random rand = new java.util.Random();
-			int cardIndex = rand.nextInt(colours.length);
-			colours[cardIndex] = null;
+			int cardIndex = rand.nextInt(colors.length);
+			colors[cardIndex] = null;
 			values[cardIndex] = 0;
 			return new Action(index, toString(), ActionType.DISCARD, cardIndex);
 		}
@@ -33,9 +36,9 @@ public class BasicAgent extends AbstractAgent
 	//discards the first card known to be unplayable.
 	public Action discardKnown(State s) throws IllegalActionException{
 		if (s.getHintTokens() != 8) {
-			for(int i = 0; i<colours.length; i++){
-				if(colours[i]!=null && values[i]>0 && values[i]<playable(s,colours[i])){
-					colours[i] = null;
+			for(int i = 0; i< colors.length; i++){
+				if(colors[i]!=null && values[i]>0 && values[i]<playable(s, colors[i])){
+					colors[i] = null;
 					values[i] = 0;
 					return new Action(index, toString(), ActionType.DISCARD,i);
 				}
@@ -59,14 +62,14 @@ public class BasicAgent extends AbstractAgent
 				Card[] hand = s.getHand(hintee);
 				for(int j = 0; j<hand.length; j++){
 					Card c = hand[j];
-					if(c!=null && c.getValue()==playable(s,c.getColour())){
+					if(c!=null && c.getValue()==playable(s,c.getColor())){
 						//flip coin
 						if(flag){//give colour hintPlayable
 							boolean[] col = new boolean[hand.length];
 							for(int k = 0; k< col.length; k++){
-								col[k]=c.getColour().equals((hand[k]==null?null:hand[k].getColour()));
+								col[k]=c.getColor().equals((hand[k]==null?null:hand[k].getColor()));
 							}
-							return new Action(index,toString(),ActionType.HINT_COLOUR,hintee,col,c.getColour());
+							return new Action(index,toString(),ActionType.HINT_COLOR,hintee,col,c.getColor());
 						}
 						else{//give value hintPlayable
 							boolean[] val = new boolean[hand.length];
@@ -108,9 +111,9 @@ public class BasicAgent extends AbstractAgent
 			if(Math.random()>0.5){//give colour hintPlayable
 				boolean[] col = new boolean[hand.length];
 				for(int k = 0; k< col.length; k++){
-					col[k]=c.getColour().equals((hand[k]==null?null:hand[k].getColour()));
+					col[k]=c.getColor().equals((hand[k]==null?null:hand[k].getColor()));
 				}
-				return new Action(index,toString(),ActionType.HINT_COLOUR,hintee,col,c.getColour());
+				return new Action(index,toString(),ActionType.HINT_COLOR,hintee,col,c.getColor());
 			}
 			else{//give value hintPlayable
 				boolean[] val = new boolean[hand.length];
@@ -131,8 +134,8 @@ public class BasicAgent extends AbstractAgent
 		java.util.Random rand = new java.util.Random();
 		for(int i = 0; i<s.getFuseTokens(); i++){
 			if(rand.nextDouble()<0.05){
-				int cardIndex = rand.nextInt(colours.length);
-				colours[cardIndex] = null;
+				int cardIndex = rand.nextInt(colors.length);
+				colors[cardIndex] = null;
 				values[cardIndex] = 0;
 				return new Action(index, toString(), ActionType.PLAY, cardIndex);
 			}
@@ -142,9 +145,9 @@ public class BasicAgent extends AbstractAgent
 
 	//plays the first card known to be playable.
 	public Action playKnown(State s) throws IllegalActionException{
-		for(int i = 0; i<colours.length; i++){
-			if(colours[i]!=null && values[i]==playable(s,colours[i])){
-				colours[i] = null;
+		for(int i = 0; i< colors.length; i++){
+			if(colors[i]!=null && values[i]==playable(s, colors[i])){
+				colors[i] = null;
 				values[i] = 0;
 				return new Action(index, toString(), ActionType.PLAY,i);
 			}

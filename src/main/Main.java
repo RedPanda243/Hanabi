@@ -1,13 +1,11 @@
 package main;
 
-import agents.AbstractAgent;
 import agents.BasicAgent;
 import agents.HumanAgent;
+import game.Action;
+import game.Card;
+import game.State;
 import hanabAI.*;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Main
 {
@@ -54,7 +52,7 @@ public class Main
 			agent.init(state);
 		try{
 			while(!state.gameOver()){
-				int p = state.getNextPlayer();
+				int p = state.getCurrentPlayer();
 				log.append("Player ").append(p).append(" turn\n");
 				log.append(state.toString());
 				if (turnlog)

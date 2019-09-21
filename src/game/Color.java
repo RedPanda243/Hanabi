@@ -1,10 +1,10 @@
-package hanabAI;
+package game;
 
-/**The colours of Hanabi Cards**/
-public enum Colour{
+/**The colors of Hanabi Cards**/
+public enum Color {
 	BLUE,RED,GREEN,WHITE,YELLOW;
 
-	public static Colour fromString(String s)
+	public static Color fromString(String s)
 	{
 		if (s.equalsIgnoreCase("blue"))
 			return BLUE;

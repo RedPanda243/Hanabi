@@ -1,77 +1,55 @@
-package hanabAI;
-import agents.AbstractAgent;
+package game;
+import hanabAI.Agent;
+import hanabAI.IllegalActionException;
 
 import java.util.*;
-/**
- * Represent the game state in Hanabi.
- * The state is designed as an immutable object.
- * Agents are able to get the current game state, 
- * and all previous moves using a state object.
- * @author Tim French
- **/
-
-public class State implements Cloneable{
 
 
-	/**The name of each of the players in the game**/
-//	private String[] players;
-
-	private Agent[] agents;
-
-	/**The stack of cards that have bee discarded, or incorrectly played**/
+public class State implements Cloneable
+{
+	private Agent[] players;
 	private Stack<Card> discards;
-	/**For each colour, the cards making up that firework so far**/
-	private Map<Colour,Stack<Card>> fireworks;
-	/**The hand of each player**/
+	private Map<Color,Stack<Card>> fireworks;
 	private Card[][] hands;
-	/**The order of this state in the game**/
 	private int order=0;
-	/**The number of hints remaining**/
 	private int hints=0;
-	/**The number of fuse tokens left**/
 	private int fuse=0;
-	/**The observer of this state. This allows hidden information to be redacted**/
-//	private int observer=-1;
-	/**The previous State of the game, so that all states are accessible back to the first state (with a null previous state)**/
 	private State previousState;
-	/**A list of all moves made so far in the game, in the order they were played**/
 	private Action previousAction;
-	/**The index of the next player to move**/
-	private int nextPlayer=-1;
-	/**The fnal play of the game (for when the deck runs out)**/
-	private int finalAction=-1;
+	private int currentPlayer;
+	private int finalAction;
 
 	/**A constructor for the first state in the game
 	 * @param players the names of the players in the game, in an array by index
 	 * @param deck the shuffled deck of cards to be used for the deal
 	 * @throws IllegalArgumentException if arguments are null, or the wrong size**/
-	public State(Agent[] players, Stack<Card> deck) throws IllegalArgumentException{
+	public State(Agent[] players, Stack<Card> deck) throws IllegalArgumentException
+	{
 		if(players==null || players.length<2 || players.length >5 || deck == null || deck.size() !=50)
 			throw new IllegalArgumentException("incorrect parameters");
-		this.agents = players.clone();
-/*		this.players = new String[agents.length];
-		for (int i=0; i<agents.length; i++)
-			this.players[i] = agents[i].toString();*/
+		this.players = players.clone();
 		discards = new Stack<>();
 		fireworks = new HashMap<>();
-		for(Colour c: Colour.values())fireworks.put(c,new Stack<>());
+		for(Color c: Color.values())fireworks.put(c,new Stack<>());
 		hands = new Card[players.length][players.length>3?4:5];
 		for(int i = 0; i<hands.length; i++)
-			for(int j = 0; j<hands[i].length; j++) {
+		{
+			for (int j = 0; j < hands[i].length; j++)
+			{
 				hands[i][j] = deck.pop();
-				hands[i][j].setOwner(agents[i]);
+				hands[i][j].setOwner(this.players[i]);
 			}
+		}
 		order = 0;
 		hints = 8;
 		fuse = 3;
-//		observer = -1;
-		nextPlayer = 0;
+		currentPlayer = 0;
 		finalAction = -1;
 	}
 
 	/**
 	 *A method to create the next state from the given state and a move.
-	 *This method will only work if no hand has been hidden (since it allows agents to infer the result of actions).
+	 *This method will only work if no hand has been hidden (since it allows players to infer the result of actions).
 	 *@param deck the deck of cards
 	 *@param action the action made
 	 *@throws IllegalActionException if the move is not legal in the current state, or one hand has been hidden.
@@ -79,15 +57,14 @@ public class State implements Cloneable{
 	public State nextState(Action action, Stack<Card> deck) throws IllegalActionException{
 		if(!legalAction(action)) throw new IllegalActionException("Invalid action!: "+action);
 		if(gameOver()) throw new IllegalActionException("Game Over!");
-//		if(observer!=-1) throw new IllegalActionException("Next state unavailable!");
 		State s = (State)this.clone();
 		switch(action.getType()){
 			case PLAY:
 				Card c = hands[action.getPlayer()][action.getCard()];
-				Stack<Card> fw = fireworks.get(c.getColour());
+				Stack<Card> fw = fireworks.get(c.getColor());
 				if((fw.isEmpty() && c.getValue() == 1) || (!fw.isEmpty() && fw.peek().getValue()==c.getValue()-1)){
-					s.fireworks.get(c.getColour()).push(c);
-					if(s.fireworks.get(c.getColour()).size()==5 && s.hints<8) s.hints++;
+					s.fireworks.get(c.getColor()).push(c);
+					if(s.fireworks.get(c.getColor()).size()==5 && s.hints<8) s.hints++;
 				}
 				else{
 					s.discards.push(c);
@@ -97,11 +74,11 @@ public class State implements Cloneable{
 				if(!deck.isEmpty())
 				{
 					s.hands[action.getPlayer()][action.getCard()] = deck.pop();
-					s.hands[action.getPlayer()][action.getCard()].setOwner(agents[action.getPlayer()]);
+					s.hands[action.getPlayer()][action.getCard()].setOwner(players[action.getPlayer()]);
 				}
 				else
 					s.hands[action.getPlayer()][action.getCard()] = null;
-				if(deck.isEmpty() && finalAction==-1) s.finalAction = order+agents.length;
+				if(deck.isEmpty() && finalAction==-1) s.finalAction = order+ players.length;
 				break;
 			case DISCARD:
 				c = hands[action.getPlayer()][action.getCard()];
@@ -110,18 +87,18 @@ public class State implements Cloneable{
 				if(!deck.isEmpty())
 				{
 					s.hands[action.getPlayer()][action.getCard()] = deck.pop();
-					s.hands[action.getPlayer()][action.getCard()].setOwner(agents[action.getPlayer()]);
+					s.hands[action.getPlayer()][action.getCard()].setOwner(players[action.getPlayer()]);
 				}
 				else
 					s.hands[action.getPlayer()][action.getCard()] = null;
-				if(deck.isEmpty() && finalAction==-1) s.finalAction = order+agents.length;
+				if(deck.isEmpty() && finalAction==-1) s.finalAction = order+ players.length;
 				if(hints<8) s.hints++;
 				break;
-			case HINT_COLOUR:
+			case HINT_COLOR:
 				s.hints--;
 				for (int i=0; i<s.hands[action.getPlayer()].length; i++)
 				{
-					if (action.getHintedCards()[i])
+					if (s.hands[action.getHintReceiver()][i].getColor().equals(action.getColor()))
 						s.hands[action.getHintReceiver()][i].revealColour();
 				}
 				break;
@@ -129,7 +106,7 @@ public class State implements Cloneable{
 				s.hints--;
 				for (int i=0; i<s.hands[action.getPlayer()].length; i++)
 				{
-					if (action.getHintedCards()[i])
+					if (s.hands[action.getHintReceiver()][i].getValue() == action.getValue())
 						s.hands[action.getHintReceiver()][i].revealValue();
 				}
 				break;
@@ -137,7 +114,7 @@ public class State implements Cloneable{
 		}
 		s.order++;
 		s.previousAction = action;
-		s.nextPlayer = (nextPlayer+1)%agents.length;
+		s.currentPlayer = (currentPlayer +1)% players.length;
 		s.previousState = this;
 		return s;
 	}
@@ -167,30 +144,16 @@ public class State implements Cloneable{
 	public boolean legalAction(Action a) throws IllegalActionException{
 		if(a==null) throw new IllegalActionException("Action is null");
 //		if(observer!=-1 && a.getPlayer()!=observer) throw new IllegalActionException("Local states may only test the legality of observers moves");
-		if(a.getPlayer()!=nextPlayer) return false;
+		if(a.getPlayer()!= currentPlayer) return false;
 		switch(a.getType()){
 			case PLAY:
-				return (a.getCard()>=0 && a.getCard()<hands[nextPlayer].length);
+				return (a.getCard()>=0 && a.getCard()<hands[currentPlayer].length);
 			case DISCARD:
 				if(hints==8) throw new IllegalActionException("Discards cannot be made when there are 8 hint tokens");
-				return (a.getCard()>=0 && a.getCard()<hands[nextPlayer].length);
-			case HINT_COLOUR:
-				if(hints==0 || a.getHintReceiver() <0 || a.getHintReceiver()>agents.length || a.getHintReceiver() == a.getPlayer()) return false;
-				boolean[] hint = new boolean[hands[a.getHintReceiver()].length];
-				for(int i = 0; i<hint.length; i++){
-					Card c = hands[a.getHintReceiver()][i];
-					hint[i] = (c==null?null:c.getColour())==a.getColour();
-				}
-				return Arrays.equals(hint, a.getHintedCards());
-			case HINT_VALUE:
-				if(hints==0 || a.getHintReceiver() <0 || a.getHintReceiver()>agents.length || a.getHintReceiver() == a.getPlayer()) return false;
-				hint = new boolean[hands[a.getHintReceiver()].length];
-				for(int i = 0; i<hint.length; i++){
-					Card c = hands[a.getHintReceiver()][i];
-					hint[i] = (c==null?-1:c.getValue())==a.getValue();
-				}
-				return Arrays.equals(hint, a.getHintedCards());
-			default: return false;
+				return (a.getCard()>=0 && a.getCard()<hands[currentPlayer].length);
+			default:
+				if(hints==0 || a.getHintReceiver() <0 || a.getHintReceiver()> players.length || a.getHintReceiver() == a.getPlayer()) return false;
+				return true;
 		}
 	}
 
@@ -199,7 +162,7 @@ public class State implements Cloneable{
 	 * @return an array containing the naems of the players in the game, by ther index in the game.
 	 **/
 	public Agent[] getPlayers(){
-		return agents;
+		return players;
 	}
 
 	/**
@@ -209,7 +172,7 @@ public class State implements Cloneable{
 	// * @throws ArrayIndexOutOfBounds if there is no player of the given index.
 	 **/
 	public Card[] getHand(int player)throws ArrayIndexOutOfBoundsException{
-		if(player<0 || player>=agents.length) throw new ArrayIndexOutOfBoundsException();
+		if(player<0 || player>= players.length) throw new ArrayIndexOutOfBoundsException();
 //		if(player==observer) return new Card[hands[player].length];
 		return hands[player].clone();
 	}
@@ -218,10 +181,10 @@ public class State implements Cloneable{
 	 * Gives a players name
 	 * @return the name of the specified player
 	 **/
-	public String getName(int player){return agents[player].toString();}
+	public String getName(int player){return players[player].toString();}
 
 	/**
-	 * Gives the previous state of the game, allowing agents to determine the recent actions in the game.
+	 * Gives the previous state of the game, allowing players to determine the recent actions in the game.
 	 * @return the previous state, with the same observer as the current state.
 	 **/
 /*	public State getPreviousState(){
@@ -275,7 +238,7 @@ public class State implements Cloneable{
 	 * Get the stack of cards representing the specified firework
 	 * @return a clone of the stack of cards representing the firework of the given colour. The highest card is at the top of the stack.
 	 **/
-	public Stack<Card> getFirework(Colour c){return (Stack<Card>) fireworks.get(c).clone();}
+	public Stack<Card> getFirework(Color c){return (Stack<Card>) fireworks.get(c).clone();}
 
 	/**
 	 * Get the number of hintPlayable tokens available
@@ -303,7 +266,7 @@ public class State implements Cloneable{
 	 * Gets the nextplayer, or -1 if gameOver
 	 * @return the agent index of the nextplayer, or -1 if the game is over.
 	 **/
-	public int getNextPlayer(){return (gameOver()?-1:nextPlayer);}
+	public int getCurrentPlayer(){return (gameOver()?-1: currentPlayer);}
 
 	/**
 	 * Gets the order of the state, starting from 1.
@@ -327,7 +290,7 @@ public class State implements Cloneable{
 	public int getScore(){
 		int score = 0;
 		if(fuse==0) return 0;
-		for(Colour c: Colour.values())
+		for(Color c: Color.values())
 			if(!fireworks.get(c).isEmpty())score+=fireworks.get(c).peek().getValue();
 		return score;
 	}
@@ -346,7 +309,7 @@ public class State implements Cloneable{
 	public Object clone(){
 		try{
 			State s = (State) super.clone();
-			s.agents = agents.clone();
+			s.players = players.clone();
 			s.discards = (Stack<Card>)discards.clone();
 			s.hands = hands.clone();
 	/*		for(int i = 0; i<hands.length; i++)
@@ -355,8 +318,8 @@ public class State implements Cloneable{
 				for (int j=0; j<s.hands[i].length; j++)
 					s.hands[i][j] = hands[i][j];
 			}*/
-			s.fireworks = (Map<Colour,Stack<Card>>)((HashMap)fireworks).clone();
-			for(Colour c: Colour.values()) s.fireworks.put(c,(Stack<Card>)fireworks.get(c).clone());
+			s.fireworks = (Map<Color,Stack<Card>>)((HashMap)fireworks).clone();
+			for(Color c: Color.values()) s.fireworks.put(c,(Stack<Card>)fireworks.get(c).clone());
 			return s;
 		}
 		catch(CloneNotSupportedException e){return null;}
@@ -373,24 +336,24 @@ public class State implements Cloneable{
 //		ret+="Last move: "+previousAction+"\n";
 //		ret+="Observer: "+observer+"\n";
 		ret+="Players' hands:\n";
-		for(int i = 0; i<agents.length; i++){
-			ret+="\t"+agents[i]+" ("+i+"): ";
+		for(int i = 0; i< players.length; i++){
+			ret+="\t"+ players[i]+" ("+i+"): ";
 //			System.err.println(Arrays.toString(hands[i]));
 			for(Card c: hands[i]) {
 				if (c!=null)
-					ret += c.toString(this) + " ";
+					ret += c.toString() + " ";
 			}
 			ret+="\n";
 		}
 //		System.err.println();
 		ret+="Fireworks:\n";
-		for(Colour c: Colour.values())
+		for(Color c: Color.values())
 			ret+="\t"+c+"  "+(fireworks.get(c).isEmpty()? "-" : fireworks.get(c).peek().getValue()) +"\n";
 		ret+= "Hints: "+hints+"\nFuse: "+fuse+"\n";
 		/*
 		if (observer>-1) {
-			ret+=("Color observer: " +agents[observer].getKnownColours(0)+" "+agents[observer].getKnownColours(1)+" "+agents[observer].getKnownColours(2)+" "+agents[observer].getKnownColours(3)+" "+agents[observer].getKnownColours(4)+"\n");
-			ret+=("Values observer: " +agents[observer].getKnownValues(0)+" "+agents[observer].getKnownValues(1)+" "+agents[observer].getKnownValues(2)+" "+agents[observer].getKnownValues(3)+" "+agents[observer].getKnownValues(4)+"\n");
+			ret+=("Color observer: " +players[observer].getKnownColours(0)+" "+players[observer].getKnownColours(1)+" "+players[observer].getKnownColours(2)+" "+players[observer].getKnownColours(3)+" "+players[observer].getKnownColours(4)+"\n");
+			ret+=("Values observer: " +players[observer].getKnownValues(0)+" "+players[observer].getKnownValues(1)+" "+players[observer].getKnownValues(2)+" "+players[observer].getKnownValues(3)+" "+players[observer].getKnownValues(4)+"\n");
 		}
 		*/
 		return ret;

@@ -1,8 +1,9 @@
 package hanabAI;
 
 
-import agents.AbstractAgent;
 import agents.BasicAgent;
+import game.Card;
+import game.State;
 
 /**
  * A class for running a single game of Hanabi.
@@ -36,7 +37,7 @@ public class Hanabi{
 	public int play(){
 		try{
 			while(!state.gameOver()){
-				int p = state.getNextPlayer();
+				int p = state.getCurrentPlayer();
 				State localState = (State)state./*hideHand(p)*/clone();
 				state = state.nextState(players[p].doAction(localState),deck);
 			}
@@ -55,7 +56,7 @@ public class Hanabi{
 		log.append(state).append("\n");
 		try{
 			while(!state.gameOver()){
-				int p = state.getNextPlayer();
+				int p = state.getCurrentPlayer();
 				State localState = (State)state./*hideHand(p)*/clone();
 				state = state.nextState(players[p].doAction(localState),deck);
 				log.append(state.toString());

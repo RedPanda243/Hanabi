@@ -1,15 +1,13 @@
 package agents;
 
-import hanabAI.Action;
-import hanabAI.Colour;
+import game.Color;
+import game.Action;
 import hanabAI.IllegalActionException;
-import hanabAI.State;
+import game.State;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HumanAgent extends AbstractAgent
 {
@@ -91,7 +89,7 @@ public class HumanAgent extends AbstractAgent
 					}
 					catch(NumberFormatException nfe)
 					{
-						return hint(s, Colour.fromString(parts[2]),Integer.parseInt(parts[1]));
+						return hint(s, Color.fromString(parts[2]),Integer.parseInt(parts[1]));
 					}
 				}
 				else {

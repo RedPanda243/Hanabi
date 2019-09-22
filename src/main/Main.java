@@ -1,14 +1,16 @@
 package main;
 
+import agents.Agent;
 import agents.BasicAgent;
 import agents.HumanAgent;
 import game.Action;
 import game.Card;
+import game.IllegalActionException;
 import game.State;
-import hanabAI.*;
 
 public class Main
 {
+
 	private Agent[] players;
 	private State state;
 	private java.util.Stack<Card> deck;
@@ -40,7 +42,7 @@ public class Main
 		state = new State(agents, deck);
 		log = new StringBuffer();
 	}
-
+/*
 	public int play(boolean turnlog)
 	{
 		if (state == null)
@@ -79,7 +81,7 @@ public class Main
 	}
 
 	public static void main(String[] args){
-//		Agent[] agents = {new agents.AbstractAgent(),new agents.AbstractAgent(), new agents.AbstractAgent(), new agents.AbstractAgent(), new agents.AbstractAgent()};
+//		Agent[] agents = {new agents.Agent(),new agents.Agent(), new agents.Agent(), new agents.Agent(), new agents.Agent()};
 		Agent[] agents = {new HumanAgent(),new BasicAgent()};
 		boolean turnlog = true;
 		Main game= new Main(agents);
@@ -88,4 +90,6 @@ public class Main
 		game.log.append(Hanabi.critique(result));
 		System.out.print(game.log);
 	}
+
+ */
 }

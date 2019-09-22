@@ -1,28 +1,32 @@
 package game;
-import hanabAI.Agent;
-import hanabAI.IllegalActionException;
+import agents.Agent;
+import sjson.JSONArray;
+import sjson.JSONObject;
+import sjson.JSONObjectConvertible;
 
 import java.util.*;
 
-
-public class State implements Cloneable
+/**
+ * @author Francesco Pandolfi, Mihail Bida
+ */
+public class State implements Cloneable, JSONObjectConvertible
 {
 	private Agent[] players;
 	private Stack<Card> discards;
 	private Map<Color,Stack<Card>> fireworks;
 	private Card[][] hands;
-	private int order=0;
-	private int hints=0;
-	private int fuse=0;
+	private int order;
+	private int hints;
+	private int fuse;
 	private State previousState;
 	private Action previousAction;
 	private int currentPlayer;
 	private int finalAction;
 
-	/**A constructor for the first state in the game
-	 * @param players the names of the players in the game, in an array by index
-	 * @param deck the shuffled deck of cards to be used for the deal
-	 * @throws IllegalArgumentException if arguments are null, or the wrong size**/
+	/**Costruttore del primo stato di una partita.
+	 * @param players l'array che contiene i giocatori nell'ordine in cui devono giocare
+	 * @param deck il mazzo di carte, già mischiato
+	 * @throws IllegalArgumentException se i parametri sono null o di dimensione sbagliata**/
 	public State(Agent[] players, Stack<Card> deck) throws IllegalArgumentException
 	{
 		if(players==null || players.length<2 || players.length >5 || deck == null || deck.size() !=50)
@@ -48,11 +52,10 @@ public class State implements Cloneable
 	}
 
 	/**
-	 *A method to create the next state from the given state and a move.
-	 *This method will only work if no hand has been hidden (since it allows players to infer the result of actions).
-	 *@param deck the deck of cards
-	 *@param action the action made
-	 *@throws IllegalActionException if the move is not legal in the current state, or one hand has been hidden.
+	 *Crea un nuovo stato a partire da quello attuale (this), l'ultima mossa fatta e il mazzo di carte da cui far pescare il giocatore.
+	 *@param deck il mazzo
+	 *@param action l'azione compiuta
+	 *@throws IllegalActionException se l'azione compiuta è illecita nello stato attuale
 	 **/
 	public State nextState(Action action, Stack<Card> deck) throws IllegalActionException{
 		if(!legalAction(action)) throw new IllegalActionException("Invalid action!: "+action);
@@ -120,30 +123,13 @@ public class State implements Cloneable
 	}
 
 	/**
-	 *A method to create a local state from a global state.
-	 *That is, if there is no current observer, the specified observer will have their hand hidden from them.
-	 *@param observer the player observing the game state
-	 *@throws IllegalActionException if the observer is out of bounds, or if the state is not global.
-	 **/
-/*	public State hideHand(int observer) throws IllegalActionException{
-		if(this.observer==-1 && observer>=0 && observer < hands.length){
-			State local = (State) this.clone();
-			local.observer=observer;
-			return local;
-		}
-		else throw new IllegalActionException("Hand already hidden, or observer out of bounds");
-	}
-*/
-	/**
-	 * Test the legality of a Action.
-	 * If the observer of a state is specified, this mathod can only be applied to actions performed by the observer.
-	 * @param a the move to be tested
-	 * @return true if the move is legal in the current game state.
-	 * @throws IllegalActionException
+	 * Verifica la legittimità di una mossa effettuata nello stato corrente.
+	 * @param a la mossa da verificare
+	 * @return true se la mossa è legittima, false altrimenti.
+	 * @throws IllegalActionException se il parametro è null
 	 **/
 	public boolean legalAction(Action a) throws IllegalActionException{
 		if(a==null) throw new IllegalActionException("Action is null");
-//		if(observer!=-1 && a.getPlayer()!=observer) throw new IllegalActionException("Local states may only test the legality of observers moves");
 		if(a.getPlayer()!= currentPlayer) return false;
 		switch(a.getType()){
 			case PLAY:
@@ -158,18 +144,18 @@ public class State implements Cloneable
 	}
 
 	/**
-	 * Gives and array of all the player names in the game.
-	 * @return an array containing the naems of the players in the game, by ther index in the game.
+	 * Restituisce i giocatori, nell'ordine in cui giocano
+	 * @return un array che contiene un Agent per ogni giocatore
 	 **/
 	public Agent[] getPlayers(){
 		return players;
 	}
 
 	/**
-	 * Gives the cards of the specified player
-	 * @param player the index of the player is the game
-	 * @return an array of cards in player's hand, or an empty array, if the cards are hidden.
-	// * @throws ArrayIndexOutOfBounds if there is no player of the given index.
+	 * Restituisce la mano del giocatore selezionato
+	 * @param player l'indice del giocatore selezionato
+	 * @return Un array di Card, che rappresenta la mano di un giocatore.
+	// * @throws ArrayIndexOutOfBounds se non esiste un giocatore di indice indicato.
 	 **/
 	public Card[] getHand(int player)throws ArrayIndexOutOfBoundsException{
 		if(player<0 || player>= players.length) throw new ArrayIndexOutOfBoundsException();
@@ -178,41 +164,18 @@ public class State implements Cloneable
 	}
 
 	/**
-	 * Gives a players name
-	 * @return the name of the specified player
+	 * @return lo stato precedente
 	 **/
-	public String getName(int player){return players[player].toString();}
-
-	/**
-	 * Gives the previous state of the game, allowing players to determine the recent actions in the game.
-	 * @return the previous state, with the same observer as the current state.
-	 **/
-/*	public State getPreviousState(){
+	public State getPreviousState(){
 		State s = previousState;
-//		if(s!=null) s.observer = observer;
 		return s;
 	}
-*/
-	/**
-	 * Gets the last action performed in the game, before this state was reached
-	 * @return the last action performed prior to this state.
-	 **/
-//	public Action getPreviousAction(){return previousAction;}
-
 
 	/**
-	 * Gets the last action performed in the game, by the specified player
-	 * @return the last action performed by the given player, prior to this state.
-	// * @throws ArrayIndexOUtOfBoundsException if the specified player has not yet performed an action
+	 * @return l'ultima mossa fatta
 	 **/
-/*	public Action getPreviousAction(int player){
-		State s = this;
-		while(s!=null && s.previousAction !=null && s.previousAction.getPlayer()!=player)
-			s = s.previousState;
-		if(s==null || s.previousAction==null) throw new ArrayIndexOutOfBoundsException("Player has not played yet");
-		else return s.previousAction;
-	}
-*/
+	public Action getPreviousAction(){return previousAction;}
+
 	/**
 	 * Gets the card played in the previous move,
 	 * or null if it is the first move,
@@ -220,17 +183,16 @@ public class State implements Cloneable
 	 * @return the card played in the previous action,
 	 * or null if there is no previous action, or the action was a hintPlayable.
 	 * */
-	public Card previousCardPlayed(){
+/*	public Card previousCardPlayed(){
 		try{
 			return previousState.hands[previousAction.getPlayer()][previousAction.getCard()];
 		}
 		catch(Exception e){return null;}
 	}
-
+*/
 
 	/**
-	 * Gets a clone of the discard stack
-	 * @return a clone of the discard stack
+	 * @return una copia dello Stack di carte scartate
 	 **/
 	public Stack<Card> getDiscards(){return (Stack<Card>) discards.clone();}
 
@@ -311,13 +273,12 @@ public class State implements Cloneable
 			State s = (State) super.clone();
 			s.players = players.clone();
 			s.discards = (Stack<Card>)discards.clone();
-			s.hands = hands.clone();
-	/*		for(int i = 0; i<hands.length; i++)
+			s.hands = new Card[hands.length][hands[0].length];
+			for(int i = 0; i<hands.length; i++)
 			{
-				s.hands[i] = hands[i].clone();
 				for (int j=0; j<s.hands[i].length; j++)
-					s.hands[i][j] = hands[i][j];
-			}*/
+					s.hands[i][j] = hands[i][j].clone();
+			}
 			s.fireworks = (Map<Color,Stack<Card>>)((HashMap)fireworks).clone();
 			for(Color c: Color.values()) s.fireworks.put(c,(Stack<Card>)fireworks.get(c).clone());
 			return s;
@@ -337,7 +298,7 @@ public class State implements Cloneable
 //		ret+="Observer: "+observer+"\n";
 		ret+="Players' hands:\n";
 		for(int i = 0; i< players.length; i++){
-			ret+="\t"+ players[i]+" ("+i+"): ";
+			ret+="\t"+ players[i].getName()+" ("+i+"): ";
 //			System.err.println(Arrays.toString(hands[i]));
 			for(Card c: hands[i]) {
 				if (c!=null)
@@ -359,6 +320,56 @@ public class State implements Cloneable
 		return ret;
 	}
 
+	/**
+	 * Crea una rappresentazione in testo JSON dello stato corrente. Nel JSON non sono rappresentati l'ultima azione e lo stato
+	 * precedente.
+	 * @return il JSONObject che rappresenta lo stato.
+	 */
+	@Override
+	public JSONObject toJSON()
+	{
+		JSONObject obj = new JSONObject();
+		JSONArray dis = new JSONArray();
+		for (Card c: discards)
+			dis.add(c.toJSON());
+		obj.put("discarded",dis);
+		JSONArray fireworks = new JSONArray();
+		for (Card c: this.fireworks.get(Color.BLUE))
+			fireworks.add(c.toJSON());
+		obj.put("blue",fireworks);
+		fireworks = new JSONArray();
+		for (Card c: this.fireworks.get(Color.GREEN))
+			fireworks.add(c.toJSON());
+		obj.put("green",fireworks);
+		fireworks = new JSONArray();
+		for (Card c: this.fireworks.get(Color.YELLOW))
+			fireworks.add(c.toJSON());
+		obj.put("yellow",fireworks);
+		fireworks = new JSONArray();
+		for (Card c: this.fireworks.get(Color.WHITE))
+			fireworks.add(c.toJSON());
+		obj.put("white",fireworks);
+		fireworks = new JSONArray();
+		for (Card c: this.fireworks.get(Color.RED))
+			fireworks.add(c.toJSON());
+		obj.put("red",fireworks);
+		obj.put("fuse",""+fuse);
+		obj.put("hints",""+hints);
+		obj.put("order",""+order);
+		obj.put("current",players[currentPlayer].getName()); //TODO occhio che se due giocatori si chiamano allo stesso modo non sanno più a chi tocca
+		obj.put("gameover",""+this.gameOver());
+		JSONObject hands= new JSONObject();
+		JSONArray array;
+		for (Agent agent:players)
+		{
+			array = new JSONArray();
+			for (Card c: getHand(agent.getIndex()))
+				array.add(c.toJSON());
+			hands.put(agent.getName(),array);
+		}
+		obj.put("hands",hands);
+		return obj;
+	}
 }
 
 

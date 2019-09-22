@@ -1,25 +1,33 @@
 package main;
 
+import agents.Agent;
 import agents.RemoteAgent;
-import hanabAI.Agent;
+import game.Card;
+import game.IllegalActionException;
 import game.State;
+import sjson.JSONUtils;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Stack;
 
 public class HanabiServer
 {
 	public static HanabiServer instance;
 
-	private Agent[] players;
+	private RemoteAgent[] players;
 	private String logpath;
 	private State currentState;
+	private Stack<Card> deck;
 
-	private HanabiServer(Agent[] players, String logpath)
+	private HanabiServer(RemoteAgent[] players, String logpath)
 	{
 		this.players = players;
 		this.logpath = logpath;
-		currentState = new State(players);
+		deck = Card.shuffledDeck();
+		currentState = new State(players,deck);
 	}
 
 	public State getCurrentState()
@@ -35,7 +43,20 @@ public class HanabiServer
 
 	private void play()
 	{
-
+		try {
+			while (!currentState.gameOver()) {
+				System.out.println(currentState);
+				for (RemoteAgent a: players)
+					a.sendState(currentState);
+				currentState = currentState.nextState(players[currentState.getCurrentPlayer()].doAction(),deck);
+			}
+			System.out.println(currentState);
+		}
+		catch(IllegalActionException e)
+		{
+			e.printStackTrace(System.err);
+			System.exit(1);
+		}
 	}
 
 	/**
@@ -47,7 +68,7 @@ public class HanabiServer
 	 * 		<li>-p "port" = imposta la porta tcp locale. Default: 9494</li>
 	 *		<li>-g "numplayers" = imposta il numero di giocatori. Default: 2</li>
 	 *		<li>-f "logfilepath"|null = imposta il percorso del file nel quale memorizzare il log a partita finita.
-	 *									Se null non verr&agrave; memorizzato</li>
+	 *									Se null (default) non verr&agrave; memorizzato</li>
 	 * </ul>
 	 * @param args
 	 */
@@ -56,7 +77,7 @@ public class HanabiServer
 		int port = 9494;
 		int n = 2;
 		boolean log = false;
-		String logpath;
+		String logpath = null;
 
 		for (int i=0; i<args.length; i++)
 		{
@@ -88,12 +109,18 @@ public class HanabiServer
 		System.out.println("Server avviato."); //TODO stampa tcp address (locale e remoto)
 		int i = 0;
 		RemoteAgent[] players = new RemoteAgent[n];
+		Socket s;
 		while (i<players.length)
 		{ //Non c'è concorrenza, i giocatori sono accettati uno alla volta e giocheranno nell'ordine di arrivo
 			try
 			{
-				players[i] = new RemoteAgent(ss.accept());
+				s = ss.accept();
+				new PrintStream(s.getOutputStream()).print("{\"player_index\":\""+i+"\"}");
+				players[i] = new RemoteAgent(s,i);
 				System.out.println("Player"+i+" ("+players[i].getName()+") connesso");
+
+	//			s.getOutputStream().flush();
+
 				i++;
 			}
 			catch(IOException | ClassCastException e)

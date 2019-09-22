@@ -2,12 +2,12 @@ package agents;
 
 import game.Action;
 import game.Card;
+import game.IllegalActionException;
 import game.State;
-import hanabAI.*;
 
-public class BasicAgent extends AbstractAgent
+public class BasicAgent //extends Agent
 {
-
+/*
 	@Override
 	public Action chooseAction(State s) throws IllegalActionException
 	{
@@ -55,7 +55,7 @@ public class BasicAgent extends AbstractAgent
 	//gives hintPlayable of first playable card in next players hand
 	//flips a coin to determine whether it is a colour hintPlayable or value hintPlayable
 	//return null if no hintPlayable token left, or no playable cards
-	private Action hintPlayable(State s, boolean flag) throws IllegalActionException{
+	private Action hintPlayable(State s, boolean flag) throws IllegalActionException {
 		if(s.getHintTokens()>0){
 			for(int i = 1; i<numPlayers; i++){
 				int hintee = (index+i)%numPlayers;
@@ -154,4 +154,6 @@ public class BasicAgent extends AbstractAgent
 		}
 		return null;
 	}
+
+ */
 }

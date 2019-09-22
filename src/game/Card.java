@@ -1,6 +1,6 @@
 package game;
 
-import hanabAI.Agent;
+import agents.Agent;
 import main.HanabiServer;
 import sjson.JSONObject;
 import sjson.JSONObjectConvertible;
@@ -77,7 +77,7 @@ public class Card implements Cloneable, JSONObjectConvertible
 	 */
 	public boolean haveToShowColor(State s)
 	{
-		return owner!=null && !(s.getCurrentPlayer()>-1 && s.getPlayers()[s.getCurrentPlayer()]==owner && !colorRevealed);
+		return owner==null || !(s.getCurrentPlayer()>-1 && s.getPlayers()[s.getCurrentPlayer()]==owner && !colorRevealed);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class Card implements Cloneable, JSONObjectConvertible
 	 */
 	public boolean haveToShowValue(State s)
 	{
-		return owner !=null && !(s.getCurrentPlayer()>-1 && s.getPlayers()[s.getCurrentPlayer()]==owner && !valueRevealed);
+		return owner==null || !(s.getCurrentPlayer()>-1 && s.getPlayers()[s.getCurrentPlayer()]==owner && !valueRevealed);
 	}
 
 	/**

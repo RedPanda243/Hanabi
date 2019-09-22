@@ -1,20 +1,73 @@
 package agents;
 
 import game.Action;
-import hanabAI.IllegalActionException;
+import game.IllegalActionException;
 import game.State;
+import sjson.JSONException;
+import sjson.JSONObject;
+import sjson.JSONUtils;
 
+import java.io.IOException;
+import java.io.PrintStream;
 import java.net.Socket;
 
-public class RemoteAgent extends AbstractAgent
+public class RemoteAgent extends Agent
 {
-	public RemoteAgent(Socket s)
-	{
+	private JSONObject playerInfo;
+	private String name;
+	private Socket socket;
+	PrintStream ps;
+	private int index;
 
+	@Override
+	public int getIndex() {
+		return index;
+	}
+
+	public RemoteAgent(Socket s, int index) throws IOException
+	{
+		socket = s;
+		this.index = index;
+		ps = new PrintStream(socket.getOutputStream());
+		playerInfo = (JSONObject) JSONUtils.fromStream(socket.getInputStream());
+		name = playerInfo.optString("name");
+		if (name==null)
+			name = socket.getInetAddress().getHostAddress();
+	}
+
+	public void close() throws IOException
+	{
+		socket.close();
 	}
 
 	@Override
-	public Action chooseAction(State s) throws IllegalActionException {
-		return null;
+	public Action doAction() throws IllegalActionException
+	{
+//		sendState(s);
+		try
+		{
+			return Action.fromJSON((JSONObject)JSONUtils.fromStream(socket.getInputStream()));
+		}
+		catch(IOException | JSONException e)
+		{
+			throw new IllegalActionException(e);
+		}
+	}
+
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	public JSONObject getPlayerInfo()
+	{
+		return playerInfo;
+	}
+
+	public void sendState(State s)
+	{
+		ps.print(s.toJSON());
+		ps.flush();
 	}
 }

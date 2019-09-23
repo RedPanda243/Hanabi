@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="HanAPI">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/HanAPI.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/bin/HanAPI.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HanAPI">
+    <output-path>$PROJECT_DIR$/bin</output-path>
+    <root id="archive" name="HanAPI.jar">
+      <element id="module-output" name="HanAPI" />
+      <element id="module-source" name="HanAPI" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/HanAPI/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

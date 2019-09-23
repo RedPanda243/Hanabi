@@ -48,7 +48,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">
@@ -270,7 +270,7 @@ implements java.lang.Cloneable</pre>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.Stack&lt;<a href="../hanabAI/Card.html" title="class in hanabAI">Card</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../hanabAI/State.html#getFirework-game.Color-">getFirework</a></span>(<a href="../hanabAI/Colour.html" title="enum in hanabAI">Colour</a>&nbsp;c)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../hanabAI/State.html#getFirework-api.game.Color-">getFirework</a></span>(<a href="../hanabAI/Colour.html" title="enum in hanabAI">Colour</a>&nbsp;c)</code>
 <div class="block">Get the stack of cards representing the specified firework</div>
 </td>
 </tr>
@@ -567,7 +567,7 @@ implements java.lang.Cloneable</pre>
 <h4>nextState</h4>
 <pre>public&nbsp;<a href="../hanabAI/State.html" title="class in hanabAI">State</a>&nbsp;nextState(<a href="../hanabAI/Action.html" title="class in hanabAI">Action</a>&nbsp;action,
                        java.util.Stack&lt;<a href="../hanabAI/Card.html" title="class in hanabAI">Card</a>&gt;&nbsp;deck)
-                throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+                throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">A method to create the next state from the given state and a move.
 This method will only work if no hand has been hidden (since it allows agents to infer the result of actions).</div>
 <dl>
@@ -575,7 +575,7 @@ This method will only work if no hand has been hidden (since it allows agents to
 <dd><code>deck</code> - the deck of cards</dd>
 <dd><code>action</code> - the action made</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the move is not legal in the current state, or one hand has been hidden.</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the move is not legal in the current state, or one hand has been hidden.</dd>
 </dl>
 </li>
 </ul>
@@ -586,14 +586,14 @@ This method will only work if no hand has been hidden (since it allows agents to
 <li class="blockList">
 <h4>hideHand</h4>
 <pre>public&nbsp;<a href="../hanabAI/State.html" title="class in hanabAI">State</a>&nbsp;hideHand(int&nbsp;observer)
-               throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+               throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">A method to create a local state from a global state. 
 That is, if there is no current observer, the specified observer will have their hand hidden from them.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>observer</code> - the player observing the game state</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the observer is out of bounds, or if the state is not global.</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the observer is out of bounds, or if the state is not global.</dd>
 </dl>
 </li>
 </ul>
@@ -604,7 +604,7 @@ That is, if there is no current observer, the specified observer will have their
 <li class="blockList">
 <h4>legalAction</h4>
 <pre>public&nbsp;boolean&nbsp;legalAction(<a href="../hanabAI/Action.html" title="class in hanabAI">Action</a>&nbsp;a)
-                    throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+                    throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">Test the legality of a Action.
  If the observer of a state is specified, this mathod can only be applied to actions performed by the observer.</div>
 <dl>
@@ -613,7 +613,7 @@ That is, if there is no current observer, the specified observer will have their
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true if the move is legal in the current game state.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code></dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -926,7 +926,7 @@ That is, if there is no current observer, the specified observer will have their
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">

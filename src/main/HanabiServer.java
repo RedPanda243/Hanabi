@@ -5,7 +5,6 @@ import agents.RemoteAgent;
 import game.Card;
 import game.IllegalActionException;
 import game.State;
-import sjson.JSONUtils;
 
 import java.io.IOException;
 import java.io.PrintStream;

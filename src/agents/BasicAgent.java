@@ -1,9 +1,6 @@
 package agents;
 
-import game.Action;
-import game.Card;
 import game.IllegalActionException;
-import game.State;
 
 public class BasicAgent //extends Agent
 {

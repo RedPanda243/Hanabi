@@ -1,5 +1,4 @@
-package game;
-
+package api.game;
 public enum ActionType
 {
 	PLAY,DISCARD,HINT_COLOR,HINT_VALUE;

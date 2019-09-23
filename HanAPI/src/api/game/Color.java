@@ -1,4 +1,4 @@
-package game;
+package api.game;
 
 /**The colors of Hanabi Cards**/
 public enum Color {

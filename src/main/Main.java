@@ -1,9 +1,6 @@
 package main;
 
 import agents.Agent;
-import agents.BasicAgent;
-import agents.HumanAgent;
-import game.Action;
 import game.Card;
 import game.IllegalActionException;
 import game.State;

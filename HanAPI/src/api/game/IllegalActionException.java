@@ -1,4 +1,4 @@
-package game;
+package api.game;
 
 /**
  * A class for representing Illegal Actions in the game Hanabi

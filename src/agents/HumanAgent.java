@@ -2,7 +2,6 @@ package agents;
 
 import game.Color;
 import game.Action;
-import game.State;
 
 import java.io.BufferedReader;
 import java.io.IOException;

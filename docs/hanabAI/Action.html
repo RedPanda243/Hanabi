@@ -194,7 +194,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../hanabAI/Action.html#Action-int-java.lang.String-hanabAI.ActionType-int-boolean:A-game.Color-">Action</a></span>(int&nbsp;player,
+<td class="colLast"><code><span class="memberNameLink"><a href="../hanabAI/Action.html#Action-int-java.lang.String-hanabAI.ActionType-int-boolean:A-api.game.Color-">Action</a></span>(int&nbsp;player,
       java.lang.String&nbsp;playerName,
       <a href="../hanabAI/ActionType.html" title="enum in hanabAI">ActionType</a>&nbsp;type,
       int&nbsp;hintReceiver,
@@ -400,7 +400,7 @@ extends java.lang.Object</pre>
               java.lang.String&nbsp;playerName,
               <a href="../hanabAI/ActionType.html" title="enum in hanabAI">ActionType</a>&nbsp;type,
               int&nbsp;pos)
-       throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+       throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">Constructor to create Play or Discard actions</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -409,7 +409,7 @@ extends java.lang.Object</pre>
 <dd><code>type</code> - the type of the action, should be ActionType.PLAY or actionType.DISCARD</dd>
 <dd><code>pos</code> - the position of the card to be discarded in the players hand</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the wrong ActionType is given</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the wrong ActionType is given</dd>
 </dl>
 </li>
 </ul>
@@ -425,7 +425,7 @@ extends java.lang.Object</pre>
               int&nbsp;hintReceiver,
               boolean[]&nbsp;cards,
               <a href="../hanabAI/Colour.html" title="enum in hanabAI">Colour</a>&nbsp;hint)
-       throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+       throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">Constructor to create Play or Discard actions</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -436,7 +436,7 @@ extends java.lang.Object</pre>
 <dd><code>cards</code> - an array of booleans, such that the ith value is true if and only if the ith card in the hintee's hand matches the hint</dd>
 <dd><code>hint</code> - the colour hinted at.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the wrong ActionType is given</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the wrong ActionType is given</dd>
 </dl>
 </li>
 </ul>
@@ -452,7 +452,7 @@ extends java.lang.Object</pre>
               int&nbsp;hintReceiver,
               boolean[]&nbsp;cards,
               int&nbsp;hint)
-       throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+       throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">Constructor to create Play or Discard actions</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -463,7 +463,7 @@ extends java.lang.Object</pre>
 <dd><code>cards</code> - an array of booleans, such that the ith value is true if and only if the ith card in the hintee's hand matches the hint</dd>
 <dd><code>hint</code> - the value hinted at.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the wrong ActionType is given</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the wrong ActionType is given</dd>
 </dl>
 </li>
 </ul>
@@ -510,13 +510,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getCard</h4>
 <pre>public&nbsp;int&nbsp;getCard()
-            throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+            throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">gets the psoition of the card being played/discarded</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the position of the card being played or discarded</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the action type is not PLAY or DISCARD</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the action type is not PLAY or DISCARD</dd>
 </dl>
 </li>
 </ul>
@@ -527,13 +527,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getHintReceiver</h4>
 <pre>public&nbsp;int&nbsp;getHintReceiver()
-                    throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+                    throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">gets the index ofthe player receiving the hint</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the index of the player receiving the hint</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the action type is not HINT_COLOUR or HINT_VALUE</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the action type is not HINT_COLOUR or HINT_VALUE</dd>
 </dl>
 </li>
 </ul>
@@ -544,13 +544,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getHintedCards</h4>
 <pre>public&nbsp;boolean[]&nbsp;getHintedCards()
-                         throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+                         throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">gets an array of booleans indicating the cards that are the subject of the hint</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an array of booleans, such that the ith valeu is true if and only if the ith card in the hintReceivers hand matches the hint (indexing from 0)</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the action type is not HINT_COLOUR or HINT_VALUE</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the action type is not HINT_COLOUR or HINT_VALUE</dd>
 </dl>
 </li>
 </ul>
@@ -561,13 +561,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getColour</h4>
 <pre>public&nbsp;<a href="../hanabAI/Colour.html" title="enum in hanabAI">Colour</a>&nbsp;getColour()
-                 throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+                 throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">gets the colour hinted</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the colour hinted</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the action type is not HINT_COLOUR</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the action type is not HINT_COLOUR</dd>
 </dl>
 </li>
 </ul>
@@ -578,13 +578,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getValue</h4>
 <pre>public&nbsp;int&nbsp;getValue()
-             throws <a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></pre>
+             throws <a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></pre>
 <div class="block">gets the value hinted</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the value hinted</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../hanabAI/IllegalActionException.html" title="class in hanabAI">IllegalActionException</a></code> - if the action type is not HINT_VALUE</dd>
+<dd><code><a href="../hanabAI/api.game.IllegalActionException.html" title="class in hanabAI">api.game.IllegalActionException</a></code> - if the action type is not HINT_VALUE</dd>
 </dl>
 </li>
 </ul>

@@ -1,44 +1,52 @@
 package api.game;
 
+import sjson.JSONConvertible;
 import sjson.JSONException;
 import sjson.JSONObject;
-import sjson.JSONObjectConvertible;
 
 import static api.game.ActionType.*;
 
-public class Action implements Cloneable, JSONObjectConvertible
+public class Action extends JSONConvertible<JSONObject>
 {
 	private int player;
 	private ActionType type;
 	private int card;
-	private int hintee;
+	private int hintedPlayer;
 //	private boolean[] cards;
 	private Color color;
 	private int value;
 
 	public Action(JSONObject json) throws JSONException
 	{
+		super(json);
 		try
 		{
 			player = Integer.parseInt(json.optString("player"));
+			if (player<0 || player>Game.getInstance().getPlayers().length-1)
+				throw new JSONException(new IndexOutOfBoundsException());
 		}
 		catch(NumberFormatException e)
 		{
 			throw new JSONException("Unreadable player");
 		}
+
 		type = ActionType.fromString(json.optString("type"));
 		if (type == null)
-			throw new JSONException("Unreadable type");
+			throw new JSONException("Unreadable action type");
 
 		if (type == PLAY) {
 			try {
 				card = Integer.parseInt(json.optString("card"));
+				if (card<0 || card>Game.getInstance().getNumberOfCardsPerPlayer()-1)
+					throw new JSONException(new IndexOutOfBoundsException());
 			} catch (NumberFormatException e) {
 				throw new JSONException("Unreadable played card");
 			}
 		}else if (type == DISCARD) {
 			try {
 				card = Integer.parseInt(json.optString("card"));
+				if (card<0 || card>Game.getInstance().getNumberOfCardsPerPlayer()-1)
+					throw new JSONException(new IndexOutOfBoundsException());
 			} catch (NumberFormatException e) {
 				throw new JSONException("Unreadable discarded card");
 			}
@@ -47,22 +55,33 @@ public class Action implements Cloneable, JSONObjectConvertible
 			if (color == null)
 				throw new JSONException("Unreadable hinted color");
 			try {
-				hintee = Integer.parseInt(json.optString("hinted"));
+				hintedPlayer = Integer.parseInt(json.optString("hinted"));
+				if (hintedPlayer<0 || hintedPlayer>Game.getInstance().getPlayers().length-1)
+					throw new JSONException(new IndexOutOfBoundsException());
+				if (hintedPlayer == player)
+					throw new JSONException("You cannot hint yourself");
 			} catch (NumberFormatException e) {
 				throw new JSONException("Unreadable hinted player");
 			}
 		}else if (type == HINT_VALUE){
 			try
 			{
-				hintee = Integer.parseInt(json.optString("hinted"));
+				hintedPlayer = Integer.parseInt(json.optString("hinted"));
+				if (hintedPlayer<0 || hintedPlayer>Game.getInstance().getPlayers().length-1)
+					throw new JSONException(new IndexOutOfBoundsException());
+				if (hintedPlayer == player)
+					throw new JSONException("You cannot hint yourself");
 			}
 			catch (NumberFormatException e)
 			{
 				throw new JSONException("Unreadable hinted player");
 			}
+
 			try
 			{
 				value = Integer.parseInt(json.optString("value"));
+				if (value<1 || value>5)
+					throw new JSONException(new IndexOutOfBoundsException());
 			}
 			catch (NumberFormatException e)
 			{
@@ -73,42 +92,28 @@ public class Action implements Cloneable, JSONObjectConvertible
 
 	public Action clone()
 	{
-		Action a;
-		try
-		{
-			a = (Action)super.clone();
-			a.player = player;
-			a.type = type;
-			a.card = card;
-//			a.cards = cards.clone();
-			a.hintee = hintee;
-			a.color = color;
-			a.value = value;
-		}
-		catch(CloneNotSupportedException e)
-		{
-			a = null;
-		}
-		return a;
+		return (Action)super.clone();
 	}
 
 	/**
-	 * get the player index
-	 * @return the index of the player performing the action
+	 * @return l'indice del giocatore che esegue l'azione
 	 **/
+	@SuppressWarnings("unused")
 	public int getPlayer(){return player;}
 
 	/**
 	 * get the action type
 	 * @return the type of action being performed
 	 **/
-	public ActionType getType(){return type;}
+	@SuppressWarnings("unused")
+	public ActionType getActionType(){return type;}
 
 	/**
 	 * gets the psoition of the card being played/discarded
 	 * @return the position of the card being played or discarded
 	 * @throws IllegalActionException if the action type is not PLAY or DISCARD
 	 **/
+	@SuppressWarnings("unused")
 	public int getCard() throws IllegalActionException{
 		if(type != PLAY && type!= ActionType.DISCARD) throw new IllegalActionException("Card is not defined");
 		return card;
@@ -119,9 +124,10 @@ public class Action implements Cloneable, JSONObjectConvertible
 	 * @return the index of the player receiving the hint
 	 * @throws IllegalActionException if the action type is not HINT_COLOR or HINT_VALUE
 	 **/
+	@SuppressWarnings("unused")
 	public int getHintReceiver() throws IllegalActionException{
 		if(type != ActionType.HINT_COLOR && type!= ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a hint");
-		return hintee;
+		return hintedPlayer;
 	}
 
 	/**
@@ -129,6 +135,7 @@ public class Action implements Cloneable, JSONObjectConvertible
 	 * @return the color hinted
 	 * @throws IllegalActionException if the action type is not HINT_COLOR
 	 **/
+	@SuppressWarnings("unused")
 	public Color getColor() throws IllegalActionException{
 		if(type != ActionType.HINT_COLOR) throw new IllegalActionException("Action is not a color hint");
 		return color;
@@ -139,33 +146,10 @@ public class Action implements Cloneable, JSONObjectConvertible
 	 * @return the value hinted
 	 * @throws IllegalActionException if the action type is not HINT_VALUE
 	 **/
+	@SuppressWarnings("unused")
 	public int getValue() throws IllegalActionException{
 		if(type != ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a value hint");
 		return value;
-	}
-
-	@Override
-	public JSONObject toJSON()
-	{
-		JSONObject obj = new JSONObject();
-		obj.put("type",type.toString());
-		obj.put("player",""+player);
-		if (type == PLAY)
-			obj.put("card",""+card);
-		else if (type == DISCARD)
-			obj.put("card",""+card);
-		else if (type == HINT_VALUE)
-		{
-			obj.put("value", "" + value);
-			obj.put("hinted", "" + hintee);
-		}
-		else if (type == HINT_COLOR)
-		{
-			obj.put("color", color.toString());
-			obj.put("hinted", "" + hintee);
-		}else
-			return null;
-		return obj;
 	}
 
 	/**
@@ -173,29 +157,21 @@ public class Action implements Cloneable, JSONObjectConvertible
 	 * @return a description of the action, depending on type
 	 * */
 	public String toString(){
-		String ret,playerName= HanabiServer.instance.getPlayer(player).getName();
+		String playerName= Game.getInstance().getPlayers()[player];
 		if (type == PLAY)
-			return "Player "+playerName+ "("+player+") plays the card at position "+card;
+			return "Il giocatore "+playerName+ "("+player+") gioca la carta in posizione "+card;
 		else if (type == DISCARD)
-			return "Player "+playerName+ "("+player+") discards the card at position "+card;
+			return "Il giocatore "+playerName+ "("+player+") scarta la carta in posizione "+card;
 		else if (type == HINT_COLOR)
-		{
-			ret = "Player "+playerName+ "("+player+") gives the hint: \"Player "+hintee+", cards at position"+(cards.length>1?"s":"");
-			for(int i=0; i<cards.length; i++)
-				ret += (cards[i]?" "+i:"");
-			ret+= " have color "+ color +"\"";
-			return ret;
-		}
+			return "Il giocatore "+playerName+ "("+player+") mostra a "+Game.getInstance().getPlayers()[hintedPlayer]+"("+hintedPlayer
+					+") le carte di colore "+color;
 		else if (type == HINT_VALUE)
-		{
-			ret = "Player "+playerName+ "("+player+") gives the hint: \"Player "+hintee+", cards at position"+(cards.length>1?"s":"");
-			for(int i=0; i<cards.length; i++)
-				ret += (cards[i]?" "+i:"");
-			ret+= " have value "+value+"\"";
-			return ret;
-		}
-		else return "";
+			return "Il giocatore "+playerName+ "("+player+") mostra a "+Game.getInstance().getPlayers()[hintedPlayer]+"("+hintedPlayer
+					+") le carte di valore "+value;
+		return "";
 	}
+
+
 
 
 }

@@ -1,20 +1,19 @@
 package api.game;
 
+import sjson.JSONConvertible;
 import sjson.JSONException;
 import sjson.JSONObject;
-import sjson.JSONObjectConvertible;
 
 /**
  * Classe che rappresenta una carta dal punto di vista di un giocatore.
  * @author Francesco Pandolfi, Mihail Bida
  */
-public class Card implements Cloneable, JSONObjectConvertible
+public class Card extends JSONConvertible<JSONObject>
 {
 	private Color color;
 	private int value;
 	private boolean valueRevealed;
 	private boolean colorRevealed;
-	private JSONObject obj;
 
 	/**
 	 * Costruisce una carta a partire da un json (ottenuto dal server di gioco)
@@ -22,72 +21,55 @@ public class Card implements Cloneable, JSONObjectConvertible
 	 **/
 	public Card(JSONObject object) throws JSONException
 	{
-		String c = object.optString("color");
-		String v = object.optString("value");
-		String cr = object.optString("color_revealed");
-		String vr = object.optString("value_revealed");
+		super(object);
 
-		if (c == null || v == null || cr == null || vr == null)
-			throw new JSONException("Missing field! Requested: color, value, color_revealed, value_revealed");
+		String s = object.optString("color");
+		if (s == null)
+			throw new JSONException("Missing color!");
+		else if (Color.fromString(s)==null && !s.equals(""))
+			throw new JSONException("Unrecognized color! Color must be green, red, yellow, blue, white or void string \"\"");
 
-		if (c.equals(""))
-			color = null;
+		color = Color.fromString(s);
+
+		s = object.optString("value");
+		if (s == null)
+			throw new JSONException("Missing value");
 		else
 		{
-			color = Color.fromString(c);
-			if (color == null)
-				throw new JSONException("Color must be green, red, yellow, blue or white");
-		}
-
-		if (v.equals(""))
-			value = 0;
-		else {
-			try {
-				value = Integer.parseInt(v);
-				if (value < 1 || value > 5)
+			try
+			{
+				int v = Integer.parseInt(s);
+				if (v<0 || v>5)
 					throw new NumberFormatException();
-			} catch (NumberFormatException e) {
-				throw new JSONException("Value must be an int 1<=x<=5");
+			}
+			catch (NumberFormatException e)
+			{
+				throw new JSONException("Unrecognized value! Value must be an int 0<=x<=5");
 			}
 		}
 
-		if (cr.equals("true"))
-			colorRevealed = true;
-		else if (cr.equals("false"))
-			colorRevealed = false;
-		else throw new JSONException("Color_revealed must be a boolean");
+		value = Integer.parseInt(s);
 
-		if (vr.equals("true"))
-			valueRevealed = true;
-		else if (vr.equals("false"))
-			valueRevealed = false;
-		else throw new JSONException("Value_revealed must be a boolean");
+		s = object.optString("value_revealed");
+		if (s == null)
+			throw new JSONException("Missing value_revealed");
+		else if (!(s.equalsIgnoreCase("false")||s.equalsIgnoreCase("true")))
+			throw new JSONException("value_revealed must be a boolean");
 
-		this.obj = object.copy();
+		valueRevealed = Boolean.parseBoolean(s);
+
+		s = object.optString("color_revealed");
+		if (s == null)
+			throw new JSONException("Missing color_revealed");
+		else if (!(s.equalsIgnoreCase("false")||s.equalsIgnoreCase("true")))
+			throw new JSONException("color_revealed must be a boolean");
+
+		colorRevealed = Boolean.parseBoolean(s);
 	}
 
-	/**
-	 * Crea una copia
-	 * @return una copia della carta.
-	 * @see Cloneable
-	 */
 	public Card clone()
 	{
-		Card c;
-		try
-		{
-			c = (Card)super.clone();
-			c.color = this.color;
-			c.value = this.value;
-			c.colorRevealed = this.colorRevealed;
-			c.valueRevealed = this.valueRevealed;
-			c.obj = this.obj.copy();
-		}
-		catch(CloneNotSupportedException e)
-		{
-			c = null;
-		}
-		return c;
+		return (Card)super.clone();
 	}
 
 	/**
@@ -130,12 +112,6 @@ public class Card implements Cloneable, JSONObjectConvertible
 		return colorRevealed;
 	}
 
-	@Override
-	public JSONObject toJSON()
-	{
-		return obj.copy();
-	}
-
 	/**
 	 * @return la rappresentazione testuale della carta
 	 */
@@ -153,14 +129,6 @@ public class Card implements Cloneable, JSONObjectConvertible
 			sb.append("   ");
 		return sb.toString();
 	}
-
-
-/*
-	public int hashCode(){
-		return 5* color.ordinal()+value;
-	}
-*/
-
 }
 
 

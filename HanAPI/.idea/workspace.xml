@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="644e2846-9d4a-4fbd-95f8-f21cfdbcf6f1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/SJSON.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/agents/Agent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/game/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/game/Hand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/main/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/HanabiEngine.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/agents/Agent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/agents/BasicAgent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/agents/HumanAgent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/agents/RemoteAgent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/game/Action.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/game/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/game/State.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/.idea/artifacts/SJSON.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/SJSON.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONArray.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONConvertible.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SJSON/src/sjson/TypedJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/HanAPI.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/HanabiClient.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/HanabiServer.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/HanAPI.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/SJSON.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/game/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/game/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hanabi.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hanabi.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../META-INF-CLIENT/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../META-INF-SERVER/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bin/HanAPI.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bin/SJSON.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/agents/BasicAgent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/agents/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/agents/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/agents/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/allclasses-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/allclasses-noframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/deprecated-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/Action.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/ActionType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/Agent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/Card.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/Colour.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/Hanabi.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/IllegalActionException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/State.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/hanabAI/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-11.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-12.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-13.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-14.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-15.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-16.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-17.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index-files/index-9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/overview-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/overview-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/package-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/serialized-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/SJSON.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/HanAPI/ActionType$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/HanAPI/ActionType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/HanAPI/Color$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/HanAPI/Color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/HanAPI/IllegalActionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/META-INF/Hanabi-UWA.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/agents/Agent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/agents/BasicAgent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/agents/HumanAgent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/agents/RemoteAgent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/game/Action.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/game/ActionType$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/game/ActionType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/game/Card.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/game/Color$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/game/Color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/game/IllegalActionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/game/State$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/game/State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/main/HanabiClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/main/HanabiServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Hanabi-UWA/main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/agents/Agent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/agents/BasicAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/agents/HumanAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/agents/RemoteAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/game/Action.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/game/Card.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/game/State.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/HanabiClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/HanabiServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/Main.java" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/game/ActionType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/game/Card.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="69" column="23" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1922#1923#0" expanded="true" />
+                <element signature="e#1955#1956#0" expanded="true" />
+                <element signature="e#2598#2599#0" expanded="true" />
+                <element signature="e#2774#2775#0" expanded="true" />
+                <element signature="e#2838#2839#0" expanded="true" />
+                <element signature="e#2744#2745#0" expanded="true" />
+                <element signature="e#2771#2772#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/game/State.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="193" column="36" selection-start-line="193" selection-start-column="36" selection-end-line="193" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4043#4044#0" expanded="true" />
+                <element signature="e#4058#4059#0" expanded="true" />
+                <element signature="e#7037#7038#0" expanded="true" />
+                <element signature="e#7124#7125#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/game/Hand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#469#470#0" expanded="true" />
+                <element signature="e#502#503#0" expanded="true" />
+                <element signature="e#414#415#0" expanded="true" />
+                <element signature="e#452#453#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/game/IllegalActionException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/game/Color.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/game/Action.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2826#2827#0" expanded="true" />
+                <element signature="e#2861#2862#0" expanded="true" />
+                <element signature="e#2964#2991#0" expanded="true" />
+                <element signature="e#3116#3143#0" expanded="true" />
+                <element signature="e#3403#3430#0" expanded="true" />
+                <element signature="e#3813#3840#0" expanded="true" />
+                <element signature="e#4194#4221#0" expanded="true" />
+                <element signature="e#4537#4564#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/game/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#533#534#0" expanded="true" />
+                <element signature="e#572#573#0" expanded="true" />
+                <element signature="e#606#607#0" expanded="true" />
+                <element signature="e#627#628#0" expanded="true" />
+                <element signature="e#665#666#0" expanded="true" />
+                <element signature="e#687#688#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/api/main/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/agents/Agent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/api/game/Card.java" />
+        <option value="$PROJECT_DIR$/src/api/game/Hand.java" />
+        <option value="$PROJECT_DIR$/src/api/game/State.java" />
+        <option value="$PROJECT_DIR$/src/api/game/Action.java" />
+        <option value="$PROJECT_DIR$/src/api/agents/Agent.java" />
+        <option value="$PROJECT_DIR$/src/api/game/Game.java" />
+        <option value="$PROJECT_DIR$/src/api/main/Main.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="37" />
+    <option name="y" value="51" />
+    <option name="width" value="1330" />
+    <option name="height" value="693" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="HanApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HanAPI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HanApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HanAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HanApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HanAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HanApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HanAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HanApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HanAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SJSON.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="api.agents" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="644e2846-9d4a-4fbd-95f8-f21cfdbcf6f1" name="Default Changelist" comment="" />
+      <created>1569245000963</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1569245000963</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49932706" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" sideWeight="0.50067294" side_tool="true" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32974428" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Stack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="65" column="13" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../SJSON.jar!/sjson/JSONConvertible.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../SJSON.jar!/sjson/JSONObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <folding>
+            <element signature="e#264#265#0" expanded="true" />
+            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#2486#2487#0" expanded="true" />
+            <element signature="e#2525#2526#0" expanded="true" />
+            <element signature="e#2529#2562#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/Hand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#502#503#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
+            <element signature="e#452#453#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="193" column="36" selection-start-line="193" selection-start-column="36" selection-end-line="193" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4043#4044#0" expanded="true" />
+            <element signature="e#4058#4059#0" expanded="true" />
+            <element signature="e#7037#7038#0" expanded="true" />
+            <element signature="e#7124#7125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="69" column="23" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1922#1923#0" expanded="true" />
+            <element signature="e#1955#1956#0" expanded="true" />
+            <element signature="e#2598#2599#0" expanded="true" />
+            <element signature="e#2774#2775#0" expanded="true" />
+            <element signature="e#2838#2839#0" expanded="true" />
+            <element signature="e#2744#2745#0" expanded="true" />
+            <element signature="e#2771#2772#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/ActionType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/Action.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2826#2827#0" expanded="true" />
+            <element signature="e#2861#2862#0" expanded="true" />
+            <element signature="e#2964#2991#0" expanded="true" />
+            <element signature="e#3116#3143#0" expanded="true" />
+            <element signature="e#3403#3430#0" expanded="true" />
+            <element signature="e#3813#3840#0" expanded="true" />
+            <element signature="e#4194#4221#0" expanded="true" />
+            <element signature="e#4537#4564#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/agents/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#572#573#0" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+            <element signature="e#627#628#0" expanded="true" />
+            <element signature="e#665#666#0" expanded="true" />
+            <element signature="e#687#688#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/IllegalActionException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/Color.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>SJSON</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -14,9 +14,10 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	}
 
 	@SuppressWarnings("WeakerAccess")
-	public void add(JSONData d)
+	public JSONArray add(JSONData d)
 	{
 		list.add(d);
+		return this;
 	}
 
 	public JSONArray clone()

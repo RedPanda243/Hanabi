@@ -1,15 +1,14 @@
 package main;
 
-import agents.Agent;
-import game.Card;
-import game.State;
+import game.ServerCard;
+import game.ServerState;
 
 public class Main
 {
 
 	private Agent[] players;
-	private State state;
-	private java.util.Stack<Card> deck;
+	private ServerState state;
+	private java.util.Stack<ServerCard> deck;
 	private StringBuffer log;
 	private boolean running;
 
@@ -32,10 +31,10 @@ public class Main
 		if (running)
 			throw new IllegalStateException("Game running");
 		players = agents;
-		deck = Card.shuffledDeck();
+		deck = ServerCard.shuffledDeck();
 /*		String[] s = new String[agents.length];
 		for(int i=0; i<s.length; i++)s[i] = agents[i].toString();*/
-		state = new State(agents, deck);
+		state = new ServerState(agents, deck);
 		log = new StringBuffer();
 	}
 /*

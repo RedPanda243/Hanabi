@@ -10,16 +10,18 @@ import java.util.Stack;
  * Classe che rappresenta lo stato di una partita dal punto di vista di un giocatore
  * @author Francesco Pandolfi, Mihail Bida
  */
+@SuppressWarnings({"WeakerAccess","unused"})
 public class State extends JSONConvertible<JSONObject>
 {
-	private Stack<Card> discards;
-	private Map<Color,Stack<Card>> fireworks;
-	private Hand[] hands;
-	private int order;
-	private int hints;
-	private int fuse;
-	private int currentPlayer;
-	private int finalAction;
+	protected Stack<Card> discards;
+	protected Map<Color,Stack<Card>> fireworks;
+	protected Hand[] hands;
+	protected int order;
+	protected int hints;
+	protected int fuse;
+	protected int currentPlayer;
+	protected int finalAction;
+
 
 	public State(JSONObject json) throws JSONException
 	{

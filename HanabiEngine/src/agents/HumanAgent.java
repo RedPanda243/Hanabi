@@ -1,6 +1,5 @@
 package agents;
 
-import game.Action;
 import game.Color;
 
 import java.io.BufferedReader;

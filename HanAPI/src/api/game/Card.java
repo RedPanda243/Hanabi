@@ -12,8 +12,8 @@ public class Card extends JSONConvertible<JSONObject>
 {
 	private Color color;
 	private int value;
-	private boolean valueRevealed;
-	private boolean colorRevealed;
+	protected boolean valueRevealed;
+	protected boolean colorRevealed;
 
 	/**
 	 * Costruisce una carta a partire da un json (ottenuto dal server di gioco)
@@ -113,6 +113,7 @@ public class Card extends JSONConvertible<JSONObject>
 	}
 
 	/**
+	 * Ridefinisce il toString() di JSONData
 	 * @return la rappresentazione testuale della carta
 	 */
 	public String toString()

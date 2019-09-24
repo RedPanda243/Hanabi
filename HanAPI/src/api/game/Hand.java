@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 public class Hand extends JSONConvertible<JSONArray> implements Iterable<Card>
 {
-	Card[] cards;
+	protected Card[] cards;
 
 	public Hand(JSONArray array) throws JSONException
 	{
@@ -26,9 +26,19 @@ public class Hand extends JSONConvertible<JSONArray> implements Iterable<Card>
 		return (Hand)super.clone();
 	}
 
+	public Card getCard(int i)
+	{
+		return cards[i];
+	}
+
 	@Override
 	public Iterator<Card> iterator()
 	{
 		return Arrays.asList(cards).iterator();
+	}
+
+	public int size()
+	{
+		return cards.length;
 	}
 }

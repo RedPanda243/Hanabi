@@ -5,12 +5,22 @@ import sjson.JSONException;
 import sjson.JSONObject;
 import sjson.JSONString;
 
+@Deprecated
 public abstract class Agent
 {
+	private int index;
+
+	public Agent(int index, String... pars)
+	{
+		this.index = index;
+	}
 
 	public abstract Action doAction() throws IllegalActionException;
 
-	public abstract int getIndex();
+	public int getIndex()
+	{
+		return index;
+	}
 
 	public abstract String getName();
 

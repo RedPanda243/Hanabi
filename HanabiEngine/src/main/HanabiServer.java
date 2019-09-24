@@ -1,10 +1,9 @@
 package main;
 
-import agents.Agent;
 import agents.RemoteAgent;
-import game.Card;
+import game.ServerCard;
 import game.IllegalActionException;
-import game.State;
+import game.ServerState;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -18,18 +17,18 @@ public class HanabiServer
 
 	private RemoteAgent[] players;
 	private String logpath;
-	private State currentState;
-	private Stack<Card> deck;
+	private ServerState currentState;
+	private Stack<ServerCard> deck;
 
 	private HanabiServer(RemoteAgent[] players, String logpath)
 	{
 		this.players = players;
 		this.logpath = logpath;
-		deck = Card.shuffledDeck();
-		currentState = new State(players,deck);
+		deck = ServerCard.shuffledDeck();
+		currentState = new ServerState(players,deck);
 	}
 
-	public State getCurrentState()
+	public ServerState getCurrentState()
 	{
 		return currentState;
 	}

@@ -1,7 +1,8 @@
 package game;
 
-import agents.Agent;
+import api.game.*;
 import sjson.JSONArray;
+import sjson.JSONException;
 import sjson.JSONObject;
 import sjson.JSONObjectConvertible;
 
@@ -9,36 +10,42 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+import static api.game.ActionType.DISCARD;
+import static api.game.ActionType.PLAY;
+
 /**
  * @author Francesco Pandolfi, Mihail Bida
  */
-public class State implements Cloneable, JSONObjectConvertible
+public class ServerState extends State
 {
-	private Agent[] players;
-	private Stack<Card> discards;
-	private Map<Color,Stack<Card>> fireworks;
-	private Card[][] hands;
-	private int order;
-	private int hints;
-	private int fuse;
-	private State previousState;
+	private ServerState previousState;
 	private Action previousAction;
-	private int currentPlayer;
-	private int finalAction;
 
-	/**Costruttore del primo stato di una partita.
-	 * @param players l'array che contiene i giocatori nell'ordine in cui devono giocare
-	 * @param deck il mazzo di carte, già mischiato
-	 * @throws IllegalArgumentException se i parametri sono null o di dimensione sbagliata**/
-	public State(Agent[] players, Stack<Card> deck) throws IllegalArgumentException
+	/**
+	 * Costruttore di default richiesto dal metodo clone() di JSONObject. In teoria non andrebbe mai usato fuori da questa classe.
+	 * @param json
+	 * @throws JSONException
+	 */
+	public ServerState(JSONObject json) throws JSONException
 	{
+		super(json);
+		for (int i=0; i<hands.length; i++)
+		{
+			hands[i] = new ServerHand(hands[i].toJSON());
+		}
+		/*
+		Stack<Card> discards1 = new Stack<>();
+		for (int i=0; i<discards.size(); i++)
+			discards1.push(new ServerCard(discards.elementAt(i).toJSON()));
+		*/
+		/*
 		if(players==null || players.length<2 || players.length >5 || deck == null || deck.size() !=50)
 			throw new IllegalArgumentException("incorrect parameters");
 		this.players = players.clone();
 		discards = new Stack<>();
 		fireworks = new HashMap<>();
 		for(Color c: Color.values())fireworks.put(c,new Stack<>());
-		hands = new Card[players.length][players.length>3?4:5];
+		hands = new ServerCard[players.length][players.length>3?4:5];
 		for(int i = 0; i<hands.length; i++)
 		{
 			for (int j = 0; j < hands[i].length; j++)
@@ -52,6 +59,23 @@ public class State implements Cloneable, JSONObjectConvertible
 		fuse = 3;
 		currentPlayer = 0;
 		finalAction = -1;
+		 */
+	}
+
+	public ServerState clone()
+	{
+		ServerState ss = (ServerState) super.clone();
+
+		if (previousAction!=null)
+			ss.previousAction = previousAction.clone();
+		else
+			ss.previousAction = null;
+
+		if (previousState!=null)
+			ss.previousState = previousState.clone();
+		else
+			ss.previousState = null;
+		return ss;
 	}
 
 	/**
@@ -60,43 +84,47 @@ public class State implements Cloneable, JSONObjectConvertible
 	 *@param action l'azione compiuta
 	 *@throws IllegalActionException se l'azione compiuta è illecita nello stato attuale
 	 **/
-	public State nextState(Action action, Stack<Card> deck) throws IllegalActionException{
+	public ServerState nextState(Action action, Stack<ServerCard> deck) throws IllegalActionException {
 		if(!legalAction(action)) throw new IllegalActionException("Invalid action!: "+action);
 		if(gameOver()) throw new IllegalActionException("Game Over!");
-		State s = (State)this.clone();
-		switch(action.getType()){
+		JSONObject json = this.toJSON();
+
+		ServerCard c;
+		if (action.getActionType() == PLAY)
+		{
+			c = (ServerCard) hands[action.getPlayer()].getCard(action.getCard());
+			Stack<Card> fw = fireworks.get(c.getColor());
+			if((fw.isEmpty() && c.getValue() == 1) || (!fw.isEmpty() && fw.peek().getValue()==c.getValue()-1)){
+				json.put(c.getColor().toString().toLowerCase(),json.optArray(c.getColor().toString().toLowerCase()).add(c));
+//				s.fireworks.get(c.getColor()).push(c);
+				if(s.fireworks.get(c.getColor()).size()==5 && s.hints<8) s.hints++;
+			}
+			else{
+				s.discards.push(c);
+				s.fuse--;
+			}
+
+			if(!deck.isEmpty())
+				((ServerHand)s.hands[action.getHintReceiver()]).setCard(deck.pop(),action.getCard());
+			else
+				((ServerHand)s.hands[action.getHintReceiver()]).setCard(null,action.getCard());
+			if(deck.isEmpty() && finalAction==-1) s.finalAction = order+ players.length;
+		}
+
+		switch(action.getActionType()){
 			case PLAY:
-				Card c = hands[action.getPlayer()][action.getCard()];
-				Stack<Card> fw = fireworks.get(c.getColor());
-				if((fw.isEmpty() && c.getValue() == 1) || (!fw.isEmpty() && fw.peek().getValue()==c.getValue()-1)){
-					s.fireworks.get(c.getColor()).push(c);
-					if(s.fireworks.get(c.getColor()).size()==5 && s.hints<8) s.hints++;
-				}
-				else{
-					s.discards.push(c);
-					s.fuse--;
-				}
-				c.setOwner(null);
-				if(!deck.isEmpty())
-				{
-					s.hands[action.getPlayer()][action.getCard()] = deck.pop();
-					s.hands[action.getPlayer()][action.getCard()].setOwner(players[action.getPlayer()]);
-				}
-				else
-					s.hands[action.getPlayer()][action.getCard()] = null;
-				if(deck.isEmpty() && finalAction==-1) s.finalAction = order+ players.length;
+
 				break;
 			case DISCARD:
 				c = hands[action.getPlayer()][action.getCard()];
 				s.discards.push(c);
-				c.setOwner(null);
 				if(!deck.isEmpty())
-				{
-					s.hands[action.getPlayer()][action.getCard()] = deck.pop();
-					s.hands[action.getPlayer()][action.getCard()].setOwner(players[action.getPlayer()]);
-				}
+					((ServerHand)s.hands[action.getHintReceiver()]).setCard(deck.pop(),action.getCard());
+
 				else
-					s.hands[action.getPlayer()][action.getCard()] = null;
+					((ServerHand)s.hands[action.getHintReceiver()]).setCard(null,action.getCard());
+				//Occhio che qui il null può generare confusione. Di fatto però nella mano c'è un buco
+
 				if(deck.isEmpty() && finalAction==-1) s.finalAction = order+ players.length;
 				if(hints<8) s.hints++;
 				break;
@@ -104,16 +132,16 @@ public class State implements Cloneable, JSONObjectConvertible
 				s.hints--;
 				for (int i=0; i<s.hands[action.getPlayer()].length; i++)
 				{
-					if (s.hands[action.getHintReceiver()][i].getColor().equals(action.getColor()))
-						s.hands[action.getHintReceiver()][i].revealColour();
+					if (s.hands[action.getHintReceiver()].getCard(i).getColor().equals(action.getColor()))
+						((ServerHand)s.hands[action.getHintReceiver()]).getCard(i).revealColour();
 				}
 				break;
 			case HINT_VALUE:
 				s.hints--;
 				for (int i=0; i<s.hands[action.getPlayer()].length; i++)
 				{
-					if (s.hands[action.getHintReceiver()][i].getValue() == action.getValue())
-						s.hands[action.getHintReceiver()][i].revealValue();
+					if (s.hands[action.getHintReceiver()].getCard(i).getValue() == action.getValue())
+						((ServerHand)s.hands[action.getHintReceiver()]).getCard(i).revealValue();
 				}
 				break;
 			default: break;
@@ -134,12 +162,8 @@ public class State implements Cloneable, JSONObjectConvertible
 	public boolean legalAction(Action a) throws IllegalActionException{
 		if(a==null) throw new IllegalActionException("Action is null");
 		if(a.getPlayer()!= currentPlayer) return false;
-		switch(a.getType()){
-			case PLAY:
-				return (a.getCard()>=0 && a.getCard()<hands[currentPlayer].length);
-			case DISCARD:
-				if(hints==8) throw new IllegalActionException("Discards cannot be made when there are 8 hint tokens");
-				return (a.getCard()>=0 && a.getCard()<hands[currentPlayer].length);
+		if (a.getActionType() == PLAY || a.getActionType()==DISCARD)
+			return (a.getCard()>=0 && a.getCard()<hands[currentPlayer].size());
 			default:
 				if(hints==0 || a.getHintReceiver() <0 || a.getHintReceiver()> players.length || a.getHintReceiver() == a.getPlayer()) return false;
 				return true;
@@ -147,30 +171,10 @@ public class State implements Cloneable, JSONObjectConvertible
 	}
 
 	/**
-	 * Restituisce i giocatori, nell'ordine in cui giocano
-	 * @return un array che contiene un Agent per ogni giocatore
-	 **/
-	public Agent[] getPlayers(){
-		return players;
-	}
-
-	/**
-	 * Restituisce la mano del giocatore selezionato
-	 * @param player l'indice del giocatore selezionato
-	 * @return Un array di Card, che rappresenta la mano di un giocatore.
-	// * @throws ArrayIndexOutOfBounds se non esiste un giocatore di indice indicato.
-	 **/
-	public Card[] getHand(int player)throws ArrayIndexOutOfBoundsException{
-		if(player<0 || player>= players.length) throw new ArrayIndexOutOfBoundsException();
-//		if(player==observer) return new Card[hands[player].length];
-		return hands[player].clone();
-	}
-
-	/**
 	 * @return lo stato precedente
 	 **/
-	public State getPreviousState(){
-		State s = previousState;
+	public ServerState getPreviousState(){
+		ServerState s = previousState;
 		return s;
 	}
 
@@ -186,7 +190,7 @@ public class State implements Cloneable, JSONObjectConvertible
 	 * @return the card played in the previous action,
 	 * or null if there is no previous action, or the action was a hintPlayable.
 	 * */
-/*	public Card previousCardPlayed(){
+/*	public ServerCard previousCardPlayed(){
 		try{
 			return previousState.hands[previousAction.getPlayer()][previousAction.getCard()];
 		}
@@ -197,13 +201,13 @@ public class State implements Cloneable, JSONObjectConvertible
 	/**
 	 * @return una copia dello Stack di carte scartate
 	 **/
-	public Stack<Card> getDiscards(){return (Stack<Card>) discards.clone();}
+	public Stack<ServerCard> getDiscards(){return (Stack<ServerCard>) discards.clone();}
 
 	/**
 	 * Get the stack of cards representing the specified firework
 	 * @return a clone of the stack of cards representing the firework of the given colour. The highest card is at the top of the stack.
 	 **/
-	public Stack<Card> getFirework(Color c){return (Stack<Card>) fireworks.get(c).clone();}
+	public Stack<ServerCard> getFirework(Color c){return (Stack<ServerCard>) fireworks.get(c).clone();}
 
 	/**
 	 * Get the number of hintPlayable tokens available
@@ -269,41 +273,20 @@ public class State implements Cloneable, JSONObjectConvertible
 	}
 
 	/**
-	 * Produces a clone of the state
-	 **/
-	public Object clone(){
-		try{
-			State s = (State) super.clone();
-			s.players = players.clone();
-			s.discards = (Stack<Card>)discards.clone();
-			s.hands = new Card[hands.length][hands[0].length];
-			for(int i = 0; i<hands.length; i++)
-			{
-				for (int j=0; j<s.hands[i].length; j++)
-					s.hands[i][j] = hands[i][j].clone();
-			}
-			s.fireworks = (Map<Color,Stack<Card>>)((HashMap)fireworks).clone();
-			for(Color c: Color.values()) s.fireworks.put(c,(Stack<Card>)fireworks.get(c).clone());
-			return s;
-		}
-		catch(CloneNotSupportedException e){return null;}
-	}
-
-	/**
 	 * Returns a string describing the state of the game, including:
 	 * the state of each players hand;
 	 * the top card of each fire work;
 	 * and the last action.
 	 * */
 	public String toString(){
-		String ret = "State: "+order+"\n";
+		String ret = "ServerState: "+order+"\n";
 //		ret+="Last move: "+previousAction+"\n";
 //		ret+="Observer: "+observer+"\n";
 		ret+="Players' hands:\n";
 		for(int i = 0; i< players.length; i++){
 			ret+="\t"+ players[i].getName()+" ("+i+"): ";
 //			System.err.println(Arrays.toString(hands[i]));
-			for(Card c: hands[i]) {
+			for(ServerCard c: hands[i]) {
 				if (c!=null)
 					ret += c.toString() + " ";
 			}
@@ -333,27 +316,27 @@ public class State implements Cloneable, JSONObjectConvertible
 	{
 		JSONObject obj = new JSONObject();
 		JSONArray dis = new JSONArray();
-		for (Card c: discards)
+		for (ServerCard c: discards)
 			dis.add(c.toJSON());
 		obj.put("discarded",dis);
 		JSONArray fireworks = new JSONArray();
-		for (Card c: this.fireworks.get(Color.BLUE))
+		for (ServerCard c: this.fireworks.get(Color.BLUE))
 			fireworks.add(c.toJSON());
 		obj.put("blue",fireworks);
 		fireworks = new JSONArray();
-		for (Card c: this.fireworks.get(Color.GREEN))
+		for (ServerCard c: this.fireworks.get(Color.GREEN))
 			fireworks.add(c.toJSON());
 		obj.put("green",fireworks);
 		fireworks = new JSONArray();
-		for (Card c: this.fireworks.get(Color.YELLOW))
+		for (ServerCard c: this.fireworks.get(Color.YELLOW))
 			fireworks.add(c.toJSON());
 		obj.put("yellow",fireworks);
 		fireworks = new JSONArray();
-		for (Card c: this.fireworks.get(Color.WHITE))
+		for (ServerCard c: this.fireworks.get(Color.WHITE))
 			fireworks.add(c.toJSON());
 		obj.put("white",fireworks);
 		fireworks = new JSONArray();
-		for (Card c: this.fireworks.get(Color.RED))
+		for (ServerCard c: this.fireworks.get(Color.RED))
 			fireworks.add(c.toJSON());
 		obj.put("red",fireworks);
 		obj.put("fuse",""+fuse);
@@ -366,7 +349,7 @@ public class State implements Cloneable, JSONObjectConvertible
 		for (Agent agent:players)
 		{
 			array = new JSONArray();
-			for (Card c: getHand(agent.getIndex()))
+			for (ServerCard c: getHand(agent.getIndex()))
 				array.add(c.toJSON());
 			hands.put(agent.getName(),array);
 		}

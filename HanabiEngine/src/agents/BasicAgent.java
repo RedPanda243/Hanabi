@@ -4,7 +4,7 @@ public class BasicAgent //extends Agent
 {
 /*
 	@Override
-	public Action chooseAction(State s) throws IllegalActionException
+	public Action chooseAction(ServerState s) throws IllegalActionException
 	{
 //		getHints(s);
 		Action a = playKnown(s);
@@ -17,7 +17,7 @@ public class BasicAgent //extends Agent
 	}
 
 	//discard a random card
-	public Action discardGuess(State s) throws IllegalActionException{
+	public Action discardGuess(ServerState s) throws IllegalActionException{
 		if (s.getHintTokens() != 8) {
 			java.util.Random rand = new java.util.Random();
 			int cardIndex = rand.nextInt(colors.length);
@@ -29,7 +29,7 @@ public class BasicAgent //extends Agent
 	}
 
 	//discards the first card known to be unplayable.
-	public Action discardKnown(State s) throws IllegalActionException{
+	public Action discardKnown(ServerState s) throws IllegalActionException{
 		if (s.getHintTokens() != 8) {
 			for(int i = 0; i< colors.length; i++){
 				if(colors[i]!=null && values[i]>0 && values[i]<playable(s, colors[i])){
@@ -42,7 +42,7 @@ public class BasicAgent //extends Agent
 		return null;
 	}
 
-	public Action hintPlayable(State s) throws IllegalActionException
+	public Action hintPlayable(ServerState s) throws IllegalActionException
 	{
 		return hintPlayable(s,(Math.random()>0.5));
 	}
@@ -50,13 +50,13 @@ public class BasicAgent //extends Agent
 	//gives hintPlayable of first playable card in next players hand
 	//flips a coin to determine whether it is a colour hintPlayable or value hintPlayable
 	//return null if no hintPlayable token left, or no playable cards
-	private Action hintPlayable(State s, boolean flag) throws IllegalActionException {
+	private Action hintPlayable(ServerState s, boolean flag) throws IllegalActionException {
 		if(s.getHintTokens()>0){
 			for(int i = 1; i<numPlayers; i++){
 				int hintee = (index+i)%numPlayers;
-				Card[] hand = s.getHand(hintee);
+				ServerCard[] hand = s.getHand(hintee);
 				for(int j = 0; j<hand.length; j++){
-					Card c = hand[j];
+					ServerCard c = hand[j];
 					if(c!=null && c.getValue()==playable(s,c.getColor())){
 						//flip coin
 						if(flag){//give colour hintPlayable
@@ -80,12 +80,12 @@ public class BasicAgent //extends Agent
 		return null;
 	}
 
-	public Action hintPlayableColour(State s) throws IllegalActionException
+	public Action hintPlayableColour(ServerState s) throws IllegalActionException
 	{
 		return hintPlayable(s,true);
 	}
 
-	public Action hintPlayableState(State s) throws IllegalActionException
+	public Action hintPlayableState(ServerState s) throws IllegalActionException
 	{
 		return hintPlayable(s,false);
 	}
@@ -93,15 +93,15 @@ public class BasicAgent //extends Agent
 	//gives random hintPlayable of a card in next players hand
 	//flips a coin to determine whether it is a colour hintPlayable or value hintPlayable
 	//return null if no hintPlayable token left
-	public Action hintRandom(State s) throws IllegalActionException{
+	public Action hintRandom(ServerState s) throws IllegalActionException{
 		if(s.getHintTokens()>0){
 			int hintee = (index+1)%numPlayers;
-			Card[] hand = s.getHand(hintee);
+			ServerCard[] hand = s.getHand(hintee);
 
 			java.util.Random rand = new java.util.Random();
 			int cardIndex = rand.nextInt(hand.length);
 			while(hand[cardIndex]==null) cardIndex = rand.nextInt(hand.length);
-			Card c = hand[cardIndex];
+			ServerCard c = hand[cardIndex];
 
 			if(Math.random()>0.5){//give colour hintPlayable
 				boolean[] col = new boolean[hand.length];
@@ -125,7 +125,7 @@ public class BasicAgent //extends Agent
 	}
 
 	//with probability 0.05 for each fuse token, play a random card
-	public Action playGuess(State s) throws IllegalActionException{
+	public Action playGuess(ServerState s) throws IllegalActionException{
 		java.util.Random rand = new java.util.Random();
 		for(int i = 0; i<s.getFuseTokens(); i++){
 			if(rand.nextDouble()<0.05){
@@ -139,7 +139,7 @@ public class BasicAgent //extends Agent
 	}
 
 	//plays the first card known to be playable.
-	public Action playKnown(State s) throws IllegalActionException{
+	public Action playKnown(ServerState s) throws IllegalActionException{
 		for(int i = 0; i< colors.length; i++){
 			if(colors[i]!=null && values[i]==playable(s, colors[i])){
 				colors[i] = null;

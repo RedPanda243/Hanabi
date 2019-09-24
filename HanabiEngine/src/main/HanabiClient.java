@@ -1,7 +1,6 @@
 package main;
 
 import agents.HumanAgent;
-import game.Action;
 import sjson.JSONObject;
 import sjson.JSONUtils;
 

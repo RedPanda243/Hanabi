@@ -1,8 +1,7 @@
 package agents;
 
-import game.Action;
 import game.IllegalActionException;
-import game.State;
+import game.ServerState;
 import sjson.JSONException;
 import sjson.JSONObject;
 import sjson.JSONUtils;
@@ -65,7 +64,7 @@ public class RemoteAgent extends Agent
 		return playerInfo;
 	}
 
-	public void sendState(State s)
+	public void sendState(ServerState s)
 	{
 		ps.print(s.toJSON());
 		ps.flush();

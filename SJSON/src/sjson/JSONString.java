@@ -20,6 +20,7 @@ public class JSONString extends JSONData
 		return Type.STRING;
 	}
 
+
 	private static String quote(String s)
 	{
 		return s.replace("\\", "\\\\").replace("\t", "\\t").replace("\r","\\r")
@@ -40,15 +41,17 @@ public class JSONString extends JSONData
 
 	public final String toString(int indent)
 	{
+		/*
 		if (indent<0)
 			return "\""+quote(s)+"\"";
+		*/
 		String val = ""+s;
-		val = val.replace("\n", "\n"+ tabstring(indent+1)).replace("\r", "\r"+tabstring(indent+1));
+		if (indent>0)
+			val = val.replace("\n", "\n"+ tabstring(indent)).replace("\r", "\r"+tabstring(indent));
 		return "\""+val+"\"";
 
 	}
 
-	@SuppressWarnings("unused")
 	private static String unquote(String s)
 	{
 		return s.replace("\\\\", "\\").replace("\\t", "\t").replace("\\r","\r")

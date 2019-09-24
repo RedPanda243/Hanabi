@@ -2,15 +2,28 @@ package sjson;
 
 import java.io.IOException;
 
+/**
+ * Classe astratta madre di tutte le classi che implementano un attributo json (3 tipi possibili: STRING,OBJECT,ARRAY).
+ * Un JSONData dovrebbe essere immutabile. Una classe che estenda JSONData e che rappresenti un tipo di dato strutturato
+ * dovrebbe ritornare con i metodi get una copia dell'attributo richiesto e con i metodi set una copia dell'oggetto corrente
+ * modificato.
+ * @see JSONObject
+ * @see JSONArray
+ * @see JSONString
+ */
 public abstract class JSONData implements Cloneable
 {
 	static final int baseindent = 3;
 
 	enum Type
 	{
-		STRING,JSON,ARRAY
+		STRING,OBJECT,ARRAY
 	}
 
+	/**
+	 * Metodo usato da clone(). All'esterno di questa classe usa clone()
+	 * @return un nuovo oggetto copia di questo JSONData
+	 */
 	private JSONData copy()
 	{
 		try
@@ -24,6 +37,14 @@ public abstract class JSONData implements Cloneable
 		}
 	}
 
+	/**
+	 * Il metodo clone di JSONData elimina la possibilit&agrave; di ottenere una CloneNotSupportedException in quanto un JSONData
+	 * pu&ograve; sempre essere ottenuto da una stringa formattata adeguatamente.
+	 * Nelle classi che estendono JSONData il metodo pu&ograve; essere ridefinito affinch&eacute; restituisca un oggetto del tipo
+	 * corretto. Sia T extends JSONData, la ridefinizione di clone deve limitarsi a return (T)super.clone()
+	 * @see JSONData#copy()
+	 * @return un nuovo oggetto copia di questo JSONData
+	 */
 	public JSONData clone()
 	{
 		try

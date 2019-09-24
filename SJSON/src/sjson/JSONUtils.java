@@ -21,16 +21,16 @@ public final class JSONUtils
 	public static api1.interfaces.Request createNewRequest(String query) throws IOException
 	{
 		JSONObject m = createNewMessage();
-		m.put(api1.interfaces.Request.NAME,JSONUtils.fromString(query));
-		m.put(api1.interfaces.Request.FROM, Drone.getInstance().getLocalHive().opt(Device.NAME));
-		m.put(api1.interfaces.Request.ID, Drone.getInstance().generateRequestId());
+		m.set(api1.interfaces.Request.NAME,JSONUtils.fromString(query));
+		m.set(api1.interfaces.Request.FROM, Drone.getInstance().getLocalHive().get(Device.NAME));
+		m.set(api1.interfaces.Request.ID, Drone.getInstance().generateRequestId());
 		return new Request(m);
 	}
 
 	public static api1.interfaces.Response createNewResponse(String status) throws IOException
 	{
 		JSONObject m = createNewMessage();
-		m.put(api1.interfaces.Response.STATUS,JSONUtils.fromString(status));
+		m.set(api1.interfaces.Response.STATUS,JSONUtils.fromString(status));
 		return new Response(m);
 	}
 */
@@ -149,11 +149,11 @@ public final class JSONUtils
 
 				t = (char) r.read();
 				if (t == '{')
-					m.put(name, readJSONObject(r));
+					m.set(name, readJSONObject(r));
 				else if (t == '[')
-					m.put(name, readArray(r));
+					m.set(name, readArray(r));
 				else if (t == '"')
-					m.put(name, readString(r));
+					m.set(name, readString(r));
 
 				readWhile(r,'\t',' ','\n','\r');//skip spaces
 

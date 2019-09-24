@@ -9,7 +9,7 @@ public abstract class TypedJSON extends JSONObject
 	{
 		super();
 		JSONObject m;
-		if (d!=null && d.getJSONType().equals(Type.JSON))
+		if (d!=null && d.getJSONType().equals(Type.OBJECT))
 		{
 			m = (JSONObject)d;
 			m.copyIn(this);

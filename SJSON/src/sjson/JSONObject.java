@@ -1,9 +1,6 @@
 package sjson;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 public class JSONObject extends JSONData
 {
@@ -18,22 +15,22 @@ public class JSONObject extends JSONData
 	@Deprecated
 	public boolean compatible(JSONObject template)
 	{
-		String[] names = template.names();
+//		String[] names = template.names();
 		Type ta,tb;
 		String sbox;
 		JSONObject obox;
 		JSONArray abox;
-		for (String name:names)
+		for (String name:template.names())
 		{
-			ta = this.opt(name).getJSONType();
-			tb = template.opt(name).getJSONType();
+			ta = this.get(name).getJSONType();
+			tb = template.get(name).getJSONType();
 /*			System.err.println("\nField "+name+" has to be a "+ta);
-			System.err.println("Template value: "+template.opt(name));
-			System.err.println("Object value: "+this.opt(name));
+			System.err.println("Template value: "+template.get(name));
+			System.err.println("Object value: "+this.get(name));
 */
 			if (tb.equals(Type.STRING))
 			{
-				sbox = template.optString(name);
+				sbox = template.get(JSONString.class,name).toString();
 //				System.err.println("SBOX = "+sbox+"\t\t"+sbox.equals("\"\""));
 
 				if (sbox.equals(""))
@@ -49,7 +46,7 @@ public class JSONObject extends JSONData
 				{
 					try
 					{
-						if (!sbox.equals(this.optString(name)))
+						if (!sbox.equals(this.get(JSONString.class,name).toString()))
 						{
 							System.err.println("Not same value!");
 							return false;
@@ -62,14 +59,14 @@ public class JSONObject extends JSONData
 					}
 				}
 			}
-			else if (tb.equals(Type.JSON))
+			else if (tb.equals(Type.OBJECT))
 			{
-				obox = template.optJSON(name);
-				if (obox.equals(new JSONObject()) && ! ta.equals(Type.JSON))
+				obox = template.get(JSONObject.class,name);
+				if (obox.equals(new JSONObject()) && ! ta.equals(Type.OBJECT))
 					return false;
 				try
 				{
-					if (!obox.equals(new JSONObject()) && !this.optJSON(name).compatible(obox))
+					if (!obox.equals(new JSONObject()) && !this.get(JSONObject.class,name).compatible(obox))
 						return false;
 				}
 				catch (NullPointerException e)
@@ -79,14 +76,14 @@ public class JSONObject extends JSONData
 			}
 			else //JSONArray
 			{
-				abox = template.optArray(name);
+				abox = template.get(JSONArray.class,name);
 				if (abox.equals(new JSONArray()) && !ta.equals(Type.ARRAY))
 					return false;
 				try
 				{
 					if (!abox.equals(new JSONArray()))
 					{
-						JSONArray a = this.optArray(name);
+						JSONArray a = this.get(JSONArray.class,name);
 						JSONObject o,aobox;
 						boolean flag = true;
 						for (int j=0; j<a.size(); j++)
@@ -123,109 +120,39 @@ public class JSONObject extends JSONData
 	@SuppressWarnings("WeakerAccess")
 	public JSONObject copyIn(JSONObject o)
 	{
-		String[] n = names();
-		for (int i=0; i<this.size(); i++)
-		{
-			o.put(n[i], this.opt(n[i]).clone());
-		}
-		return o;
-	}
-/*
-	private Object get(String name) throws JSONException
-	{
-		Object o = opt(name);
-		if (o == null)
-			throw new JSONException("Field "+name+" missing");
-		return o;
-	}
-	
-	public JSONArray getJSONArray(String name) throws JSONException
-	{
-		try
-		{
-			return (JSONArray)get(name);
-		}
-		catch(ClassCastException cce)
-		{
-			throw new JSONException(cce);
-		}
-	}
-	
-	public JSONObject getJSONObject(String name) throws JSONException
-	{
-		try
-		{
-			return (JSONObject)get(name);
-		}
-		catch(ClassCastException cce)
-		{
-			throw new JSONException(cce);
-		}
-	}
-	
-	public String getString(String name) throws JSONException
-	{
-		try
-		{
-			return (String)get(name);
-		}
-		catch(ClassCastException cce)
-		{
-			throw new JSONException(cce);
-		}
+		JSONObject c = o.clone();
+		for (String name: map.keySet())
+			c.set(name,this.get(name).clone());
+		return c;
 	}
 
-	public Type getJSONType(String name) throws JSONException
-	{
-		Type t = optType(name);
-		if (t == null)
-			throw new JSONException("Field "+name+" missing");
-		return t;
-	}
-*/
 	public Type getJSONType()
 	{
-		return Type.JSON;
+		return Type.OBJECT;
 	}
 
 	@SuppressWarnings("WeakerAccess")
 	public boolean has(String name)
 	{
-		return opt(name)!=null;
-	}
-	/*
-	public static void main(String args[]) throws JSONException
-	{
-		System.out.println(new JSONObject("{}"));
-		JSONObject j = new JSONObject();
-		j.put("ciaobellobello", "pippo\npippo");
-		JSONObject j1 = new JSONObject();
-		j1.put("ciao1", "yo");
-		j.put("sjson", j1);
-		JSONArray a = new JSONArray("[\"Questo\",\"�	un	esempio	di	array\"]");
-		a.put(j1);
-		j.put("a", a);
-		j.put("j2", new JSONObject());
-		System.out.println(j);
-		System.out.println(j.toStringLine());
-		
-		JSONObject J = new JSONObject();
-		JSONArray A = new JSONArray();
-		A.put(j1);
-		J.put("ciaobellobello", "pippo\npippo");
-		J.put("a", A);
-		J.put("sjson", j1);
-		J.put("j2", j1);
-		System.out.println(J.compatible(j));
-	}
-	*/
-
-	@SuppressWarnings("unused")
-	public Iterator<JSONData> iterator()
-	{
-		return map.values().iterator();
+		return get(name)!=null;
 	}
 
+	public Iterator<String> nameIterator()
+	{
+		return map.keySet().iterator();
+	}
+
+	/**
+	 * @return una copia del Set di nomi della mappa contenuta da questo JSONObject
+	 */
+	public Set<String> names()
+	{
+		Set<String> c = new HashSet<>();
+		for (String n:map.keySet())
+			c.add(""+n);
+		return c;
+	}
+/*
 	@SuppressWarnings("WeakerAccess")
 	public String[] names()
 	{
@@ -240,21 +167,31 @@ public class JSONObject extends JSONData
 		Arrays.sort(a);
 		return a;
 	}
-
-	@SuppressWarnings("WeakerAccess")
-	public JSONData opt(String name)
+*/
+	public JSONData get(String name)
 	{
-		if (!(name.startsWith("\"")&&name.endsWith("\"")))
-			name = "\""+name+"\"";
-		return map.get(name);
+		return get(JSONData.class,name);
 	}
 
+	@SuppressWarnings("WeakerAccess")
+	public <T extends JSONData> T get(Class<T> cl,String name)
+	{
+		JSONData d;
+		if (!(name.startsWith("\"")&&name.endsWith("\"")))
+			d = map.get("\""+name+"\"").clone();
+		else
+			d = map.get(name).clone();
+		if (d == null)
+			return null;
+		return (T)d;
+	}
+/*
 	@SuppressWarnings("WeakerAccess")
 	public JSONArray optArray(String name)
 	{
 		try
 		{
-			return (JSONArray) opt(name);
+			return (JSONArray) get(name);
 		}
 		catch(ClassCastException | NullPointerException cce)
 		{
@@ -267,7 +204,7 @@ public class JSONObject extends JSONData
 	{
 		try
 		{
-			return (JSONObject) opt(name);
+			return (JSONObject) get(name);
 		}
 		catch(ClassCastException | NullPointerException cce)
 		{
@@ -280,7 +217,7 @@ public class JSONObject extends JSONData
 	{
 		try
 		{
-			JSONData data = opt(name);
+			JSONData data = get(name);
 			String s = data.toString();
 			if (data.getJSONType().equals((Type.STRING)))
 				return s.substring(1,s.length()-1); //TOLGO I DOPPI APICI!
@@ -291,29 +228,27 @@ public class JSONObject extends JSONData
 			return null;
 		}
 	}
+	*/
 
 	@SuppressWarnings("WeakerAccess")
-	public JSONObject put(String name, JSONData value)
+	public JSONObject set(String name, JSONData value)
 	{
+		JSONObject obj = this.clone();
 		if (value != null)
 		{
 			if (!(name.startsWith("\"")&&name.endsWith("\"")))
 				name = "\""+name+"\"";
-			map.put(name, value);
+			obj.map.put(name, value);
 		}
-		return this;
+		return obj;
 	}
-/*
+
 	@SuppressWarnings("unused")
-	public JSONObject put(String name, String value)
+	public JSONObject remove(String name)
 	{
-		return put(name, new JSONString(value));
-	}
-*/
-	@SuppressWarnings("unused")
-	public void remove(String name)
-	{
-		map.remove(name);
+		JSONObject obj = this.clone();
+		obj.map.remove(name);
+		return obj;
 	}
 
 	@SuppressWarnings("WeakerAccess")
@@ -325,13 +260,12 @@ public class JSONObject extends JSONData
 	public String toString(int indent)
 	{
 		StringBuilder ret = new StringBuilder("{");
-		String[] names = names();
 		int indname;
-		for (String name:names)
+		for (String name:names())
 		{
 			if (indent>0)
 				ret.append("\n");
-			JSONData d = opt(name);
+			JSONData d = get(name);
 			ret.append(tabstring(indent));
 			ret.append(name);
 			ret.append(":");
@@ -346,7 +280,7 @@ public class JSONObject extends JSONData
 			ret.append(",");
 		}
 
-		if (names.length > 0)
+		if (names().size() > 0)
 		{
 
 			ret = new StringBuilder(ret.substring(0, ret.length()-1));
@@ -359,4 +293,13 @@ public class JSONObject extends JSONData
 		ret.append("}");
 		return ret.toString();
 	}
+
+	public Collection<JSONData> values()
+	{
+		ArrayList<JSONData> l = new ArrayList<>();
+		for (JSONData d:map.values())
+			l.add(d.clone());
+		return l;
+	}
+
 }

@@ -6,7 +6,6 @@ import java.nio.charset.StandardCharsets;
 
 public final class JSONUtils
 {
-	private JSONUtils(){}
 /*
 	public static JSONArray createNewArray()
 	{
@@ -33,11 +32,12 @@ public final class JSONUtils
 		m.set(api1.interfaces.Response.STATUS,JSONUtils.fromString(status));
 		return new Response(m);
 	}
-*/
+
 	public static <T extends JSONData> T fromBytes(Class<T> cl, byte[] b) throws IOException
 	{
 		return fromString(cl,StandardCharsets.UTF_8.newDecoder().decode(ByteBuffer.wrap(b)).toString());
 	}
+
 
 	public static <T extends JSONData> T fromReader(Class<T> cl, BufferedReader r) throws IOException
 	{
@@ -114,6 +114,7 @@ public final class JSONUtils
 		return a;
 	}
 
+
 	private static JSONObject readJSONObject(BufferedReader r) throws IOException
 	{
 		boolean flag = true;
@@ -170,14 +171,23 @@ public final class JSONUtils
 		}
 		return m;
 	}
-
+*/
+	/*
 	private static JSONData readString(BufferedReader r) throws IOException
 	{
 		String s = readUntil(r,'"');
 		return new JSONString(s.substring(0,s.length()-1));
 	}
+	 */
 
-	private static String readUntil(Reader r, char... cs) throws IOException
+	public static String quote(String s)
+	{
+		return s.replace("\\", "\\\\").replace("\t", "\\t").replace("\r","\\r")
+				.replace("\n", "\\n").replace("\"", "\\\"").replace("{", "\\{")
+				.replace("[", "\\[").replace("}", "\\}").replace("]", "\\]");
+	}
+
+	public static String readUntil(Reader r, char... cs) throws IOException
 	{
 		StringBuilder s = new StringBuilder();
 		char box = ' ',box1;
@@ -198,10 +208,10 @@ public final class JSONUtils
 				}
 			}
 		}
-		return s.toString();
+		return s.toString().substring(0,s.length()-1);
 	}
 
-	private static String readWhile(Reader r, char...cs) throws IOException
+	public static String readWhile(Reader r, char...cs) throws IOException
 	{
 		StringBuilder s = new StringBuilder();
 		boolean flag = true;
@@ -225,5 +235,12 @@ public final class JSONUtils
 		}
 		r.reset();
 		return s.toString();
+	}
+
+	public static String unquote(String s)
+	{
+		return s.replace("\\\\", "\\").replace("\\t", "\t").replace("\\r","\r")
+				.replace("\\n", "\n").replace("\\\"", "\"").replace("\\{", "{")
+				.replace("\\[", "[").replace("\\}", "}").replace("\\]", "]");
 	}
 }

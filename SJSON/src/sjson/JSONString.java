@@ -1,5 +1,10 @@
 package sjson;
 
+import java.io.IOException;
+import java.io.Reader;
+
+import static sjson.JSONUtils.readUntil;
+
 public class JSONString extends JSONData
 {
 	private String s;
@@ -8,6 +13,23 @@ public class JSONString extends JSONData
 	public JSONString(String s)
 	{
 		this.s=""+s;
+		if (s.startsWith("\"") && s.endsWith("\""))
+			this.s = s.substring(1,s.length()-1);
+	}
+
+	public JSONString(Reader r) throws JSONException
+	{
+		try
+		{
+			if (r.read() == '"')
+				s = readUntil(r, '"');
+			else
+				throw new IOException("JSONString must starts and ends with '\"'");
+		}
+		catch(IOException e)
+		{
+			throw new JSONException(e);
+		}
 	}
 
 	public JSONString clone()
@@ -18,14 +40,6 @@ public class JSONString extends JSONData
 	public Type getJSONType()
 	{
 		return Type.STRING;
-	}
-
-
-	private static String quote(String s)
-	{
-		return s.replace("\\", "\\\\").replace("\t", "\\t").replace("\r","\\r")
-				.replace("\n", "\\n").replace("\"", "\\\"").replace("{", "\\{")
-				.replace("[", "\\[").replace("}", "\\}").replace("]", "\\]");
 	}
 
 	@SuppressWarnings("unused")
@@ -41,22 +55,11 @@ public class JSONString extends JSONData
 
 	public final String toString(int indent)
 	{
-		/*
 		if (indent<0)
-			return "\""+quote(s)+"\"";
-		*/
+			return "\""+JSONUtils.quote(s)+"\"";
 		String val = ""+s;
 		if (indent>0)
 			val = val.replace("\n", "\n"+ tabstring(indent)).replace("\r", "\r"+tabstring(indent));
 		return "\""+val+"\"";
-
 	}
-
-	private static String unquote(String s)
-	{
-		return s.replace("\\\\", "\\").replace("\\t", "\t").replace("\\r","\r")
-				.replace("\\n", "\n").replace("\\\"", "\"").replace("\\{", "{")
-				.replace("\\[", "[").replace("\\}", "}").replace("\\]", "]");
-	}
-
 }

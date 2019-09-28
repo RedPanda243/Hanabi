@@ -1,7 +1,5 @@
 package sjson;
 
-import java.io.IOException;
-
 /**
  * Classe astratta madre di tutte le classi che implementano un attributo json (3 tipi possibili: STRING,OBJECT,ARRAY).
  * Un JSONData dovrebbe essere immutabile. Una classe che estenda JSONData e che rappresenti un tipo di dato strutturato
@@ -26,13 +24,19 @@ public abstract class JSONData implements Cloneable
 	 */
 	private JSONData copy()
 	{
+//		System.out.println("Copying "+this.toString(0)+"\n");
 		try
 		{
-			return JSONUtils.fromString(this.getClass(),this.toString(0));
+			if (this.getJSONType().equals(Type.STRING))
+				return new JSONString(this.toString(0));
+			else if (this.getJSONType().equals(Type.OBJECT))
+				return new JSONObject(this.toString(0));
+			else
+				return new JSONArray(this.toString(0));
 		}
-		catch(IOException ioe)
+		catch(JSONException ioe)
 		{
-			//Impossibile
+//			ioe.printStackTrace(System.out);
 			return null;
 		}
 	}
@@ -66,12 +70,13 @@ public abstract class JSONData implements Cloneable
 		return this.toStringLine().equals(d.toStringLine());
 	}
 
+	/*
 	@SuppressWarnings("unused")
 	public boolean equals(JSONConvertible obj)
 	{
 		return this.equals(obj.toJSON());
 	}
-
+	*/
 	static String tabstring(int indent)
 	{
 		StringBuilder s = new StringBuilder();

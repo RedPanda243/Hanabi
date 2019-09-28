@@ -1,11 +1,11 @@
 package sjson;
 
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 
+@Deprecated
 public abstract class JSONConvertible<T extends JSONData> extends JSONData
 {
-	private T json;
+	protected T json;
 
 	@SuppressWarnings("unchecked")
 	public JSONConvertible(T json)

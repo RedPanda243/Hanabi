@@ -1,24 +1,27 @@
 package api.game;
 
 import sjson.JSONArray;
-import sjson.JSONConvertible;
 import sjson.JSONException;
 
-import java.util.Arrays;
-import java.util.Iterator;
+import java.io.Reader;
+import java.io.StringReader;
 
-public class Hand extends JSONConvertible<JSONArray> implements Iterable<Card>
+
+public class Hand extends JSONArray
 {
-	protected Card[] cards;
 
-	public Hand(JSONArray array) throws JSONException
+	public Hand(String s) throws JSONException
 	{
-		super(array);
-		cards = new Card[array.size()];
-		for (int i=0; i<cards.length; i++)
-		{
-			cards[i] = new Card(array.optJSON(i));
-		}
+		this(new StringReader(s));
+	}
+
+	public Hand(Reader r) throws JSONException
+	{
+		super(r);
+		for (int i=0; i<this.size(); i++)
+			this.replace(i,new Card(this.get(i).toString()));
+		//Test per vedere se ogni elemento dell'array è una carta.
+		//Usa il singleton Game per controllare che il numero di carte sia esatto (considera anche il caso di ultimo turno)
 	}
 
 	public Hand clone()
@@ -28,17 +31,6 @@ public class Hand extends JSONConvertible<JSONArray> implements Iterable<Card>
 
 	public Card getCard(int i)
 	{
-		return cards[i];
-	}
-
-	@Override
-	public Iterator<Card> iterator()
-	{
-		return Arrays.asList(cards).iterator();
-	}
-
-	public int size()
-	{
-		return cards.length;
+		return (Card)get(i);
 	}
 }

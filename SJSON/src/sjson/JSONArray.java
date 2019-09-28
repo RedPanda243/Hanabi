@@ -1,7 +1,10 @@
 package sjson;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import static sjson.JSONUtils.readWhile;
 
 public class JSONArray extends JSONData implements Iterable<JSONData>
 {
@@ -13,11 +16,76 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 		list = new ArrayList<>();
 	}
 
+	public JSONArray(InputStream in) throws JSONException
+	{
+		this(new InputStreamReader(in));
+	}
+
+	public JSONArray(String s) throws JSONException
+	{
+		this(new StringReader(s));
+	}
+
+	public JSONArray(Reader r) throws JSONException
+	{
+		this();
+		boolean flag = true;
+		char t,e;
+		try
+		{
+			readWhile(r,'\t',' ','\n','\r');//skip spaces
+			if (r.read() != '[')
+				throw new JSONException("JSONArray must starts with '['");
+			r.mark(2);
+			if (r.read()==']')
+				flag = false;
+			else
+				r.reset();
+			while(flag)
+			{
+				readWhile(r,'\t',' ','\n','\r');//skip spaces
+				r.mark(2);
+				t = (char) r.read();
+				r.reset();
+				if (t == '{')
+					put(new JSONObject(r));
+				else if (t == '[')
+					put(new JSONArray(r));
+				else if (t == '"')
+					put(new JSONString(r));
+				else
+					throw new IOException("Unrecognized field!");
+
+				readWhile(r,'\t',' ','\n','\r');//skip spaces
+
+				e = (char) r.read();
+				if (e == ']')
+					flag = false;
+				else if (e != ',')
+					throw new IOException("Value definition ends, expected ']' or ','");
+			}
+		}
+		catch(IOException je)
+		{
+			throw new JSONException(je);
+		}
+	}
+
 	@SuppressWarnings("WeakerAccess")
 	public JSONArray add(JSONData d)
 	{
+		/*
+		JSONArray a = this.clone();
+		a.list.add(d);
+		return a;
+		*/
 		list.add(d);
 		return this;
+	}
+
+	public JSONArray add(String s)
+	{
+		return add(new JSONString(s));
 	}
 
 	public JSONArray clone()
@@ -28,9 +96,10 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	@SuppressWarnings("unused")
 	public JSONArray copyIn(JSONArray array)
 	{
+	//	JSONArray a = array.clone();
 		for (JSONData d:this)
-			array.add(d.clone());
-		return array;
+			list.add(d.clone());
+		return this;
 	}
 
 	public Type getJSONType()
@@ -38,10 +107,20 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 		return Type.ARRAY;
 	}
 
-	@SuppressWarnings("unused")
-	public void insert(int index, JSONData value)
+	public JSONArray insert(int index, JSONData value)
 	{
-		list.add(index, value);
+		/*
+		JSONArray a = this.clone();
+		a.list.add(index, value);
+		return a;
+		*/
+		list.add(index,value);
+		return this;
+	}
+
+	public JSONArray insert(int index, String s)
+	{
+		return insert(index,new JSONString(s));
 	}
 
 	public Iterator<JSONData> iterator()
@@ -49,25 +128,31 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 		return list.iterator();
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	public JSONData opt(int index)
+	public JSONData get(int index)
+	{
+		return list.get(index).clone();
+	}
+/*
+	public <T extends JSONData> T get(Class<T> cl, int index)
 	{
 		try
 		{
-			return list.get(index);
+			return (T)list.get(index).clone();
 		}
-		catch(IndexOutOfBoundsException e)
+		catch(IndexOutOfBoundsException | ClassCastException e)
 		{
 			return null;
 		}
 	}
 
+*/
+
 	@SuppressWarnings("unused")
-	public JSONArray optArray(int index)
+	public JSONArray getArray(int index)
 	{
 		try
 		{
-			return (JSONArray)opt(index);
+			return (JSONArray) get(index);
 		}
 		catch(ClassCastException | NullPointerException cce)
 		{
@@ -76,11 +161,11 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	}
 
 	@SuppressWarnings("WeakerAccess")
-	public JSONObject optJSON(int index)
+	public JSONObject getObject(int index)
 	{
 		try
 		{
-			return (JSONObject)opt(index);
+			return (JSONObject) get(index);
 		}
 		catch(ClassCastException | NullPointerException cce)
 		{
@@ -89,11 +174,11 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	}
 
 	@SuppressWarnings("unused")
-	public String optString(int index)
+	public String getString(int index)
 	{
 		try
 		{
-			return opt(index).toString();
+			return get(index).toString();
 		}
 		catch(NullPointerException cce)
 		{
@@ -102,27 +187,49 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	}
 
 	@SuppressWarnings("unused")
-	public int positionOf(JSONData d)
+	public int indexOf(JSONData d)
 	{
 		for(int i=0; i<this.size(); i++)
 		{
-			if (opt(i).equals(d))
+			if (get(i).equals(d))
 				return i;
 			i++;
 		}
 		return -1;
 	}
 
-	@SuppressWarnings("unused")
-	public void remove(int index)
+	private void put(JSONData data)
 	{
-		list.remove(index);
+		list.add(data);
 	}
 
 	@SuppressWarnings("unused")
-	public void replace(int index, JSONData d)
+	public JSONArray remove(int index)
 	{
+		/*
+		JSONArray a = this.clone();
+		a.list.remove(index);
+		return a;
+		*/
+		list.remove(index);
+		return this;
+	}
+
+	@SuppressWarnings("unused")
+	public JSONArray replace(int index, JSONData d)
+	{
+		/*
+		JSONArray a = this.clone();
+		a.list.set(index,d);
+		return a;
+		*/
 		list.set(index,d);
+		return this;
+	}
+
+	public JSONArray replace(int index, String s)
+	{
+		return replace(index,new JSONString(s));
 	}
 
 	@SuppressWarnings("WeakerAccess")
@@ -133,6 +240,9 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 
 	public final String toString(int indent)
 	{
+		if (indent<0)
+			return JSONUtils.quote(toString(0));
+
 		StringBuilder ret = new StringBuilder("[");
 		for (JSONData data:list)
 		{

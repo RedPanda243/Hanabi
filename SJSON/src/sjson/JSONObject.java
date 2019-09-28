@@ -1,15 +1,91 @@
 package sjson;
 
+import java.io.*;
 import java.util.*;
 
+import static sjson.JSONUtils.readUntil;
+import static sjson.JSONUtils.readWhile;
+
+//@SuppressWarnings({"WeakerAccess","unused"})
 public class JSONObject extends JSONData
 {
 	private HashMap<String, JSONData> map;
 
-	@SuppressWarnings("WeakerAccess")
 	public JSONObject()
 	{
 		map = new HashMap<>();
+	}
+
+	public JSONObject(InputStream in) throws JSONException
+	{
+		this(new InputStreamReader(in));
+	}
+
+	public JSONObject(String s) throws JSONException
+	{
+		this(new StringReader(s));
+	}
+
+	public JSONObject(Reader r) throws JSONException
+	{
+		this();
+		try
+		{
+			boolean flag = true;
+			String name;
+			char t,e;
+			readWhile(r,'\t',' ','\n','\r');//skip spaces
+			if (r.read() != '{')
+				throw new JSONException("JSONObject must starts with '{'");
+			r.mark(2);
+			if (r.read()=='}')
+				flag = false;
+			else
+				r.reset();
+			char c;
+			while(flag)
+			{
+				readWhile(r,'\t',' ','\n','\r');//skip spaces
+
+				if ((c = (char)r.read())!='\"')
+					throw new JSONException("Name definition begins, expected a string beginning with '\"' but '"+c+"' founded!");
+
+				name = readUntil(r,'"');
+				if (has(name))
+					throw new JSONException("Property "+name+" already defined");
+
+				readWhile(r,'\t',' ','\n','\r');//skip spaces
+
+				if (r.read()!=':')
+					throw new JSONException("Name definition ends, expected ':'");
+
+				readWhile(r,'\t',' ','\n','\r');//skip spaces
+
+				r.mark(2);
+				t = (char) r.read();
+				r.reset();
+				if (t == '{')
+					put(name, new JSONObject(r));
+				else if (t == '[')
+					put(name, new JSONArray(r));
+				else if (t == '"')
+					put(name, new JSONString(r));
+				else
+					throw new IOException("Unrecognized field!");
+
+				readWhile(r,'\t',' ','\n','\r');//skip spaces
+
+				e = (char) r.read();
+				if (e == '}')
+					flag = false;
+				else if (e != ',')
+					throw new IOException("Value definition ends, expected '}' or ','");
+			}
+		}
+		catch(IOException je)
+		{
+			throw new JSONException(je);
+		}
 	}
 
 	@Deprecated
@@ -30,7 +106,7 @@ public class JSONObject extends JSONData
 */
 			if (tb.equals(Type.STRING))
 			{
-				sbox = template.get(JSONString.class,name).toString();
+				sbox = template.getString(name);
 //				System.err.println("SBOX = "+sbox+"\t\t"+sbox.equals("\"\""));
 
 				if (sbox.equals(""))
@@ -46,7 +122,7 @@ public class JSONObject extends JSONData
 				{
 					try
 					{
-						if (!sbox.equals(this.get(JSONString.class,name).toString()))
+						if (!sbox.equals(this.getString(name)))
 						{
 							System.err.println("Not same value!");
 							return false;
@@ -61,12 +137,12 @@ public class JSONObject extends JSONData
 			}
 			else if (tb.equals(Type.OBJECT))
 			{
-				obox = template.get(JSONObject.class,name);
+				obox = template.getObject(name);
 				if (obox.equals(new JSONObject()) && ! ta.equals(Type.OBJECT))
 					return false;
 				try
 				{
-					if (!obox.equals(new JSONObject()) && !this.get(JSONObject.class,name).compatible(obox))
+					if (!obox.equals(new JSONObject()) && !this.getObject(name).compatible(obox))
 						return false;
 				}
 				catch (NullPointerException e)
@@ -76,22 +152,22 @@ public class JSONObject extends JSONData
 			}
 			else //JSONArray
 			{
-				abox = template.get(JSONArray.class,name);
+				abox = template.getArray(name);
 				if (abox.equals(new JSONArray()) && !ta.equals(Type.ARRAY))
 					return false;
 				try
 				{
 					if (!abox.equals(new JSONArray()))
 					{
-						JSONArray a = this.get(JSONArray.class,name);
+						JSONArray a = this.getArray(name);
 						JSONObject o,aobox;
 						boolean flag = true;
 						for (int j=0; j<a.size(); j++)
 						{
-							o =  a.optJSON(j);
+							o =  a.getObject(j);
 							for (int k=0; k<abox.size() && flag; k++)
 							{
-								aobox = abox.optJSON(k);
+								aobox = abox.getObject(k);
 								if (aobox!=null)
 								{
 									if (o.compatible(aobox))
@@ -117,13 +193,12 @@ public class JSONObject extends JSONData
 		return (JSONObject)super.clone();
 	}
 
-	@SuppressWarnings("WeakerAccess")
 	public JSONObject copyIn(JSONObject o)
 	{
-		JSONObject c = o.clone();
+//		JSONObject c = o.clone();
 		for (String name: map.keySet())
-			c.set(name,this.get(name).clone());
-		return c;
+			o.map.put(name,this.get(name).clone());
+		return o;
 	}
 
 	public Type getJSONType()
@@ -131,7 +206,6 @@ public class JSONObject extends JSONData
 		return Type.OBJECT;
 	}
 
-	@SuppressWarnings("WeakerAccess")
 	public boolean has(String name)
 	{
 		return get(name)!=null;
@@ -168,12 +242,17 @@ public class JSONObject extends JSONData
 		return a;
 	}
 */
+
 	public JSONData get(String name)
 	{
-		return get(JSONData.class,name);
+	//	return get(JSONData.class,name);
+		JSONData d = map.get(name);
+		if (d == null)
+			return null;
+		else
+			return d.clone();
 	}
-
-	@SuppressWarnings("WeakerAccess")
+/*
 	public <T extends JSONData> T get(Class<T> cl,String name)
 	{
 		JSONData d;
@@ -185,9 +264,11 @@ public class JSONObject extends JSONData
 			return null;
 		return (T)d;
 	}
-/*
+
+ */
+
 	@SuppressWarnings("WeakerAccess")
-	public JSONArray optArray(String name)
+	public JSONArray getArray(String name)
 	{
 		try
 		{
@@ -200,7 +281,7 @@ public class JSONObject extends JSONData
 	}
 
 	@SuppressWarnings("WeakerAccess")
-	public JSONObject optJSON(String name)
+	public JSONObject getObject(String name)
 	{
 		try
 		{
@@ -213,7 +294,7 @@ public class JSONObject extends JSONData
 	}
 
 	@SuppressWarnings("WeakerAccess")
-	public String optString(String name)
+	public String getString(String name)
 	{
 		try
 		{
@@ -228,27 +309,44 @@ public class JSONObject extends JSONData
 			return null;
 		}
 	}
-	*/
 
-	@SuppressWarnings("WeakerAccess")
-	public JSONObject set(String name, JSONData value)
+	private void put(String name, JSONData value)
 	{
-		JSONObject obj = this.clone();
 		if (value != null)
 		{
 			if (!(name.startsWith("\"")&&name.endsWith("\"")))
 				name = "\""+name+"\"";
-			obj.map.put(name, value);
+			map.put(name, value);
 		}
+	}
+
+	@SuppressWarnings("WeakerAccess")
+	public JSONObject set(String name, JSONData value)
+	{
+		/*
+		JSONObject obj = this.clone();
+		obj.put(name,value);
 		return obj;
+		*/
+		put(name,value);
+		return this;
+	}
+
+	public JSONObject set(String name, String value)
+	{
+		return set(name,new JSONString(value));
 	}
 
 	@SuppressWarnings("unused")
 	public JSONObject remove(String name)
 	{
+		/*
 		JSONObject obj = this.clone();
 		obj.map.remove(name);
 		return obj;
+		*/
+		map.remove(name);
+		return this;
 	}
 
 	@SuppressWarnings("WeakerAccess")
@@ -257,8 +355,11 @@ public class JSONObject extends JSONData
 		return map.size();
 	}
 
-	public String toString(int indent)
+	public final String toString(int indent)
 	{
+		if (indent<0)
+			return JSONUtils.quote(toString(0));
+
 		StringBuilder ret = new StringBuilder("{");
 		int indname;
 		for (String name:names())
@@ -266,6 +367,8 @@ public class JSONObject extends JSONData
 			if (indent>0)
 				ret.append("\n");
 			JSONData d = get(name);
+			if (d == null)
+				System.out.println("------------->"+name);
 			ret.append(tabstring(indent));
 			ret.append(name);
 			ret.append(":");

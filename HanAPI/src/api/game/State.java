@@ -2,6 +2,7 @@ package api.game;
 
 import sjson.*;
 
+import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -11,134 +12,134 @@ import java.util.Stack;
  * @author Francesco Pandolfi, Mihail Bida
  */
 @SuppressWarnings({"WeakerAccess","unused"})
-public class State extends JSONConvertible<JSONObject>
+public class State extends JSONObject
 {
-	protected Stack<Card> discards;
-	protected Map<Color,Stack<Card>> fireworks;
-	protected Hand[] hands;
-	protected int order;
+//	protected Stack<Card> discards;
+//	protected Map<Color,Stack<Card>> fireworks;
+//	protected Hand[] hands;
+/*	protected int order;
 	protected int hints;
 	protected int fuse;
 	protected int currentPlayer;
 	protected int finalAction;
+*/
 
-
-	public State(JSONObject json) throws JSONException
+	public State(Reader reader) throws JSONException
 	{
-		super(json);
-		discards = new Stack<>();
-		JSONArray array = json.optArray("discarded");
+		super(reader);
+
+		JSONArray array = getArray("discarded");
 		if (array == null)
 			throw new JSONException("Missing discarded");
 		else
 		{
-			JSONObject obj;
+			for(int i=0; i<array.size(); i++)
+				array.replace(i,new Card(array.get(i).toString()));
+			this.set("discarded",array);
+		}
+
+		Card c;
+		array = getArray("red");
+		if (array == null)
+			throw new JSONException("Missing red firework");
+		else
+		{
+			if (array.size()>5)
+				throw new JSONException("Malformed red firework stack, more than 5 cards!");
 			for(int i=0; i<array.size(); i++)
 			{
-				obj = array.optJSON(i);
-				if (obj == null)
-					throw new JSONException("");
-				else
-					discards.push(new Card(obj));
+				c = new Card(array.get(i).toString());
+				if (c.getValue()!=i)
+					throw new JSONException("Malformed red firework stack, messy cards!");
+				if (!c.getColor().equals(Color.RED))
+					throw new JSONException("Malformed red firework stack, card with wrong color!");
+				array.replace(i,c);
 			}
 		}
 
-		fireworks = new HashMap<>();
-		Stack<Card> box = new Stack<>();
-		array = json.optArray("red");
+		array = getArray("green");
 		if (array == null)
-			throw new JSONException("Missing red");
+			throw new JSONException("Missing green firework");
 		else
 		{
-			JSONObject obj;
+			if (array.size()>5)
+				throw new JSONException("Malformed green firework stack, more than 5 cards!");
 			for(int i=0; i<array.size(); i++)
 			{
-				obj = array.optJSON(i);
-				if (obj == null)
-					throw new JSONException("");
-				else
-					box.push(new Card(obj));
+				c = new Card(array.get(i).toString());
+				if (c.getValue()!=i)
+					throw new JSONException("Malformed green firework stack, messy cards!");
+				if (!c.getColor().equals(Color.GREEN))
+					throw new JSONException("Malformed green firework stack, card with wrong color!");
+				array.replace(i,c);
 			}
 		}
-		fireworks.put(Color.RED,box);
-		box = new Stack<>();
-		array = json.optArray("white");
-		if (array == null)
-			throw new JSONException("Missing white");
-		else
-		{
-			JSONObject obj;
-			for(int i=0; i<array.size(); i++)
-			{
-				obj = array.optJSON(i);
-				if (obj == null)
-					throw new JSONException("");
-				else
-					box.push(new Card(obj));
-			}
-		}
-		fireworks.put(Color.WHITE,box);
-		box = new Stack<>();
-		array = json.optArray("blue");
-		if (array == null)
-			throw new JSONException("Missing blue");
-		else
-		{
-			JSONObject obj;
-			for(int i=0; i<array.size(); i++)
-			{
-				obj = array.optJSON(i);
-				if (obj == null)
-					throw new JSONException("");
-				else
-					box.push(new Card(obj));
-			}
-		}
-		fireworks.put(Color.BLUE,box);
-		box = new Stack<>();
-		array = json.optArray("green");
-		if (array == null)
-			throw new JSONException("Missing green");
-		else
-		{
-			JSONObject obj;
-			for(int i=0; i<array.size(); i++)
-			{
-				obj = array.optJSON(i);
-				if (obj == null)
-					throw new JSONException("");
-				else
-					box.push(new Card(obj));
-			}
-		}
-		fireworks.put(Color.GREEN,box);
-		box = new Stack<>();
-		array = json.optArray("yellow");
-		if (array == null)
-			throw new JSONException("Missing yellow");
-		else
-		{
-			JSONObject obj;
-			for(int i=0; i<array.size(); i++)
-			{
-				obj = array.optJSON(i);
-				if (obj == null)
-					throw new JSONException("");
-				else
-					box.push(new Card(obj));
-			}
-		}
-		fireworks.put(Color.YELLOW,box);
 
-		array = json.optArray("hands");
-		hands = new Hand[array.size()];
-		for (int i=0; i<hands.length; i++)
-			hands[i] = new Hand(array.optArray(i));
+		array = getArray("blue");
+		if (array == null)
+			throw new JSONException("Missing blue firework");
+		else
+		{
+			if (array.size()>5)
+				throw new JSONException("Malformed blue firework stack, more than 5 cards!");
+			for(int i=0; i<array.size(); i++)
+			{
+				c = new Card(array.get(i).toString());
+				if (c.getValue()!=i)
+					throw new JSONException("Malformed blue firework stack, messy cards!");
+				if (!c.getColor().equals(Color.BLUE))
+					throw new JSONException("Malformed blue firework stack, card with wrong color!");
+				array.replace(i,c);
+			}
+		}
+
+		array = getArray("white");
+		if (array == null)
+			throw new JSONException("Missing white firework");
+		else
+		{
+			if (array.size()>5)
+				throw new JSONException("Malformed white firework stack, more than 5 cards!");
+			for(int i=0; i<array.size(); i++)
+			{
+				c = new Card(array.get(i).toString());
+				if (c.getValue()!=i)
+					throw new JSONException("Malformed white firework stack, messy cards!");
+				if (!c.getColor().equals(Color.WHITE))
+					throw new JSONException("Malformed white firework stack, card with wrong color!");
+				array.replace(i,c);
+			}
+		}
+
+		array = getArray("yellow");
+		if (array == null)
+			throw new JSONException("Missing yellow firework");
+		else
+		{
+			if (array.size()>5)
+				throw new JSONException("Malformed yellow firework stack, more than 5 elements!");
+			for(int i=0; i<array.size(); i++)
+			{
+				c = new Card(array.get(i).toString());
+				if (c.getValue()!=i)
+					throw new JSONException("Malformed yellow firework stack, messy cards!");
+				if (!c.getColor().equals(Color.YELLOW))
+					throw new JSONException("Malformed yellow firework stack, card with wrong color!");
+				array.replace(i,c);
+			}
+		}
+
+		array = getArray("hands");
+
+		for (int i=0; i<array.size(); i++)
+			array.replace(i,new Hand(array.getArray(i).toString(0)));
+
+		int x,o;
 
 		try
 		{
-			order = Integer.parseInt(json.optString("order"));
-			if (order<0)
+			o = Integer.parseInt(getString("order"));
+			if (o<0)
 				throw new NumberFormatException();
 		}
 		catch (NumberFormatException e)
@@ -148,8 +149,8 @@ public class State extends JSONConvertible<JSONObject>
 
 		try
 		{
-			hints = Integer.parseInt(json.optString("hints"));
-			if (hints<0 || hints>8)
+			x = Integer.parseInt(getString("hints"));
+			if (x<0 || x>8)
 				throw new NumberFormatException();
 		}
 		catch (NumberFormatException e)
@@ -159,8 +160,8 @@ public class State extends JSONConvertible<JSONObject>
 
 		try
 		{
-			fuse = Integer.parseInt(json.optString("fuse"));
-			if (fuse<0 || fuse>3)
+			x = Integer.parseInt(getString("fuse"));
+			if (x<0 || x>3)
 				throw new NumberFormatException();
 		}
 		catch (NumberFormatException e)
@@ -170,8 +171,8 @@ public class State extends JSONConvertible<JSONObject>
 
 		try
 		{
-			currentPlayer = Integer.parseInt(json.optString("current"));
-			if (currentPlayer<0 || currentPlayer>Game.getInstance().getPlayers().length-1)
+			x = Integer.parseInt(getString("current"));
+			if (x<0 || x>Game.getInstance().getPlayers().length-1)
 				throw new NumberFormatException();
 		}
 		catch (NumberFormatException e)
@@ -181,8 +182,8 @@ public class State extends JSONConvertible<JSONObject>
 
 		try
 		{
-			finalAction = Integer.parseInt(json.optString("final"));
-			if (finalAction<-1)
+			x = Integer.parseInt(getString("final"));
+			if (x!=1 && x<o+1)
 				throw new NumberFormatException();
 		}
 		catch (NumberFormatException e)
@@ -225,77 +226,74 @@ public class State extends JSONConvertible<JSONObject>
 	 **/
 	public Hand getHand(int player)throws ArrayIndexOutOfBoundsException
 	{
-		return hands[player].clone();
+		return (Hand)getArray("hands").getArray(player);
 	}
 
 	/**
 	 * @return una copia dello Stack di carte scartate
 	 **/
-	public Stack<Card> getDiscards()
+	public JSONArray getDiscards()
 	{
-		Stack<Card> stack = new Stack<>();
-		for(Card c:discards)
-		{
-			stack.push(c.clone());
-		}
-		return stack;
+		return getArray("discarded");
 	}
 
 	/**
 	 * @return una copia dello stack di carte giocate del colore dato. La carta di valore più alto è in cima allo stack
 	 **/
-	public Stack<Card> getFirework(Color c)
+	public JSONArray getFirework(Color c)
 	{
-		Stack<Card> stack = new Stack<>();
-		for(Card ca:fireworks.get(c))
-		{
-			stack.push(ca.clone());
-		}
-		return stack;
+		return getArray(c.toString().toLowerCase());
 	}
 
 	/**
 	 * @return il numero di gettoni informazione rimasti
 	 **/
-	public int getHintTokens(){return hints;}
+	public int getHintTokens(){return Integer.parseInt(getString("hints"));}
 
 	/**
 	 * @return il numero di gettoni errore rimasti
 	 **/
-	public int getFuseTokens(){return fuse;}
+	public int getFuseTokens(){return Integer.parseInt(getString("fuse"));}
 
 	/**
 	 * @return l'indice del giocatore a cui tocca, -1 se il gioco è finito
 	 **/
-	public int getCurrentPlayer(){return (gameOver()?-1: currentPlayer);}
+	public int getCurrentPlayer(){return (gameOver()?-1: Integer.parseInt(getString("current")));}
 
 	/**
 	 * @return il numero di turno
 	 **/
-	public int getOrder(){return order;}
+	public int getOrder(){return Integer.parseInt(getString("order"));}
 
 	/**
 	 * Per azione finale si intende l'azione che fa pescare l'ultima carta del mazzo. Dopo l'azione finale tutti i giocatori hanno un ultimo turno
 	 * @return il numero di turno dell'azione finale, -1 se il mazzo non è vuoto
 	 **/
-	public int getFinalActionIndex(){return finalAction;}
+	public int getFinalActionIndex(){return Integer.parseInt(getString("final"));}
 
 	/**
 	 * @return il punteggio corrente (somma dei valori delle carte in cima agli stack delle carte giocate)
 	 **/
 	public int getScore(){
 		int score = 0;
-		if(fuse==0) return 0;
+		if(getFuseTokens()==0) return 0;
+		JSONArray a;
 		for(Color c: Color.values())
-			if(!fireworks.get(c).isEmpty())score+=fireworks.get(c).peek().getValue();
+		{
+			a = getFirework(c);
+			if (a.size()>0)
+				score += ((Card)a.getObject(a.size()-1)).getValue();
+		}
 		return score;
 	}
 
 	/**
 	 * @return true se tutti gli stack sono completati (valore 5 in cima), se i gettoni errore sono terminati o se tutti hanno giocato un turno dopo l'azione finale
 	 **/
-	public boolean gameOver(){
-		return ((finalAction!=-1 &&order==finalAction+1) || fuse == 0 || getScore()==25);
+	public boolean gameOver()
+	{
+		int f = getFinalActionIndex();
+		return ((f!=-1 &&getOrder()==f+1) || getFuseTokens() == 0 || getScore()==25);
 	}
 
 

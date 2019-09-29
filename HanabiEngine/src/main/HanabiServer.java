@@ -1,60 +1,112 @@
 package main;
 
 import agents.RemoteAgent;
+import api.game.Card;
+import api.game.Color;
+import api.game.State;
+import api.game.Turn;
 import game.ServerCard;
-import game.IllegalActionException;
-import game.ServerState;
+import sjson.JSONArray;
+import sjson.JSONException;
+import sjson.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class HanabiServer
 {
-	public static HanabiServer instance;
-
-	private RemoteAgent[] players;
-	private String logpath;
-	private ServerState currentState;
-	private Stack<ServerCard> deck;
-
-	private HanabiServer(RemoteAgent[] players, String logpath)
+	private static Card createCard(Color color, int value)
 	{
-		this.players = players;
-		this.logpath = logpath;
-		deck = ServerCard.shuffledDeck();
-		currentState = new ServerState(players,deck);
-	}
-
-	public ServerState getCurrentState()
-	{
-		return currentState;
-	}
-
-	public Agent getPlayer(int index)
-	{
-		if (index<0 || index>players.length-1) throw new IndexOutOfBoundsException("players="+players.length+", index="+index);
-		return players[index];
-	}
-
-	private void play()
-	{
-		try {
-			while (!currentState.gameOver()) {
-				System.out.println(currentState);
-				for (RemoteAgent a: players)
-					a.sendState(currentState);
-				currentState = currentState.nextState(players[currentState.getCurrentPlayer()].doAction(),deck);
-			}
-			System.out.println(currentState);
-		}
-		catch(IllegalActionException e)
+		JSONObject obj = new JSONObject();
+		obj.set("color",color.toString().toLowerCase());
+		obj.set("value", ""+value);
+		obj.set("value_revealed","false");
+		obj.set("color_revealed","false");
+		try
 		{
+			return new Card(obj.toString(0));
+		}
+		catch(JSONException e)
+		{
+			System.err.println("Error while generating deck");
 			e.printStackTrace(System.err);
 			System.exit(1);
+			return null;
 		}
+	}
+
+	private static State createInitState(Stack<Card> deck, int numPlayers)
+	{
+		JSONObject json = new JSONObject();
+		json.set("discarded",new JSONArray());
+		json.set("red",new JSONArray());
+		json.set("green",new JSONArray());
+		json.set("white",new JSONArray());
+		json.set("blue",new JSONArray());
+		json.set("yellow",new JSONArray());
+		json.set("current",""+0);
+		json.set("order",""+0);
+		json.set("fuse",""+3);
+		json.set("hints",""+8);
+		json.set("final",""+-1);
+		JSONArray hands = new JSONArray();
+		JSONArray box;
+		for (int i=0; i<numPlayers; i++)
+		{
+			box = new JSONArray();
+			for (int j=0; j<(numPlayers>3?4:5); j++)
+				box.add(deck.pop());
+			hands.add(box);
+		}
+		json.set("hands",hands);
+		try
+		{
+			return new State(json.toString(0));
+		}
+		catch(JSONException e) {return null;}
+	}
+
+	private static Card[] deck = {
+			createCard(Color.BLUE,1),createCard(Color.BLUE,1), createCard(Color.BLUE,1),
+			createCard(Color.BLUE,2),createCard(Color.BLUE,2),createCard(Color.BLUE,3),createCard(Color.BLUE,3),
+			createCard(Color.BLUE,4),createCard(Color.BLUE,4),createCard(Color.BLUE,5),
+			createCard(Color.RED,1),createCard(Color.RED,1), createCard(Color.RED,1),
+			createCard(Color.RED,2),createCard(Color.RED,2),createCard(Color.RED,3),createCard(Color.RED,3),
+			createCard(Color.RED,4),createCard(Color.RED,4),createCard(Color.RED,5),
+			createCard(Color.GREEN,1),createCard(Color.GREEN,1), createCard(Color.GREEN,1),
+			createCard(Color.GREEN,2),createCard(Color.GREEN,2),createCard(Color.GREEN,3),createCard(Color.GREEN,3),
+			createCard(Color.GREEN,4),createCard(Color.GREEN,4),createCard(Color.GREEN,5),
+			createCard(Color.WHITE,1),createCard(Color.WHITE,1), createCard(Color.WHITE,1),
+			createCard(Color.WHITE,2),createCard(Color.WHITE,2),createCard(Color.WHITE,3),createCard(Color.WHITE,3),
+			createCard(Color.WHITE,4),createCard(Color.WHITE,4),createCard(Color.WHITE,5),
+			createCard(Color.YELLOW,1),createCard(Color.YELLOW,1), createCard(Color.YELLOW,1),
+			createCard(Color.YELLOW,2),createCard(Color.YELLOW,2),createCard(Color.YELLOW,3),createCard(Color.YELLOW,3),
+			createCard(Color.YELLOW,4),createCard(Color.YELLOW,4),createCard(Color.YELLOW,5)
+	};
+
+	/**
+	 * Il mescolamento delle carte del mazzo &egrave; simulato invertendo 2 carte random nel mazzo per 1000 volte
+	 * @return Uno Stack di ServerCard in ordine casuale rappresentante un mazzo di carte mescolato.
+	 **/
+	private static Stack<Card> shuffledDeck(){
+		Card[] d = deck.clone();
+		java.util.Random r = new java.util.Random();
+		for(int i = 0; i<1000; i++){
+			int a = r.nextInt(50);
+			int b = r.nextInt(50);
+			Card c = d[a];
+			d[a]= d[b];
+			d[b]=c;
+		}
+		Stack<Card> shuffle = new Stack<>();
+		for(Card c: d) shuffle.push(c);
+		return shuffle;
 	}
 
 	/**
@@ -76,6 +128,9 @@ public class HanabiServer
 		int n = 2;
 		boolean log = false;
 		String logpath = null;
+		ArrayList<String> playerNames = new ArrayList<>();
+		ArrayList<State> history = new ArrayList<>();
+		ArrayList<Turn> turns = new ArrayList<>();
 
 		for (int i=0; i<args.length; i++)
 		{
@@ -102,31 +157,39 @@ public class HanabiServer
 					logpath=""+args[i];
 			}
 		}
-
 		ServerSocket ss = new ServerSocket(port);
 		System.out.println("Server avviato."); //TODO stampa tcp address (locale e remoto)
 		int i = 0;
-		RemoteAgent[] players = new RemoteAgent[n];
 		Socket s;
-		while (i<players.length)
+		String pname;
+		while (i<n)
 		{ //Non c'è concorrenza, i giocatori sono accettati uno alla volta e giocheranno nell'ordine di arrivo
 			try
 			{
 				s = ss.accept();
-				new PrintStream(s.getOutputStream()).print("{\"player_index\":\""+i+"\"}");
-				players[i] = new RemoteAgent(s,i);
-				System.out.println("Player"+i+" ("+players[i].getName()+") connesso");
-
-	//			s.getOutputStream().flush();
-
+				pname = new BufferedReader(new InputStreamReader(s.getInputStream())).readLine();
+				if (playerNames.contains(pname))
+				{
+					int p=2;
+					pname = pname+p;
+					while(playerNames.contains(pname))
+					{
+						p++;
+						pname = pname.substring(0,pname.length()-1)+p;
+					}
+				}
+				playerNames.add(pname);
+				new PrintStream(s.getOutputStream()).println(pname);
+				s.getOutputStream().flush();
+				System.out.println("Player"+i+" ("+pname+") connesso");
 				i++;
 			}
 			catch(IOException | ClassCastException e)
 			{}
 		}
-
-		instance = new HanabiServer(players,logpath);
-		instance.play();
+		Stack<Card> deck = shuffledDeck();
+		System.out.println("Creazione stato iniziale");
+		history.add(createInitState(deck,n));
 	}
 
 }

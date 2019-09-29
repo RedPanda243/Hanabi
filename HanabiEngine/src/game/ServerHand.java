@@ -1,25 +1,25 @@
 package game;
 
 import api.game.Hand;
-import sjson.JSONArray;
 import sjson.JSONException;
+
+import java.io.Reader;
 
 public class ServerHand extends Hand
 {
-	public ServerHand(JSONArray array) throws JSONException
+	public ServerHand(Reader r) throws JSONException
 	{
-		super(array);
-		for (int i=0; i<cards.length; i++)
-		{
-			cards[i] = new ServerCard(cards[i].toJSON());
-		}
+		super(r);
+		for (int i=0; i<this.size(); i++)
+			this.replace(i,new ServerCard(this.get(i).toString()));
+		//Test per vedere se ogni elemento dell'array è una carta.
+		//Usa il singleton Game per controllare che il numero di carte sia esatto (considera anche il caso di ultimo turno)
 	}
 
 	public ServerHand clone()
 	{
 		return (ServerHand)super.clone();
 	}
-
 
 	public ServerCard getCard(int i)
 	{
@@ -28,6 +28,6 @@ public class ServerHand extends Hand
 
 	public void setCard(ServerCard card, int index)
 	{
-		cards[index] = card;
+		replace(index,card);
 	}
 }

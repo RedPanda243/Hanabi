@@ -1,14 +1,21 @@
 package api.game;
 
+import api.main.HanabiClient;
 import sjson.JSONException;
 import sjson.JSONObject;
 
 import java.io.Reader;
+import java.io.StringReader;
 
 import static api.game.ActionType.*;
 
 public class Action extends JSONObject
 {
+	public Action(String s) throws JSONException
+	{
+		this(new StringReader(s));
+	}
+
 	public Action(Reader reader) throws JSONException
 	{
 		super(reader);
@@ -16,7 +23,7 @@ public class Action extends JSONObject
 		try
 		{
 			p = Integer.parseInt(getString("player"));
-			if (p<0 || p>Game.getInstance().getPlayers().length-1)
+			if (p<0 || p> HanabiClient.getInstance().getGame().getPlayers().size()-1)
 				throw new JSONException(new IndexOutOfBoundsException());
 		}
 		catch(NumberFormatException e)
@@ -32,7 +39,7 @@ public class Action extends JSONObject
 		if (type == PLAY) {
 			try {
 				c = Integer.parseInt(getString("card"));
-				if (c<0 || c>Game.getInstance().getNumberOfCardsPerPlayer()-1)
+				if (c<0 || c>HanabiClient.getInstance().getGame().getNumberOfCardsPerPlayer()-1)
 					throw new JSONException(new IndexOutOfBoundsException());
 			} catch (NumberFormatException e) {
 				throw new JSONException("Unreadable played card");
@@ -40,7 +47,7 @@ public class Action extends JSONObject
 		}else if (type == DISCARD) {
 			try {
 				c = Integer.parseInt(getString("card"));
-				if (c<0 || c>Game.getInstance().getNumberOfCardsPerPlayer()-1)
+				if (c<0 || c>HanabiClient.getInstance().getGame().getNumberOfCardsPerPlayer()-1)
 					throw new JSONException(new IndexOutOfBoundsException());
 			} catch (NumberFormatException e) {
 				throw new JSONException("Unreadable discarded card");
@@ -51,7 +58,7 @@ public class Action extends JSONObject
 				throw new JSONException("Unreadable hinted color");
 			try {
 				h = Integer.parseInt(getString("hinted"));
-				if (h<0 || h>Game.getInstance().getPlayers().length-1)
+				if (h<0 || h>HanabiClient.getInstance().getGame().getPlayers().size()-1)
 					throw new JSONException(new IndexOutOfBoundsException());
 				if (h == p)
 					throw new JSONException("You cannot hint yourself");
@@ -62,7 +69,7 @@ public class Action extends JSONObject
 			try
 			{
 				h = Integer.parseInt(getString("hinted"));
-				if (h<0 || h>Game.getInstance().getPlayers().length-1)
+				if (h<0 || h>HanabiClient.getInstance().getGame().getPlayers().size()-1)
 					throw new JSONException(new IndexOutOfBoundsException());
 				if (h == p)
 					throw new JSONException("You cannot hint yourself");
@@ -158,7 +165,7 @@ public class Action extends JSONObject
 		try
 		{
 			ActionType type = getActionType();
-			String playerName = Game.getInstance().getPlayers()[getPlayer()];
+			String playerName = HanabiClient.getInstance().getGame().getPlayers().getString(getPlayer());
 			if (type == PLAY)
 				return "Il giocatore " + playerName + "(" + getPlayer() + ") gioca la carta in posizione " + getCard();
 			else if (type == DISCARD)
@@ -166,11 +173,11 @@ public class Action extends JSONObject
 			else {
 				int h = getHintReceiver();
 				if (type == HINT_COLOR)
-					return "Il giocatore "+playerName+"("+getPlayer()+") mostra a "+Game.getInstance().getPlayers()[h]+"("+h
-							+ ") le carte di colore " + getColor();
+					return "Il giocatore "+playerName+"("+getPlayer()+") mostra a "
+							+HanabiClient.getInstance().getGame().getPlayers().getString(h)+"("+h+") le carte di colore "+getColor();
 				else if (type == HINT_VALUE)
-					return "Il giocatore "+playerName+"("+getPlayer()+") mostra a "+Game.getInstance().getPlayers()[h]+"("+h
-							+ ") le carte di valore " + getValue();
+					return "Il giocatore "+playerName+"("+getPlayer()+") mostra a "
+							+HanabiClient.getInstance().getGame().getPlayers().getString(h)+"("+h+") le carte di valore "+getValue();
 			}
 		}
 		catch(IllegalActionException iae)

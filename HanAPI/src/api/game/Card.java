@@ -10,7 +10,7 @@ import java.io.StringReader;
  * Classe che rappresenta una carta dal punto di vista di un giocatore.
  * @author Francesco Pandolfi, Mihail Bida
  */
-public class Card extends JSONObject//JSONConvertible<JSONObject>
+public class Card extends JSONObject
 {
 
 	public Card(String s) throws JSONException
@@ -67,7 +67,15 @@ public class Card extends JSONObject//JSONConvertible<JSONObject>
 
 	public Card clone()
 	{
-		return (Card)super.clone();
+		try
+		{
+			return new Card(super.clone().toString(0));
+		}
+		catch(JSONException e)
+		{
+			//Impossibile
+			return null;
+		}
 	}
 
 	/**

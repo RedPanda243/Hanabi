@@ -1,8 +1,10 @@
 package api.game;
 
+import api.main.HanabiClient;
 import sjson.*;
 
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -23,6 +25,11 @@ public class State extends JSONObject
 	protected int currentPlayer;
 	protected int finalAction;
 */
+
+	public State(String s) throws JSONException
+	{
+		this(new StringReader(s));
+	}
 
 	public State(Reader reader) throws JSONException
 	{
@@ -172,7 +179,7 @@ public class State extends JSONObject
 		try
 		{
 			x = Integer.parseInt(getString("current"));
-			if (x<0 || x>Game.getInstance().getPlayers().length-1)
+			if (x<0 || x> HanabiClient.getInstance().getGame().getPlayers().size()-1)
 				throw new NumberFormatException();
 		}
 		catch (NumberFormatException e)
@@ -194,7 +201,11 @@ public class State extends JSONObject
 
 	public State clone()
 	{
-		return (State)super.clone();
+		try
+		{
+			return new State(super.clone().toString(0));
+		}
+		catch(JSONException e){return null;}
 	}
 
 	/**
@@ -298,14 +309,12 @@ public class State extends JSONObject
 
 
 	public String toString(){
-		String ret = "State: "+order+"\n";
-//		ret+="Last move: "+previousAction+"\n";
-//		ret+="Observer: "+observer+"\n";
+		String ret = "State: "+getOrder()+"\n";
 		ret+="Players' hands:\n";
-		for(int i=0; i<Game.getInstance().getPlayers().length; i++){
-			ret+="\t"+ Game.getInstance().getPlayers()[i]+" ("+i+"): ";
-//			System.err.println(Arrays.toString(hands[i]));
-			for(Card c: hands[i]) {
+		for(int i=0; i<HanabiClient.getInstance().getGame().getPlayers().size(); i++){
+			ret+="\t"+ HanabiClient.getInstance().getGame().getPlayers().getString(i)+" ("+i+"): ";
+			Hand hand = getHand(i);
+			for(JSONData c: hand) { //is a card!
 				if (c!=null)
 					ret += c.toString() + " ";
 			}
@@ -313,15 +322,13 @@ public class State extends JSONObject
 		}
 //		System.err.println();
 		ret+="Fireworks:\n";
-		for(Color c: Color.values())
-			ret+="\t"+c+"  "+(fireworks.get(c).isEmpty()? "-" : fireworks.get(c).peek().getValue()) +"\n";
-		ret+= "Hints: "+hints+"\nFuse: "+fuse+"\n";
-		/*
-		if (observer>-1) {
-			ret+=("Color observer: " +players[observer].getKnownColours(0)+" "+players[observer].getKnownColours(1)+" "+players[observer].getKnownColours(2)+" "+players[observer].getKnownColours(3)+" "+players[observer].getKnownColours(4)+"\n");
-			ret+=("Values observer: " +players[observer].getKnownValues(0)+" "+players[observer].getKnownValues(1)+" "+players[observer].getKnownValues(2)+" "+players[observer].getKnownValues(3)+" "+players[observer].getKnownValues(4)+"\n");
+		JSONArray fireworks;
+		for(Color c: Color.values()) {
+			fireworks = getFirework(c);
+			ret += "\t" + c + "  " + (fireworks.size() == 0 ? "-" : ((Card)fireworks.get(fireworks.size()-1)).getValue()) + "\n";
 		}
-		*/
+		ret+= "Hints: "+getHintTokens()+"\nFuse: "+getFuseTokens()+"\n";
+
 		return ret;
 	}
 }

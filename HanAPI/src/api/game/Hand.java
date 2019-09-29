@@ -26,7 +26,11 @@ public class Hand extends JSONArray
 
 	public Hand clone()
 	{
-		return (Hand)super.clone();
+		try
+		{
+			return new Hand(super.clone().toString(0));
+		}
+		catch (JSONException e){return null;}
 	}
 
 	public Card getCard(int i)

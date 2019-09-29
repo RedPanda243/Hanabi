@@ -7,6 +7,8 @@ import sjson.JSONException;
 import sjson.JSONObject;
 import sjson.JSONString;
 
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.Stack;
 
 /**
@@ -18,9 +20,14 @@ public final class ServerCard extends Card
 {
 //	private Agent owner = null; //null = Deck
 
-	public ServerCard(JSONObject obj) throws JSONException
+	public ServerCard(String s) throws JSONException
 	{
-		super(obj);
+		this(new StringReader(s));
+	}
+
+	public ServerCard(Reader reader) throws JSONException
+	{
+		super(reader);
 		if (getColor() == null || getValue()==0)
 			throw new JSONException("Color and value must be known");
 	}
@@ -33,7 +40,6 @@ public final class ServerCard extends Card
 	public ServerCard clone()
 	{
 		ServerCard c = (ServerCard) super.clone();
-//		c.owner = owner;
 		return c;
 	}
 
@@ -60,7 +66,7 @@ public final class ServerCard extends Card
 	 */
 	public void revealColour()
 	{
-		colorRevealed = true;
+		set("color_revealed","true");
 	}
 
 	/**
@@ -68,7 +74,7 @@ public final class ServerCard extends Card
 	 */
 	public void revealValue()
 	{
-		valueRevealed = true;
+		set("value_revealed","true");
 	}
 
 	/**
@@ -109,24 +115,7 @@ public final class ServerCard extends Card
 	 **/
 	public static ServerCard[] getDeck(){return deck.clone();}
 
-	/**
-	 * Il mescolamento delle carte del mazzo &egrave; simulato invertendo 2 carte random nel mazzo per 1000 volte
-	 * @return Uno Stack di ServerCard in ordine casuale rappresentante un mazzo di carte mescolato.
-	 **/
-	public static Stack<ServerCard> shuffledDeck(){
-		ServerCard[] deck = getDeck();
-		java.util.Random r = new java.util.Random();
-		for(int i = 0; i<1000; i++){
-			int a = r.nextInt(50);
-			int b = r.nextInt(50);
-			ServerCard c = deck[a];
-			deck[a]= deck[b];
-			deck[b]=c;
-		}
-		Stack<ServerCard> shuffle = new Stack<ServerCard>();
-		for(ServerCard c: deck) shuffle.push(c);
-		return shuffle;
-	}
+
 /*
 	public int hashCode(){
 		return 5* color.ordinal()+value;
@@ -139,43 +128,7 @@ public final class ServerCard extends Card
 	 * @param value
 	 * @return
 	 */
-	private static ServerCard createCard(Color color, int value)
-	{
-		JSONObject obj = new JSONObject();
-		obj.put("color",new JSONString(color.toString()));
-		obj.put("value", new JSONString(""+value));
-		obj.put("value_revealed",new JSONString("false"));
-		obj.put("color_revealed",new JSONString("false"));
-		try
-		{
-			return new ServerCard(obj);
-		}
-		catch(JSONException e)
-		{
-			System.err.println("Error while generating deck");
-			e.printStackTrace(System.err);
-			System.exit(1);
-			return null;
-		}
-	}
 
-	private static ServerCard[] deck = {
-			createCard(Color.BLUE,1),createCard(Color.BLUE,1), createCard(Color.BLUE,1),
-			createCard(Color.BLUE,2),createCard(Color.BLUE,2),createCard(Color.BLUE,3),createCard(Color.BLUE,3),
-			createCard(Color.BLUE,4),createCard(Color.BLUE,4),createCard(Color.BLUE,5),
-			createCard(Color.RED,1),createCard(Color.RED,1), createCard(Color.RED,1),
-			createCard(Color.RED,2),createCard(Color.RED,2),createCard(Color.RED,3),createCard(Color.RED,3),
-			createCard(Color.RED,4),createCard(Color.RED,4),createCard(Color.RED,5),
-			createCard(Color.GREEN,1),createCard(Color.GREEN,1), createCard(Color.GREEN,1),
-			createCard(Color.GREEN,2),createCard(Color.GREEN,2),createCard(Color.GREEN,3),createCard(Color.GREEN,3),
-			createCard(Color.GREEN,4),createCard(Color.GREEN,4),createCard(Color.GREEN,5),
-			createCard(Color.WHITE,1),createCard(Color.WHITE,1), createCard(Color.WHITE,1),
-			createCard(Color.WHITE,2),createCard(Color.WHITE,2),createCard(Color.WHITE,3),createCard(Color.WHITE,3),
-			createCard(Color.WHITE,4),createCard(Color.WHITE,4),createCard(Color.WHITE,5),
-			createCard(Color.YELLOW,1),createCard(Color.YELLOW,1), createCard(Color.YELLOW,1),
-			createCard(Color.YELLOW,2),createCard(Color.YELLOW,2),createCard(Color.YELLOW,3),createCard(Color.YELLOW,3),
-			createCard(Color.YELLOW,4),createCard(Color.YELLOW,4),createCard(Color.YELLOW,5)
-	};
 
 
 }

@@ -1,41 +1,30 @@
 package api.game;
 
-import sjson.JSONConvertible;
+import sjson.JSONArray;
 import sjson.JSONException;
 import sjson.JSONObject;
+
+import java.io.Reader;
 
 /**
  * Rappresenta il primo messaggio che viene inviato dal server quando ha trovato tutti i giocatori. Dà informazioni generali e
  * immutabili sulla partita.
  */
-public class Game extends JSONConvertible<JSONObject>
+public class Game extends JSONObject
 {
-	private static Game instance = null;
 
-	private String[] players;
-
-	public Game(JSONObject json)
+	public Game(Reader reader) throws JSONException
 	{
-		super(json);
-		//TODO controlla i campi del json!
-		if (instance == null)
-			instance = this;
-		else
-			throw new IllegalStateException("A game is already running");
+		super(reader);
 	}
 
 	public int getNumberOfCardsPerPlayer()
 	{
-		return getPlayers().length>3?4:5;
+		return getPlayers().size()>3?4:5;
 	}
 
-	public String[] getPlayers()
+	public JSONArray getPlayers()
 	{
-		return players;
-	}
-
-	public static Game getInstance()
-	{
-		return instance;
+		return getArray("players");
 	}
 }

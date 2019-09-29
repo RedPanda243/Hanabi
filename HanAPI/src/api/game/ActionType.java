@@ -17,14 +17,13 @@ public enum ActionType
 
 	public String toString()
 	{
-		switch (this)
-		{
-			case PLAY: return "play";
-			case DISCARD: return "discard";
-			case HINT_COLOR: return "hint color";
-			case HINT_VALUE: return "hint value";
-			default: return null;
-		}
+		if (this == PLAY)
+			return "play";
+		if (this == DISCARD)
+			return "discard";
+		if (this == HINT_COLOR)
+			return "hint color";
+		return "hint value";
 	}
 
 }

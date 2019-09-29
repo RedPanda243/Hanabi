@@ -8,11 +8,34 @@ import java.io.Reader;
 
 public class Turn extends JSONObject
 {
+	public Turn(Action a, Card d) throws JSONException
+	{
+		super();
+		setAction(a);
+		setDrawn(d);
+	}
+
+	public Turn(Action a)
+	{
+		super();
+		setAction(a);
+	}
+
 	public Turn(Reader reader) throws JSONException
 	{
 		super(reader);
-		set("action",new Action(get("action").toString(0)));
-		set("drawn", new Card(get("drawn").toString(0)));
+		JSONData d = get("action");
+		if (d == null)
+			throw new JSONException("Missing action");
+		Action a = new Action(d.toString(0));
+		setAction(a);
+		if (a.getActionType() == ActionType.PLAY || a.getActionType() == ActionType.DISCARD)
+		{
+			d = get("drawn");
+			if (d == null)
+				throw new JSONException("Missing drawn card");
+			setDrawn(new Card(d.toString(0)));
+		}
 	}
 
 	public Action getAction()
@@ -27,6 +50,21 @@ public class Turn extends JSONObject
 			return null;
 		else
 			return (Card)c;
+	}
+
+	public Turn setAction(Action action)
+	{
+		set("action",action);
+		return this;
+	}
+
+	public Turn setDrawn(Card card) throws JSONException
+	{
+		ActionType type = getAction().getActionType();
+		if (type == ActionType.HINT_COLOR || type == ActionType.HINT_VALUE)
+			throw new JSONException("Hint actions do not draw");
+		set("drawn",card);
+		return this;
 	}
 
 	public String toString()

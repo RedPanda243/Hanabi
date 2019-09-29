@@ -65,11 +65,11 @@ public class JSONObject extends JSONData
 				t = (char) r.read();
 				r.reset();
 				if (t == '{')
-					put(name, new JSONObject(r));
+					set(name, new JSONObject(r));
 				else if (t == '[')
-					put(name, new JSONArray(r));
+					set(name, new JSONArray(r));
 				else if (t == '"')
-					put(name, new JSONString(r));
+					set(name, new JSONString(r));
 				else
 					throw new IOException("Unrecognized field!");
 
@@ -195,7 +195,6 @@ public class JSONObject extends JSONData
 
 	public JSONObject copyIn(JSONObject o)
 	{
-//		JSONObject c = o.clone();
 		for (String name: map.keySet())
 			o.map.put(name,this.get(name).clone());
 		return o;
@@ -221,10 +220,7 @@ public class JSONObject extends JSONData
 	 */
 	public Set<String> names()
 	{
-		Set<String> c = new HashSet<>();
-		for (String n:map.keySet())
-			c.add(""+n);
-		return c;
+		return map.keySet();
 	}
 /*
 	@SuppressWarnings("WeakerAccess")
@@ -245,12 +241,7 @@ public class JSONObject extends JSONData
 
 	public JSONData get(String name)
 	{
-	//	return get(JSONData.class,name);
-		JSONData d = map.get(name);
-		if (d == null)
-			return null;
-		else
-			return d.clone();
+		return map.get(name);
 	}
 /*
 	public <T extends JSONData> T get(Class<T> cl,String name)
@@ -310,7 +301,8 @@ public class JSONObject extends JSONData
 		}
 	}
 
-	private void put(String name, JSONData value)
+	@SuppressWarnings("WeakerAccess")
+	public JSONObject set(String name, JSONData value)
 	{
 		if (value != null)
 		{
@@ -318,17 +310,6 @@ public class JSONObject extends JSONData
 				name = "\""+name+"\"";
 			map.put(name, value);
 		}
-	}
-
-	@SuppressWarnings("WeakerAccess")
-	public JSONObject set(String name, JSONData value)
-	{
-		/*
-		JSONObject obj = this.clone();
-		obj.put(name,value);
-		return obj;
-		*/
-		put(name,value);
 		return this;
 	}
 
@@ -340,11 +321,6 @@ public class JSONObject extends JSONData
 	@SuppressWarnings("unused")
 	public JSONObject remove(String name)
 	{
-		/*
-		JSONObject obj = this.clone();
-		obj.map.remove(name);
-		return obj;
-		*/
 		map.remove(name);
 		return this;
 	}
@@ -367,8 +343,6 @@ public class JSONObject extends JSONData
 			if (indent>0)
 				ret.append("\n");
 			JSONData d = get(name);
-			if (d == null)
-				System.out.println("------------->"+name);
 			ret.append(tabstring(indent));
 			ret.append(name);
 			ret.append(":");

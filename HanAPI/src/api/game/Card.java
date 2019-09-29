@@ -13,6 +13,15 @@ import java.io.StringReader;
 public class Card extends JSONObject
 {
 
+	public Card(Color color, int value) throws JSONException
+	{
+		super();
+		setColor(color);
+		setValue(value);
+		setColorRevealed(false);
+		setValueRevealed(false);
+	}
+
 	public Card(String s) throws JSONException
 	{
 		this(new StringReader(s));
@@ -40,9 +49,7 @@ public class Card extends JSONObject
 		{
 			try
 			{
-				int v = Integer.parseInt(s);
-				if (v<0 || v>5)
-					throw new NumberFormatException();
+				setValue(Integer.parseInt(s));
 			}
 			catch (NumberFormatException e)
 			{
@@ -53,7 +60,7 @@ public class Card extends JSONObject
 		s = getString("value_revealed"); //get value_revealed
 		if (s == null)
 			throw new JSONException("Missing value_revealed");
-		else if (!(s.equalsIgnoreCase("false")||s.equalsIgnoreCase("true")))
+		else if (!(s.equals("false")||s.equals("true")))
 			throw new JSONException("value_revealed must be a boolean");
 
 		s = getString("color_revealed"); //get color_revealed
@@ -119,6 +126,35 @@ public class Card extends JSONObject
 	public boolean isColorRevealed()
 	{
 		return Boolean.parseBoolean(getString("color_revealed"));
+	}
+
+	public Card setColor(Color color)
+	{
+		if (color==null)
+			set("color","");
+		else
+			set("color",color.toString().toLowerCase());
+		return this;
+	}
+
+	public Card setValue(int v) throws JSONException
+	{
+		if (v<0 || v>5)
+			throw new JSONException("Wrong value!");
+		set("value",""+v);
+		return this;
+	}
+
+	public Card setColorRevealed(boolean b)
+	{
+		set("color_revealed",""+b);
+		return this;
+	}
+
+	public Card setValueRevealed(boolean b)
+	{
+		set("value_revealed",""+b);
+		return this;
 	}
 
 	/**

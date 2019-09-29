@@ -1,5 +1,6 @@
 package api.game;
 
+import api.main.HanabiClient;
 import sjson.JSONArray;
 import sjson.JSONException;
 
@@ -10,6 +11,16 @@ import java.io.StringReader;
 public class Hand extends JSONArray
 {
 
+	public Hand(Card[] cards) throws JSONException
+	{
+		super();
+		int n = HanabiClient.getInstance().getGame().getNumberOfCardsPerPlayer();
+		if (size()<n-1 || size()>n)
+			throw new JSONException("Hand contains wrong number of cards");
+		for(Card c:cards)
+			add(c);
+	}
+
 	public Hand(String s) throws JSONException
 	{
 		this(new StringReader(s));
@@ -18,10 +29,11 @@ public class Hand extends JSONArray
 	public Hand(Reader r) throws JSONException
 	{
 		super(r);
+		int n = HanabiClient.getInstance().getGame().getNumberOfCardsPerPlayer();
+		if (size()<n-1 || size()>n)
+			throw new JSONException("Hand contains wrong number of cards");
 		for (int i=0; i<this.size(); i++)
 			this.replace(i,new Card(this.get(i).toString()));
-		//Test per vedere se ogni elemento dell'array è una carta.
-		//Usa il singleton Game per controllare che il numero di carte sia esatto (considera anche il caso di ultimo turno)
 	}
 
 	public Hand clone()
@@ -36,5 +48,11 @@ public class Hand extends JSONArray
 	public Card getCard(int i)
 	{
 		return (Card)get(i);
+	}
+
+	public Hand setCard(int i, Card c)
+	{
+		replace(i,c);
+		return this;
 	}
 }

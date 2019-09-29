@@ -1,10 +1,7 @@
 package main;
 
 import agents.RemoteAgent;
-import api.game.Card;
-import api.game.Color;
-import api.game.State;
-import api.game.Turn;
+import api.game.*;
 import game.ServerCard;
 import sjson.JSONArray;
 import sjson.JSONException;
@@ -21,6 +18,7 @@ import java.util.Stack;
 
 public class HanabiServer
 {
+
 	private static Card createCard(Color color, int value)
 	{
 		JSONObject obj = new JSONObject();
@@ -160,16 +158,16 @@ public class HanabiServer
 		ServerSocket ss = new ServerSocket(port);
 		System.out.println("Server avviato."); //TODO stampa tcp address (locale e remoto)
 		int i = 0;
-		Socket s;
+		Socket[] players = new Socket[n];
 		String pname;
 		while (i<n)
 		{ //Non c'è concorrenza, i giocatori sono accettati uno alla volta e giocheranno nell'ordine di arrivo
 			try
 			{
-				s = ss.accept();
-				pname = new BufferedReader(new InputStreamReader(s.getInputStream())).readLine();
+				players[i] = ss.accept();
+				pname = new BufferedReader(new InputStreamReader(players[i].getInputStream())).readLine();
 				if (playerNames.contains(pname))
-				{
+				{ //Risoluzione conflitti per stesso nome
 					int p=2;
 					pname = pname+p;
 					while(playerNames.contains(pname))
@@ -179,8 +177,8 @@ public class HanabiServer
 					}
 				}
 				playerNames.add(pname);
-				new PrintStream(s.getOutputStream()).println(pname);
-				s.getOutputStream().flush();
+				new PrintStream(players[i].getOutputStream()).println(pname);
+				players[i].getOutputStream().flush();
 				System.out.println("Player"+i+" ("+pname+") connesso");
 				i++;
 			}
@@ -189,7 +187,75 @@ public class HanabiServer
 		}
 		Stack<Card> deck = shuffledDeck();
 		System.out.println("Creazione stato iniziale");
-		history.add(createInitState(deck,n));
+		State last = createInitState(deck,n);
+		history.add(last);
+
+		while(!(last.gameOver()))
+		{
+			sendState(last,players);
+			last = nextState(last,receiveAction(last), deck);
+			history.add(last);
+		}
 	}
 
+	private static State nextState(State current, Action move,Stack<Card> deck)
+	{
+		State next = current.clone();
+		if (move.getActionType() == ActionType.PLAY)
+		{
+			Hand hand = current.getHand(move.getPlayer());
+			Card played = hand.getCard(move.getPlayer());
+			hand.setCard(move.getPlayer(),deck.pop());
+			current.getFirework()
+		}
+		else if (move.getActionType() == ActionType.DISCARD)
+		{
+
+		}
+		else if (move.getActionType() == ActionType.HINT_COLOR)
+		{
+
+		}
+		else
+		{
+
+		}
+	}
+
+	private static void sendState(State state, Socket[] players) throws IOException
+	{
+		JSONArray hands;
+		State box;
+		for (int i=0; i<players.length; i++)
+		{
+			box = state.clone();
+			hands = new JSONArray();
+			for (int j=0; j<players.length; j++)
+			{
+				if (i==j)
+				{
+					JSONArray hand = box.getHand(j);
+					Card card;
+					for (int k=0; k<hand.size(); k++)
+					{
+						card = (Card)hand.get(k);
+						if (!card.isColorRevealed())
+							card.set("color","");
+						if (!card.isValueRevealed())
+							card.set("value","0");
+						hand.replace(k,card);
+					}
+					hands.add(hand);
+				}
+				else
+				{
+					hands.add(box.getHand(j));
+				}
+			}
+			box.set("hands",hands);
+			PrintStream ps = new PrintStream(players[i].getOutputStream());
+			ps.print(box);
+			ps.flush();
+		}
+	}
 }

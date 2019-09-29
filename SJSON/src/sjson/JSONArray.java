@@ -48,11 +48,11 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 				t = (char) r.read();
 				r.reset();
 				if (t == '{')
-					put(new JSONObject(r));
+					add(new JSONObject(r));
 				else if (t == '[')
-					put(new JSONArray(r));
+					add(new JSONArray(r));
 				else if (t == '"')
-					put(new JSONString(r));
+					add(new JSONString(r));
 				else
 					throw new IOException("Unrecognized field!");
 
@@ -74,11 +74,6 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	@SuppressWarnings("WeakerAccess")
 	public JSONArray add(JSONData d)
 	{
-		/*
-		JSONArray a = this.clone();
-		a.list.add(d);
-		return a;
-		*/
 		list.add(d);
 		return this;
 	}
@@ -96,9 +91,8 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	@SuppressWarnings("unused")
 	public JSONArray copyIn(JSONArray array)
 	{
-	//	JSONArray a = array.clone();
 		for (JSONData d:this)
-			list.add(d.clone());
+			array.list.add(d.clone());
 		return this;
 	}
 
@@ -109,11 +103,6 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 
 	public JSONArray insert(int index, JSONData value)
 	{
-		/*
-		JSONArray a = this.clone();
-		a.list.add(index, value);
-		return a;
-		*/
 		list.add(index,value);
 		return this;
 	}
@@ -130,7 +119,7 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 
 	public JSONData get(int index)
 	{
-		return list.get(index).clone();
+		return list.get(index);
 	}
 /*
 	public <T extends JSONData> T get(Class<T> cl, int index)
@@ -198,19 +187,9 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 		return -1;
 	}
 
-	private void put(JSONData data)
-	{
-		list.add(data);
-	}
-
 	@SuppressWarnings("unused")
 	public JSONArray remove(int index)
 	{
-		/*
-		JSONArray a = this.clone();
-		a.list.remove(index);
-		return a;
-		*/
 		list.remove(index);
 		return this;
 	}
@@ -218,11 +197,6 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	@SuppressWarnings("unused")
 	public JSONArray replace(int index, JSONData d)
 	{
-		/*
-		JSONArray a = this.clone();
-		a.list.set(index,d);
-		return a;
-		*/
 		list.set(index,d);
 		return this;
 	}

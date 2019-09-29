@@ -16,16 +16,6 @@ import java.util.Stack;
 @SuppressWarnings({"WeakerAccess","unused"})
 public class State extends JSONObject
 {
-//	protected Stack<Card> discards;
-//	protected Map<Color,Stack<Card>> fireworks;
-//	protected Hand[] hands;
-/*	protected int order;
-	protected int hints;
-	protected int fuse;
-	protected int currentPlayer;
-	protected int finalAction;
-*/
-
 	public State(String s) throws JSONException
 	{
 		this(new StringReader(s));

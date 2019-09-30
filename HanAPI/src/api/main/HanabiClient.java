@@ -15,7 +15,6 @@ public class HanabiClient
 {
 	private static HanabiClient instance = null;
 	private Socket socket;
-	private Game game;
 	private String name;
 	private PrintStream out;
 	private BufferedReader in;
@@ -31,7 +30,7 @@ public class HanabiClient
 		name = in.readLine();
 		try
 		{
-			game = new Game(in);
+			new Game(in);
 		}
 		catch(JSONException e)
 		{
@@ -57,78 +56,8 @@ public class HanabiClient
 	public void close() throws IOException
 	{
 		socket.close();
+		Game.getInstance().close();
 		instance = null;
-	}
-
-	public Game getGame()
-	{
-		return game;
-	}
-
-	public Action discard(int i) throws IllegalActionException
-	{
-		JSONObject obj = new JSONObject();
-		obj.set("type","discard");
-		obj.set("player",""+getPlayerIndex());
-		obj.set("card",""+i);
-		try
-		{
-			return new Action(obj.toString(0));
-		}
-		catch(JSONException e)
-		{
-			throw new IllegalActionException(e);
-		}
-	}
-
-	public Action play(int i) throws IllegalActionException
-	{
-		JSONObject obj = new JSONObject();
-		obj.set("type","play");
-		obj.set("player",""+getPlayerIndex());
-		obj.set("card",""+i);
-		try
-		{
-			return new Action(obj.toString(0));
-		}
-		catch(JSONException e)
-		{
-			throw new IllegalActionException(e);
-		}
-	}
-
-	public Action hint(Color c, int hintReceiver) throws IllegalActionException
-	{
-		JSONObject obj = new JSONObject();
-		obj.set("type","hint color");
-		obj.set("player",new JSONString(""+getPlayerIndex()));
-		obj.set("color",new JSONString(c.toString()));
-		obj.set("hinted",new JSONString(""+hintReceiver));
-		try
-		{
-			return new Action(obj.toString(0));
-		}
-		catch(JSONException e)
-		{
-			throw new IllegalActionException(e);
-		}
-	}
-
-	public Action hint(int v, int hintReceiver) throws IllegalActionException
-	{
-		JSONObject obj = new JSONObject();
-		obj.set("type","hint value");
-		obj.set("player",new JSONString(""+getPlayerIndex()));
-		obj.set("value",new JSONString(""+v));
-		obj.set("hinted",new JSONString(""+hintReceiver));
-		try
-		{
-			return new Action(obj.toString(0));
-		}
-		catch(JSONException e)
-		{
-			throw new IllegalActionException(e);
-		}
 	}
 
 	public State getCurrentState()
@@ -144,7 +73,7 @@ public class HanabiClient
 
 	public State sendAction(Action a) throws JSONException
 	{
-		if (currentState.getCurrentPlayer() == getPlayerIndex())
+		if (currentState.getCurrentPlayer().equals(name))
 		{
 			out.print(a.toString(0));
 			out.flush();

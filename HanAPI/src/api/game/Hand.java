@@ -2,6 +2,7 @@ package api.game;
 
 import api.main.HanabiClient;
 import sjson.JSONArray;
+import sjson.JSONData;
 import sjson.JSONException;
 
 import java.io.Reader;
@@ -14,9 +15,9 @@ public class Hand extends JSONArray
 	public Hand(Card[] cards) throws JSONException
 	{
 		super();
-		int n = HanabiClient.getInstance().getGame().getNumberOfCardsPerPlayer();
-		if (size()<n-1 || size()>n)
-			throw new JSONException("Hand contains wrong number of cards");
+		int n = Game.getInstance().getNumberOfCardsPerPlayer();
+		if (cards.length<n-1 || cards.length>n)
+			throw new JSONException("Hand contains wrong number of cards: "+cards.length);
 		for(Card c:cards)
 			add(c);
 	}
@@ -29,7 +30,7 @@ public class Hand extends JSONArray
 	public Hand(Reader r) throws JSONException
 	{
 		super(r);
-		int n = HanabiClient.getInstance().getGame().getNumberOfCardsPerPlayer();
+		int n = Game.getInstance().getNumberOfCardsPerPlayer();
 		if (size()<n-1 || size()>n)
 			throw new JSONException("Hand contains wrong number of cards");
 		for (int i=0; i<this.size(); i++)
@@ -54,5 +55,13 @@ public class Hand extends JSONArray
 	{
 		replace(i,c);
 		return this;
+	}
+
+	public String toString()
+	{
+		StringBuffer sb = new StringBuffer("{");
+		for (JSONData c:this)
+			sb.append(c).append(",");
+		return sb.replace(sb.length()-1,sb.length(),"}").toString();
 	}
 }

@@ -7,38 +7,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="644e2846-9d4a-4fbd-95f8-f21cfdbcf6f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/artifacts/HanabiAgent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/libraries/HanAPI.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/libraries/SJSON.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/HanabiAgent.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Action.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/ActionType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Card.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Color$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Color.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Hand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/IllegalActionException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Turn.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/main/HanabiClient.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/game/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/game/Firework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/Firework.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/game/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/game/IllegalActionException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/game/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/game/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/Turn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/main/HanabiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/main/HanabiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/agents/BasicAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/agents/HumanAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/agents/HumanAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/agents/RemoteAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/game/ServerCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/game/ServerGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/game/ServerHand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/game/ServerState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/game/ServerTurn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SJSON.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SJSON/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONConvertible.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONConvertible.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONData$Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONData$Type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONData.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONString.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONString.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/TypedJSON.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/TypedJSON.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SJSON/src/sjson/JSONArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/src/sjson/JSONData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SJSON/src/sjson/JSONObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONObject.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,25 +56,27 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api/game/Card.java">
+        <entry file="file://$PROJECT_DIR$/src/api/game/State.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-306">
-              <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+            <state relative-caret-position="493">
+              <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4191#4192#0" expanded="true" />
+                <element signature="e#3645#3646#0" expanded="true" />
+                <element signature="e#3706#3707#0" expanded="true" />
+                <element signature="e#3972#3973#0" expanded="true" />
+                <element signature="e#4003#4004#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/api/game/State.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/game/Color.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="128" column="9" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -79,14 +84,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/game/Firework.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+            <state relative-caret-position="372">
+              <caret line="65" column="24" selection-start-line="65" selection-start-column="24" selection-end-line="65" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#993#994#0" expanded="true" />
-                <element signature="e#1019#1020#0" expanded="true" />
-                <element signature="e#1042#1043#0" expanded="true" />
-                <element signature="e#1084#1085#0" expanded="true" />
+                <element signature="e#187#188#0" expanded="true" />
+                <element signature="e#198#199#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/game/Turn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+            <state relative-caret-position="542">
+              <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#790#791#0" expanded="true" />
@@ -109,8 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/game/Hand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+            <state relative-caret-position="299">
+              <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,11 +130,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/game/Action.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="213" column="36" lean-forward="true" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
+            <state relative-caret-position="469">
+              <caret line="259" column="40" lean-forward="true" selection-start-line="259" selection-start-column="40" selection-end-line="259" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -142,19 +145,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
+            <state relative-caret-position="367">
+              <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#618#619#0" expanded="true" />
-                <element signature="e#639#640#0" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#541#542#0" expanded="true" />
-                <element signature="e#1151#1152#0" expanded="true" />
-                <element signature="e#1182#1183#0" expanded="true" />
-                <element signature="e#1064#1065#0" expanded="true" />
-                <element signature="e#1086#1087#0" expanded="true" />
+                <element signature="e#717#718#0" expanded="true" />
+                <element signature="e#756#757#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../SJSON.jar!/sjson/JSONObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -162,14 +168,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/main/HanabiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="746">
-              <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+            <state relative-caret-position="389">
+              <caret line="37" column="9" selection-start-line="24" selection-start-column="8" selection-end-line="37" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1431#1432#0" expanded="true" />
-                <element signature="e#1449#1450#0" expanded="true" />
-                <element signature="e#3157#3158#0" expanded="true" />
-                <element signature="e#3183#3184#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -187,6 +189,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>Game.getInstance</find>
+      <find>hands</find>
     </findStrings>
     <replaceStrings>
       <replace>HanabiClient.getInstance().getGame</replace>
@@ -202,14 +205,15 @@
         <option value="$PROJECT_DIR$/src/api/main/Main.java" />
         <option value="$PROJECT_DIR$/src/api/agents/Agent.java" />
         <option value="$PROJECT_DIR$/src/api/game/ActionType.java" />
-        <option value="$PROJECT_DIR$/src/api/game/Card.java" />
-        <option value="$PROJECT_DIR$/src/api/game/Hand.java" />
-        <option value="$PROJECT_DIR$/src/api/game/Turn.java" />
+        <option value="$PROJECT_DIR$/src/api/game/Color.java" />
         <option value="$PROJECT_DIR$/src/api/main/HanabiClient.java" />
+        <option value="$PROJECT_DIR$/src/api/game/Card.java" />
         <option value="$PROJECT_DIR$/src/api/game/Game.java" />
-        <option value="$PROJECT_DIR$/src/api/game/Action.java" />
+        <option value="$PROJECT_DIR$/src/api/game/Hand.java" />
         <option value="$PROJECT_DIR$/src/api/game/Firework.java" />
         <option value="$PROJECT_DIR$/src/api/game/State.java" />
+        <option value="$PROJECT_DIR$/src/api/game/Turn.java" />
+        <option value="$PROJECT_DIR$/src/api/game/Action.java" />
       </list>
     </option>
   </component>
@@ -227,6 +231,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -263,8 +269,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -312,8 +316,8 @@
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49125168" visible="true" weight="0.27005732" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.5087483" side_tool="true" visible="true" weight="0.27005732" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4885599" visible="true" weight="0.24928367" />
+      <window_info id="Structure" order="1" sideWeight="0.5114401" side_tool="true" visible="true" weight="0.24928367" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -352,39 +356,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../SJSON.jar!/sjson/JSONObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="296" column="18" selection-start-line="296" selection-start-column="18" selection-end-line="296" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/agents/Agent.java" />
     <entry file="file://$PROJECT_DIR$/src/api/main/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/api/game/IllegalActionException.java">
+    <entry file="jar:///opt/jdk1.8.0_171/src.zip!/java/util/ArrayList.java" />
+    <entry file="jar://$PROJECT_DIR$/../SJSON.jar!/sjson/JSONData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="239">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/game/Color.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        <state relative-caret-position="68">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///opt/jdk1.8.0_171/src.zip!/java/util/ArrayList.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/AbstractStringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="848" column="33" selection-start-line="848" selection-start-column="33" selection-end-line="848" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/StringBuffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="451" column="19" selection-start-line="451" selection-start-column="19" selection-end-line="451" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/IllegalActionException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="139" column="16" selection-start-line="139" selection-start-column="16" selection-end-line="139" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/main/HanabiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="37" column="9" selection-start-line="24" selection-start-column="8" selection-end-line="37" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$PROJECT_DIR$/../SJSON.jar!/sjson/JSONArray.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="199" column="14" selection-start-line="199" selection-start-column="14" selection-end-line="199" selection-end-column="14" />
+        <state relative-caret-position="3451">
+          <caret line="225" column="15" selection-start-line="225" selection-start-column="15" selection-end-line="225" selection-end-column="15" />
           <folding>
             <element signature="e#296#297#0" expanded="true" />
             <element signature="e#327#328#0" expanded="true" />
             <element signature="e#1660#1661#0" expanded="true" />
             <element signature="e#1699#1700#0" expanded="true" />
+            <element signature="e#2202#2203#0" expanded="true" />
+            <element signature="e#2231#2232#0" expanded="true" />
+            <element signature="e#3806#3807#0" expanded="true" />
+            <element signature="e#3831#3832#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#717#718#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/Hand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/Firework.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="65" column="24" selection-start-line="65" selection-start-column="24" selection-end-line="65" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#187#188#0" expanded="true" />
+            <element signature="e#198#199#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/game/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4191#4192#0" expanded="true" />
+            <element signature="e#3645#3646#0" expanded="true" />
+            <element signature="e#3706#3707#0" expanded="true" />
+            <element signature="e#3972#3973#0" expanded="true" />
+            <element signature="e#4003#4004#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -396,27 +487,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../SJSON.jar!/sjson/JSONData.java">
+    <entry file="jar://$PROJECT_DIR$/../SJSON.jar!/sjson/JSONObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/game/Hand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="231">
+          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/game/Turn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        <state relative-caret-position="542">
+          <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#790#791#0" expanded="true" />
@@ -425,76 +506,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/main/HanabiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="746">
-          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1431#1432#0" expanded="true" />
-            <element signature="e#1449#1450#0" expanded="true" />
-            <element signature="e#3157#3158#0" expanded="true" />
-            <element signature="e#3183#3184#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/game/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#618#619#0" expanded="true" />
-            <element signature="e#639#640#0" expanded="true" />
-            <element signature="e#518#519#0" expanded="true" />
-            <element signature="e#541#542#0" expanded="true" />
-            <element signature="e#1151#1152#0" expanded="true" />
-            <element signature="e#1182#1183#0" expanded="true" />
-            <element signature="e#1064#1065#0" expanded="true" />
-            <element signature="e#1086#1087#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/game/Action.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="213" column="36" lean-forward="true" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/game/Firework.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#993#994#0" expanded="true" />
-            <element signature="e#1019#1020#0" expanded="true" />
-            <element signature="e#1042#1043#0" expanded="true" />
-            <element signature="e#1084#1085#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/game/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/game/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="128" column="9" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+        <state relative-caret-position="469">
+          <caret line="259" column="40" lean-forward="true" selection-start-line="259" selection-start-column="40" selection-end-line="259" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

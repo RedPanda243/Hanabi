@@ -46,7 +46,7 @@ public class Turn extends JSONObject
 	public Card getDrawn()
 	{
 		JSONData c = get("drawn");
-		if (c.toString().equals(""))
+		if (c == null)
 			return null;
 		else
 			return (Card)c;

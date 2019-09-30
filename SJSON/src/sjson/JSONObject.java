@@ -35,8 +35,9 @@ public class JSONObject extends JSONData
 			String name;
 			char t,e;
 			readWhile(r,'\t',' ','\n','\r');//skip spaces
-			if (r.read() != '{')
-				throw new JSONException("JSONObject must starts with '{'");
+			t = (char)r.read();
+			if (t != '{')
+				throw new JSONException("JSONObject must starts with '{', founded '"+t+"'");
 			r.mark(2);
 			if (r.read()=='}')
 				flag = false;
@@ -241,6 +242,8 @@ public class JSONObject extends JSONData
 
 	public JSONData get(String name)
 	{
+		if (!(name.startsWith("\"")&&name.endsWith("\"")))
+			name = "\""+name+"\"";
 		return map.get(name);
 	}
 /*

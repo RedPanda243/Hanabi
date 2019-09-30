@@ -14,6 +14,13 @@ public class Game extends JSONObject
 
 	private static Game instance = null;
 
+	public Game(JSONArray players) throws JSONException
+	{
+		super();
+		setPlayers(players);
+		instance = this;
+	}
+
 	public Game(Reader reader) throws JSONException
 	{
 		super(reader);

@@ -144,49 +144,45 @@ public class Action extends JSONObject
 
 	/**
 	 * gets the psoition of the card being played/discarded
-	 * @return the position of the card being played or discarded
-	 * @throws IllegalActionException if the action type is not PLAY or DISCARD
+	 * @return the position of the card being played or discarded, null if the action type is not PLAY or DISCARD
 	 **/
-	public int getCard() throws IllegalActionException
+	public int getCard()
 	{
 		ActionType type = getActionType();
-		if(type != PLAY && type!= ActionType.DISCARD) throw new IllegalActionException("Card is not defined");
+		if(type != PLAY && type!= ActionType.DISCARD) return -1;
 		return Integer.parseInt(getString("card"));
 	}
 
 	/**
 	 * gets the name of the player receiving the hint
-	 * @return the index of the player receiving the hint
-	 * @throws IllegalActionException if the action type is not HINT_COLOR or HINT_VALUE
+	 * @return the index of the player receiving the hint, null if the action type is not HINT_COLOR or HINT_VALUE
 	 **/
-	public String getHintReceiver() throws IllegalActionException
+	public String getHintReceiver()
 	{
 		ActionType type = getActionType();
-		if(type != ActionType.HINT_COLOR && type!= ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a hint");
+		if(type != ActionType.HINT_COLOR && type!= ActionType.HINT_VALUE) return null;
 		return getString("hinted");
 	}
 
 	/**
 	 * gets the color hinted
-	 * @return the color hinted
-	 * @throws IllegalActionException if the action type is not HINT_COLOR
+	 * @return the color hinted, null if the action type is not HINT_COLOR
 	 **/
-	public Color getColor() throws IllegalActionException
+	public Color getColor()
 	{
 		ActionType type = getActionType();
-		if(type != ActionType.HINT_COLOR) throw new IllegalActionException("Action is not a color hint");
+		if(type != ActionType.HINT_COLOR) return null;
 		return Color.fromString(getString("color"));
 	}
 
 	/**
 	 * gets the value hinted
-	 * @return the value hinted
-	 * @throws IllegalActionException if the action type is not HINT_VALUE
+	 * @return the value hinted, -1 if the action type is not HINT_VALUE
 	 **/
-	public int getValue() throws IllegalActionException
+	public int getValue()
 	{
 		ActionType type = getActionType();
-		if(type != ActionType.HINT_VALUE) throw new IllegalActionException("Action is not a value hint");
+		if(type != ActionType.HINT_VALUE) return -1;
 		return Integer.parseInt(getString("value"));
 	}
 
@@ -194,7 +190,7 @@ public class Action extends JSONObject
 	{
 		if (getActionType()==HINT_COLOR || getActionType()==HINT_VALUE)
 			throw new JSONException("Hint actions have no cards");
-		if (c<0 || c>HanabiClient.getInstance().getGame().getNumberOfCardsPerPlayer()-1)
+		if (c<0 || c>Game.getInstance().getNumberOfCardsPerPlayer()-1)
 			throw new JSONException(new IndexOutOfBoundsException());
 		return this;
 	}
@@ -249,28 +245,21 @@ public class Action extends JSONObject
 	 * */
 	public String toString()
 	{
-		try
-		{
-			ActionType type = getActionType();
-			String p = getPlayer();
-			if (type == PLAY)
-				return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") gioca la carta in posizione "+getCard();
-			else if (type == DISCARD)
-				return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") scarta la carta in posizione "+getCard();
-			else {
-				String h = getHintReceiver();
-				if (type == HINT_COLOR)
-					return "Il giocatore "+p+"("+getPlayer()+") mostra a "
-							+h+"("+Game.getInstance().getPlayerTurn(h)+") le carte di colore "+getColor();
-				else if (type == HINT_VALUE)
-					return "Il giocatore "+p+"("+getPlayer()+") mostra a "
-							+h+"("+Game.getInstance().getPlayerTurn(h)+") le carte di valore "+getValue();
-			}
-		}
-		catch(IllegalActionException iae)
-		{
-			//Impossibile
-			iae.printStackTrace(System.err);
+
+		ActionType type = getActionType();
+		String p = getPlayer();
+		if (type == PLAY)
+			return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") gioca la carta in posizione "+getCard();
+		else if (type == DISCARD)
+			return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") scarta la carta in posizione "+getCard();
+		else {
+			String h = getHintReceiver();
+			if (type == HINT_COLOR)
+				return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") mostra a "
+						+h+"("+Game.getInstance().getPlayerTurn(h)+") le carte di colore "+getColor();
+			else if (type == HINT_VALUE)
+				return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") mostra a "
+						+h+"("+Game.getInstance().getPlayerTurn(h)+") le carte di valore "+getValue();
 		}
 		return "";
 	}

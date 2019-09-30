@@ -4,9 +4,20 @@ import sjson.JSONArray;
 import sjson.JSONException;
 
 import java.io.Reader;
+import java.io.StringReader;
 
 public class Firework extends JSONArray
 {
+	public Firework()
+	{
+		super();
+	}
+
+	public Firework(String s) throws JSONException
+	{
+		this(new StringReader(s));
+	}
+
 	public Firework(Reader reader) throws JSONException
 	{
 		super(reader);
@@ -39,7 +50,7 @@ public class Firework extends JSONArray
 		return this;
 	}
 
-	public boolean checkColor(Color c)
+	private boolean checkColor(Color c)
 	{
 		for (int i=0; i<size(); i++)
 		{
@@ -49,6 +60,13 @@ public class Firework extends JSONArray
 		return true;
 	}
 
+	public Color getColor()
+	{
+		if (size()==0)
+			return null;
+		return getCard(0).getColor();
+	}
+
 	private Card getCard(int i)
 	{
 		return (Card)get(i);
@@ -56,6 +74,8 @@ public class Firework extends JSONArray
 
 	public int peak()
 	{
+		if (size() == 0)
+			return 0;
 		return getCard(size()-1).getValue();
 	}
 }

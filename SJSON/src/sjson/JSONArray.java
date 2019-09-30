@@ -145,6 +145,7 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 		}
 		catch(ClassCastException | NullPointerException cce)
 		{
+			System.err.println(cce);
 			return null;
 		}
 	}

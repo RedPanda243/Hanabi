@@ -7,34 +7,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10ac42d8-4529-433c-bb71-0f81b1df50d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Firework.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/ActionType$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/ActionType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/ActionType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Hand.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Hand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/main/HanabiClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/main/HanabiClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/ActionType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Hand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/IllegalActionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/main/HanabiClient.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/ActionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/ActionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Firework.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Firework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Turn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/main/HanabiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/main/HanabiClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SJSON.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONConvertible.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONData$Type.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONObjectConvertible.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONString.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/JSONUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/TypedJSON.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SJSON/sjson/TypedJSONArray.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sjson/JSONArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sjson/JSONData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONData.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,30 +58,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sjson/JSONObject.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="543">
               <caret line="315" column="10" selection-start-line="315" selection-start-column="4" selection-end-line="315" selection-end-column="10" />
               <folding>
-                <element signature="e#4549#4550#0" expanded="true" />
-                <element signature="e#4586#4587#0" expanded="true" />
                 <element signature="e#4679#4680#0" expanded="true" />
-                <element signature="e#4698#4699#0" expanded="true" />
+                <element signature="e#4705#4706#0" expanded="true" />
                 <element signature="e#5003#5004#0" expanded="true" />
                 <element signature="e#5030#5031#0" expanded="true" />
-                <element signature="e#6711#6712#0" expanded="true" />
-                <element signature="e#6756#6757#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sjson/JSONData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="99" selection-start-line="99" selection-end-line="99" />
+            <state relative-caret-position="323">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -82,7 +85,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sjson/JSONConvertible.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
+            <state relative-caret-position="51">
               <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
@@ -91,7 +94,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sjson/JSONString.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
+            <state relative-caret-position="561">
               <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding>
                 <element signature="e#708#709#0" expanded="true" />
@@ -104,19 +107,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sjson/JSONArray.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1065">
-              <caret line="93" column="29" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
+            <state relative-caret-position="588">
+              <caret line="189" column="21" selection-start-line="189" selection-start-column="21" selection-end-line="189" selection-end-column="21" />
               <folding>
-                <element signature="e#241#274#0" expanded="true" />
-                <element signature="e#1456#1489#0" expanded="true" />
-                <element signature="e#1772#1799#0" expanded="true" />
-                <element signature="e#2617#2644#0" expanded="true" />
-                <element signature="e#2818#2851#0" expanded="true" />
-                <element signature="e#3028#3055#0" expanded="true" />
-                <element signature="e#3205#3232#0" expanded="true" />
-                <element signature="e#3434#3461#0" expanded="true" />
-                <element signature="e#3619#3646#0" expanded="true" />
-                <element signature="e#3912#3945#0" expanded="true" />
+                <element signature="e#3059#3060#0" expanded="true" />
+                <element signature="e#3077#3078#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,7 +120,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sjson/JSONUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3270">
+            <state relative-caret-position="3706">
               <caret line="220" column="25" selection-start-line="220" selection-start-column="25" selection-end-line="220" selection-end-column="25" />
             </state>
           </provider>
@@ -155,9 +150,9 @@
         <option value="$PROJECT_DIR$/src/sjson/JSONUtils.java" />
         <option value="$PROJECT_DIR$/src/sjson/JSONString.java" />
         <option value="$PROJECT_DIR$/src/sjson/TypedJSONArray.java" />
-        <option value="$PROJECT_DIR$/src/sjson/JSONData.java" />
-        <option value="$PROJECT_DIR$/src/sjson/JSONArray.java" />
         <option value="$PROJECT_DIR$/src/sjson/JSONObject.java" />
+        <option value="$PROJECT_DIR$/src/sjson/JSONArray.java" />
+        <option value="$PROJECT_DIR$/src/sjson/JSONData.java" />
       </list>
     </option>
   </component>
@@ -175,8 +170,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -272,10 +267,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1368" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48635635" visible="true" weight="0.26818183" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.5136437" side_tool="true" visible="true" weight="0.26818183" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4845222" visible="true" weight="0.2722063" />
+      <window_info active="true" id="Structure" order="1" sideWeight="0.5154778" side_tool="true" visible="true" weight="0.2722063" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -338,30 +333,29 @@
     <entry file="file://$PROJECT_DIR$/src/sjson/ExtendedJSONObject.java" />
     <entry file="file://$PROJECT_DIR$/src/sjson/JSONObjectConvertible.java" />
     <entry file="file://$PROJECT_DIR$/src/sjson/TypedJSONArray.java" />
-    <entry file="file://$PROJECT_DIR$/src/sjson/JSONData.java">
+    <entry file="file://$PROJECT_DIR$/src/sjson/JSONObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        <state relative-caret-position="543">
+          <caret line="315" column="10" selection-start-line="315" selection-start-column="4" selection-end-line="315" selection-end-column="10" />
+          <folding>
+            <element signature="e#4679#4680#0" expanded="true" />
+            <element signature="e#4705#4706#0" expanded="true" />
+            <element signature="e#5003#5004#0" expanded="true" />
+            <element signature="e#5030#5031#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sjson/JSONConvertible.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
+        <state relative-caret-position="51">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sjson/JSONUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3270">
-          <caret line="220" column="25" selection-start-line="220" selection-start-column="25" selection-end-line="220" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sjson/JSONString.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
+        <state relative-caret-position="561">
           <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
           <folding>
             <element signature="e#708#709#0" expanded="true" />
@@ -370,39 +364,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sjson/JSONUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3706">
+          <caret line="220" column="25" selection-start-line="220" selection-start-column="25" selection-end-line="220" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sjson/JSONArray.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
-          <caret line="93" column="29" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
+        <state relative-caret-position="588">
+          <caret line="189" column="21" selection-start-line="189" selection-start-column="21" selection-end-line="189" selection-end-column="21" />
           <folding>
-            <element signature="e#241#274#0" expanded="true" />
-            <element signature="e#1456#1489#0" expanded="true" />
-            <element signature="e#1772#1799#0" expanded="true" />
-            <element signature="e#2617#2644#0" expanded="true" />
-            <element signature="e#2818#2851#0" expanded="true" />
-            <element signature="e#3028#3055#0" expanded="true" />
-            <element signature="e#3205#3232#0" expanded="true" />
-            <element signature="e#3434#3461#0" expanded="true" />
-            <element signature="e#3619#3646#0" expanded="true" />
-            <element signature="e#3912#3945#0" expanded="true" />
+            <element signature="e#3059#3060#0" expanded="true" />
+            <element signature="e#3077#3078#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sjson/JSONObject.java">
+    <entry file="file://$PROJECT_DIR$/src/sjson/JSONData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="315" column="10" selection-start-line="315" selection-start-column="4" selection-end-line="315" selection-end-column="10" />
-          <folding>
-            <element signature="e#4549#4550#0" expanded="true" />
-            <element signature="e#4586#4587#0" expanded="true" />
-            <element signature="e#4679#4680#0" expanded="true" />
-            <element signature="e#4698#4699#0" expanded="true" />
-            <element signature="e#5003#5004#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#6711#6712#0" expanded="true" />
-            <element signature="e#6756#6757#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>

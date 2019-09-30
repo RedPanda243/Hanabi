@@ -13,7 +13,7 @@ public abstract class JSONData implements Cloneable
 {
 	static final int baseindent = 3;
 
-	enum Type
+	public enum Type
 	{
 		STRING,OBJECT,ARRAY
 	}

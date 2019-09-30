@@ -65,14 +65,6 @@ public class HanabiClient
 		return game;
 	}
 
-	public int getPlayerIndex()
-	{
-		for (int i=0; i<game.getPlayers().size(); i++)
-			if (game.getPlayers().getString(i).equals(name))
-				return i;
-		return -1;
-	}
-
 	public Action discard(int i) throws IllegalActionException
 	{
 		JSONObject obj = new JSONObject();

@@ -175,6 +175,21 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 		}
 	}
 
+	public boolean has(String s)
+	{
+		return has(new JSONString(s));
+	}
+
+	public boolean has(JSONData d)
+	{
+		for(JSONData ad: this)
+		{
+			if (ad.equals(d))
+				return true;
+		}
+		return false;
+	}
+
 	@SuppressWarnings("unused")
 	public int indexOf(JSONData d)
 	{

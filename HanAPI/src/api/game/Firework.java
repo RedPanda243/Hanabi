@@ -15,6 +15,11 @@ public class Firework extends JSONArray
 
 		for(int i=0; i<size(); i++)
 			replace(i,new Card(get(i).toString(0)));
+		for (int i=1; i<size(); i++)
+		{
+			if (getCard(i).getValue()!=getCard(i-1).getValue()-1)
+				throw new JSONException("Malformed firework, messy cards!");
+		}
 		if (size()>1 && !checkColor(getCard(0).getColor()))
 			throw new JSONException("Cards in firework must have same color");
 

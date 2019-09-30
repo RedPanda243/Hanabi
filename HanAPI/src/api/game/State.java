@@ -25,6 +25,8 @@ public class State extends JSONObject
 	{
 		super(reader);
 
+		String s;
+
 		JSONArray array = getArray("discarded");
 		if (array == null)
 			throw new JSONException("Missing discarded");
@@ -126,62 +128,61 @@ public class State extends JSONObject
 			}
 		}
 
-		array = getArray("hands");
+		for(JSONData d: Game.getInstance().getPlayers())
+		{
+			array = getArray(d.toString());
+			if (array == null)
+				throw new JSONException("Missing "+d.toString()+" hand!");
+			setHand(d.toString(),new Hand(array.toString(0)));
+		}
 
-		for (int i=0; i<array.size(); i++)
-			array.replace(i,new Hand(array.getArray(i).toString(0)));
-
-		int x,o;
-
+		s = getString("order");
+		if (s==null)
+			throw new JSONException("Missing order!");
 		try
 		{
-			o = Integer.parseInt(getString("order"));
-			if (o<0)
-				throw new NumberFormatException();
+			setOrder(Integer.parseInt(s));
 		}
 		catch (NumberFormatException e)
 		{
 			throw new JSONException(e);
 		}
 
+		s = getString("hints");
+		if (s==null)
+			throw new JSONException("Missing hint tokens!");
 		try
 		{
-			x = Integer.parseInt(getString("hints"));
-			if (x<0 || x>8)
-				throw new NumberFormatException();
+			setHintToken(Integer.parseInt(s));
 		}
 		catch (NumberFormatException e)
 		{
 			throw new JSONException(e);
 		}
 
+		s = getString("fuse");
+		if (s==null)
+			throw new JSONException("Missing fuse tokens!");
 		try
 		{
-			x = Integer.parseInt(getString("fuse"));
-			if (x<0 || x>3)
-				throw new NumberFormatException();
+			setFuseToken(Integer.parseInt(s));
 		}
 		catch (NumberFormatException e)
 		{
 			throw new JSONException(e);
 		}
 
-		try
-		{
-			x = Integer.parseInt(getString("current"));
-			if (x<0 || x> HanabiClient.getInstance().getGame().getPlayers().size()-1)
-				throw new NumberFormatException();
-		}
-		catch (NumberFormatException e)
-		{
-			throw new JSONException(e);
-		}
+		s = getString("current");
+		if (s == null)
+			throw new JSONException("Missing current player!");
+		setCurrentPlayer(s);
 
+		s = getString("final");
+		if (s == null)
+			throw new JSONException("Missing final turn!");
 		try
 		{
-			x = Integer.parseInt(getString("final"));
-			if (x!=1 && x<o+1)
-				throw new NumberFormatException();
+			setFinalActionIndex(Integer.parseInt(s));
 		}
 		catch (NumberFormatException e)
 		{
@@ -257,9 +258,14 @@ public class State extends JSONObject
 	public int getFuseTokens(){return Integer.parseInt(getString("fuse"));}
 
 	/**
-	 * @return l'indice del giocatore a cui tocca, -1 se il gioco è finito
+	 * @return il nome del giocatore a cui tocca, null se il gioco è finito
 	 **/
-	public int getCurrentPlayer(){return (gameOver()?-1: Integer.parseInt(getString("current")));}
+	public String getCurrentPlayer()
+	{
+		if (gameOver())
+			return null;
+		return getString("current");
+	}
 
 	/**
 	 * @return il numero di turno
@@ -271,6 +277,46 @@ public class State extends JSONObject
 	 * @return il numero di turno dell'azione finale, -1 se il mazzo non è vuoto
 	 **/
 	public int getFinalActionIndex(){return Integer.parseInt(getString("final"));}
+
+	public State setCurrentPlayer(String player) throws JSONException
+	{
+		if (!Game.getInstance().isPlaying(player))
+			throw new JSONException("Unacceptable player");
+		set("current",player);
+		return this;
+	}
+
+	public State setFinalActionIndex(int index) throws JSONException
+	{
+		if (index<-1)
+			throw new JSONException("Unacceptable index");
+		set("final",""+index);
+		return this;
+	}
+
+	public State setFuseToken(int x) throws JSONException
+	{
+		if (x<0 || x>3)
+			throw new JSONException("Unacceptable fuse token value");
+		set("fuse",""+x);
+		return this;
+	}
+
+	public State setHintToken(int x) throws JSONException
+	{
+		if (x<0 || x>8)
+			throw new JSONException("Unacceptable hint token value");
+		set("hints",""+x);
+		return this;
+	}
+
+	public State setOrder(int o) throws JSONException
+	{
+		if (o<0)
+			throw new JSONException("Unacceptable order");
+		set("order",""+o);
+		return this;
+	}
 
 	/**
 	 * @return il punteggio corrente (somma dei valori delle carte in cima agli stack delle carte giocate)

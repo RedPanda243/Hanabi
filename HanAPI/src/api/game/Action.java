@@ -192,6 +192,7 @@ public class Action extends JSONObject
 			throw new JSONException("Hint actions have no cards");
 		if (c<0 || c>Game.getInstance().getNumberOfCardsPerPlayer()-1)
 			throw new JSONException(new IndexOutOfBoundsException());
+		set("card",""+c);
 		return this;
 	}
 

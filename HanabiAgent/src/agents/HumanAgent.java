@@ -168,8 +168,10 @@ public class HumanAgent
 				System.out.println(last);
 				if (last.getCurrentPlayer().equals(name))
 				{
-					out.print(chooseAction().toString(0));
+					Action a = chooseAction();
+					out.print(a.toString(0));
 					out.flush();
+					System.err.println(a.toString(0));
 				}
 				else
 					System.out.println(new Turn(in));

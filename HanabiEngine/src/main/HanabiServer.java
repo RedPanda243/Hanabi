@@ -249,11 +249,14 @@ public class HanabiServer
 			next.setCurrentPlayer(Game.getInstance().getPlayer(0));
 		else
 			next.setCurrentPlayer(Game.getInstance().getPlayer(Game.getInstance().getPlayerTurn(next.getCurrentPlayer())+1));
+
+		next.setOrder(next.getOrder()+1);
 		return next;
 	}
 
 	private static Action receiveAction(String player) throws IOException,JSONException
 	{
+
 		return new Action(new BufferedReader(new InputStreamReader(players[Game.getInstance().getPlayerTurn(player)].getInputStream())));
 	}
 

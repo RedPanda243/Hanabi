@@ -1,6 +1,7 @@
 package agents;
 
 import api.game.*;
+import game.MathState;
 import sjson.JSONException;
 
 import java.io.BufferedReader;
@@ -161,7 +162,7 @@ public class HumanAgent
 
 			new Game(in);
 
-			State last = new State(in);
+			MathState last = new MathState(new State(in));
 
 			while(!last.gameOver())
 			{
@@ -171,11 +172,11 @@ public class HumanAgent
 					Action a = chooseAction();
 					out.print(a.toString(0));
 					out.flush();
-					System.err.println(a.toString(0));
+			//		System.err.println(a.toString(0));
 				}
 				else
 					System.out.println(new Turn(in));
-				last = new State(in);
+				last = new MathState(new State(in));
 			}
 			System.out.println(last);
 			System.out.println("Score: "+last.getScore());

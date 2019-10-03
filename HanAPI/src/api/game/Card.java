@@ -99,11 +99,6 @@ public class Card extends JSONObject
 		return false;
 	}
 
-	public double equals(Card c, State state)
-	{
-		return 0; //TODO restituisce la probabilità che questa carta sia uguale a c
-	}
-
 	public Color getColor()
 	{
 		return Color.fromString(getString("color"));
@@ -113,6 +108,7 @@ public class Card extends JSONObject
 	 *@return Il numero di volte che la carta compare nel mazzo
 	 */
 	public int getCount(){return (getValue()==1?3:(getValue()<5?2:1));}
+
 
 	public int getValue() {
 		return Integer.parseInt(getString("value"));

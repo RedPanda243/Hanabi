@@ -250,17 +250,17 @@ public class Action extends JSONObject
 		ActionType type = getActionType();
 		String p = getPlayer();
 		if (type == PLAY)
-			return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") gioca la carta in posizione "+getCard();
+			return p+"("+Game.getInstance().getPlayerTurn(p)+") play the card of index "+getCard();
 		else if (type == DISCARD)
-			return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") scarta la carta in posizione "+getCard();
+			return p+"("+Game.getInstance().getPlayerTurn(p)+") discards the card of index "+getCard();
 		else {
 			String h = getHintReceiver();
 			if (type == HINT_COLOR)
-				return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") mostra a "
-						+h+"("+Game.getInstance().getPlayerTurn(h)+") le carte di colore "+getColor();
+				return p+"("+Game.getInstance().getPlayerTurn(p)+") shows "+getColor()+" cards to "
+						+h+"("+Game.getInstance().getPlayerTurn(h)+")";
 			else if (type == HINT_VALUE)
-				return "Il giocatore "+p+"("+Game.getInstance().getPlayerTurn(p)+") mostra a "
-						+h+"("+Game.getInstance().getPlayerTurn(h)+") le carte di valore "+getValue();
+				return p+"("+Game.getInstance().getPlayerTurn(p)+") shows "+getValue()+"-cards to "
+						+h+"("+Game.getInstance().getPlayerTurn(h)+")";
 		}
 		return "";
 	}

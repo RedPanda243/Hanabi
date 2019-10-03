@@ -190,6 +190,8 @@ public class HanabiServer
 			try
 			{
 				next.getFirework(played.getColor()).addCard(played);
+				if (next.getFirework(played.getColor()).peak() == 5 && next.getHintTokens()<8)
+					next.setHintToken(next.getHintTokens()+1);
 			}
 			catch (JSONException e)
 			{//Wrong card

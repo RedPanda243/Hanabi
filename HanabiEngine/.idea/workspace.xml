@@ -7,29 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="602bda70-a5ff-4ffe-a428-efe6c07d0aac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/META-INF/HanAPI.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/ActionType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/ActionType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Firework.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Firework.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Hand.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Hand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/main/HanabiClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/main/HanabiClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Firework.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Firework.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/HumanAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/agents/HumanAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/game/MathState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/game/MathState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/HanabiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/HanabiServer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

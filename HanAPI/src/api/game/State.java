@@ -21,6 +21,7 @@ public class State extends JSONObject
 	{
 		super();
 		set("discarded",new JSONArray());
+		set("gameHintForPlayer", new JSONArray());
 		set("red",new Firework());
 		set("green",new Firework());
 		set("white",new Firework());
@@ -60,6 +61,16 @@ public class State extends JSONObject
 			for(int i=0; i<array.size(); i++)
 				array.replace(i,new Card(array.get(i).toString()));
 			this.set("discarded",array);
+		}
+
+		JSONArray arrayHints = getArray("gameHintForPlayer");
+		if (arrayHints == null)
+			throw new JSONException("Missing game hints for each player");
+		else
+		{
+			for(int i=0; i<arrayHints.size(); i++)
+				arrayHints.replace(i,new Action(arrayHints.get(i).toString()));
+			this.set("gameHintForPlayer",arrayHints);
 		}
 
 		for (Color color:Color.values())
@@ -172,6 +183,11 @@ public class State extends JSONObject
 	public JSONArray getDiscards()
 	{
 		return getArray("discarded");
+	}
+
+	public JSONArray getHints()
+	{
+		return getArray("gameHintForPlayer");
 	}
 
 	/**

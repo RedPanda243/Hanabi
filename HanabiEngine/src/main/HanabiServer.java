@@ -219,6 +219,8 @@ public class HanabiServer
 		}
 		else if (next.getHintTokens()>0)
 		{
+			//System.out.println("Hint per "+Game.getInstance().getPlayerTurn(move.getHintReceiver()));
+			next.getHints().add(move);
 			drawn = null;
 			Hand hand = next.getHand(move.getHintReceiver());
 			if (move.getActionType() == ActionType.HINT_COLOR)

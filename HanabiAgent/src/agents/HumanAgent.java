@@ -3,6 +3,7 @@ package agents;
 import api.game.*;
 import game.MathState;
 import sjson.JSONException;
+import utils.HandCardsProbability;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -163,12 +164,14 @@ public class HumanAgent
 			new Game(in);
 
 			MathState last = new MathState(new State(in));
+			HandCardsProbability prob = new HandCardsProbability(name, last);
 
 			while(!last.gameOver())
 			{
 				System.out.println(last);
 				if (last.getCurrentPlayer().equals(name))
 				{
+					System.out.println(prob.getPossibleHand(last));
 					Action a = chooseAction();
 					out.print(a.toString(0));
 					out.flush();

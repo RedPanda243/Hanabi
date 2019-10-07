@@ -44,6 +44,15 @@ public class MathState extends State
 			ret = ret.substring(0, ret.length() - 2);
 		}
 		ret+="}\n";
+
+		ret+="Hints: {";
+		if (getHints().size()>0) {
+			for (JSONData d : getHints())
+				ret += d + ", ";
+			ret = ret.substring(0, ret.length() - 2);
+		}
+		ret+="}\n";
+
 		ret+="Fireworks:\n";
 		Firework fireworks;
 		for(Color c: Color.values()) {

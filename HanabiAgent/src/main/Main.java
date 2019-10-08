@@ -78,7 +78,7 @@ public class Main
 			}
 
 			MathState last = new MathState(new State(in));
-			HandCardsProbability prob = new HandCardsProbability(name, last);
+	//		HandCardsProbability prob = new HandCardsProbability(name, last);
 
 			while(!last.gameOver())
 			{
@@ -86,7 +86,6 @@ public class Main
 				agent.addHistory(last);
 				if (last.getCurrentPlayer().equals(name))
 				{
-					System.out.println(prob.getPossibleHand(last));
 					Action a = agent.chooseAction(last);
 					out.print(a.toString(0));
 					out.flush();

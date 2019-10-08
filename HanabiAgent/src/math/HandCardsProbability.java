@@ -126,6 +126,17 @@ public class HandCardsProbability {
     }
     */
 
+    public double[] getPlayability(String player)
+    {
+        return new double[0];
+    }
+
+    public double[] getUselessness(String player)
+    {
+        return new double[0];
+    }
+
+
     public class PairCardCount {
         private Card c;
         private int countLeft;

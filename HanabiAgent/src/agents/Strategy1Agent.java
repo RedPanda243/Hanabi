@@ -2,6 +2,7 @@ package agents;
 
 import api.game.*;
 import main.Main;
+import math.HandCardsProbability;
 import sjson.JSONArray;
 import sjson.JSONData;
 import sjson.JSONException;
@@ -16,6 +17,7 @@ import java.util.List;
  *     <li>
  *         Gioca una carta con 100% di playability
  *     </li>
+ *     <li></li>
  *     <li>
  *         Scarta una carta con 100% di uselessness se non ho 8 hint token
  *     </li>
@@ -33,9 +35,19 @@ import java.util.List;
  */
 public class Strategy1Agent extends AbstractAgent
 {
+	HandCardsProbability stats;
+	List<State> history;
+	public Strategy1Agent()
+	{
+		super();
+		stats = null;
+		history = new ArrayList<>();
+	}
+
 	@Override
 	public Action chooseAction(State current)
 	{
+//		System.out.println(stats.getPossibleHand(current));
 		Action action = play100(current);
 		if (action == null)
 			action = discard100(current);
@@ -46,6 +58,16 @@ public class Strategy1Agent extends AbstractAgent
 		if (action == null)
 			action = play(current);
 		return action;
+	}
+
+	@Override
+	public void addHistory(State state)
+	{
+		history.add(state);
+		if (stats == null)
+			stats = new HandCardsProbability(Main.name,state);
+		else
+			stats.updatePossibleCards(state);
 	}
 
 	/**

@@ -47,73 +47,60 @@ public class Action extends JSONObject
 	public Action(Reader reader) throws JSONException
 	{
 		super(reader);
-		String s = getString("player");
-		if (s == null)
-			throw new JSONException("Missing player!");
-		setPlayer(s);
+		if (names().size()!=0) {
+			String s = getString("player");
+			if (s == null)
+				throw new JSONException("Missing player!");
+			setPlayer(s);
 
-		ActionType type = ActionType.fromString(getString("type"));
-		if (type == null)
-			throw new JSONException("Unreadable action type");
+			ActionType type = ActionType.fromString(getString("type"));
+			if (type == null)
+				throw new JSONException("Unreadable action type");
 
-		if (type == PLAY)
-		{
-			s = getString("card");
-			if (s == null)
-				throw new JSONException("Missing card!");
-			try
-			{
-				setCard(Integer.parseInt(s));
-			}
-			catch (NumberFormatException e)
-			{
-				throw new JSONException("Unreadable played card");
-			}
-		}
-		else if (type == DISCARD) {
-			s = getString("card");
-			if (s == null)
-				throw new JSONException("Missing card!");
-			try
-			{
-				setCard(Integer.parseInt(s));
-			}
-			catch (NumberFormatException e)
-			{
-				throw new JSONException("Unreadable discarded card");
-			}
-		}
-		else if (type == HINT_COLOR)
-		{
-			s = getString("color");
-			if (s == null)
-				throw new JSONException("Missing color!");
-			if (Color.fromString(s)==null)
-				throw new JSONException("Unreadble color");
+			if (type == PLAY) {
+				s = getString("card");
+				if (s == null)
+					throw new JSONException("Missing card!");
+				try {
+					setCard(Integer.parseInt(s));
+				} catch (NumberFormatException e) {
+					throw new JSONException("Unreadable played card");
+				}
+			} else if (type == DISCARD) {
+				s = getString("card");
+				if (s == null)
+					throw new JSONException("Missing card!");
+				try {
+					setCard(Integer.parseInt(s));
+				} catch (NumberFormatException e) {
+					throw new JSONException("Unreadable discarded card");
+				}
+			} else if (type == HINT_COLOR) {
+				s = getString("color");
+				if (s == null)
+					throw new JSONException("Missing color!");
+				if (Color.fromString(s) == null)
+					throw new JSONException("Unreadble color");
 
-			s = getString("hinted");
-			if (s == null)
-				 throw new JSONException("Missing hinted!");
-			setHintReceiver(s);
+				s = getString("hinted");
+				if (s == null)
+					throw new JSONException("Missing hinted!");
+				setHintReceiver(s);
 
-		}
-		else if (type == HINT_VALUE)
-		{
-			s = getString("hinted");
-			if (s == null)
-				throw new JSONException("Missing hinted!");
-			setHintReceiver(s);
+			} else if (type == HINT_VALUE) {
+				s = getString("hinted");
+				if (s == null)
+					throw new JSONException("Missing hinted!");
+				setHintReceiver(s);
 
-			s = getString("value");
-			if (s == null)
-				throw new JSONException("Missing value!");
-			try
-			{
-				setValue(Integer.parseInt(s));
-			}
-			catch (NumberFormatException e)
-			{
-				throw new JSONException("Unreadable hinted value");
+				s = getString("value");
+				if (s == null)
+					throw new JSONException("Missing value!");
+				try {
+					setValue(Integer.parseInt(s));
+				} catch (NumberFormatException e) {
+					throw new JSONException("Unreadable hinted value");
+				}
 			}
 		}
 	}

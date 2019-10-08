@@ -8,6 +8,7 @@ import utils.MathCalc;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
+@Deprecated
 public class MathState extends State
 {
 	public MathState(State state) throws JSONException

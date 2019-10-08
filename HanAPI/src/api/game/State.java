@@ -21,7 +21,7 @@ public class State extends JSONObject
 	{
 		super();
 		set("discarded",new JSONArray());
-		set("gameHintForPlayer", new JSONArray());
+		set("action", new JSONObject());
 		set("red",new Firework());
 		set("green",new Firework());
 		set("white",new Firework());
@@ -63,15 +63,19 @@ public class State extends JSONObject
 			this.set("discarded",array);
 		}
 
-		JSONArray arrayHints = getArray("gameHintForPlayer");
-		if (arrayHints == null)
-			throw new JSONException("Missing game hints for each player");
-		else
+		JSONObject act = getObject("action");
+		if (act==null)
+			throw new JSONException("Missing action!");
+		try
 		{
-			for(int i=0; i<arrayHints.size(); i++)
-				arrayHints.replace(i,new Action(arrayHints.get(i).toString()));
-			this.set("gameHintForPlayer",arrayHints);
+			setAction(new Action(act.toString(0)));
 		}
+		catch (NumberFormatException e)
+		{
+			throw new JSONException(e);
+		}
+
+
 
 		for (Color color:Color.values())
 		{
@@ -144,6 +148,10 @@ public class State extends JSONObject
 		}
 	}
 
+	public void setAction(Action action) {
+		set("action", action);
+	}
+
 	public State clone()
 	{
 		try
@@ -184,11 +192,10 @@ public class State extends JSONObject
 	{
 		return getArray("discarded");
 	}
-
-	public JSONArray getHints()
-	{
-		return getArray("gameHintForPlayer");
+	public Action getAction(){
+		return (Action) get("action");
 	}
+
 
 	/**
 	 * @return una copia dello stack di carte giocate del colore dato. La carta di valore più alto è in cima allo stack

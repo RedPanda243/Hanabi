@@ -171,6 +171,8 @@ public class HanabiServer
 		{
 			sendState(last,players);
 			Action a = receiveAction(last.getCurrentPlayer());
+			if(a.names().size() == 0)
+				throw new JSONException("Action null from player"+last.getCurrentPlayer());
 			next = nextState(last,a,deck);
 			history.add(last);
 			sendTurn(last.getCurrentPlayer(),a);
@@ -182,6 +184,7 @@ public class HanabiServer
 	private static State nextState(State current, Action move,Stack<Card> deck) throws IOException,JSONException
 	{
 		State next = current.clone();
+		next.setAction(move);
 		if (move.getActionType() == ActionType.PLAY)
 		{
 			drawn = deck.pop();
@@ -219,8 +222,6 @@ public class HanabiServer
 		}
 		else if (next.getHintTokens()>0)
 		{
-			//System.out.println("Hint per "+Game.getInstance().getPlayerTurn(move.getHintReceiver()));
-			next.getHints().add(move);
 			drawn = null;
 			Hand hand = next.getHand(move.getHintReceiver());
 			if (move.getActionType() == ActionType.HINT_COLOR)
@@ -260,7 +261,6 @@ public class HanabiServer
 
 	private static Action receiveAction(String player) throws IOException,JSONException
 	{
-
 		return new Action(new BufferedReader(new InputStreamReader(players[Game.getInstance().getPlayerTurn(player)].getInputStream())));
 	}
 

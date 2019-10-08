@@ -6,7 +6,6 @@ import math.HandCardsProbability;
 import sjson.JSONArray;
 import sjson.JSONData;
 import sjson.JSONException;
-import math.MathCalc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +16,19 @@ import java.util.List;
  *     <li>
  *         Gioca una carta con 100% di playability
  *     </li>
- *     <li></li>
  *     <li>
- *         Scarta una carta con 100% di uselessness se non ho 8 hint token
+ *         Se hai hint token ed è possibile rendere giocabile al 100% una carta di un compagno fallo
  *     </li>
  *     <li>
- *         Se ho hint token rimanenti uso ricerca in spazio degli stati per calcolare l'hint migliore
- *         @see Strategy1Agent#hint(State)
+ *         Se hai hint token e un compagno ha una carta con 0% uselessness indicagliela
  *     </li>
+ *     <li>
+ *         Scarta una carta con 100% di uselessness se non hai 8 hint token
+ *     </li>
+ *     <li>
+ *         Se hai hint token dai il suggerimento che coinvolge più carte
+ *     </li>
+ *     Da qui in poi spero di non arrivarci mai
  *     <li>
  *         Scarto carta con uselessness maggiore (sopra un certo limite)
  *     </li>
@@ -45,18 +49,22 @@ public class Strategy1Agent extends AbstractAgent
 	}
 
 	@Override
-	public Action chooseAction(State current)
+	public Action chooseAction(State state) //State è inutile ma mi serve nell'astratta per casi generali
 	{
 //		System.out.println(stats.getPossibleHand(current));
-		Action action = play100(current);
+		Action action = play100();
 		if (action == null)
-			action = discard100(current);
+			action = hint100();
 		if (action == null)
-			action = hint(current);
+			action = hint0();
 		if (action == null)
-			action = discard(current);
+			action = discard100();
 		if (action == null)
-			action = play(current);
+			action = hintMost();
+		if (action == null)
+			action = discardMost();
+		if (action == null)
+			action = playMost();
 		return action;
 	}
 
@@ -70,74 +78,14 @@ public class Strategy1Agent extends AbstractAgent
 			stats.updatePossibleCards(state);
 	}
 
-	/**
-	 * L'aiuto migliore viene scelto secondo questo algoritmo, ripetuto ad ogni passo per ogni giocatore, partendo dal più vicino
-	 * <ol>
-	 *     <li>
-	 *         Suggerisci in modo da rendere giocabile al 100% una carta
-	 *     </li>
-	 *     <li>
-	 *         Suggerisci un 5
-	 *     </li>
-	 *     <li>
-	 *         Dai un suggerimento sull'ultima carta pescata se questa è giocabile. Scegli tra valore e colore in base a quante
-	 *         carte vengono coinvolte nell'hint
-	 *     </li>
-	 *     <li>
-	 *         Dai il suggerimento che coinvolge più carte.
-	 *         (Qui in teoria andrebbe usata la ricerca nello spazio degli stati per calcolare il migliore!!!)
-	 *     </li>
-	 * </ol>
-	 * @param current
-	 * @return
-	 */
-	public Action hint(State current)
+	public Action play100()
 	{
-		Action action = null;
-		if (current.getHintTokens()>0)
+		double[] p = stats.getPlayability(Main.name);
+		try
 		{
-			try {
-				action = hint1(current);
-				if (action == null)
-					action = hint2(current);
-				if (action == null)
-					action = hint3(current);
-				if (action == null)
-					action = hint4(current);
-			}
-			catch(JSONException e)
+			for (int i = 0; i < p.length; i++)
 			{
-				e.printStackTrace(System.err);
-				action = null;
-			}
-		}
-		return action;
-	}
-
-	private Action hint1(State current) throws JSONException
-	{
-		JSONArray players = sortPlayers();
-		Hand hand;
-		for (JSONData p: players)
-		{
-			hand = current.getHand(p.toString()).clone();
-			for (int i=0; i<hand.size(); i++)
-			{
-				if (!hand.getCard(i).isColorRevealed())
-					hand.getCard(i).setColor(null);
-				if (!hand.getCard(i).isValueRevealed())
-					hand.getCard(i).setValue(0);
-			} //Maschero i valori delle carte del giocatore p
-
-
-		}
-	}
-
-	public Action play100(State current)
-	{
-		try {
-			for (int i = 0; i < current.getHand(Main.name).size(); i++) {
-				if (MathCalc.getCardPlayability(current, i, Main.name) == 1)
+				if (p[i] == 1)
 					return new Action(Main.name, ActionType.PLAY, i);
 			}
 		}
@@ -148,29 +96,163 @@ public class Strategy1Agent extends AbstractAgent
 		return null;
 	}
 
-	public Action discard100(State current)
+	public Action hint100()
 	{
-		if (current.getHintTokens()<8) {
-			try {
-				for (int i = 0; i < current.getHand(Main.name).size(); i++) {
-					if (MathCalc.getCardUselessness(current, i, Main.name) == 1)
+		try
+		{
+			if (history.get(history.size()-1).getHintTokens()>0)
+			{
+				JSONArray players = sortPlayers();
+				List<Action> l;
+				double[] p,p1;
+				for (JSONData name : players)
+				{
+					l = getPossibleHints(name.toString());
+					p = stats.getPlayability(name.toString());
+					for (Action a : l)
+					{
+						p1 = stats.getPlayability(name.toString(),a);
+						for (int i=0; i<p.length; i++)
+						{
+							if (p1[i] == 1 && p[i]<1)
+								return a;
+						}
+					}
+				}
+			}
+		}
+		catch (JSONException e)
+		{
+			e.printStackTrace(System.err);
+		}
+		return null;
+	}
+
+	public Action hint0()
+	{
+		try
+		{
+			if (history.get(history.size()-1).getHintTokens()>0)
+			{
+				JSONArray players = sortPlayers();
+				List<Action> l;
+				double[] p,p1;
+				for (JSONData name : players)
+				{
+					l = getPossibleHints(name.toString());
+					p = stats.getUselessness(name.toString());
+					for (Action a : l)
+					{
+						p1 = stats.getUselessness(name.toString(),a);
+						for (int i=0; i<p.length; i++)
+						{
+							if (p1[i] == 0 && p[i]>0)
+								return a;
+						}
+					}
+				}
+			}
+		}
+		catch (JSONException e)
+		{
+			e.printStackTrace(System.err);
+		}
+		return null;
+	}
+
+	public Action discard100()
+	{
+		double[] p = stats.getUselessness(Main.name);
+		if (history.get(history.size()-1).getHintTokens()<8)
+		{
+			try
+			{
+				for (int i = 0; i < p.length; i++)
+				{
+					if (p[i] == 1)
 						return new Action(Main.name, ActionType.DISCARD, i);
 				}
-			} catch (JSONException e) {
+			}
+			catch (JSONException e)
+			{
 				e.printStackTrace(System.err);
 			}
 		}
 		return null;
 	}
 
-	public Action play(State current)
+	public Action hintMost()
 	{
-		try {
+		try
+		{
+			State current = history.get(history.size()-1);
+			if (current.getHintTokens()>0)
+			{
+				JSONArray players = sortPlayers();
+				List<Action> l;
+				Action best = null;
+				int bestcont = 0,cont = 0;
+				Hand hand;
+				Card box;
+				for (JSONData name : players)
+				{
+					l = getPossibleHints(name.toString());
+					hand = current.getHand(name.toString());
+					for (Action a:l)
+					{
+						cont = 0;
+						if (a.getActionType() == ActionType.HINT_COLOR)
+						{
+							for (JSONData card: hand)
+							{
+								box = (Card)card;
+								if (!box.isColorRevealed() && box.getColor()==a.getColor())
+									cont++;
+							}
+							if (cont>bestcont)
+							{
+								bestcont = cont;
+								best = a;
+							}
+						}
+						else if (a.getActionType() == ActionType.HINT_VALUE)
+						{
+							for (JSONData card: hand)
+							{
+								box = (Card)card;
+								if (!box.isValueRevealed() && box.getValue()==a.getValue())
+									cont++;
+							}
+							if (cont>bestcont)
+							{
+								bestcont = cont;
+								best = a;
+							}
+						}
+						else
+							throw new JSONException("Wrong action type");
+					}
+				}
+				return best;
+			}
+		}
+		catch (JSONException e)
+		{
+			e.printStackTrace(System.err);
+		}
+		return null;
+	}
+
+	public Action discardMost()
+	{
+		try
+		{
+			double[] p = stats.getUselessness(Main.name);
 			int card = 0;
-			double max = MathCalc.getCardPlayability(current,0,Main.name);
+			double max = p[card];
 			double box;
-			for (int i = 1; i < current.getHand(Main.name).size(); i++) {
-				box = MathCalc.getCardPlayability(current, i, Main.name);
+			for (int i = 1; i < p.length; i++) {
+				box = p[i];
 				if (box > max)
 				{
 					max = box;
@@ -186,21 +268,23 @@ public class Strategy1Agent extends AbstractAgent
 		return null;
 	}
 
-	public Action discard(State current)
+	public Action playMost()
 	{
-		try {
+		try
+		{
+			double[] p = stats.getPlayability(Main.name);
 			int card = 0;
-			double max = MathCalc.getCardUselessness(current,0,Main.name);
+			double max = p[card];
 			double box;
-			for (int i = 1; i < current.getHand(Main.name).size(); i++) {
-				box = MathCalc.getCardUselessness(current, i, Main.name);
+			for (int i = 1; i < p.length; i++) {
+				box = p[i];
 				if (box > max)
 				{
 					max = box;
 					card = i;
 				}
 			}
-			return new Action(Main.name, ActionType.DISCARD, card);
+			return new Action(Main.name, ActionType.PLAY, card);
 		}
 		catch(JSONException e)
 		{
@@ -208,6 +292,8 @@ public class Strategy1Agent extends AbstractAgent
 		}
 		return null;
 	}
+
+
 
 	private JSONArray sortPlayers()
 	{
@@ -224,15 +310,14 @@ public class Strategy1Agent extends AbstractAgent
 
 	/**
 	 * Dà la lista di hint che aggiungerebbero informazioni alla mano del giocatore receiver
-	 * @param current
 	 * @param receiver
 	 * @return
 	 * @throws JSONException
 	 */
-	private List<Action> getPossibleHints(State current, String receiver) throws JSONException
+	private List<Action> getPossibleHints(String receiver) throws JSONException
 	{
 		ArrayList<Action> list = new ArrayList<>();
-		Hand hand = current.getHand(receiver).clone();
+		Hand hand = history.get(history.size()-1).getHand(receiver).clone();
 		Card card;
 		for (int i=1; i<6; i++)
 		{

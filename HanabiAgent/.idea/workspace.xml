@@ -9,11 +9,11 @@
     <list default="true" id="7afff699-03d0-4cdb-8f32-d4d8e2134ac2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agents/AbstractAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/AbstractAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/agents/Strategy1Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/Strategy1Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/math/HandCardsProbability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/math/HandCardsProbability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/math/MathCalc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/math/MathCalc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +50,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="975">
               <caret line="80" column="77" selection-start-line="80" selection-start-column="77" selection-end-line="80" selection-end-column="77" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -62,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/agents/Strategy1Agent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+            <state relative-caret-position="461">
+              <caret line="215" column="41" selection-start-line="215" selection-start-column="41" selection-end-line="215" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,13 +86,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/math/HandCardsProbability.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1677">
-              <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+            <state relative-caret-position="285">
+              <caret line="160" column="33" selection-start-line="160" selection-start-column="33" selection-end-line="160" selection-end-column="33" />
               <folding>
                 <element signature="e#4910#4911#0" expanded="true" />
-                <element signature="e#4945#4946#0" expanded="true" />
-                <element signature="e#5007#5008#0" expanded="true" />
-                <element signature="e#5043#5044#0" expanded="true" />
+                <element signature="e#4946#4947#0" expanded="true" />
+                <element signature="e#5195#5196#0" expanded="true" />
+                <element signature="e#5231#5232#0" expanded="true" />
+                <element signature="e#5452#5453#0" expanded="true" />
+                <element signature="e#5488#5489#0" expanded="true" />
+                <element signature="e#5739#5740#0" expanded="true" />
+                <element signature="e#5775#5776#0" expanded="true" />
+                <element signature="e#6306#6307#0" expanded="true" />
+                <element signature="e#6365#6366#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,8 +135,8 @@
         <option value="$PROJECT_DIR$/src/math/MathInterface.java" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
         <option value="$PROJECT_DIR$/src/agents/AbstractAgent.java" />
-        <option value="$PROJECT_DIR$/src/math/HandCardsProbability.java" />
         <option value="$PROJECT_DIR$/src/math/MathCalc.java" />
+        <option value="$PROJECT_DIR$/src/math/HandCardsProbability.java" />
         <option value="$PROJECT_DIR$/src/agents/Strategy1Agent.java" />
       </list>
     </option>
@@ -150,7 +156,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,6 +202,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -241,8 +247,8 @@
     <frame x="-1" y="0" width="1368" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49598715" visible="true" weight="0.25757575" />
-      <window_info id="Structure" order="1" sideWeight="0.5040128" side_tool="true" visible="true" weight="0.25757575" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49438202" visible="true" weight="0.26136363" />
+      <window_info active="true" id="Structure" order="1" sideWeight="0.505618" side_tool="true" visible="true" weight="0.26136363" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -301,7 +307,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/agents/BasicAgent.java" />
     <entry file="file://$PROJECT_DIR$/src/game/MathState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -327,13 +332,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../HanAPI.jar!/api/game/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///opt/jdk1.8.0_171/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -341,10 +339,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/math/MathInterface.java" />
     <entry file="file://$PROJECT_DIR$/src/agents/HumanAgent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="69" column="44" selection-start-line="69" selection-start-column="44" selection-end-line="69" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="80" column="77" selection-start-line="80" selection-start-column="77" selection-end-line="80" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -358,13 +367,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/math/MathInterface.java">
+    <entry file="file://$PROJECT_DIR$/src/math/MathCalc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="69" lean-forward="true" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -378,40 +384,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="80" column="77" selection-start-line="80" selection-start-column="77" selection-end-line="80" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/math/MathCalc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/math/HandCardsProbability.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1677">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+        <state relative-caret-position="285">
+          <caret line="160" column="33" selection-start-line="160" selection-start-column="33" selection-end-line="160" selection-end-column="33" />
           <folding>
             <element signature="e#4910#4911#0" expanded="true" />
-            <element signature="e#4945#4946#0" expanded="true" />
-            <element signature="e#5007#5008#0" expanded="true" />
-            <element signature="e#5043#5044#0" expanded="true" />
+            <element signature="e#4946#4947#0" expanded="true" />
+            <element signature="e#5195#5196#0" expanded="true" />
+            <element signature="e#5231#5232#0" expanded="true" />
+            <element signature="e#5452#5453#0" expanded="true" />
+            <element signature="e#5488#5489#0" expanded="true" />
+            <element signature="e#5739#5740#0" expanded="true" />
+            <element signature="e#5775#5776#0" expanded="true" />
+            <element signature="e#6306#6307#0" expanded="true" />
+            <element signature="e#6365#6366#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/agents/BasicAgent.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../HanAPI.jar!/api/game/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/agents/Strategy1Agent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        <state relative-caret-position="461">
+          <caret line="215" column="41" selection-start-line="215" selection-start-column="41" selection-end-line="215" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

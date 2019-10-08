@@ -126,16 +126,47 @@ public class HandCardsProbability {
     }
     */
 
+    /**
+     * Restituisce le playability delle carte di player allo stato attuale
+     * @param player
+     * @return
+     */
     public double[] getPlayability(String player)
     {
         return new double[0];
     }
 
+    /**
+     * Restituisce le uselessness delle carte di player allo stato attuale
+     * @param player
+     * @return
+     */
     public double[] getUselessness(String player)
     {
         return new double[0];
     }
 
+    /**
+     * Restituisce le playability delle carte di player allo stato che si otterrebbe applicando next allo stato attuale
+     * @param player
+     * @param next
+     * @return
+     */
+    public double[] getPlayability(String player, Action next)
+    {
+        return new double[0];
+    }
+
+    /**
+     * Restituisce le uselessness delle carte di player allo stato che si otterrebbe applicando next allo stato attuale
+     * @param player
+     * @param next
+     * @return
+     */
+    public double[] getUselessness(String player, Action next)
+    {
+        return new double[0];
+    }
 
     public class PairCardCount {
         private Card c;

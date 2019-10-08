@@ -1,21 +1,13 @@
 package agents;
 
 import api.game.*;
-import game.MathState;
+import main.Main;
 import sjson.JSONException;
-import utils.HandCardsProbability;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.Socket;
 
-public class HumanAgent
+public class HumanAgent extends AbstractAgent
 {
-	private static BufferedReader keyboard;
-	private static String name;
-
 /*
 	public HumanAgent(String name, int index)
 	{
@@ -75,7 +67,7 @@ public class HumanAgent
 	}
  */
 
-	private static Action chooseAction()
+	public Action chooseAction(State current)
 	{
 		System.out.println("\nChoose one action: (play <cardnum> | discard <cardnum> | hint <playernum> (<color>|<value>))");
 		Action action = null;
@@ -83,12 +75,12 @@ public class HumanAgent
 		{
 			try
 			{
-				String[] parts = keyboard.readLine().split(" ");
+				String[] parts = Main.keyboard.readLine().split(" ");
 				if (parts[0].equals("play"))
-					action = new Action(name,ActionType.PLAY,Integer.parseInt(parts[1]));
+					action = new Action(Main.name,ActionType.PLAY,Integer.parseInt(parts[1]));
 				else if (parts[0].equals("discard"))
 				{
-					action = new Action(name,ActionType.DISCARD,Integer.parseInt(parts[1]));
+					action = new Action(Main.name,ActionType.DISCARD,Integer.parseInt(parts[1]));
 				}
 				else if (parts[0].equals("hint"))
 				{
@@ -103,11 +95,11 @@ public class HumanAgent
 					}
 					try
 					{
-						action = new Action(name,hinted,Integer.parseInt(parts[2]));
+						action = new Action(Main.name,hinted,Integer.parseInt(parts[2]));
 					}
 					catch(NumberFormatException nfe)
 					{
-						action = new Action(name,hinted,Color.fromString(parts[2]));
+						action = new Action(Main.name,hinted,Color.fromString(parts[2]));
 					}
 				}
 				else {
@@ -126,64 +118,7 @@ public class HumanAgent
 	 */
 	public static void main(String... args) throws IOException,JSONException
 	{
-		keyboard = new BufferedReader(new InputStreamReader(System.in));
-		if (args.length == 0)
-		{
-			System.out.println("Inserisci indirizzo remoto");
-			String s = keyboard.readLine();
-			if (s.contains(":"))
-			{
-				String[] split = s.split(":");
-				main(split[0],split[1]);
-			}
-			else
-				main(s);
-		}
-		else if (args.length == 1)
-		{
-			System.out.println("Inserisci porta remota");
-			main(args[0],keyboard.readLine());
-		}
-		else if (args.length == 2)
-		{
-			System.out.println("Inserisci nome giocatore");
-			main(args[0],args[1],keyboard.readLine());
-		}
-		else
-		{
-			String host = args[0];
-			int port = Integer.parseInt(args[1]);
-			name = args[2];
-			Socket socket = new Socket(host, port);
-			PrintStream out = new PrintStream(socket.getOutputStream());
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			out.println(name);
-			out.flush();
-			name = in.readLine();
 
-			new Game(in);
-
-			MathState last = new MathState(new State(in));
-			HandCardsProbability prob = new HandCardsProbability(name, last);
-
-			while(!last.gameOver())
-			{
-				System.out.println(last);
-				if (last.getCurrentPlayer().equals(name))
-				{
-					System.out.println(prob.getPossibleHand(last));
-					Action a = chooseAction();
-					out.print(a.toString(0));
-					out.flush();
-			//		System.err.println(a.toString(0));
-				}
-				else
-					System.out.println(new Turn(in));
-				last = new MathState(new State(in));
-			}
-			System.out.println(last);
-			System.out.println("Score: "+last.getScore());
-		}
 	}
 
 }

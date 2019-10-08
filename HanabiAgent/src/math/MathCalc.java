@@ -1,4 +1,4 @@
-package utils;
+package math;
 
 import api.game.*;
 import sjson.JSONArray;

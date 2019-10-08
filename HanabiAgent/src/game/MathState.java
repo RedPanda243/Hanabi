@@ -3,12 +3,11 @@ package game;
 import api.game.*;
 import sjson.JSONData;
 import sjson.JSONException;
-import utils.MathCalc;
+import math.MathCalc;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-@Deprecated
 public class MathState extends State
 {
 	public MathState(State state) throws JSONException

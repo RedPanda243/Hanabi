@@ -7,27 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7afff699-03d0-4cdb-8f32-d4d8e2134ac2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanabiAgent/agents/HumanAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanabiAgent/agents/HumanAgent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanabiAgent/game/MathState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanabiAgent/game/MathState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanabiAgent/utils/HandCardsProbability$PairCardCount.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanabiAgent/utils/HandCardsProbability.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanabiAgent/utils/MathCalc.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agents/HumanAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/HumanAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agents/Strategy1Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/Strategy1Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/MathState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/MathState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/math/HandCardsProbability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/math/HandCardsProbability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/search/HandGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/HandGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +20,9 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="HanabiAgent" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">

@@ -319,24 +319,33 @@ public class Strategy1Agent extends AbstractAgent
 		ArrayList<Action> list = new ArrayList<>();
 		Hand hand = history.get(history.size()-1).getHand(receiver).clone();
 		Card card;
+		List<Integer> cardsHinted ;
 		for (int i=1; i<6; i++)
 		{
+			cardsHinted = new ArrayList<>();
 			for (JSONData d:hand)
 			{
 				card = (Card)d;
 				if (card.getValue() == i && !card.isValueRevealed())
-					list.add(new Action(Main.name,receiver,i));
+					cardsHinted.add(hand.indexOf(card));
+
 			}
+			if(cardsHinted.size()>0)
+				list.add(new Action(Main.name,receiver,i,cardsHinted));
 		}
 
 		for(Color color:Color.values())
 		{
+			cardsHinted = new ArrayList<>();
 			for (JSONData d:hand)
 			{
 				card = (Card)d;
 				if (card.getColor() == color && !card.isColorRevealed())
-					list.add(new Action(Main.name,receiver,color));
+					cardsHinted.add(hand.indexOf(card));
+
 			}
+			if(cardsHinted.size()>0)
+				list.add(new Action(Main.name,receiver,color,cardsHinted));
 		}
 		return list;
 	}

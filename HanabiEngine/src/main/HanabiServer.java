@@ -189,7 +189,8 @@ public class HanabiServer
 		{
 			drawn = deck.pop();
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
-			next.getHand(move.getPlayer()).replace(move.getCard(),drawn);
+			next.getHand(move.getPlayer()).remove(move.getCard());
+			next.getHand(move.getPlayer()).add(drawn);
 			try
 			{
 				next.getFirework(played.getColor()).addCard(played);
@@ -211,7 +212,8 @@ public class HanabiServer
 		{
 			drawn = deck.pop();
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
-			next.getHand(move.getPlayer()).replace(move.getCard(),drawn);
+			next.getHand(move.getPlayer()).remove(move.getCard());
+			next.getHand(move.getPlayer()).add(drawn);
 			next.getDiscards().add(played);
 			if (next.getHintTokens()<8)
 				try
@@ -224,20 +226,34 @@ public class HanabiServer
 		{
 			drawn = null;
 			Hand hand = next.getHand(move.getHintReceiver());
+			int j;
+			//COLORE
 			if (move.getActionType() == ActionType.HINT_COLOR)
 			{
+				j = 1;
 				for (int i = 0; i < hand.size(); i++)
 				{
-					if (hand.getCard(i).getColor().equals(move.getColor()))
-						hand.getCard(i).setColorRevealed(true);
+					if (hand.getCard(i).getColor().equals(move.getColor())) {
+						if(move.getCardsToReveal().get(j) == i) {
+							hand.getCard(i).setColorRevealed(true);
+							j++;
+						} else
+							throw new JSONException("Carte to Hint ricevute da player diverse dalle reali da segnalare");
+					}
 				}
 			}
-			else
+			else //VALUE
 			{
+				j = 1;
 				for (int i = 0; i < hand.size(); i++)
 				{
-					if (hand.getCard(i).getValue() == move.getValue())
-						hand.getCard(i).setValueRevealed(true);
+					if (hand.getCard(i).getValue() == move.getValue()) {
+						if(move.getCardsToReveal().get(j) == i) {
+							hand.getCard(i).setValueRevealed(true);
+							j++;
+						} else
+							throw new JSONException("Carte to Hint ricevute da player diverse dalle reali da segnalare");
+					}
 				}
 			}
 			try

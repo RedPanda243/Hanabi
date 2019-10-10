@@ -67,6 +67,11 @@ public class HumanAgent extends AbstractAgent
 	}
  */
 
+	@Override
+	public void addHistory(State state) {
+
+	}
+
 	public Action chooseAction(State current)
 	{
 		System.out.println("\nChoose one action: (play <cardnum> | discard <cardnum> | hint <playernum> (<color>|<value>))");
@@ -95,11 +100,13 @@ public class HumanAgent extends AbstractAgent
 					}
 					try
 					{
-						action = new Action(Main.name,hinted,Integer.parseInt(parts[2]));
+						//TODO
+					//	action = new Action(Main.name,hinted,Integer.parseInt(parts[2]));
 					}
 					catch(NumberFormatException nfe)
 					{
-						action = new Action(Main.name,hinted,Color.fromString(parts[2]));
+						//TODO
+					//	action = new Action(Main.name,hinted,Color.fromString(parts[2]));
 					}
 				}
 				else {

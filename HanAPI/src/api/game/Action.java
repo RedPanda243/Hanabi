@@ -1,11 +1,16 @@
 package api.game;
 
 import api.main.HanabiClient;
+import sjson.JSONArray;
+import sjson.JSONData;
 import sjson.JSONException;
 import sjson.JSONObject;
 
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static api.game.ActionType.*;
 
@@ -21,23 +26,26 @@ public class Action extends JSONObject
 		setCard(card);
 	}
 
-	public Action(String player, String hinted, int value) throws JSONException
+	public Action(String player, String hinted, int value, List<Integer> cardsToReveal) throws JSONException
 	{
 		super();
 		setPlayer(player);
 		setType(HINT_VALUE);
 		setHintReceiver(hinted);
 		setValue(value);
+		setCardsToReveal(cardsToReveal);
 	}
 
-	public Action(String player, String hinted, Color color) throws JSONException
+	public Action(String player, String hinted, Color color, List<Integer> cardsToReveal) throws JSONException
 	{
 		super();
 		setPlayer(player);
 		setType(HINT_COLOR);
 		setHintReceiver(hinted);
 		setColor(color);
+		setCardsToReveal(cardsToReveal);
 	}
+
 
 	public Action(String s) throws JSONException
 	{
@@ -81,6 +89,14 @@ public class Action extends JSONObject
 					throw new JSONException("Missing color!");
 				if (Color.fromString(s) == null)
 					throw new JSONException("Unreadble color");
+
+				s = getString("cardsToReveal");
+				if (s == null)
+					throw new JSONException("Missing cardsToReveal");
+				else
+				{
+					this.set("cardsToReveal",s);
+				}
 
 				s = getString("hinted");
 				if (s == null)
@@ -138,6 +154,21 @@ public class Action extends JSONObject
 		ActionType type = getActionType();
 		if(type != PLAY && type!= ActionType.DISCARD) return -1;
 		return Integer.parseInt(getString("card"));
+	}
+	public List<Integer> getCardsToReveal() throws JSONException {
+		if(this.getActionType().equals(HINT_VALUE) || this.getActionType().equals(HINT_COLOR)){
+			String s = getString("cardsToReveal");
+			String [] resString  = s.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
+			List<Integer> results = new ArrayList<>();
+			for (String toAdd : resString){
+				try{
+					results.add(Integer.parseInt(toAdd));
+				} catch (NumberFormatException nfe) {
+					throw new JSONException("Not able to convert to int, getCardsToReveal");
+				}
+			}
+			return results;
+		}else return  null;
 	}
 
 	/**
@@ -202,6 +233,11 @@ public class Action extends JSONObject
 		set("hinted",player);
 		return this;
 	}
+
+	private void setCardsToReveal(List<Integer> cardsToReveal) {
+		set("cardsToReveal", Arrays.toString(cardsToReveal.toArray()));
+	}
+
 
 	public Action setPlayer(String s) throws JSONException
 	{

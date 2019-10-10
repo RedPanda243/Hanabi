@@ -8,6 +8,7 @@ import math.MathCalc;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
+@Deprecated
 public class MathState extends State
 {
 	public MathState(State state) throws JSONException
@@ -45,13 +46,13 @@ public class MathState extends State
 		}
 		ret+="}\n";
 
-		ret+="Hints: {";
-		if (getHints().size()>0) {
-			for (JSONData d : getHints())
-				ret += d + ", ";
-			ret = ret.substring(0, ret.length() - 2);
-		}
-		ret+="}\n";
+//		ret+="Hints: {";
+//		if (getHints().size()>0) {
+//			for (JSONData d : getHints())
+//				ret += d + ", ";
+//			ret = ret.substring(0, ret.length() - 2);
+//		}
+//		ret+="}\n";
 
 		ret+="Fireworks:\n";
 		Firework fireworks;

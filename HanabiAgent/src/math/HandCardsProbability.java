@@ -116,9 +116,9 @@ public class HandCardsProbability {
 
             } else if (state.getAction().getHintReceiver().equalsIgnoreCase(owner)) {
                 if (state.getAction().getActionType().equals(ActionType.HINT_COLOR)) {
-                    removeColorFromArrays(state, state.getAction().getColor(), possibleCard);
+                    removeColorFromArrays(state.getAction().getCardsToReveal(), state.getAction().getColor(), possibleCard);
                 } else if (state.getAction().getActionType().equals(ActionType.HINT_VALUE)) {
-                    removeValueFromArrays(state, state.getAction().getValue(), possibleCard);
+                    removeValueFromArrays(state.getAction().getCardsToReveal(), state.getAction().getValue(), possibleCard);
                 }
 
             }
@@ -130,8 +130,7 @@ public class HandCardsProbability {
     }
 
 
-    public String getPossibleHand(State state) throws JSONException {
-        updatePossibleCards(state);
+    public String getPossibleHand() throws JSONException {
         String result = "PROBA\n";
         for (int i = 0; i < possibleCard.length; i++) {
             result += "\nPos " + i + ": ";
@@ -142,8 +141,8 @@ public class HandCardsProbability {
         return result;
     }
 
-    public List<PairCardCount>[] removeColorFromArrays(State state, Color co, List<PairCardCount>[] arrays) throws JSONException {
-        List<Integer> toReveal = state.getAction().getCardsToReveal();
+    public List<PairCardCount>[] removeColorFromArrays(List<Integer> posCards, Color co, List<PairCardCount>[] arrays) throws JSONException {
+        List<Integer> toReveal = posCards;
         for (int i = 0; i < arrays.length; i++) {
             if (toReveal.contains(i)) { // array da elimnare tutti tranne co
                 for (Color c : Color.values()) {
@@ -167,8 +166,8 @@ public class HandCardsProbability {
         return array;
     }
 
-    public List<PairCardCount>[] removeValueFromArrays(State state, int va, List<PairCardCount>[] arrays) throws JSONException {
-        List<Integer> toReveal = state.getAction().getCardsToReveal();
+    public List<PairCardCount>[] removeValueFromArrays(List<Integer> posCards, int va, List<PairCardCount>[] arrays) throws JSONException {
+        List<Integer> toReveal = posCards;
         for (int i = 0; i < arrays.length; i++) {
             if (toReveal.contains(i)) { // array da elimnare tutti tranne value
                 for (int j = 0; i < 5; j++) {
@@ -299,9 +298,9 @@ public class HandCardsProbability {
             if (s.getCurrentPlayer().equalsIgnoreCase(player) && (hystory.get(j + 1).getAction().equals(ActionType.PLAY) || hystory.get(j + 1).getAction().equals(ActionType.DISCARD))) {
                 possibleCardForPlayer = setArraysForNewCard(possibleCardForPlayer, s.getAction().getCard());
             } else if (s.getAction().equals(ActionType.HINT_COLOR) && s.getAction().getHintReceiver().equals(player)) {
-                possibleCardForPlayer = removeColorFromArrays(s, s.getAction().getColor(), possibleCardForPlayer);
+                possibleCardForPlayer = removeColorFromArrays(s.getAction().getCardsToReveal(), s.getAction().getColor(), possibleCardForPlayer);
             } else if (s.getAction().equals(ActionType.HINT_VALUE) && s.getAction().getHintReceiver().equals(player)) {
-                possibleCardForPlayer = removeValueFromArrays(s, s.getAction().getValue(), possibleCardForPlayer);
+                possibleCardForPlayer = removeValueFromArrays(s.getAction().getCardsToReveal(), s.getAction().getValue(), possibleCardForPlayer);
             }
         }
         //remove discards, played and hands
@@ -371,9 +370,39 @@ public class HandCardsProbability {
      * @param next
      * @return
      */
-    public double[] getPlayability(String player, Action next)
-    {
-        return new double[0];
+    public double[] getPlayability(String player, Action next) throws JSONException {
+
+        double[] result = new double[Game.getInstance().getNumberOfCardsPerPlayer()];
+        ArrayList<Card> playableCards = new ArrayList<>();
+        for (Color co : Color.values()) {
+            try {
+                int value = hystory.get(hystory.size() - 1).getFirework(co).peak();
+                if (value != 5)
+                    playableCards.add(new Card(co, value + 1));
+            } catch (JSONException e) {
+                System.err.println("Non able to add cards in array Playable, while checking fireworks");
+            }
+        }
+
+        List<PairCardCount>[] possibleCardForPlayer;
+        if (player.equalsIgnoreCase(owner)) //sono io e suppong l'hint sia per me, o l'action
+            possibleCardForPlayer = possibleCard;
+        else //non sono io
+            possibleCardForPlayer = getProbabilityArraysForPlayer(player);
+
+
+        if(next.getActionType().equals(ActionType.HINT_COLOR))
+            possibleCardForPlayer = removeColorFromArrays(next.getCardsToReveal(),next.getColor(),possibleCardForPlayer);
+        else if(next.getActionType().equals(ActionType.HINT_VALUE))
+            possibleCardForPlayer = removeValueFromArrays(next.getCardsToReveal(),next.getValue(),possibleCardForPlayer);
+//        else if(next.getActionType().equals(ActionType.DISCARD)){
+//            possibleCardForPlayer = setArraysForNewCard(possibleCardForPlayer,next.getCard());
+//        }
+//        PLAY
+        for (int i = 0; i < possibleCardForPlayer.length; i++) {
+            result[i] = getPlayabiltyForArray(possibleCardForPlayer[i], playableCards);
+        }
+        return result;
     }
 
     /**
@@ -382,9 +411,38 @@ public class HandCardsProbability {
      * @param next
      * @return
      */
-    public double[] getUselessness(String player, Action next)
-    {
-        return new double[0];
+    public double[] getUselessness(String player, Action next) throws JSONException {
+        double[] result = new double[Game.getInstance().getNumberOfCardsPerPlayer()];
+        ArrayList<Card> playableCards = new ArrayList<>();
+        for (Color co : Color.values()) {
+            try {
+                int value = hystory.get(hystory.size() - 1).getFirework(co).peak();
+                if (value != 5)
+                    playableCards.add(new Card(co, value + 1));
+            } catch (JSONException e) {
+                System.err.println("Non able to add cards in array Playable, while checking fireworks");
+            }
+        }
+
+        List<PairCardCount>[] possibleCardForPlayer;
+        if (player.equalsIgnoreCase(owner)) //sono io e suppong l'hint sia per me, o l'action
+            possibleCardForPlayer = possibleCard;
+        else //non sono io
+            possibleCardForPlayer = getProbabilityArraysForPlayer(player);
+
+
+        if(next.getActionType().equals(ActionType.HINT_COLOR))
+            possibleCardForPlayer = removeColorFromArrays(next.getCardsToReveal(),next.getColor(),possibleCardForPlayer);
+        else if(next.getActionType().equals(ActionType.HINT_VALUE))
+            possibleCardForPlayer = removeValueFromArrays(next.getCardsToReveal(),next.getValue(),possibleCardForPlayer);
+//        else if(next.getActionType().equals(ActionType.DISCARD)){
+//            possibleCardForPlayer = setArraysForNewCard(possibleCardForPlayer,next.getCard());
+//        }
+//        PLAY
+        for (int i = 0; i < possibleCardForPlayer.length; i++) {
+            result[i] = getUselessnessForArray(possibleCardForPlayer[i], playableCards);
+        }
+        return result;
     }
 
     public class PairCardCount {

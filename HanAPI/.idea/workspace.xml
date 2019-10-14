@@ -7,9 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="644e2846-9d4a-4fbd-95f8-f21cfdbcf6f1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/game/MathState.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/game/MathState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/HandCardsProbability$PairCardCount.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/HandCardsProbability$PairCardCount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/HandCardsProbability.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/HandCardsProbability.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/Strategy1Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/agents/Strategy1Agent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/game/MathState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/game/MathState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/math/HandCardsProbability.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/math/HandCardsProbability.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

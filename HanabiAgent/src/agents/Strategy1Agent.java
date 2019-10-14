@@ -74,13 +74,28 @@ public class Strategy1Agent extends AbstractAgent
 		history.add(state);
 		if (stats == null)
 			stats = new HandCardsProbability(Main.name,state);
-		else
-			stats.updatePossibleCards(state);
+		else {
+			try {
+				stats.updatePossibleCards(state);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			try {
+				System.out.println(stats.getPossibleHand());
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public Action play100()
 	{
-		double[] p = stats.getPlayability(Main.name);
+		double[] p = new double[0];
+		try {
+			p = stats.getPlayability(Main.name);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		try
 		{
 			for (int i = 0; i < p.length; i++)
@@ -162,7 +177,12 @@ public class Strategy1Agent extends AbstractAgent
 
 	public Action discard100()
 	{
-		double[] p = stats.getUselessness(Main.name);
+		double[] p = new double[0];
+		try {
+			p = stats.getUselessness(Main.name);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		if (history.get(history.size()-1).getHintTokens()<8)
 		{
 			try

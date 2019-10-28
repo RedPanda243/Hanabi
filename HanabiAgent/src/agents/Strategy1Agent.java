@@ -124,9 +124,18 @@ public class Strategy1Agent extends AbstractAgent
 				{
 					l = getPossibleHints(name.toString());
 					p = stats.getPlayability(name.toString());
+					//PROVA****************************************
+					System.out.println("GOT PLAYABILITY for "+name.toString());
+					//PROVA****************************************
 					for (Action a : l)
 					{
+						//PROVA****************************************
+						System.out.println("REQUESTING...for: "+name.toString()+", action "+a.toString());
+						//PROVA****************************************
 						p1 = stats.getPlayability(name.toString(),a);
+						//PROVA****************************************
+						System.out.println("GOT PLAYABILITY WITH ACTION for "+name.toString());
+						//PROVA****************************************
 						for (int i=0; i<p.length; i++)
 						{
 							if (p1[i] == 1 && p[i]<1)

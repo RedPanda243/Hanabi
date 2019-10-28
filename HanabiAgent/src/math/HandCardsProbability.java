@@ -263,6 +263,10 @@ public class HandCardsProbability {
                 System.err.println("Non able to add cards in array Playable, while checking fireworks");
             }
         }
+        //PROVA*************************************
+        for(Card c : playableCards)
+            System.out.println(c.toString());
+        //PROVA*************************************
         if (player.equalsIgnoreCase(owner)) { //sono io
             for (int i = 0; i < possibleCard.length; i++) {
                 result[i] = getPlayabiltyForArray(possibleCard[i], playableCards);
@@ -273,6 +277,11 @@ public class HandCardsProbability {
                 result[i] = getPlayabiltyForArray(possibleCardForPlayer[i], playableCards);
             }
         }
+        //PROVA*************************************
+        System.out.println(player);
+        for(int k=0; k<result.length; k++)
+            System.out.println(result[k]);
+        //PROVA*************************************
         return result;
     }
     public double getPlayabiltyForArray(List<PairCardCount> array, ArrayList<Card> playableCards){
@@ -289,7 +298,7 @@ public class HandCardsProbability {
     public List<PairCardCount>[] getProbabilityArraysForPlayer(String player) throws JSONException {
         List<PairCardCount>[] possibleCardForPlayer = new List[Game.getInstance().getNumberOfCardsPerPlayer()];
         for (int i = 0; i < possibleCardForPlayer.length; i++) {
-            possibleCard[i] = generateCards();
+            possibleCardForPlayer[i] = generateCards();
             //removePlayersHands(i,state);
         }
         State s;
@@ -303,6 +312,7 @@ public class HandCardsProbability {
                 possibleCardForPlayer = removeValueFromArrays(s.getAction().getCardsToReveal(), s.getAction().getValue(), possibleCardForPlayer);
             }
         }
+
         //remove discards, played and hands
         possibleCardForPlayer = removeCardsFromArrays(possibleCardForPlayer, hystory.get(hystory.size() - 1).getDiscards());
 

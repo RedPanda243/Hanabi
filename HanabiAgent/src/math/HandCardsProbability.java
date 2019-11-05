@@ -80,14 +80,21 @@ public class HandCardsProbability {
 //        if(hystory.get(hystory.size()-1).equals(state))
 //            return;
 
+        State lastState = hystory.get(hystory.size()-1);
         //sono stato io a scartare o giocare?
-        if (hystory.get(hystory.size() - 1).getCurrentPlayer().equalsIgnoreCase(owner)) {
+        System.out.println("[UPDATE] "+owner+", hystory size="+hystory.size());
+        System.out.println("currentPlayer="+state.getCurrentPlayer()+" lastPlayer="+lastState.getCurrentPlayer());
+        System.out.println("[STATE ACTION] "+state.getAction().toString());
+
+        if (state.getAction().getPlayer().equalsIgnoreCase(owner) && (state.getAction().getActionType().equals(ActionType.DISCARD)
+                ||  state.getAction().getActionType().equals(ActionType.PLAY))) {
             if (state.getAction().getActionType().equals(ActionType.DISCARD)) {
                 removeCardFromArrays(state.getDiscards().get(state.getDiscards().size() - 1));
             } else if (state.getAction().getActionType().equals(ActionType.PLAY)) {
                 for (Color co : Color.values())
                     if (state.getFirework(co) != hystory.get(hystory.size() - 1).getFirework(co)) {
-                        removeCardFromArrays(state.getFirework(co).get(state.getFirework(co).size() - 1));
+                        int value = hystory.get(hystory.size() - 1).getFirework(co).peak();
+                        if(value!=0) removeCardFromArrays(new Card(co, value));
                         break;
                     }
             }
@@ -112,7 +119,7 @@ public class HandCardsProbability {
                 //JSONData toRemoveDiscard = state.getDiscards().get(state.getDiscards().size()-1);
 
                 //la carta nuova è sempre la carta di posizione 0 o 4??
-                removeCardFromArrays(state.getHand(state.getCurrentPlayer()).get(Game.getInstance().getNumberOfCardsPerPlayer() - 1));
+                removeCardFromArrays(state.getHand(state.getCurrentPlayer()).get(state.getHand(state.getCurrentPlayer()).size() - 1));
 
             } else if (state.getAction().getHintReceiver().equalsIgnoreCase(owner)) {
                 if (state.getAction().getActionType().equals(ActionType.HINT_COLOR)) {
@@ -142,9 +149,8 @@ public class HandCardsProbability {
     }
 
     public List<PairCardCount>[] removeColorFromArrays(List<Integer> posCards, Color co, List<PairCardCount>[] arrays) throws JSONException {
-        List<Integer> toReveal = posCards;
         for (int i = 0; i < arrays.length; i++) {
-            if (toReveal.contains(i)) { // array da elimnare tutti tranne co
+            if (posCards.contains(i)) { // array da elimnare tutti tranne co
                 for (Color c : Color.values()) {
                     if (!c.equals(co))
                         arrays[i] = removeColorFromArray(arrays[i], c);
@@ -167,22 +173,32 @@ public class HandCardsProbability {
     }
 
     public List<PairCardCount>[] removeValueFromArrays(List<Integer> posCards, int va, List<PairCardCount>[] arrays) throws JSONException {
-        List<Integer> toReveal = posCards;
+//        //PROVA ****************************
+//        System.out.println(Arrays.toString(toReveal.toArray()));
+//        //PROVA ****************************
         for (int i = 0; i < arrays.length; i++) {
-            if (toReveal.contains(i)) { // array da elimnare tutti tranne value
-                for (int j = 0; i < 5; j++) {
+            if (posCards.contains(i)) { // e' una delle posizioni indicate
+                for (int j = 1; j < 6; j++) {
                     if (j != va)
                         arrays[i] = removeValueFromArray(arrays[i], j);
                 }
-            } else {
+            } else {// non e' una delle posizioni indicate
                 arrays[i] = removeValueFromArray(arrays[i], va);
             }
         }
+//        //PROVA****************************************
+//        for(List<PairCardCount> l : arrays){
+//            for(PairCardCount p : l)
+//                System.out.println("REMOVINGVALUE"+p.toString());
+//        }
+//        System.out.println("**********************************************");
+//        //PROVA****************************************
         return arrays;
     }
 
     public List<PairCardCount> removeValueFromArray(List<PairCardCount> array, int va) {
         List<PairCardCount> toRemove = new ArrayList<>();
+//        System.out.println("REMOVING value: "+va);
         for (PairCardCount p : array) {
             if (p.getCard().getValue() == va)
                 toRemove.add(p);
@@ -228,13 +244,15 @@ public class HandCardsProbability {
     }
 
     public List<PairCardCount>[] setArraysForNewCard(List<PairCardCount>[] possibleCardForPlayer, int card) {
-        possibleCardForPlayer[card].clear();
-        for (int i = card; i < Game.getInstance().getNumberOfCardsPerPlayer() - 1; i++) {
-            for (PairCardCount p : possibleCardForPlayer[i + 1])
-                possibleCardForPlayer[i].add(p);
+        List<PairCardCount>[] list = possibleCardForPlayer;
+        for (int i = card; i < list.length-1; i++) {
+            list[i].clear();
+            for (PairCardCount p : list[i + 1])
+                list[i].add(p);
+
         }
-        possibleCardForPlayer[Game.getInstance().getNumberOfCardsPerPlayer() - 1] = generateCards();
-        return possibleCardForPlayer;
+        list[Game.getInstance().getNumberOfCardsPerPlayer() - 1] = generateCards();
+        return list;
     }
 
     /*
@@ -263,10 +281,10 @@ public class HandCardsProbability {
                 System.err.println("Non able to add cards in array Playable, while checking fireworks");
             }
         }
-        //PROVA*************************************
-        for(Card c : playableCards)
-            System.out.println(c.toString());
-        //PROVA*************************************
+//        //PROVA*************************************
+//        for(Card c : playableCards)
+//            System.out.println(c.toString());
+//        //PROVA*************************************
         if (player.equalsIgnoreCase(owner)) { //sono io
             for (int i = 0; i < possibleCard.length; i++) {
                 result[i] = getPlayabiltyForArray(possibleCard[i], playableCards);
@@ -277,15 +295,15 @@ public class HandCardsProbability {
                 result[i] = getPlayabiltyForArray(possibleCardForPlayer[i], playableCards);
             }
         }
-        //PROVA*************************************
-        System.out.println(player);
-        for(int k=0; k<result.length; k++)
-            System.out.println(result[k]);
-        //PROVA*************************************
+//        //PROVA*************************************
+//        System.out.println(player);
+//        for(int k=0; k<result.length; k++)
+//            System.out.println(result[k]);
+//        //PROVA*************************************
         return result;
     }
     public double getPlayabiltyForArray(List<PairCardCount> array, ArrayList<Card> playableCards){
-        int casiFavorevoli = 0, casiTotali = 0;
+        double casiFavorevoli = 0, casiTotali = 0;
 
         for (PairCardCount p : array) {
             casiTotali += p.getCount();
@@ -323,9 +341,11 @@ public class HandCardsProbability {
         //////////////
         //CHECK
         /////////////
-        for (JSONData name : Game.getInstance().getPlayers())
-            if (!name.equals(owner) && !name.equals(player))
+        for (JSONData name : Game.getInstance().getPlayers()) {
+            if (!name.toString().equals(owner) && !name.toString().equals(player))
                 possibleCardForPlayer = removeCardsFromArrays(possibleCardForPlayer, hystory.get(hystory.size() - 1).getHand(name.toString()));
+        }
+
         return possibleCardForPlayer;
     }
 
@@ -347,7 +367,6 @@ public class HandCardsProbability {
                 }
             }
         }
-        int casiFavorevoli = 0, casiTotali = 0;
         if(player.equalsIgnoreCase(owner)){//sono io
             for(int i=0; i<possibleCard.length; i++){
                 result[i] = getUselessnessForArray(possibleCard[i], discardableCards);
@@ -361,7 +380,7 @@ public class HandCardsProbability {
         return result;
     }
     public double getUselessnessForArray(List<PairCardCount> array, ArrayList<Card> discardableCards){
-        int casiFavorevoli = 0, casiTotali = 0;
+        double casiFavorevoli = 0, casiTotali = 0;
 
         for(PairCardCount p : array){
             casiTotali += p.getCount();
@@ -400,6 +419,13 @@ public class HandCardsProbability {
         else //non sono io
             possibleCardForPlayer = getProbabilityArraysForPlayer(player);
 
+//        //PROVA****************************************
+//        for(List<PairCardCount> l : possibleCardForPlayer){
+//            for(PairCardCount p : l)
+//                System.out.println("PREHINT["+player+"]"+p.toString());
+//        }
+//        System.out.println("**********************************************");
+//        //PROVA****************************************
 
         if(next.getActionType().equals(ActionType.HINT_COLOR))
             possibleCardForPlayer = removeColorFromArrays(next.getCardsToReveal(),next.getColor(),possibleCardForPlayer);
@@ -412,6 +438,15 @@ public class HandCardsProbability {
         for (int i = 0; i < possibleCardForPlayer.length; i++) {
             result[i] = getPlayabiltyForArray(possibleCardForPlayer[i], playableCards);
         }
+
+//        //PROVA****************************************
+//        for(List<PairCardCount> l : possibleCardForPlayer){
+//            for(PairCardCount p : l)
+//                System.out.println("POST HINT["+player+"]"+p.toString());
+//        }
+//        System.out.println("**********************************************");
+//        //PROVA****************************************
+
         return result;
     }
 

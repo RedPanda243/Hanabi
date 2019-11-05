@@ -31,8 +31,10 @@ public class Hand extends JSONArray
 	{
 		super(r);
 		int n = Game.getInstance().getNumberOfCardsPerPlayer();
-		if (size()<n-1 || size()>n)
+		//FIX (-2)
+		if (size()<n-2 || size()>n)
 			throw new JSONException("Hand contains wrong number of cards");
+
 		for (int i=0; i<this.size(); i++)
 			this.replace(i,new Card(this.get(i).toString()));
 	}

@@ -149,12 +149,17 @@ public class Action extends JSONObject
 	 * gets the psoition of the card being played/discarded
 	 * @return the position of the card being played or discarded, null if the action type is not PLAY or DISCARD
 	 **/
+	/*
+	TO CHANGE
+	 */
 	public int getCard()
 	{
 		ActionType type = getActionType();
-		if(type != PLAY && type!= ActionType.DISCARD) return -1;
-		return Integer.parseInt(getString("card"));
+		if(type == PLAY || type == DISCARD)
+			return Integer.parseInt(getString("card"));
+		else return -1;
 	}
+
 	public List<Integer> getCardsToReveal() throws JSONException {
 		if(this.getActionType().equals(HINT_VALUE) || this.getActionType().equals(HINT_COLOR)){
 			String s = getString("cardsToReveal");
@@ -234,7 +239,7 @@ public class Action extends JSONObject
 		return this;
 	}
 
-	private void setCardsToReveal(List<Integer> cardsToReveal) {
+	public void setCardsToReveal(List<Integer> cardsToReveal) {
 		set("cardsToReveal", Arrays.toString(cardsToReveal.toArray()));
 	}
 

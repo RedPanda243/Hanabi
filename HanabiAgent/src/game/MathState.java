@@ -62,6 +62,8 @@ public class MathState extends State
 		}
 		ret+= "Hints: "+getHintTokens()+"\nFuse: "+getFuseTokens()+"\n";
 
+		ret+= "Final "+ getFinalActionIndex()+"\n";
+
 		return ret;
 	}
 }

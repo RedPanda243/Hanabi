@@ -32,9 +32,11 @@ public class Turn extends JSONObject
 		if (a.getActionType() == ActionType.PLAY || a.getActionType() == ActionType.DISCARD)
 		{
 			d = get("drawn");
-			if (d == null)
+/*			if (d == null)
 				throw new JSONException("Missing drawn card");
-			setDrawn(new Card(d.toString(0)));
+*/
+			if (d!=null)
+				setDrawn(new Card(d.toString(0)));
 		}
 	}
 

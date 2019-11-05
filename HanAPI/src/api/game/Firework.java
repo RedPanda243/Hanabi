@@ -25,10 +25,11 @@ public class Firework extends JSONArray
 			throw new JSONException("Firework can have max 5 cards");
 
 		for(int i=0; i<size(); i++)
-			replace(i,new Card(get(i).toString(0)));
+			replace(i, new Card(get(i).toString(0)));
+
 		for (int i=1; i<size(); i++)
 		{
-			if (getCard(i).getValue()!=getCard(i-1).getValue()-1)
+			if (getCard(i).getValue()!=getCard(i-1).getValue()+1)
 				throw new JSONException("Malformed firework, messy cards!"+this.toString(3));
 		}
 		if (size()>1 && !checkColor(getCard(0).getColor()))

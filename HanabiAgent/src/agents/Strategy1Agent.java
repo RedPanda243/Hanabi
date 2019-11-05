@@ -8,6 +8,7 @@ import sjson.JSONData;
 import sjson.JSONException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -51,7 +52,11 @@ public class Strategy1Agent extends AbstractAgent
 	@Override
 	public Action chooseAction(State state) //State è inutile ma mi serve nell'astratta per casi generali
 	{
-//		System.out.println(stats.getPossibleHand(current));
+		try {
+			System.out.println( Arrays.toString(stats.getPlayability(Main.name)) );
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		Action action = play100();
 		if (action == null)
 			action = hint100();
@@ -120,26 +125,26 @@ public class Strategy1Agent extends AbstractAgent
 				JSONArray players = sortPlayers();
 				List<Action> l;
 				double[] p,p1;
+				Hand handPlayerToHint;
 				for (JSONData name : players)
 				{
+					handPlayerToHint = history.get(history.size()-1).getHand(name.toString());
 					l = getPossibleHints(name.toString());
 					p = stats.getPlayability(name.toString());
-					//PROVA****************************************
-					System.out.println("GOT PLAYABILITY for "+name.toString());
-					//PROVA****************************************
 					for (Action a : l)
 					{
-						//PROVA****************************************
-						System.out.println("REQUESTING...for: "+name.toString()+", action "+a.toString());
-						//PROVA****************************************
 						p1 = stats.getPlayability(name.toString(),a);
-						//PROVA****************************************
-						System.out.println("GOT PLAYABILITY WITH ACTION for "+name.toString());
-						//PROVA****************************************
 						for (int i=0; i<p.length; i++)
 						{
-							if (p1[i] == 1 && p[i]<1)
-								return a;
+							if (p1[i] == 1 && p[i]<1) {
+								if(a.getActionType().equals(ActionType.HINT_COLOR)){
+									if(!handPlayerToHint.getCard(i).isColorRevealed())
+										return a;
+								}else { //hint value
+									if(!handPlayerToHint.getCard(i).isValueRevealed())
+										return a;
+								}
+							}
 						}
 					}
 				}
@@ -161,17 +166,25 @@ public class Strategy1Agent extends AbstractAgent
 				JSONArray players = sortPlayers();
 				List<Action> l;
 				double[] p,p1;
+				Hand handPlayerToHint;
 				for (JSONData name : players)
 				{
+					handPlayerToHint = history.get(history.size()-1).getHand(name.toString());
 					l = getPossibleHints(name.toString());
-					p = stats.getUselessness(name.toString());
-					for (Action a : l)
+					p = stats.getUselessness(name.toString()); //uselessness prima dell'aiuto
+					for (Action a : l) //testo tutte le azioni tra quelle possibili
 					{
-						p1 = stats.getUselessness(name.toString(),a);
+						p1 = stats.getUselessness(name.toString(),a); //uselessness dopo l'aiuto
 						for (int i=0; i<p.length; i++)
 						{
 							if (p1[i] == 0 && p[i]>0)
-								return a;
+								if(a.getActionType().equals(ActionType.HINT_COLOR)){
+									if(!handPlayerToHint.getCard(i).isColorRevealed())
+										return a;
+								}else { //hint value
+									if(!handPlayerToHint.getCard(i).isValueRevealed())
+										return a;
+								}
 						}
 					}
 				}
@@ -326,14 +339,14 @@ public class Strategy1Agent extends AbstractAgent
 
 	private JSONArray sortPlayers()
 	{
+		//Riordino i giocatori e tolgo me stesso, riordino a partire dal mio successivo
 		JSONArray players = Game.getInstance().getPlayers().clone();
 		int myturn = Game.getInstance().getPlayerTurn(Main.name);
 		for (int i=0; i<myturn; i++)
-		{
 			players.add(players.get(i));
-			players.remove(i);
-		}
-		players.remove(myturn); //Riordino i giocatori e tolgo me stesso
+
+		for (int i=0; i<=myturn; i++)
+			players.remove(0);
 		return players;
 	}
 
@@ -348,34 +361,84 @@ public class Strategy1Agent extends AbstractAgent
 		ArrayList<Action> list = new ArrayList<>();
 		Hand hand = history.get(history.size()-1).getHand(receiver).clone();
 		Card card;
-		List<Integer> cardsHinted ;
-		for (int i=1; i<6; i++)
-		{
-			cardsHinted = new ArrayList<>();
-			for (JSONData d:hand)
-			{
-				card = (Card)d;
-				if (card.getValue() == i && !card.isValueRevealed())
-					cardsHinted.add(hand.indexOf(card));
+		List<Integer> valueAdded = new ArrayList<>();
+        List<Color> colorAdded = new ArrayList<>();
+		List<Integer> cardsHinted;
+//		for (int j=0; j<hand.size(); j++){
+//			System.out.println("[CARD] "+hand.getCard(j).getValue()+"-"+hand.getCard(j).getColor()+" //pos j= "+j+" //indexOf="+hand.indexOf(hand.getCard(j)));
+//		}
 
-			}
-			if(cardsHinted.size()>0)
-				list.add(new Action(Main.name,receiver,i,cardsHinted));
-		}
+		int value;
+		Color col;
 
-		for(Color color:Color.values())
-		{
-			cardsHinted = new ArrayList<>();
-			for (JSONData d:hand)
-			{
-				card = (Card)d;
-				if (card.getColor() == color && !card.isColorRevealed())
-					cardsHinted.add(hand.indexOf(card));
+		System.out.println("[HAND]"+hand.toString());
 
-			}
-			if(cardsHinted.size()>0)
-				list.add(new Action(Main.name,receiver,color,cardsHinted));
-		}
+        for(int i=0; i<hand.size(); i++){
+            value = hand.getCard(i).getValue();
+            col = hand.getCard(i).getColor();
+
+            if(valueAdded.indexOf(value)==-1){ //numero incontrato non ancora aggiunto
+                cardsHinted = new ArrayList<>();
+                cardsHinted.add(i);
+                valueAdded.add(value);
+                for(int j=i+1; j<hand.size(); j++) {
+                    if (hand.getCard(j).getValue() == value)
+                        cardsHinted.add(j);
+                }
+                list.add(new Action(Main.name, receiver, value, cardsHinted));
+            } //fine if value
+
+            if(colorAdded.indexOf(col)==-1){ //colore incontrato non ancora aggiunto
+                cardsHinted = new ArrayList<>();
+                cardsHinted.add(i);
+                colorAdded.add(col);
+                for(int j=i+1; j<hand.size(); j++){
+					try {
+						if(hand.getCard(j).getColor().equals(col))
+							cardsHinted.add(j);
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.err.println("[POSSIBILE HINT]j="+j+" color="+col);
+					}
+				}
+                list.add(new Action(Main.name, receiver, col, cardsHinted));
+            } //fine if color
+        } //fine for HAND
+
+//        for(Action a : list)
+//            System.out.println("[HINT POSSIBLE] "+a.toString()+ " --pos "+a.getCardsToReveal().toString());
+
+//		for (int i=1; i<6; i++)
+//		{
+//			cardsHinted = new ArrayList<>();
+//			for (JSONData d:hand) {
+//				card = (Card)d;
+//				System.out.println("CHECKING CARD "+card.getValue()+"-"+ card.getColor()+" in pos "+hand.getPosizione(card));
+//				if (card.getValue() == i && !card.isValueRevealed()){
+//					cardsHinted.add(hand.getPosizione(card));
+//					System.out.println("ADDED pos "+hand.getPosizione(card)+" for card "+card.getValue());
+//				}
+//
+//			}
+//			if(cardsHinted.size()>0) {
+//				list.add(new Action(Main.name, receiver, i, cardsHinted));
+//				System.out.println("TOHINT CARDS: "+ Arrays.toString(cardsHinted.toArray()));
+//			}
+//		}
+
+//		for(Color color:Color.values())
+//		{
+//			cardsHinted = new ArrayList<>();
+//			for (JSONData d:hand)
+//			{
+//				card = (Card)d;
+//				if (card.getColor() == color && !card.isColorRevealed())
+//					cardsHinted.add(hand.getPosizione(card));
+//
+//			}
+//			if(cardsHinted.size()>0)
+//				list.add(new Action(Main.name,receiver,color,cardsHinted));
+//		}
 		return list;
 	}
 }

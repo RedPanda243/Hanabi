@@ -177,20 +177,34 @@ public class HanabiServer
 			history.add(last);
 			sendTurn(last.getCurrentPlayer(),a);
 			last = next;
+
+			//PROVA *************************************
+//			if(deck.empty()){
+//				break;
+//			}
 		}
 		sendState(last,players);
 	}
 
 	private static State nextState(State current, Action move,Stack<Card> deck) throws IOException,JSONException
 	{
+		System.out.println("[ACTION "+move.getActionType().toString()+"] "+move.toString()+"\n"+"[DECK] = "+deck.size());
 		State next = current.clone();
 		next.setAction(move);
+		if(deck.size()==0) {
+			drawn = null;
+			if(current.getFinalActionIndex() == -1)
+				next.setFinalActionIndex(current.getOrder()+Game.getInstance().getPlayers().size());
+		}
+		else
+			drawn = deck.pop();
+
 		if (move.getActionType() == ActionType.PLAY)
 		{
-			drawn = deck.pop();
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
 			next.getHand(move.getPlayer()).remove(move.getCard());
-			next.getHand(move.getPlayer()).add(drawn);
+			if (drawn != null)
+				next.getHand(move.getPlayer()).add(drawn);
 			try
 			{
 				next.getFirework(played.getColor()).addCard(played);
@@ -210,10 +224,10 @@ public class HanabiServer
 		}
 		else if (move.getActionType() == ActionType.DISCARD)
 		{
-			drawn = deck.pop();
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
 			next.getHand(move.getPlayer()).remove(move.getCard());
-			next.getHand(move.getPlayer()).add(drawn);
+			if (drawn != null)
+				next.getHand(move.getPlayer()).add(drawn);
 			next.getDiscards().add(played);
 			if (next.getHintTokens()<8)
 				try
@@ -230,7 +244,7 @@ public class HanabiServer
 			//COLORE
 			if (move.getActionType() == ActionType.HINT_COLOR)
 			{
-				j = 1;
+				j = 0;
 				for (int i = 0; i < hand.size(); i++)
 				{
 					if (hand.getCard(i).getColor().equals(move.getColor())) {
@@ -244,7 +258,7 @@ public class HanabiServer
 			}
 			else //VALUE
 			{
-				j = 1;
+				j = 0;
 				for (int i = 0; i < hand.size(); i++)
 				{
 					if (hand.getCard(i).getValue() == move.getValue()) {

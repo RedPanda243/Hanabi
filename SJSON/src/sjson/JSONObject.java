@@ -46,7 +46,7 @@ public class JSONObject extends JSONData
 	/**
 	 * Legge un carattere alla volta fino a quando non ottiene una rappresentazione testuale di un oggetto json
 	 * @param r Reader da cui leggere una rappresentazione testuale di un oggetto json
-	 * @throws JSONException se la stringa letta &egrave; malformata
+	 * @throws JSONException se la stringa letta &egrave; malformata o in caso di errore I/O
 	 */
 	public JSONObject(Reader r) throws JSONException
 	{
@@ -121,10 +121,10 @@ public class JSONObject extends JSONData
 	}
 
 	/**
-	 * Inserisce tutti i valori di questo JSONObject in quello passato come parametro. Se i due oggetti possiedono valori con lo
-	 * stesso nome viene mantenuto quello di questo oggetto.
+	 * Inserisce una copia di tutti gli attributi di questo JSONObject in quello passato come parametro.
+	 * Se i due oggetti possiedono attributi con lo stesso nome viene mantenuto quello di questo oggetto.
 	 * @param o un JSONObject da modificare
-	 * @return il parametro modificato
+	 * @return il JSONObject modificato
 	 */
 	public JSONObject copyIn(JSONObject o)
 	{
@@ -236,9 +236,10 @@ public class JSONObject extends JSONData
 	}
 
 	/**
+	 * Assegna un attributo di nome e valore specificati
 	 * @param name nome dell'attributo da impostare
 	 * @param value attributo da assegnare al nome specificato
-	 * @return questo JSONObject
+	 * @return questo JSONObject modificato
 	 */
 	public JSONObject set(String name, JSONData value)
 	{
@@ -252,8 +253,10 @@ public class JSONObject extends JSONData
 	}
 
 	/**
-	 * Assegna un attributo di tipo stringa di nome e valore specificati
 	 * @see JSONObject#set(String, JSONData)
+	 * @param name nome dell'attributo da impostare
+	 * @param value attributo stringa da assegnare al nome specificato
+	 * @return questo JSONObject modificato
 	 */
 	public JSONObject set(String name, String value)
 	{

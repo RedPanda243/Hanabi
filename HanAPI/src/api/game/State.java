@@ -1,18 +1,13 @@
 package api.game;
 
-import api.main.HanabiClient;
 import sjson.*;
 
 import java.io.Reader;
 import java.io.StringReader;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Stack;
 
 /**
  * Classe che rappresenta lo stato di una partita dal punto di vista di un giocatore
- * @author Francesco Pandolfi, Mihail Bida
  */
 @SuppressWarnings({"WeakerAccess","unused"})
 public class State extends JSONObject

@@ -1,6 +1,5 @@
 package api.game;
 
-import api.main.HanabiClient;
 import sjson.JSONArray;
 import sjson.JSONData;
 import sjson.JSONException;
@@ -14,8 +13,19 @@ import java.util.List;
 
 import static api.game.ActionType.*;
 
+/**
+ * Classe che rappresenta una mossa come oggetto json.
+ */
+@SuppressWarnings({"WeakerAccess","unused"})
 public class Action extends JSONObject
 {
+	/**
+	 * Costruttore per una mossa che rappresenta la giocata o lo scarto di una carta
+	 * @param player Giocatore che effettua la mossa
+	 * @param type tipo di mossa ({@link ActionType#PLAY} o {@link ActionType#DISCARD})
+	 * @param card indice della carta nella mano del giocatore che effettua la mossa
+	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
+	 */
 	public Action(String player, ActionType type, int card) throws JSONException
 	{
 		super();
@@ -26,7 +36,15 @@ public class Action extends JSONObject
 		setCard(card);
 	}
 
-	public Action(String player, String hinted, int value, List<Integer> cardsToReveal) throws JSONException
+	/**
+	 * Costruttore per una mossa che rappresenta un suggerimento per valore
+	 * @param player Giocatore che effettua il suggerimento
+	 * @param hinted Giocatore cui &egrave; rivolto il suggerimento
+	 * @param value Valore da suggerire
+	 * @param cardsToReveal Lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
+	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
+	 */
+	public Action(String player, String hinted, int value, int[] cardsToReveal) throws JSONException
 	{
 		super();
 		setPlayer(player);
@@ -36,7 +54,15 @@ public class Action extends JSONObject
 		setCardsToReveal(cardsToReveal);
 	}
 
-	public Action(String player, String hinted, Color color, List<Integer> cardsToReveal) throws JSONException
+	/**
+	 * Costruttore per una mossa che rappresenta un suggerimento per colore
+	 * @param player Giocatore che effettua il suggerimento
+	 * @param hinted Giocatore cui &egrave; rivolto il suggerimento
+	 * @param color Colore da suggerire
+	 * @param cardsToReveal Lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
+	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
+	 */
+	public Action(String player, String hinted, Color color, int[] cardsToReveal) throws JSONException
 	{
 		super();
 		setPlayer(player);
@@ -46,72 +72,94 @@ public class Action extends JSONObject
 		setCardsToReveal(cardsToReveal);
 	}
 
-
+	/**
+	 * @see JSONObject#JSONObject(String)
+	 * @param s Rappresentazione testuale del json che rappresenta la mossa
+	 * @throws JSONException se il json &egrave; malformato
+	 */
 	public Action(String s) throws JSONException
 	{
 		this(new StringReader(s));
 	}
 
+	/**
+	 * @see JSONObject#JSONObject(Reader)
+	 * @param reader Reader da cui leggere carattere per carattere il json che rappresenta la mossa
+	 * @throws JSONException in caso di errori I/O o se il json &egrave; malformato
+	 */
 	public Action(Reader reader) throws JSONException
 	{
 		super(reader);
+
 		if (names().size()!=0) {
-			String s = getString("player");
-			if (s == null)
-				throw new JSONException("Missing player!");
-			setPlayer(s);
-
-			ActionType type = ActionType.fromString(getString("type"));
-			if (type == null)
-				throw new JSONException("Unreadable action type");
-
-			if (type == PLAY) {
-				s = getString("card");
-				if (s == null)
-					throw new JSONException("Missing card!");
-				try {
-					setCard(Integer.parseInt(s));
-				} catch (NumberFormatException e) {
-					throw new JSONException("Unreadable played card");
-				}
+			checkPlayer();
+			checkType();
+			ActionType type = getActionType();
+			if (type == PLAY)
+			{
+				checkCard();
 			} else if (type == DISCARD) {
 				s = getString("card");
 				if (s == null)
-					throw new JSONException("Missing card!");
+					throw new JSONException("Attributo \"card\" mancante");
 				try {
 					setCard(Integer.parseInt(s));
 				} catch (NumberFormatException e) {
-					throw new JSONException("Unreadable discarded card");
+					throw new JSONException("Attributo \"card\" deve essere un intero");
 				}
 			} else if (type == HINT_COLOR) {
 				s = getString("color");
 				if (s == null)
-					throw new JSONException("Missing color!");
+					throw new JSONException("Attributo \"color\" mancante");
 				if (Color.fromString(s) == null)
-					throw new JSONException("Unreadble color");
+					throw new JSONException("Attributo \"color\" deve essere uno tra "+Arrays.toString(Color.values()));
 
-				s = getString("cardsToReveal");
-				if (s == null)
-					throw new JSONException("Missing cardsToReveal");
+				a = getArray("cardsToReveal");
+				if (a == null)
+					throw new JSONException("Attributo \"cardsToReveal\" mancante");
 				else
 				{
+					try {
+						for (JSONData d:a)
+							Integer.parseInt(d.toString(0));
+					}
+					catch(NumberFormatException nfe)
+					{
+						throw new JSONException("L'attributo \"cardsToReveal\" deve contenere solo interi");
+					}
 					this.set("cardsToReveal",s);
 				}
 
 				s = getString("hinted");
 				if (s == null)
-					throw new JSONException("Missing hinted!");
+					throw new JSONException("Attributo \"hinted\" mancante");
 				setHintReceiver(s);
 
 			} else if (type == HINT_VALUE) {
 				s = getString("hinted");
 				if (s == null)
-					throw new JSONException("Missing hinted!");
+					throw new JSONException("Attributo \"hinted\" mancante");
 				setHintReceiver(s);
+
+				a = getArray("cardsToReveal");
+				if (a == null)
+					throw new JSONException("Attributo \"cardsToReveal\" mancante");
+				else
+				{
+					try {
+						for (JSONData d:a)
+							Integer.parseInt(d.toString(0));
+					}
+					catch(NumberFormatException nfe)
+					{
+						throw new JSONException("L'attributo \"cardsToReveal\" deve contenere solo interi");
+					}
+					this.set("cardsToReveal",s);
+				}
 
 				s = getString("value");
 				if (s == null)
-					throw new JSONException("Missing value!");
+					throw new JSONException("Attributo \"value\" mancante");
 				try {
 					setValue(Integer.parseInt(s));
 				} catch (NumberFormatException e) {
@@ -121,6 +169,45 @@ public class Action extends JSONObject
 		}
 	}
 
+	private void checkCard() throws JSONException
+	{
+		String s = getString("card");
+		if (s == null)
+			throw new JSONException("Attributo \"card\" mancante");
+		try {
+			setCard(Integer.parseInt(s));
+		} catch (NumberFormatException e) {
+			throw new JSONException("Attributo \"card\" deve essere un intero");
+		}
+	}
+
+
+	/**
+	 * Usato nei costruttori, verifica l'integrit&agrave; del campo "player"
+	 * @throws JSONException se l'attributo "player" &egrave; mancante
+	 */
+	private void checkPlayer() throws JSONException
+	{
+		String s = getString("player");
+		if (s == null)
+			throw new JSONException("Attributo \"player\" mancante");
+	}
+
+	/**
+	 * Usato nei costruttori, verifica l'integrit&agrave; del campo "type"
+	 * @throws JSONException se l'attributo "type" &egrave; mancante
+	 */
+	private void checkType() throws JSONException
+	{
+		ActionType type = ActionType.fromString(getString("type"));
+		if (type == null)
+			throw new JSONException("Attributo \"type\" mancante");
+	}
+
+	/**
+	 * @see JSONObject#clone()
+	 * @return una copia di questa Action
+	 */
 	public Action clone()
 	{
 		try
@@ -135,23 +222,19 @@ public class Action extends JSONObject
 	}
 
 	/**
-	 * @return l'indice del giocatore che esegue l'azione
+	 * @return il nome del giocatore che esegue l'azione
 	 **/
 	public String getPlayer(){return getString("player");}
 
 	/**
-	 * get the action type
-	 * @return the type of action being performed
+	 * @see ActionType
+	 * @return il tipo di mossa
 	 **/
 	public ActionType getActionType(){return ActionType.fromString(getString("type"));}
 
 	/**
-	 * gets the psoition of the card being played/discarded
-	 * @return the position of the card being played or discarded, null if the action type is not PLAY or DISCARD
+	 * @return la posizione della carta da giocare o scartare nella mano del giocatore che effettua la mossa, null se la mossa rappresenta un suggerimento
 	 **/
-	/*
-	TO CHANGE
-	 */
 	public int getCard()
 	{
 		ActionType type = getActionType();
@@ -160,8 +243,15 @@ public class Action extends JSONObject
 		else return -1;
 	}
 
-	public List<Integer> getCardsToReveal() throws JSONException {
-		if(this.getActionType().equals(HINT_VALUE) || this.getActionType().equals(HINT_COLOR)){
+	public int[] getCardsToReveal() throws JSONException
+	{
+		if(this.getActionType().equals(HINT_VALUE) || this.getActionType().equals(HINT_COLOR))
+		{
+			JSONArray array = getArray("cardsToReveal");
+			for (JSONData d: array)
+			{
+
+			}
 			String s = getString("cardsToReveal");
 			String [] resString  = s.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
 			List<Integer> results = new ArrayList<>();
@@ -239,8 +329,12 @@ public class Action extends JSONObject
 		return this;
 	}
 
-	public void setCardsToReveal(List<Integer> cardsToReveal) {
-		set("cardsToReveal", Arrays.toString(cardsToReveal.toArray()));
+	public void setCardsToReveal(int[] cardsToReveal)
+	{
+		JSONArray array = new JSONArray();
+		for (int i:cardsToReveal)
+			array.add("" + i);
+		set("cardsToReveal", array);
 	}
 
 

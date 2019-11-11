@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
+@Deprecated
 public class HanabiClient
 {
 	private static HanabiClient instance = null;

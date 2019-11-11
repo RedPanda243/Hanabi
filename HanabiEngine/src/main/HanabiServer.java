@@ -3,7 +3,6 @@ package main;
 import api.game.*;
 import sjson.JSONArray;
 import sjson.JSONException;
-import sjson.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +13,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Stack;
 
+/**
+ * Classe eseguibile, crea e mantiene la partita.
+ */
 public class HanabiServer
 {
 	private static Socket[] players;

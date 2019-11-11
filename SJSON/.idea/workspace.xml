@@ -7,58 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10ac42d8-4529-433c-bb71-0f81b1df50d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/ActionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/ActionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/main/HanabiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/main/HanabiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Turn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/allclasses-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/allclasses-noframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/constant-values.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/deprecated-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/help-doc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-11.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-12.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-13.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-14.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-15.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-16.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-17.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-9.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/overview-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/serialized-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/JSONArray.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/JSONArray.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/JSONData.Type.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/JSONData.Type.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/JSONData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/JSONData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/JSONException.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/JSONException.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/JSONObject.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/JSONObject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/JSONString.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/JSONString.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/JSONUtils.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/JSONUtils.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sjson/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/sjson/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONObject.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,12 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sjson/JSONObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
+            <state relative-caret-position="660">
               <caret line="48" column="92" selection-start-line="48" selection-start-column="92" selection-end-line="48" selection-end-column="92" />
-              <folding>
-                <element signature="e#2863#2864#0" expanded="true" />
-                <element signature="e#2902#2903#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -157,6 +110,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -179,7 +133,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -189,7 +142,7 @@
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="sjson" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HanAPI" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -260,10 +213,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4746137" visible="true" weight="0.275" />
-      <window_info id="Structure" order="1" sideWeight="0.52538633" side_tool="true" visible="true" weight="0.275" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47351524" visible="true" weight="0.27954546" />
+      <window_info id="Structure" order="1" sideWeight="0.5264847" side_tool="true" visible="true" weight="0.27954546" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -271,7 +223,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.50067294" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32974428" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49928367" visible="true" weight="0.2728732" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928367" weight="0.2728732" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -351,12 +303,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sjson/JSONObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
+        <state relative-caret-position="660">
           <caret line="48" column="92" selection-start-line="48" selection-start-column="92" selection-end-line="48" selection-end-column="92" />
-          <folding>
-            <element signature="e#2863#2864#0" expanded="true" />
-            <element signature="e#2902#2903#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -9,19 +9,45 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static api.game.ActionType.*;
 
 /**
- * Classe che rappresenta una mossa come oggetto json.
+ * Classe che rappresenta una mossa come oggetto json. In base al valore dell'attributo "type" ci sono 3 tipi di Action:
+ * <ul>
+ *     <li>
+ *         {<br>
+ *             "player": nome del giocatore che effettua la mossa (string)<br>
+ *             "type"  : "play" | "discard"<br>
+ *             "card"  : indice della carta nella mano del giocatore che effettua la mossa (string)<br>
+ *         }
+ *     </li>
+ *     <li>
+ *         {<br>
+ *             "player"        : nome del giocatore che effettua la mossa (string)<br>
+ *             "type"          : "hint_color"<br>
+ *             "hinted"        : nome del giocatore che riceve il suggerimento per colore(string)<br>
+ *             "color"         : colore suggerito (string)<br>
+ *             "cardsToReveal" : lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento (array)<br>
+ *         }
+ *     </li>
+ *     <li>
+ *         {<br>
+ *             "player"        : nome del giocatore che effettua la mossa (string)<br>
+ *             "type"          : "hint_value"<br>
+ *             "hinted"        : nome del giocatore che riceve il suggerimento per valore(string)<br>
+ *             "value"         : valore suggerito (string)<br>
+ *             "cardsToReveal" : lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento (array)<br>
+ *         }
+ *     </li>
+ * </ul>
  */
 @SuppressWarnings({"WeakerAccess","unused"})
 public class Action extends JSONObject
 {
 	/**
 	 * Costruttore per una mossa che rappresenta la giocata o lo scarto di una carta
-	 * @param player Giocatore che effettua la mossa
+	 * @param player nome del giocatore che effettua la mossa
 	 * @param type tipo di mossa ({@link ActionType#PLAY} o {@link ActionType#DISCARD})
 	 * @param card indice della carta nella mano del giocatore che effettua la mossa
 	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
@@ -30,46 +56,36 @@ public class Action extends JSONObject
 	{
 		super();
 		if (type == HINT_COLOR || type == HINT_VALUE)
-			throw new JSONException("Wrong type!");
-		setPlayer(player);
-		setType(type);
-		setCard(card);
+			throw new JSONException("Il parametro type deve essere "+PLAY+" o "+DISCARD);
+		setPlayer(player).setType(type).setCard(card);
 	}
 
 	/**
 	 * Costruttore per una mossa che rappresenta un suggerimento per valore
-	 * @param player Giocatore che effettua il suggerimento
-	 * @param hinted Giocatore cui &egrave; rivolto il suggerimento
-	 * @param value Valore da suggerire
-	 * @param cardsToReveal Lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
+	 * @param player nome del giocatore che effettua il suggerimento
+	 * @param hinted nome del giocatore cui &egrave; rivolto il suggerimento
+	 * @param value valore da suggerire
+	 * @param cardsToReveal lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
 	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
 	 */
 	public Action(String player, String hinted, int value, int[] cardsToReveal) throws JSONException
 	{
 		super();
-		setPlayer(player);
-		setType(HINT_VALUE);
-		setHintReceiver(hinted);
-		setValue(value);
-		setCardsToReveal(cardsToReveal);
+		setPlayer(player).setType(HINT_VALUE).setHinted(hinted).setValue(value).setCardsToReveal(cardsToReveal);
 	}
 
 	/**
 	 * Costruttore per una mossa che rappresenta un suggerimento per colore
-	 * @param player Giocatore che effettua il suggerimento
-	 * @param hinted Giocatore cui &egrave; rivolto il suggerimento
-	 * @param color Colore da suggerire
-	 * @param cardsToReveal Lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
+	 * @param player nome del giocatore che effettua il suggerimento
+	 * @param hinted nome del giocatore cui &egrave; rivolto il suggerimento
+	 * @param color colore da suggerire
+	 * @param cardsToReveal lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
 	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
 	 */
 	public Action(String player, String hinted, Color color, int[] cardsToReveal) throws JSONException
 	{
 		super();
-		setPlayer(player);
-		setType(HINT_COLOR);
-		setHintReceiver(hinted);
-		setColor(color);
-		setCardsToReveal(cardsToReveal);
+		setPlayer(player).setType(HINT_COLOR).setHinted(hinted).setCardsToReveal(cardsToReveal).setColor(color);
 	}
 
 	/**
@@ -91,99 +107,263 @@ public class Action extends JSONObject
 	{
 		super(reader);
 
-		if (names().size()!=0) {
+		if (names().size()!=0)
+		{
 			checkPlayer();
 			checkType();
-			ActionType type = getActionType();
-			if (type == PLAY)
+			ActionType type = getType();
+			if ((type == PLAY) || (type == DISCARD))
 			{
 				checkCard();
-			} else if (type == DISCARD) {
-				s = getString("card");
-				if (s == null)
-					throw new JSONException("Attributo \"card\" mancante");
-				try {
-					setCard(Integer.parseInt(s));
-				} catch (NumberFormatException e) {
-					throw new JSONException("Attributo \"card\" deve essere un intero");
-				}
-			} else if (type == HINT_COLOR) {
-				s = getString("color");
-				if (s == null)
-					throw new JSONException("Attributo \"color\" mancante");
-				if (Color.fromString(s) == null)
-					throw new JSONException("Attributo \"color\" deve essere uno tra "+Arrays.toString(Color.values()));
-
-				a = getArray("cardsToReveal");
-				if (a == null)
-					throw new JSONException("Attributo \"cardsToReveal\" mancante");
+			}
+			else
+			{
+				if (type == HINT_COLOR)
+					checkColor();
 				else
-				{
-					try {
-						for (JSONData d:a)
-							Integer.parseInt(d.toString(0));
-					}
-					catch(NumberFormatException nfe)
-					{
-						throw new JSONException("L'attributo \"cardsToReveal\" deve contenere solo interi");
-					}
-					this.set("cardsToReveal",s);
-				}
-
-				s = getString("hinted");
-				if (s == null)
-					throw new JSONException("Attributo \"hinted\" mancante");
-				setHintReceiver(s);
-
-			} else if (type == HINT_VALUE) {
-				s = getString("hinted");
-				if (s == null)
-					throw new JSONException("Attributo \"hinted\" mancante");
-				setHintReceiver(s);
-
-				a = getArray("cardsToReveal");
-				if (a == null)
-					throw new JSONException("Attributo \"cardsToReveal\" mancante");
-				else
-				{
-					try {
-						for (JSONData d:a)
-							Integer.parseInt(d.toString(0));
-					}
-					catch(NumberFormatException nfe)
-					{
-						throw new JSONException("L'attributo \"cardsToReveal\" deve contenere solo interi");
-					}
-					this.set("cardsToReveal",s);
-				}
-
-				s = getString("value");
-				if (s == null)
-					throw new JSONException("Attributo \"value\" mancante");
-				try {
-					setValue(Integer.parseInt(s));
-				} catch (NumberFormatException e) {
-					throw new JSONException("Unreadable hinted value");
-				}
+					checkValue();
+				checkCardsToReveal();
+				checkHinted();
 			}
 		}
 	}
 
+	/**
+	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "card"
+	 * @throws JSONException se l'attributo "card" &egrave; mancante, se non &egrave; un intero o se non &egrave; previsto dal tipo di Action
+	 */
 	private void checkCard() throws JSONException
 	{
+		ActionType type = getType();
+		if (!((type == PLAY) || (type == DISCARD)))
+			throw new JSONException("L'attributo \"card\" non è posseduto da Action rappresentanti un suggerimento");
+
 		String s = getString("card");
 		if (s == null)
 			throw new JSONException("Attributo \"card\" mancante");
+
+		int max = Game.getInstance().getNumberOfCardsPerPlayer();
 		try {
-			setCard(Integer.parseInt(s));
+			int c = Integer.parseInt(s);
+			if (c<0 || c>max-1)
+				throw new NumberFormatException();
 		} catch (NumberFormatException e) {
-			throw new JSONException("Attributo \"card\" deve essere un intero");
+			throw new JSONException("Attributo \"card\" deve essere un intero compreso tra 0 e "+(max-1)+" inclusi");
 		}
 	}
 
+	/**
+	 * @return la posizione della carta da giocare o scartare nella mano del giocatore che effettua la mossa, -1 se l'Action non possiede un campo "card"
+	 **/
+	public int getCard()
+	{
+		String c = getString("card");
+		if (c!=null)
+			return Integer.parseInt(getString("card"));
+		else
+			return -1;
+	}
 
 	/**
-	 * Usato nei costruttori, verifica l'integrit&agrave; del campo "player"
+	 * Consente di impostare l'attributo "card" di questa Action
+	 * @param c il valore da assegnare all'attributo "card"
+	 * @return questa Action modificata
+	 * @throws JSONException in caso di errori nell'impostazione
+	 */
+	public Action setCard(int c) throws JSONException
+	{
+		int c1 = getCard();
+		set("card",""+c);
+		try
+		{
+			checkCard();
+		}
+		catch (JSONException e)
+		{
+			if (c1>-1)
+				set("card",""+c1);
+			throw e;
+		}
+		return this;
+	}
+
+	/**
+	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "cardsToReveal"
+	 * @throws JSONException se l'attributo "cardsToReveal" &egrave; mancante, se non &egrave; un {@link JSONArray} di interi rappresentanti posizioni di carte in una mano, o se non &egrave; previsto dal tipo di Action
+	 */
+	private void checkCardsToReveal() throws JSONException
+	{
+		ActionType type = getType();
+		if ((type == PLAY) || (type == DISCARD))
+			throw new JSONException("L'attributo \"cardsToReveal\" è posseduto solo da Action rappresentanti un suggerimento");
+
+		JSONArray a = getArray("cardsToReveal");
+		if (a == null)
+			throw new JSONException("Attributo \"cardsToReveal\" mancante");
+		else
+		{
+			int max = Game.getInstance().getNumberOfCardsPerPlayer();
+			int i;
+			ArrayList<Integer> l = new ArrayList<>();
+			try {
+				for (JSONData d:a) {
+					i = Integer.parseInt(d.toString(0));
+					if (i<0 || i>(max-1) || l.contains(i))
+						throw new NumberFormatException();
+					l.add(i);
+				}
+			}
+			catch(NumberFormatException nfe)
+			{
+				throw new JSONException("L'attributo \"cardsToReveal\" deve contenere solo interi non ripetuti compresi tra 0 e "+(max-1)+" inclusi");
+			}
+		}
+	}
+
+	/**
+	 * @return un array contenente le posizioni nella mano del ricevente il suggerimento delle carte cui il suggerimento si riferisce
+	 */
+	public int[] getCardsToReveal()
+	{
+		JSONArray cards = getArray("cardsToReveal");
+		if (cards != null)
+		{
+			int i=0;
+			int[] c = new int[cards.size()];
+			for(JSONData d: cards)
+			{
+				c[i] = Integer.parseInt(d.toString(0));
+				i++;
+			}
+			return c;
+		}
+		return null;
+	}
+
+	/**
+	 * Consente di impostare l'attributo "cardsToReveal" di questa Action
+	 * @param cardsToReveal il valore da assegnare all'attributo "cardsToReveal"
+	 * @return questa Action modificata
+	 * @throws JSONException in caso di errori nell'impostazione
+	 */
+	public Action setCardsToReveal(int[] cardsToReveal) throws JSONException
+	{
+		JSONArray array1 = getArray("cardsToReveal");
+
+		JSONArray array = new JSONArray();
+		for (int i:cardsToReveal)
+			array.add("" + i);
+		set("cardsToReveal", array);
+		try
+		{
+			checkCardsToReveal();
+		}
+		catch(JSONException e)
+		{
+			if (array1 != null)
+				set("cardsToReveal",array1);
+			throw e;
+		}
+		return this;
+	}
+
+	/**
+	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "color"
+	 * @throws JSONException se l'attributo "color" &egrave; mancante, se non &egrave; un valore previsto dalla classe {@link Color} o se non &egrave; previsto dal tipo di Action
+	 */
+	private void checkColor() throws JSONException
+	{
+		ActionType type = getType();
+		if (type != HINT_COLOR)
+			throw new JSONException("L'attributo \"color\" è posseduto solo da Action rappresentanti un suggerimento per colore");
+
+		String s = getString("color");
+		if (s == null)
+			throw new JSONException("Attributo \"color\" mancante");
+		if (Color.fromString(s) == null)
+			throw new JSONException("Attributo \"color\" deve essere uno tra "+Arrays.toString(Color.values()));
+	}
+
+	/**
+	 * @return il colore suggerito, null se l'Action non possiede un attributo "color"
+	 **/
+	public Color getColor()
+	{
+		String c = getString("color");
+		if (c==null)
+			return null;
+		return Color.fromString(c);
+	}
+
+	/**
+	 * Consente di impostare il campo "color" di questa Action
+	 * @param color il valore da assegnare all'attributo "color"
+	 * @return questa Action modificata
+	 * @throws JSONException in caso di errore nell'impostazione
+	 */
+	public Action setColor(Color color) throws JSONException
+	{
+		Color c = getColor();
+		set("color",color.toString().toLowerCase());
+		try
+		{
+			checkColor();
+		}
+		catch(JSONException e)
+		{
+			if (c!=null)
+				set("color",c.toString());
+			throw e;
+		}
+		return this;
+	}
+
+	/**
+	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "hinted"
+	 * @throws JSONException se l'attributo "hinted" &egrave; mancante
+	 */
+	private void checkHinted() throws JSONException
+	{
+		String s = getString("hinted");
+		if (s == null)
+			throw new JSONException("Attributo \"hinted\" mancante");
+		if (!Game.getInstance().isPlaying(s))
+			throw new JSONException("Giocatore "+s+" sconosciuto");
+	}
+
+	/**
+	 * @return il nome del giocatore che riceve questo suggerimento, null se l'Action non contiene un attributo "hinted"
+	 **/
+	public String getHinted()
+	{
+		return getString("hinted");
+	}
+
+	/**
+	 * Consente di impostare l'attributo "hinted" di questa Action
+	 * @param player valore da assegnare all'attributo "hinted"
+	 * @return questa Action modificata
+	 * @throws JSONException in caso di errore nell'impostazione
+	 */
+	public Action setHinted(String player) throws JSONException
+	{
+		String hinted = getHinted();
+		set("hinted",player);
+		try
+		{
+			checkHinted();
+		}
+		catch(JSONException e)
+		{
+			if (hinted!=null)
+				set("hinted",hinted);
+			throw e;
+		}
+		return this;
+	}
+
+	/**
+	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "player"
 	 * @throws JSONException se l'attributo "player" &egrave; mancante
 	 */
 	private void checkPlayer() throws JSONException
@@ -191,17 +371,120 @@ public class Action extends JSONObject
 		String s = getString("player");
 		if (s == null)
 			throw new JSONException("Attributo \"player\" mancante");
+		if (!Game.getInstance().isPlaying(s))
+			throw new JSONException("Giocatore "+s+" sconosciuto");
 	}
 
 	/**
-	 * Usato nei costruttori, verifica l'integrit&agrave; del campo "type"
-	 * @throws JSONException se l'attributo "type" &egrave; mancante
+	 * @return il nome del giocatore che esegue l'azione, null se l'Action non possiede un attributo "player"
+	 **/
+	public String getPlayer(){return getString("player");}
+
+	/**
+	 * Consente di impostare l'attributo "player" di questa Action
+	 * @param s il valore da assegnare all'attributo "player"
+	 * @return questa Action modificata
+	 * @throws JSONException in caso di errore nell'impostazione
+	 */
+	public Action setPlayer(String s) throws JSONException
+	{
+		String player = getPlayer();
+		set("player",s);
+		try {
+			checkPlayer();
+		}
+		catch(JSONException e)
+		{
+			if (player != null)
+				set("player",player);
+			throw e;
+		}
+		return this;
+	}
+
+	/**
+	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "type"
+	 * @throws JSONException se l'attributo "type" &egrave; mancante o di valore diverso da quelli definiti da {@link ActionType}
 	 */
 	private void checkType() throws JSONException
 	{
-		ActionType type = ActionType.fromString(getString("type"));
-		if (type == null)
+		String t = getString("type");
+		if (t == null)
 			throw new JSONException("Attributo \"type\" mancante");
+		if (ActionType.fromString(t) == null)
+			throw new JSONException("L'attributo \"type\" può assumere valori "+Arrays.toString(ActionType.values()));
+
+	}
+
+	/**
+	 * @see ActionType
+	 * @return il tipo di Action, null se l'Action non possiede un attributo "type"
+	 **/
+	public ActionType getType(){return ActionType.fromString(getString("type"));}
+
+	/**
+	 * Consente di impostare l'attributo "type" di questa Action
+	 * @param type il valore da assegnare all'attributo "type"
+	 * @return questa Action modificata
+	 */
+	public Action setType(ActionType type)
+	{
+		if ((type != null)&&(type.toString()!=null))
+			set("type",type.toString().toLowerCase());
+		return this;
+	}
+
+	/**
+	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "value"
+	 * @throws JSONException se l'attributo "value" &egrave; mancante o se il suo valore non &egrave; un intero compreso tra 1 e 5 inclusi
+	 */
+	private void checkValue() throws JSONException
+	{
+		String s = getString("value");
+		if (s == null)
+			throw new JSONException("Attributo \"value\" mancante");
+		try
+		{
+			int i = Integer.parseInt(s);
+			if (i<1 || i>5)
+				throw new NumberFormatException();
+		} catch (NumberFormatException e) {
+			throw new JSONException("Attributo \"value\" deve essere un intero compreso tra 1 e 5 inclusi");
+		}
+	}
+
+	/**
+	 * @return il valore delle carte suggerite, -1 se l'Action non possiede un attributo "value"
+	 **/
+	public int getValue()
+	{
+		String s = getString("value");
+		if (s==null)
+			return -1;
+		return Integer.parseInt(s);
+	}
+
+	/**
+	 * Consente di impostare l'attributo "value" di questa Action
+	 * @param v il valore da assegnare all'attributo "value"
+	 * @return questa Action modificata
+	 * @throws JSONException in caso di errore nell'impostazione
+	 */
+	public Action setValue(int v) throws JSONException
+	{
+		int v1 = getValue();
+		set("value",""+v);
+		try
+		{
+			checkValue();
+		}
+		catch(JSONException e)
+		{
+			if (v1>-1)
+				set("value",""+v1);
+			throw e;
+		}
+		return this;
 	}
 
 	/**
@@ -222,166 +505,23 @@ public class Action extends JSONObject
 	}
 
 	/**
-	 * @return il nome del giocatore che esegue l'azione
-	 **/
-	public String getPlayer(){return getString("player");}
-
-	/**
-	 * @see ActionType
-	 * @return il tipo di mossa
-	 **/
-	public ActionType getActionType(){return ActionType.fromString(getString("type"));}
-
-	/**
-	 * @return la posizione della carta da giocare o scartare nella mano del giocatore che effettua la mossa, null se la mossa rappresenta un suggerimento
-	 **/
-	public int getCard()
-	{
-		ActionType type = getActionType();
-		if(type == PLAY || type == DISCARD)
-			return Integer.parseInt(getString("card"));
-		else return -1;
-	}
-
-	public int[] getCardsToReveal() throws JSONException
-	{
-		if(this.getActionType().equals(HINT_VALUE) || this.getActionType().equals(HINT_COLOR))
-		{
-			JSONArray array = getArray("cardsToReveal");
-			for (JSONData d: array)
-			{
-
-			}
-			String s = getString("cardsToReveal");
-			String [] resString  = s.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
-			List<Integer> results = new ArrayList<>();
-			for (String toAdd : resString){
-				try{
-					results.add(Integer.parseInt(toAdd));
-				} catch (NumberFormatException nfe) {
-					throw new JSONException("Not able to convert to int, getCardsToReveal");
-				}
-			}
-			return results;
-		}else return  null;
-	}
-
-	/**
-	 * gets the name of the player receiving the hint
-	 * @return the index of the player receiving the hint, null if the action type is not HINT_COLOR or HINT_VALUE
-	 **/
-	public String getHintReceiver()
-	{
-		ActionType type = getActionType();
-		if(type != ActionType.HINT_COLOR && type!= ActionType.HINT_VALUE) return null;
-		return getString("hinted");
-	}
-
-	/**
-	 * gets the color hinted
-	 * @return the color hinted, null if the action type is not HINT_COLOR
-	 **/
-	public Color getColor()
-	{
-		ActionType type = getActionType();
-		if(type != ActionType.HINT_COLOR) return null;
-		return Color.fromString(getString("color"));
-	}
-
-	/**
-	 * gets the value hinted
-	 * @return the value hinted, -1 if the action type is not HINT_VALUE
-	 **/
-	public int getValue()
-	{
-		ActionType type = getActionType();
-		if(type != ActionType.HINT_VALUE) return -1;
-		return Integer.parseInt(getString("value"));
-	}
-
-	public Action setCard(int c) throws JSONException
-	{
-		if (getActionType()==HINT_COLOR || getActionType()==HINT_VALUE)
-			throw new JSONException("Hint actions have no cards");
-		if (c<0 || c>Game.getInstance().getNumberOfCardsPerPlayer()-1)
-			throw new JSONException(new IndexOutOfBoundsException());
-		set("card",""+c);
-		return this;
-	}
-
-	public Action setColor(Color color) throws JSONException
-	{
-		if (getActionType()==PLAY || getActionType()==DISCARD)
-			throw new JSONException(getActionType()+" actions have no color");
-		if (color == null)
-			throw new JSONException("Null color");
-		set("color",color.toString().toLowerCase());
-		return this;
-	}
-
-	public Action setHintReceiver(String player) throws JSONException
-	{
-		if (!Game.getInstance().isPlaying(player))
-			throw new JSONException("Unrecognized player");
-		if (player.equals(getPlayer()))
-			throw new JSONException("You cannot hint yourself");
-		set("hinted",player);
-		return this;
-	}
-
-	public void setCardsToReveal(int[] cardsToReveal)
-	{
-		JSONArray array = new JSONArray();
-		for (int i:cardsToReveal)
-			array.add("" + i);
-		set("cardsToReveal", array);
-	}
-
-
-	public Action setPlayer(String s) throws JSONException
-	{
-		if (!Game.getInstance().isPlaying(s))
-			throw new JSONException("Unrecognized player");
-		set("player",s);
-		return this;
-	}
-
-	public Action setType(ActionType type)
-	{
-		set("type",type.toString().toLowerCase());
-		return this;
-	}
-
-	public Action setValue(int v) throws JSONException
-	{
-		if (getActionType()==PLAY || getActionType()==DISCARD)
-			throw new JSONException(getActionType()+" actions have no value");
-		if (v<1 || v>5)
-			throw new JSONException(new IndexOutOfBoundsException());
-		set("value",""+v);
-		return this;
-	}
-
-	/**
-	 * A string representation of the action being performed
-	 * @return a description of the action, depending on type
+	 * @return una rappresentazione testuale (non formattata json) di questa Action. Usa {@link Action#toString(int)} per una rappresentazione in formato json.
 	 * */
 	public String toString()
 	{
-
-		ActionType type = getActionType();
+		ActionType type = getType();
 		String p = getPlayer();
 		if (type == PLAY)
-			return p+"("+Game.getInstance().getPlayerTurn(p)+") play the card of index "+getCard();
+			return p+"("+Game.getInstance().getPlayerTurn(p)+") gioca la carta in posizione "+getCard()+" nella propria mano";
 		else if (type == DISCARD)
-			return p+"("+Game.getInstance().getPlayerTurn(p)+") discards the card of index "+getCard();
+			return p+"("+Game.getInstance().getPlayerTurn(p)+") scarta la carta in posizione "+getCard()+" nella propria mano";
 		else {
-			String h = getHintReceiver();
+			String h = getHinted();
 			if (type == HINT_COLOR)
-				return p+"("+Game.getInstance().getPlayerTurn(p)+") shows "+getColor()+" cards to "
+				return p+"("+Game.getInstance().getPlayerTurn(p)+") mostra le carte di colore "+getColor()+" a "
 						+h+"("+Game.getInstance().getPlayerTurn(h)+")";
 			else if (type == HINT_VALUE)
-				return p+"("+Game.getInstance().getPlayerTurn(p)+") shows "+getValue()+"-cards to "
+				return p+"("+Game.getInstance().getPlayerTurn(p)+") mostra le carte di valore "+getValue()+" a "
 						+h+"("+Game.getInstance().getPlayerTurn(h)+")";
 		}
 		return "";

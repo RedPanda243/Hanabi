@@ -1,4 +1,9 @@
 package api.game;
+
+/**
+ * Definisce i possibili tipi di Action
+ * @see Action
+ */
 public enum ActionType
 {
 	PLAY,DISCARD,HINT_COLOR,HINT_VALUE;
@@ -23,7 +28,9 @@ public enum ActionType
 			return "discard";
 		if (this == HINT_COLOR)
 			return "hint color";
-		return "hint value";
+		if (this == HINT_VALUE)
+			return "hint value";
+		return null;
 	}
 
 }

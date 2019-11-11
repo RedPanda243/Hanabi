@@ -165,14 +165,14 @@ public class State extends JSONObject
 /*	public boolean legalAction(Action a) throws IllegalActionException{
 		if(a==null) throw new IllegalActionException("Action is null");
 		if(a.getPlayer()!= currentPlayer) return false;
-		switch(a.getActionType()){
+		switch(a.getType()){
 			case PLAY:
 				return (a.getCard()>=0 && a.getCard()<hands[currentPlayer].length);
 			case DISCARD:
 				if(hints==8) throw new IllegalActionException("Discards cannot be made when there are 8 hint tokens");
 				return (a.getCard()>=0 && a.getCard()<hands[currentPlayer].length);
 			default:
-				if(hints==0 || a.getHintReceiver() <0 || a.getHintReceiver()> players.length || a.getHintReceiver() == a.getPlayer()) return false;
+				if(hints==0 || a.getHinted() <0 || a.getHinted()> players.length || a.getHinted() == a.getPlayer()) return false;
 				return true;
 		}
 	}

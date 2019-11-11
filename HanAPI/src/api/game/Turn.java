@@ -29,7 +29,7 @@ public class Turn extends JSONObject
 			throw new JSONException("Missing action");
 		Action a = new Action(d.toString(0));
 		setAction(a);
-		if (a.getActionType() == ActionType.PLAY || a.getActionType() == ActionType.DISCARD)
+		if (a.getType() == ActionType.PLAY || a.getType() == ActionType.DISCARD)
 		{
 			d = get("drawn");
 /*			if (d == null)
@@ -62,7 +62,7 @@ public class Turn extends JSONObject
 
 	public Turn setDrawn(Card card) throws JSONException
 	{
-		ActionType type = getAction().getActionType();
+		ActionType type = getAction().getType();
 		if (type == ActionType.HINT_COLOR || type == ActionType.HINT_VALUE)
 			throw new JSONException("Hint actions do not draw");
 		set("drawn",card);

@@ -7,39 +7,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10ac42d8-4529-433c-bb71-0f81b1df50d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sjson/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/src/game/MathState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiAgent/src/utils/MathCalc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/ActionType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Firework.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Hand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/main/HanabiClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/agents/HumanAgent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/game/MathState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/agents/HumanAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/agents/HumanAgent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/HumanAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/agents/HumanAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONConvertible.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONObjectConvertible.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/JSONUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjson/JSONUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/TypedJSON.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sjson/TypedJSONArray.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,11 +44,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sjson/package-info.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sjson/JSONObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="82" selection-start-line="7" selection-start-column="82" selection-end-line="7" selection-end-column="82" />
+            <state relative-caret-position="493">
+              <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sjson/JSONData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sjson/JSONConvertible.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -68,8 +74,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sjson/JSONString.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-187">
-              <caret line="34" column="79" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="79" />
+            <state relative-caret-position="561">
+              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+              <folding>
+                <element signature="e#708#709#0" expanded="true" />
+                <element signature="e#733#734#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,18 +87,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sjson/JSONArray.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="100" column="41" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="41" />
+            <state relative-caret-position="1887">
+              <caret line="136" column="2" selection-start-line="136" selection-start-column="2" selection-end-line="136" selection-end-column="2" />
               <folding>
-                <element signature="e#1919#1920#0" expanded="true" />
-                <element signature="e#1943#1944#0" expanded="true" />
-                <element signature="e#2092#2093#0" expanded="true" />
-                <element signature="e#2137#2138#0" expanded="true" />
-                <element signature="e#2179#2180#0" expanded="true" />
-                <element signature="e#2208#2209#0" expanded="true" />
-                <element signature="e#2244#2245#0" expanded="true" />
-                <element signature="e#2273#2274#0" expanded="true" />
+                <element signature="e#2202#2203#0" expanded="true" />
+                <element signature="e#2231#2232#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sjson/JSONUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="457">
+              <caret line="228" column="31" selection-start-line="228" selection-start-column="31" selection-end-line="228" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -99,14 +112,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="package-info" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>valore</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -116,15 +123,14 @@
       <list>
         <option value="$PROJECT_DIR$/src/sjson/sjson/JSONUtils.java" />
         <option value="$PROJECT_DIR$/src/sjson/TypedJSON.java" />
+        <option value="$PROJECT_DIR$/src/sjson/JSONException.java" />
         <option value="$PROJECT_DIR$/src/sjson/JSONConvertible.java" />
         <option value="$PROJECT_DIR$/src/sjson/JSONObjectConvertible.java" />
         <option value="$PROJECT_DIR$/src/sjson/ExtendedJSONObject.java" />
-        <option value="$PROJECT_DIR$/src/sjson/TypedJSONArray.java" />
-        <option value="$PROJECT_DIR$/src/sjson/package-info.java" />
         <option value="$PROJECT_DIR$/src/sjson/JSONUtils.java" />
-        <option value="$PROJECT_DIR$/src/sjson/JSONException.java" />
-        <option value="$PROJECT_DIR$/src/sjson/JSONData.java" />
         <option value="$PROJECT_DIR$/src/sjson/JSONString.java" />
+        <option value="$PROJECT_DIR$/src/sjson/TypedJSONArray.java" />
+        <option value="$PROJECT_DIR$/src/sjson/JSONData.java" />
         <option value="$PROJECT_DIR$/src/sjson/JSONArray.java" />
         <option value="$PROJECT_DIR$/src/sjson/JSONObject.java" />
       </list>
@@ -144,6 +150,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -166,21 +173,15 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
-    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
-    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="sjson" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -249,8 +250,8 @@
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47779274" visible="true" weight="0.26647565" />
-      <window_info id="Structure" order="1" sideWeight="0.52220726" side_tool="true" visible="true" weight="0.26647565" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4791386" visible="true" weight="0.26289397" />
+      <window_info id="Structure" order="1" sideWeight="0.5208614" side_tool="true" visible="true" weight="0.26289397" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -279,6 +280,7 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/nio/charset/CharsetDecoder.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/Reader.java" />
     <entry file="file://$PROJECT_DIR$/src/sjson/sjson/JSONObject.java" />
     <entry file="file://$PROJECT_DIR$/src/sjson/sjson/JSONArrayConvertible.java" />
     <entry file="file://$PROJECT_DIR$/src/sjson/sjson/JSONData.java" />
@@ -292,129 +294,73 @@
     <entry file="file://$PROJECT_DIR$/src/sjson/JSONArrayConvertible.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Object.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/CloneNotSupportedException.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/HashMap.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Class.java" />
-    <entry file="file://$PROJECT_DIR$/src/sjson/ExtendedJSONObject.java" />
-    <entry file="file://$PROJECT_DIR$/src/sjson/TypedJSONArray.java" />
     <entry file="file://$PROJECT_DIR$/src/sjson/TypedJSON.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="310">
           <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sjson/JSONObjectConvertible.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/HashMap.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java" />
+    <entry file="file://$PROJECT_DIR$/src/sjson/JSONException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="153">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Class.java" />
+    <entry file="file://$PROJECT_DIR$/src/sjson/ExtendedJSONObject.java" />
+    <entry file="file://$PROJECT_DIR$/src/sjson/JSONObjectConvertible.java" />
+    <entry file="file://$PROJECT_DIR$/src/sjson/TypedJSONArray.java" />
+    <entry file="file://$PROJECT_DIR$/src/sjson/JSONObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sjson/JSONData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sjson/JSONConvertible.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/Reader.java">
+    <entry file="file://$PROJECT_DIR$/src/sjson/JSONString.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="118" column="15" selection-start-line="118" selection-start-column="15" selection-end-line="118" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sjson/JSONUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-101">
-          <caret line="79" column="41" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
+        <state relative-caret-position="561">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
           <folding>
-            <element signature="e#154#187#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sjson/JSONException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="e#231#261#0" expanded="true" />
-            <element signature="e#396#397#0" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <element signature="e#447#448#0" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
+            <element signature="e#708#709#0" expanded="true" />
+            <element signature="e#733#734#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sjson/JSONArray.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="100" column="41" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="41" />
+        <state relative-caret-position="1887">
+          <caret line="136" column="2" selection-start-line="136" selection-start-column="2" selection-end-line="136" selection-end-column="2" />
           <folding>
-            <element signature="e#1919#1920#0" expanded="true" />
-            <element signature="e#1943#1944#0" expanded="true" />
-            <element signature="e#2092#2093#0" expanded="true" />
-            <element signature="e#2137#2138#0" expanded="true" />
-            <element signature="e#2179#2180#0" expanded="true" />
-            <element signature="e#2208#2209#0" expanded="true" />
-            <element signature="e#2244#2245#0" expanded="true" />
-            <element signature="e#2273#2274#0" expanded="true" />
+            <element signature="e#2202#2203#0" expanded="true" />
+            <element signature="e#2231#2232#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sjson/JSONString.java">
+    <entry file="file://$PROJECT_DIR$/src/sjson/JSONUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="34" column="79" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sjson/JSONObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="257" selection-start-line="257" selection-end-line="257" />
-          <folding>
-            <element signature="e#198#242#0" expanded="true" />
-            <element signature="e#2737#2738#0" expanded="true" />
-            <element signature="e#2776#2777#0" expanded="true" />
-            <element signature="e#3294#3295#0" expanded="true" />
-            <element signature="e#3319#3320#0" expanded="true" />
-            <element signature="e#3425#3426#0" expanded="true" />
-            <element signature="e#3454#3455#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3695#3696#0" expanded="true" />
-            <element signature="e#5923#5924#0" expanded="true" />
-            <element signature="e#5968#5969#0" expanded="true" />
-            <element signature="e#6345#6346#0" expanded="true" />
-            <element signature="e#6369#6370#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sjson/JSONData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="116" column="27" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="27" />
-          <folding>
-            <element signature="e#546#590#0" expanded="true" />
-            <element signature="e#2653#2654#0" expanded="true" />
-            <element signature="e#2711#2712#0" expanded="true" />
-            <element signature="e#3295#3296#0" expanded="true" />
-            <element signature="e#3329#3330#0" expanded="true" />
-            <element signature="e#3655#3656#0" expanded="true" />
-            <element signature="e#3681#3682#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sjson/package-info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="82" selection-start-line="7" selection-start-column="82" selection-end-line="7" selection-end-column="82" />
+        <state relative-caret-position="457">
+          <caret line="228" column="31" selection-start-line="228" selection-start-column="31" selection-end-line="228" selection-end-column="31" />
         </state>
       </provider>
     </entry>

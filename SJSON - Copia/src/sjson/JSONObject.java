@@ -6,48 +6,26 @@ import java.util.*;
 import static sjson.JSONUtils.readUntil;
 import static sjson.JSONUtils.readWhile;
 
-/**
- * Definisce un oggetto json come mappa di JSONData
- */
-@SuppressWarnings({"WeakerAccess","unused"})
+//@SuppressWarnings({"WeakerAccess","unused"})
 public class JSONObject extends JSONData
 {
 	private HashMap<String, JSONData> map;
 
-	/**
-	 * Costruisce l'oggetto json vuoto {}
-	 */
 	public JSONObject()
 	{
-		super("");
 		map = new HashMap<>();
 	}
 
-	/**
-	 * @see JSONObject#JSONObject(Reader)
-	 * @param in InputStream da cui leggere una rappresentazione testuale di un oggetto json
-	 * @throws JSONException se la stringa letta &egrave; malformata
-	 */
 	public JSONObject(InputStream in) throws JSONException
 	{
 		this(new InputStreamReader(in));
 	}
 
-	/**
-	 * @see JSONObject#JSONObject(Reader)
-	 * @param s rappresentazione testuale di un oggetto json
-	 * @throws JSONException se la stringa &egrave; malformata
-	 */
 	public JSONObject(String s) throws JSONException
 	{
 		this(new StringReader(s));
 	}
 
-	/**
-	 * Legge un carattere alla volta fino a quando non ottiene una rappresentazione testuale di un oggetto json
-	 * @param r Reader da cui leggere una rappresentazione testuale di un oggetto json
-	 * @throws JSONException se la stringa letta &egrave; malformata
-	 */
 	public JSONObject(Reader r) throws JSONException
 	{
 		this();
@@ -111,21 +89,111 @@ public class JSONObject extends JSONData
 		}
 	}
 
-	/**
-	 * @see JSONData#clone()
-	 * @return una copia di questo JSONObject
-	 */
+	@Deprecated
+	public boolean compatible(JSONObject template)
+	{
+//		String[] names = template.names();
+		Type ta,tb;
+		String sbox;
+		JSONObject obox;
+		JSONArray abox;
+		for (String name:template.names())
+		{
+			ta = this.get(name).getJSONType();
+			tb = template.get(name).getJSONType();
+/*			System.err.println("\nField "+name+" has to be a "+ta);
+			System.err.println("Template value: "+template.get(name));
+			System.err.println("Object value: "+this.get(name));
+*/
+			if (tb.equals(Type.STRING))
+			{
+				sbox = template.getString(name);
+//				System.err.println("SBOX = "+sbox+"\t\t"+sbox.equals("\"\""));
+
+				if (sbox.equals(""))
+				{
+					if (!ta.equals(Type.STRING))
+					{
+//						System.err.println("Not same type!");
+						return false;
+					}
+//					System.err.println("Same type, OK");
+				}
+				else
+				{
+					try
+					{
+						if (!sbox.equals(this.getString(name)))
+						{
+							System.err.println("Not same value!");
+							return false;
+						}
+					}
+					catch (NullPointerException e)
+					{
+						System.err.println("Null value!");
+						return false;
+					}
+				}
+			}
+			else if (tb.equals(Type.OBJECT))
+			{
+				obox = template.getObject(name);
+				if (obox.equals(new JSONObject()) && ! ta.equals(Type.OBJECT))
+					return false;
+				try
+				{
+					if (!obox.equals(new JSONObject()) && !this.getObject(name).compatible(obox))
+						return false;
+				}
+				catch (NullPointerException e)
+				{
+					return false;
+				}
+			}
+			else //JSONArray
+			{
+				abox = template.getArray(name);
+				if (abox.equals(new JSONArray()) && !ta.equals(Type.ARRAY))
+					return false;
+				try
+				{
+					if (!abox.equals(new JSONArray()))
+					{
+						JSONArray a = this.getArray(name);
+						JSONObject o,aobox;
+						boolean flag = true;
+						for (int j=0; j<a.size(); j++)
+						{
+							o =  a.getObject(j);
+							for (int k=0; k<abox.size() && flag; k++)
+							{
+								aobox = abox.getObject(k);
+								if (aobox!=null)
+								{
+									if (o.compatible(aobox))
+										flag = false;
+								}
+							}
+							if (flag)
+								return false;
+						}
+					}
+				}
+				catch (NullPointerException e)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	public JSONObject clone()
 	{
 		return (JSONObject)super.clone();
 	}
 
-	/**
-	 * Inserisce tutti i valori di questo JSONObject in quello passato come parametro. Se i due oggetti possiedono valori con lo
-	 * stesso nome viene mantenuto quello di questo oggetto.
-	 * @param o un JSONObject da modificare
-	 * @return il parametro modificato
-	 */
 	public JSONObject copyIn(JSONObject o)
 	{
 		for (String name: map.keySet())
@@ -133,26 +201,16 @@ public class JSONObject extends JSONData
 		return o;
 	}
 
-	/**
-	 * @return {@link JSONData.Type#OBJECT}
-	 */
 	public Type getJSONType()
 	{
 		return Type.OBJECT;
 	}
 
-	/**
-	 * @param name nome dell'attributo di cui si vuole verificare l'esistenza
-	 * @return true se questo JSONObject possiede un attributo di nome specificato, false altrimenti
-	 */
 	public boolean has(String name)
 	{
 		return get(name)!=null;
 	}
 
-	/**
-	 * @return un {@link Iterator} dei nomi dei valori di questo JSONObject
-	 */
 	public Iterator<String> nameIterator()
 	{
 		return map.keySet().iterator();
@@ -165,24 +223,45 @@ public class JSONObject extends JSONData
 	{
 		return map.keySet();
 	}
+/*
+	@SuppressWarnings("WeakerAccess")
+	public String[] names()
+	{
+		String[] a = new String[map.size()];
+		Iterator<String> i = map.keySet().iterator();
+		int c = 0;
+		while (i.hasNext())
+		{
+			a[c] = i.next();
+			c++;
+		}
+		Arrays.sort(a);
+		return a;
+	}
+*/
 
-	/**
-	 * L'oggetto restituito &egrave; una copia per indirizzo di quello mantenuto dal JSONObject: si consiglia di non modificarlo
-	 * @param name nome dell'attributo richiesto
-	 * @return L'attributo di nome specificato, null se non esiste attributo con quel nome
-	 */
 	public JSONData get(String name)
 	{
 		if (!(name.startsWith("\"")&&name.endsWith("\"")))
 			name = "\""+name+"\"";
 		return map.get(name);
 	}
+/*
+	public <T extends JSONData> T get(Class<T> cl,String name)
+	{
+		JSONData d;
+		if (!(name.startsWith("\"")&&name.endsWith("\"")))
+			d = map.get("\""+name+"\"").clone();
+		else
+			d = map.get(name).clone();
+		if (d == null)
+			return null;
+		return (T)d;
+	}
 
-	/**
-	 * @see JSONObject#get(String)
-	 * @param name nome dell'attributo richiesto
-	 * @return L'attributo di nome specificato come JSONArray, null se non esiste attributo con quel nome o se non &egrave; un array
-	 */
+ */
+
+	@SuppressWarnings("WeakerAccess")
 	public JSONArray getArray(String name)
 	{
 		try
@@ -195,11 +274,7 @@ public class JSONObject extends JSONData
 		}
 	}
 
-	/**
-	 * @see JSONObject#get(String)
-	 * @param name nome dell'attributo richiesto
-	 * @return L'attributo di nome specificato come JSONObject, null se non esiste attributo con quel nome o se non &egrave; un oggetto
-	 */
+	@SuppressWarnings("WeakerAccess")
 	public JSONObject getObject(String name)
 	{
 		try
@@ -212,21 +287,15 @@ public class JSONObject extends JSONData
 		}
 	}
 
-	/**
-	 * @see JSONObject#get(String)
-	 * @param name nome dell'attributo richiesto
-	 * @return L'attributo di nome specificato come JSONObject, null se non esiste attributo con quel nome o se non &egrave; una stringa
-	 */
+	@SuppressWarnings("WeakerAccess")
 	public String getString(String name)
 	{
 		try
 		{
 			JSONData data = get(name);
+			String s = data.toString();
 			if (data.getJSONType().equals((Type.STRING)))
-			{
-				String s = data.toString();
-				return s.substring(1, s.length() - 1); //TOLGO I DOPPI APICI!
-			}
+				return s.substring(1,s.length()-1); //TOLGO I DOPPI APICI!
 			return null;
 		}
 		catch(NullPointerException cce)
@@ -235,11 +304,7 @@ public class JSONObject extends JSONData
 		}
 	}
 
-	/**
-	 * @param name nome dell'attributo da impostare
-	 * @param value attributo da assegnare al nome specificato
-	 * @return questo JSONObject
-	 */
+	@SuppressWarnings("WeakerAccess")
 	public JSONObject set(String name, JSONData value)
 	{
 		if (value != null)
@@ -251,38 +316,24 @@ public class JSONObject extends JSONData
 		return this;
 	}
 
-	/**
-	 * Assegna un attributo di tipo stringa di nome e valore specificati
-	 * @see JSONObject#set(String, JSONData)
-	 */
 	public JSONObject set(String name, String value)
 	{
 		return set(name,new JSONString(value));
 	}
 
-	/**
-	 * Rimuove l'attributo di nome specificato
-	 * @param name nome dell'attributo da rimuovere
-	 * @return questo JSONObject
-	 */
+	@SuppressWarnings("unused")
 	public JSONObject remove(String name)
 	{
 		map.remove(name);
 		return this;
 	}
 
-	/**
-	 * @return il numero di attributi contenuti in questo JSONObject
-	 */
+	@SuppressWarnings("WeakerAccess")
 	public int size()
 	{
 		return map.size();
 	}
 
-	/**
-	 * Assegna ad ogni attributo innestato un nuovo livello di indentazione
-	 * @see JSONData#toString(int)
-	 */
 	public final String toString(int indent)
 	{
 		if (indent<0)
@@ -323,9 +374,6 @@ public class JSONObject extends JSONData
 		return ret.toString();
 	}
 
-	/**
-	 * @return una {@link Collection} contenente una copia di tutti i valori degli attributi di questo JSONObject
-	 */
 	public Collection<JSONData> values()
 	{
 		ArrayList<JSONData> l = new ArrayList<>();

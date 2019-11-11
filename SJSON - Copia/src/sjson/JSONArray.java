@@ -13,7 +13,6 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	@SuppressWarnings("WeakerAccess")
 	public JSONArray()
 	{
-		super("[]");
 		list = new ArrayList<>();
 	}
 
@@ -97,9 +96,6 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 		return this;
 	}
 
-	/**
-	 * @return {@link JSONData.Type#ARRAY}
-	 */
 	public Type getJSONType()
 	{
 		return Type.ARRAY;

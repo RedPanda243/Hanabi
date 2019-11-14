@@ -7,22 +7,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="644e2846-9d4a-4fbd-95f8-f21cfdbcf6f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/client/AbstractAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/client/HandCardsProbability.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/client/HumanAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/client/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/client/MathCalc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/client/MathState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/client/Strategy1Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/game/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/AbstractAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/agents/AbstractAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/Strategy1Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/agents/Strategy1Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/artifacts/HanabiAgent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/libraries/HanAPI.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/libraries/SJSON.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/HanabiAgent.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/agents/AbstractAgent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/agents/BasicAgent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/agents/Strategy1Agent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/HandCardsProbability$PairCardCount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/HandCardsProbability.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/MathCalc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/search/HandGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/AbstractAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/BasicAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/HumanAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/Strategy1Agent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/game/MathState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/main/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/math/HandCardsProbability.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/math/MathCalc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/search/HandGenerator.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +102,7 @@
         <entry file="file://$PROJECT_DIR$/src/api/client/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,7 +137,7 @@
         <entry file="file://$PROJECT_DIR$/src/api/client/HandCardsProbability.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="581">
-              <caret line="125" column="67" lean-forward="true" selection-start-line="125" selection-start-column="67" selection-end-line="125" selection-end-column="67" />
+              <caret line="125" column="67" selection-start-line="125" selection-start-column="67" selection-end-line="125" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -215,13 +226,6 @@
               <item name="HanAPI" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HanAPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HanAPI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HanAPI" type="b2602c69:ProjectViewProjectNode" />
@@ -471,7 +475,7 @@
     <entry file="file://$PROJECT_DIR$/src/api/client/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -506,7 +510,7 @@
     <entry file="file://$PROJECT_DIR$/src/api/client/HandCardsProbability.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="581">
-          <caret line="125" column="67" lean-forward="true" selection-start-line="125" selection-start-column="67" selection-end-line="125" selection-end-column="67" />
+          <caret line="125" column="67" selection-start-line="125" selection-start-column="67" selection-end-line="125" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

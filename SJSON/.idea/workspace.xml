@@ -7,14 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10ac42d8-4529-433c-bb71-0f81b1df50d8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/AbstractAgent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/HandCardsProbability.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/HumanAgent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/MathCalc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/MathState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/Strategy1Agent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/ActionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/ActionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Turn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/AbstractAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/agents/AbstractAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/Strategy1Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/agents/Strategy1Agent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiAgent/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -110,7 +117,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -134,6 +140,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -213,9 +220,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47351524" visible="true" weight="0.27954546" />
-      <window_info id="Structure" order="1" sideWeight="0.5264847" side_tool="true" visible="true" weight="0.27954546" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47191012" visible="true" weight="0.2840909" />
+      <window_info id="Structure" order="1" sideWeight="0.5280899" side_tool="true" visible="true" weight="0.2840909" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />

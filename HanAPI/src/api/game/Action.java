@@ -9,6 +9,7 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static api.game.ActionType.*;
 
@@ -68,7 +69,7 @@ public class Action extends JSONObject
 	 * @param cardsToReveal lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
 	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
 	 */
-	public Action(String player, String hinted, int value, int[] cardsToReveal) throws JSONException
+	public Action(String player, String hinted, int value, List<Integer> cardsToReveal) throws JSONException
 	{
 		super();
 		setPlayer(player).setType(HINT_VALUE).setHinted(hinted).setValue(value).setCardsToReveal(cardsToReveal);
@@ -82,7 +83,7 @@ public class Action extends JSONObject
 	 * @param cardsToReveal lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
 	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
 	 */
-	public Action(String player, String hinted, Color color, int[] cardsToReveal) throws JSONException
+	public Action(String player, String hinted, Color color, List<Integer> cardsToReveal) throws JSONException
 	{
 		super();
 		setPlayer(player).setType(HINT_COLOR).setHinted(hinted).setCardsToReveal(cardsToReveal).setColor(color);
@@ -223,18 +224,14 @@ public class Action extends JSONObject
 	/**
 	 * @return un array contenente le posizioni nella mano del ricevente il suggerimento delle carte cui il suggerimento si riferisce
 	 */
-	public int[] getCardsToReveal()
+	public List<Integer> getCardsToReveal()
 	{
 		JSONArray cards = getArray("cardsToReveal");
 		if (cards != null)
 		{
-			int i=0;
-			int[] c = new int[cards.size()];
+			ArrayList<Integer> c = new ArrayList<>();
 			for(JSONData d: cards)
-			{
-				c[i] = Integer.parseInt(d.toString(0));
-				i++;
-			}
+				c.add(Integer.parseInt(d.toString(0)));
 			return c;
 		}
 		return null;
@@ -246,7 +243,7 @@ public class Action extends JSONObject
 	 * @return questa Action modificata
 	 * @throws JSONException in caso di errori nell'impostazione
 	 */
-	public Action setCardsToReveal(int[] cardsToReveal) throws JSONException
+	public Action setCardsToReveal(List<Integer> cardsToReveal) throws JSONException
 	{
 		JSONArray array1 = getArray("cardsToReveal");
 

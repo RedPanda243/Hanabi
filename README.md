@@ -1,7 +1,7 @@
 # Hanabi
 Il progetto Hanabi prende il nome dall'omonimo gioco e ne rappresenta un implementazione java.
 
-#Descrizione
+# Descrizione
 Il progetto git è composto da 3 moduli java (progetti indipendenti): SJSON, HanAPI, HanabiEngine.
 Ogni modulo contiene un jar: SJSON.jar e HanAPI.jar sono librerie, mentre HanabiEngine.jar è eseguibile ed implementa un server tcp che mantiene la partita.
 I giocatori, identificati dalla connessione tcp, devono comunicare al server le proprie mosse e ottenere lo stato corrente della partita.
@@ -11,6 +11,6 @@ Il modulo SJSON implementa i concetti propri del formato json (in realtà implem
 
 Il modulo HanAPI è suddiviso in due package
 
-##api.game
+## api.game
 
-##api.client
+## api.client

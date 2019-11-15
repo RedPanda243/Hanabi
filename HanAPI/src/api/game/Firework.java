@@ -6,11 +6,14 @@ import sjson.JSONException;
 import java.io.Reader;
 import java.io.StringReader;
 
-public class Firework extends JSONArray
+/**
+ *  Classe che implementa un Firework Hanabi, rappresentato per mezzo di un json array di {@link Card}
+ */
+public class Firework extends TypedJSON<JSONArray>
 {
 	public Firework()
 	{
-		super();
+		json = new JSONArray();
 	}
 
 	public Firework(String s) throws JSONException
@@ -20,63 +23,76 @@ public class Firework extends JSONArray
 
 	public Firework(Reader reader) throws JSONException
 	{
-		super(reader);
-		if (size()>5)
-			throw new JSONException("Firework can have max 5 cards");
+		json = new JSONArray(reader);
+		if (json.size()>5)
+			throw new JSONException("Un Firework può avere massimo 5 carte");
 
-		for(int i=0; i<size(); i++)
-			replace(i, new Card(get(i).toString(0)));
+		for(int i=0; i<json.size(); i++)
+			json.replace(i, new Card(json.get(i).toString(0)));
 
-		for (int i=1; i<size(); i++)
-		{
-			if (getCard(i).getValue()!=getCard(i-1).getValue()+1)
-				throw new JSONException("Malformed firework, messy cards!"+this.toString(3));
-		}
-		if (size()>1 && !checkColor(getCard(0).getColor()))
-			throw new JSONException("Cards in firework must have same color");
-
+		checkFirework();
 	}
 
+	/**
+	 * Aggiunge una carta al Firework
+	 * @param card la carta da aggiungere
+	 * @return questo Firework modificato
+	 * @throws JSONException se la carta non &egrave; dello stesso colore di quelle nel Firework o se il suo valore non &egrave; {@link Firework#peak()}+1
+	 */
 	public Firework addCard(Card card) throws JSONException
 	{
-		if (checkColor(card.getColor()))
-		{
-			if (card.getValue()==peak()+1)
-				add(card);
-			else
-				throw new JSONException("Expecting a "+(peak()+1)+" card");
-		}
-		else
-			throw new JSONException("Card color must be "+getCard(0).getColor());
+		if (peak()>0 && card.getColor()!=getCard(0).getColor())
+			throw new JSONException("Il colore della carta da aggiungere deve essere "+getCard(0).getColor());
+
+		if (card.getValue()!=peak()+1)
+			throw new JSONException("Il valore della carta da aggiungere deve essere "+(peak()+1));
+		json.add(card);
 		return this;
 	}
 
-	private boolean checkColor(Color c)
+	/**
+	 * Verifica l'integrità del Firework
+	 * @throws JSONException se il Firework non inizia con una carta di valore 1, se i valori delle carte non sono crescenti o se le carte hanno colori diversi
+	 */
+	private void checkFirework() throws JSONException
 	{
-		for (int i=0; i<size(); i++)
+		if (json.size()>0 && getCard(0).getValue()!=1)
+			throw new JSONException("Un Firework deve iniziare con una carta di valore 1");
+		for (int i=1; i<json.size(); i++)
 		{
-			if (getCard(i).getColor()!=c)
-				return false;
+			if (getCard(i).getValue()!=getCard(i-1).getValue()+1)
+				throw new JSONException("Le carte di uno stesso Firework devono avere valore crescente");
+			if (getCard(i).getColor()!=getCard(i-1).getColor())
+				throw new JSONException("Le carte di uno stesso Firework devono avere lo stesso colore");
 		}
-		return true;
 	}
 
+	/**
+	 * @return il colore delle carte di questo Firework
+	 */
 	public Color getColor()
 	{
-		if (size()==0)
+		if (json.size()==0)
 			return null;
 		return getCard(0).getColor();
 	}
 
+	/**
+	 * @param i L'indice della carta nel Firework, che corrisponde anche al suo valore -1
+	 * @return La carta desiderata
+	 */
 	private Card getCard(int i)
 	{
-		return (Card)get(i);
+		return (Card)json.get(i);
 	}
 
+	/**
+	 * @return il valore della carta in cima al Firework
+	 */
 	public int peak()
 	{
-		if (size() == 0)
+		if (json.size() == 0)
 			return 0;
-		return getCard(size()-1).getValue();
+		return getCard(json.size()-1).getValue();
 	}
 }

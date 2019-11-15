@@ -1,5 +1,3 @@
-package api.client;
-
 import api.game.*;
 import sjson.JSONData;
 import sjson.JSONException;
@@ -30,6 +28,7 @@ public class MathState extends State
 			ret+="\t"+player+" ("+i+"): "+hand+"\n";
 			ret+="\t\t"+"Playability: {";
 			for (int j=0; j<hand.size(); j++)
+			//	ret+= df.format(MathCalc.getCardPlayability(this,j,player))+"; ";
 				ret+= df.format(MathCalc.getCardPlayability(this,j,player))+"; ";
 			ret = ret.substring(0,ret.length()-2)+"}\n";
 			ret+="\t\t"+"Uselessness: {";
@@ -57,7 +56,7 @@ public class MathState extends State
 		Firework fireworks;
 		for(Color c: Color.values()) {
 			fireworks = getFirework(c);
-			ret += "\t" + c + "  " + (fireworks.size() == 0 ? "-" : (fireworks.peak())) + "\n";
+			ret += "\t" + c + "  " + (fireworks.peak() == 0 ? "-" : (fireworks.peak())) + "\n";
 		}
 		ret+= "Hints: "+getHintTokens()+"\nFuse: "+getFuseTokens()+"\n";
 

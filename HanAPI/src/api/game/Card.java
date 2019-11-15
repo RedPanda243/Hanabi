@@ -7,8 +7,13 @@ import java.io.Reader;
 import java.io.StringReader;
 
 /**
- * Classe che rappresenta una carta dal punto di vista di un giocatore.
- * @author Francesco Pandolfi, Mihail Bida
+ * Classe che rappresenta una carta Hanabi.
+ * {<br>
+ *     "color" 			: colore della carta <br>
+ *     "value" 			: valore della carta <br>
+ *     "color_revealed" : true se il colore di questa carta &egrave; stato rivelato al possessore, false altrimenti <br>
+ *     "value_revealed" : true se il valore di questa carta &egrave; stato rivelato al possessore, false altrimenti <br>
+ * }
  */
 @SuppressWarnings({"WeakerAccess","unused"})
 public class Card extends TypedJSON<JSONObject>
@@ -48,12 +53,6 @@ public class Card extends TypedJSON<JSONObject>
 		checkColorRevealed();
 		checkColor();
 		checkValue();
-
-
-
-
-
-
 	}
 
 	/**

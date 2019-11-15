@@ -9,9 +9,8 @@ import java.io.Reader;
  * immutabili sulla partita. Sfrutta il template Singleton, in modo che l'oggetto di questa classe sia referenziabile velocemente.
  * Come conseguenza, nella stessa JVM pu&ograve; esistere un Game alla volta.
  */
-public class Game extends JSONObject
+public class Game extends TypedJSON<JSONObject>
 {
-
 	private static Game instance = null;
 
 	/**
@@ -21,7 +20,7 @@ public class Game extends JSONObject
 	 */
 	public Game(JSONArray players) throws JSONException
 	{
-		super();
+		json = new JSONObject();
 		if (instance != null)
 			throw new JSONException("Un oggetto Game è già esistente");
 		setPlayers(players);
@@ -31,7 +30,7 @@ public class Game extends JSONObject
 
 	public Game(Reader reader) throws JSONException
 	{
-		super(reader);
+		json = new JSONObject(reader);
 		if (instance != null)
 			throw new JSONException("Game instance already exists");
 		checkPlayers();
@@ -68,7 +67,7 @@ public class Game extends JSONObject
 	 */
 	public JSONArray getPlayers()
 	{
-		return getArray("players");
+		return json.getArray("players");
 	}
 
 	/**
@@ -103,7 +102,7 @@ public class Game extends JSONObject
 	 */
 	private void checkPlayers() throws JSONException
 	{
-		JSONArray array = getArray("players");
+		JSONArray array = json.getArray("players");
 		if (array == null)
 			throw new JSONException("L'attributo \"player\" è mancante");
 		if (array.size()<2 || array.size()>5)
@@ -123,8 +122,7 @@ public class Game extends JSONObject
 	 */
 	public Game setPlayers(JSONArray array) throws JSONException
 	{
-
-		set("players",array);
+		json.set("players",array);
 		return this;
 	}
 

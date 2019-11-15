@@ -16,7 +16,20 @@ public class Main
 {
 	public static BufferedReader keyboard;
 	public static String name;
+	private static AbstractAgent agent;
+	private static boolean running = false;
 
+	public static AbstractAgent getAgent()
+	{
+		return agent;
+	}
+
+	public static void setAgent(AbstractAgent a)
+	{
+		if (running)
+			throw new IllegalStateException("Agent is running");
+		agent = a;
+	}
 
 	private static void start(String... args) throws IOException, JSONException
 	{
@@ -60,7 +73,7 @@ public class Main
 			name = in.readLine();
 
 			new Game(in);
-
+/*
 			AbstractAgent agent = null;
 
 			if (args[3].equalsIgnoreCase("human")) //TODO controlla solo gli agent automatici
@@ -71,32 +84,33 @@ public class Main
 			{
 				start(args[0],args[1],args[2]);
 			}
-
-			MathState last = new MathState(new State(in));
+*/
+			State last = new State(in);
 			//		HandCardsProbability prob = new HandCardsProbability(name, last);
 
 			while(!last.gameOver())
 			{
-				System.out.println(last);
-				agent.addHistory(last);
+		//		System.out.println(last);
+				agent.notifyState(last);
 				if (last.getCurrentPlayer().equals(name))
 				{
-					Action a = agent.chooseAction(last);
+					Action a = agent.chooseAction();
 					out.print(a.toString(0));
 					out.flush();
 					//		System.err.println(a.toString(0));
 				}
 				else
-					System.out.println(new Turn(in));
-				last = new MathState(new State(in));
+					agent.notifyTurn(new Turn(in));
+				last = new State(in);
 			}
-			System.out.println(last);
-			System.out.println("Score: "+last.getScore());
+	//		System.out.println(last);
+	//		System.out.println("Score: "+last.getScore());
 		}
 	}
 
 	public static void main(String... args) throws IOException, JSONException
 	{
+		running = true;
 		keyboard = new BufferedReader(new InputStreamReader(System.in));
 		start(args);
 	}

@@ -1,5 +1,3 @@
-package api.client;
-
 import api.game.*;
 import sjson.JSONArray;
 import sjson.JSONData;
@@ -186,7 +184,7 @@ public class Strategy1Agent extends AbstractAgent {
 					for (Action a : l) {
 						cont = 0;
 						if (a.getType() == ActionType.HINT_COLOR) {
-							for (JSONData card : hand) {
+							for (JSONData card : hand.toJSON()) {
 								box = (Card) card;
 								if (!box.isColorRevealed() && box.getColor() == a.getColor())
 									cont++;
@@ -196,7 +194,7 @@ public class Strategy1Agent extends AbstractAgent {
 								best = a;
 							}
 						} else if (a.getType() == ActionType.HINT_VALUE) {
-							for (JSONData card : hand) {
+							for (JSONData card : hand.toJSON()) {
 								box = (Card) card;
 								if (!box.isValueRevealed() && box.getValue() == a.getValue())
 									cont++;

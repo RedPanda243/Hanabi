@@ -1,6 +1,5 @@
 package api.game;
 
-import api.main.HanabiClient;
 import sjson.JSONArray;
 import sjson.JSONData;
 import sjson.JSONException;
@@ -8,18 +7,18 @@ import sjson.JSONException;
 import java.io.Reader;
 import java.io.StringReader;
 
-
-public class Hand extends JSONArray
+/**
+ *
+ */
+public class Hand extends TypedJSON<JSONArray>
 {
 
 	public Hand(Card[] cards) throws JSONException
 	{
-		super();
-		int n = Game.getInstance().getNumberOfCardsPerPlayer();
-		if (cards.length<n-1 || cards.length>n)
-			throw new JSONException("Hand contains wrong number of cards: "+cards.length);
+		json = new JSONArray();
+
 		for(Card c:cards)
-			add(c);
+			json.add(c);
 	}
 
 	public Hand(String s) throws JSONException
@@ -29,14 +28,19 @@ public class Hand extends JSONArray
 
 	public Hand(Reader r) throws JSONException
 	{
-		super(r);
-		int n = Game.getInstance().getNumberOfCardsPerPlayer();
-		//FIX (-2)
-		if (size()<n-2 || size()>n)
-			throw new JSONException("Hand contains wrong number of cards");
+		json = new JSONArray(r);
 
-		for (int i=0; i<this.size(); i++)
-			this.replace(i,new Card(this.get(i).toString()));
+		for (int i=0; i<json.size(); i++)
+			json.replace(i,new Card(json.get(i).toString()));
+
+		checkHand();
+	}
+
+	private void checkHand() throws JSONException
+	{
+		int n = Game.getInstance().getNumberOfCardsPerPlayer();
+		if (json.size()<n-2 || json.size()>n)
+			throw new JSONException("La mano contiene un numero di carte sbagliato");
 	}
 
 	public Hand clone()
@@ -50,19 +54,24 @@ public class Hand extends JSONArray
 
 	public Card getCard(int i)
 	{
-		return (Card)get(i);
+		return (Card)json.get(i);
 	}
 
 	public Hand setCard(int i, Card c)
 	{
-		replace(i,c);
+		json.replace(i,c);
 		return this;
+	}
+
+	public int size()
+	{
+		return json.size();
 	}
 
 	public String toString()
 	{
-		StringBuffer sb = new StringBuffer("{");
-		for (JSONData c:this)
+		StringBuilder sb = new StringBuilder("{");
+		for (JSONData c:json)
 			sb.append(c).append(",");
 		return sb.replace(sb.length()-1,sb.length(),"}").toString();
 	}

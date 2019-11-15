@@ -1,5 +1,3 @@
-package api.client;
-
 import api.game.*;
 import sjson.JSONArray;
 import sjson.JSONData;
@@ -69,7 +67,7 @@ public class HandCardsProbability {
     public List<PairCardCount> removePlayersHands(List<PairCardCount> array, State state) {
         for (JSONData d : Game.getInstance().getPlayers()) {
             if (!d.toString().equalsIgnoreCase(owner))
-                removeCardsFromPossibleCardArray(array, state.getHand(d.toString()));
+                removeCardsFromPossibleCardArray(array, state.getHand(d.toString()).toJSON());
         }
         return array;
     }
@@ -103,7 +101,7 @@ public class HandCardsProbability {
             possibleCard[Game.getInstance().getNumberOfCardsPerPlayer() - 1] = removeCardsFromPossibleCardArray(possibleCard[Game.getInstance().getNumberOfCardsPerPlayer() - 1], state.getDiscards());
             //remove FIREWORKS
             for (Color co : Color.values())
-                possibleCard[Game.getInstance().getNumberOfCardsPerPlayer() - 1] = removeCardsFromPossibleCardArray(possibleCard[Game.getInstance().getNumberOfCardsPerPlayer() - 1], state.getFirework(co));
+                possibleCard[Game.getInstance().getNumberOfCardsPerPlayer() - 1] = removeCardsFromPossibleCardArray(possibleCard[Game.getInstance().getNumberOfCardsPerPlayer() - 1], state.getFirework(co).toJSON());
             //remove PLAYERS HANDS
             possibleCard[Game.getInstance().getNumberOfCardsPerPlayer() - 1] = removePlayersHands(possibleCard[Game.getInstance().getNumberOfCardsPerPlayer() - 1], state);
 
@@ -119,7 +117,7 @@ public class HandCardsProbability {
                 //JSONData toRemoveDiscard = state.getDiscards().get(state.getDiscards().size()-1);
 
                 //la carta nuova è sempre la carta di posizione 0 o 4??
-                removeCardFromArrays(state.getHand(state.getCurrentPlayer()).get(state.getHand(state.getCurrentPlayer()).size() - 1));
+                removeCardFromArrays(state.getHand(state.getCurrentPlayer()).getCard(state.getHand(state.getCurrentPlayer()).size() - 1));
 
             } else if (state.getAction().getHinted().equalsIgnoreCase(owner)) {
                 if (state.getAction().getType().equals(ActionType.HINT_COLOR)) {
@@ -336,14 +334,14 @@ public class HandCardsProbability {
 
         //remove FIREWORKS
         for (Color co : Color.values())
-            possibleCardForPlayer[Game.getInstance().getNumberOfCardsPerPlayer() - 1] = removeCardsFromPossibleCardArray(possibleCardForPlayer[Game.getInstance().getNumberOfCardsPerPlayer() - 1], hystory.get(hystory.size() - 1).getFirework(co));
+            possibleCardForPlayer[Game.getInstance().getNumberOfCardsPerPlayer() - 1] = removeCardsFromPossibleCardArray(possibleCardForPlayer[Game.getInstance().getNumberOfCardsPerPlayer() - 1], hystory.get(hystory.size() - 1).getFirework(co).toJSON());
 
         //////////////
         //CHECK
         /////////////
         for (JSONData name : Game.getInstance().getPlayers()) {
             if (!name.toString().equals(owner) && !name.toString().equals(player))
-                possibleCardForPlayer = removeCardsFromArrays(possibleCardForPlayer, hystory.get(hystory.size() - 1).getHand(name.toString()));
+                possibleCardForPlayer = removeCardsFromArrays(possibleCardForPlayer, hystory.get(hystory.size() - 1).getHand(name.toString()).toJSON());
         }
 
         return possibleCardForPlayer;

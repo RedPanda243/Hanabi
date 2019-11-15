@@ -1,6 +1,5 @@
 package api.game;
 
-import java.util.Iterator;
 
 /**The colors of Hanabi Cards**/
 public enum Color {

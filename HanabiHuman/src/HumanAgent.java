@@ -1,5 +1,5 @@
-package api.client;
-
+import api.client.AbstractAgent;
+import api.client.Main;
 import api.game.Action;
 import api.game.ActionType;
 import api.game.Game;

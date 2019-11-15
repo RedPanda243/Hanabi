@@ -18,22 +18,22 @@ public class State extends TypedJSON<JSONObject>
 		json.set("discarded",new JSONArray());
 		json.set("action", new JSONObject());
 		json.set("red",new Firework());
-		set("green",new Firework());
-		set("white",new Firework());
-		set("blue",new Firework());
-		set("yellow",new Firework());
-		set("current",""+Game.getInstance().getPlayer(0));
-		set("order",""+0);
-		set("fuse",""+3);
-		set("hints",""+8);
-		set("final",""+-1);
+		json.set("green",new Firework());
+		json.set("white",new Firework());
+		json.set("blue",new Firework());
+		json.set("yellow",new Firework());
+		json.set("current",""+Game.getInstance().getPlayer(0));
+		json.set("order",""+0);
+		json.set("fuse",""+3);
+		json.set("hints",""+8);
+		json.set("final",""+-1);
 		JSONArray names = Game.getInstance().getPlayers();
 		Card[] cards = new Card[Game.getInstance().getNumberOfCardsPerPlayer()];
 		for (JSONData n:names)
 		{
 			for (int i=0; i<cards.length; i++)
 				cards[i] = deck.pop();
-			set(n.toString(),new Hand(cards));
+			json.set(n.toString(),new Hand(cards));
 		}
 	}
 
@@ -44,21 +44,21 @@ public class State extends TypedJSON<JSONObject>
 
 	public State(Reader reader) throws JSONException
 	{
-		super(reader);
+		json = new JSONObject(reader);
 
 		String s;
 
-		JSONArray array = getArray("discarded");
+		JSONArray array = json.getArray("discarded");
 		if (array == null)
 			throw new JSONException("Missing discarded");
 		else
 		{
 			for(int i=0; i<array.size(); i++)
 				array.replace(i,new Card(array.get(i).toString()));
-			this.set("discarded",array);
+			json.set("discarded",array);
 		}
 
-		JSONObject act = getObject("action");
+		JSONObject act = json.getObject("action");
 		if (act==null)
 			throw new JSONException("Missing action!");
 		try
@@ -74,7 +74,7 @@ public class State extends TypedJSON<JSONObject>
 
 		for (Color color:Color.values())
 		{
-			array = getArray(color.toString().toLowerCase());
+			array = json.getArray(color.toString().toLowerCase());
 			if (array == null)
 				throw new JSONException("Missing "+color+" firework");
 			setFirework(color,new Firework(array.toString(0)));
@@ -83,13 +83,13 @@ public class State extends TypedJSON<JSONObject>
 
 		for(JSONData d: Game.getInstance().getPlayers())
 		{
-			array = getArray(d.toString());
+			array = json.getArray(d.toString());
 			if (array == null)
 				throw new JSONException("Missing "+d.toString()+" hand!");
 			setHand(d.toString(),new Hand(array.toString(0)));
 		}
 
-		s = getString("order");
+		s = json.getString("order");
 		if (s==null)
 			throw new JSONException("Missing order!");
 		try
@@ -101,7 +101,7 @@ public class State extends TypedJSON<JSONObject>
 			throw new JSONException(e);
 		}
 
-		s = getString("hints");
+		s = json.getString("hints");
 		if (s==null)
 			throw new JSONException("Missing hint tokens!");
 		try
@@ -113,7 +113,7 @@ public class State extends TypedJSON<JSONObject>
 			throw new JSONException(e);
 		}
 
-		s = getString("fuse");
+		s = json.getString("fuse");
 		if (s==null)
 			throw new JSONException("Missing fuse tokens!");
 		try
@@ -125,12 +125,12 @@ public class State extends TypedJSON<JSONObject>
 			throw new JSONException(e);
 		}
 
-		s = getString("current");
+		s = json.getString("current");
 		if (s == null)
 			throw new JSONException("Missing current player!");
 		setCurrentPlayer(s);
 
-		s = getString("final");
+		s = json.getString("final");
 		if (s == null)
 			throw new JSONException("Missing final turn!");
 		try
@@ -144,7 +144,7 @@ public class State extends TypedJSON<JSONObject>
 	}
 
 	public void setAction(Action action) {
-		set("action", action);
+		json.set("action", action);
 	}
 
 	public State clone()
@@ -185,12 +185,12 @@ public class State extends TypedJSON<JSONObject>
 	 **/
 	public JSONArray getDiscards()
 	{
-		return getArray("discarded");
+		return json.getArray("discarded");
 	}
 
 
 	public Action getAction(){
-		return (Action) get("action");
+		return (Action) json.get("action");
 	}
 
 
@@ -200,7 +200,7 @@ public class State extends TypedJSON<JSONObject>
 	 **/
 	public Firework getFirework(Color c)
 	{
-		return (Firework) get(c.toString().toLowerCase());
+		return (Firework) json.get(c.toString().toLowerCase());
 	}
 
 	/**
@@ -209,18 +209,18 @@ public class State extends TypedJSON<JSONObject>
 	 **/
 	public Hand getHand(String player)
 	{
-		return (Hand)get(player);
+		return (Hand)json.get(player);
 	}
 
 	/**
 	 * @return il numero di gettoni informazione rimasti
 	 **/
-	public int getHintTokens(){return Integer.parseInt(getString("hints"));}
+	public int getHintTokens(){return Integer.parseInt(json.getString("hints"));}
 
 	/**
 	 * @return il numero di gettoni errore rimasti
 	 **/
-	public int getFuseTokens(){return Integer.parseInt(getString("fuse"));}
+	public int getFuseTokens(){return Integer.parseInt(json.getString("fuse"));}
 
 	/**
 	 * @return il nome del giocatore a cui tocca, null se il gioco è finito
@@ -229,25 +229,25 @@ public class State extends TypedJSON<JSONObject>
 	{
 		if (gameOver())
 			return null;
-		return getString("current");
+		return json.getString("current");
 	}
 
 	/**
 	 * @return il numero di turno
 	 **/
-	public int getOrder(){return Integer.parseInt(getString("order"));}
+	public int getOrder(){return Integer.parseInt(json.getString("order"));}
 
 	/**
 	 * Per azione finale si intende l'azione che fa pescare l'ultima carta del mazzo. Dopo l'azione finale tutti i giocatori hanno un ultimo turno
 	 * @return il numero di turno dell'azione finale, -1 se il mazzo non è vuoto
 	 **/
-	public int getFinalActionIndex(){return Integer.parseInt(getString("final"));}
+	public int getFinalActionIndex(){return Integer.parseInt(json.getString("final"));}
 
 	public State setCurrentPlayer(String player) throws JSONException
 	{
 		if (!Game.getInstance().isPlaying(player))
 			throw new JSONException("Unacceptable player "+player);
-		set("current",player);
+		json.set("current",player);
 		return this;
 	}
 
@@ -255,7 +255,7 @@ public class State extends TypedJSON<JSONObject>
 	{
 		if (index<-1)
 			throw new JSONException("Unacceptable index");
-		set("final",""+index);
+		json.set("final",""+index);
 		return this;
 	}
 
@@ -263,7 +263,7 @@ public class State extends TypedJSON<JSONObject>
 	{
 		if (f.getColor()!=null && c!=f.getColor())
 			throw new JSONException("Color mismatch. Color is "+c+" but cards are "+f.getColor());
-		set(c.toString().toLowerCase(),f);
+		json.set(c.toString().toLowerCase(),f);
 		return this;
 	}
 
@@ -271,13 +271,13 @@ public class State extends TypedJSON<JSONObject>
 	{
 		if (x<0 || x>3)
 			throw new JSONException("Unacceptable fuse token value");
-		set("fuse",""+x);
+		json.set("fuse",""+x);
 		return this;
 	}
 
 	public State setHand(String player, Hand hand)
 	{
-		set(player,hand);
+		json.set(player,hand);
 		return this;
 	}
 
@@ -285,7 +285,7 @@ public class State extends TypedJSON<JSONObject>
 	{
 		if (x<0 || x>8)
 			throw new JSONException("Unacceptable hint token value");
-		set("hints",""+x);
+		json.set("hints",""+x);
 		return this;
 	}
 
@@ -293,7 +293,7 @@ public class State extends TypedJSON<JSONObject>
 	{
 		if (o<0)
 			throw new JSONException("Unacceptable order");
-		set("order",""+o);
+		json.set("order",""+o);
 		return this;
 	}
 
@@ -331,7 +331,7 @@ public class State extends TypedJSON<JSONObject>
 		Firework fireworks;
 		for(Color c: Color.values()) {
 			fireworks = getFirework(c);
-			ret += "\t" + c + "  " + (fireworks.size() == 0 ? "-" : (fireworks.peak())) + "\n";
+			ret += "\t" + c + "  " + (fireworks.peak() == 0 ? "-" : fireworks.peak()) + "\n";
 		}
 		ret+= "Hints: "+getHintTokens()+"\nFuse: "+getFuseTokens()+"\n";
 

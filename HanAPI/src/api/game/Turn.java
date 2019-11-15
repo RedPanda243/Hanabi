@@ -6,35 +6,32 @@ import sjson.JSONObject;
 
 import java.io.Reader;
 
-public class Turn extends JSONObject
+public class Turn extends TypedJSON<JSONObject>
 {
 	public Turn(Action a, Card d) throws JSONException
 	{
-		super();
+		json = new JSONObject();
 		setAction(a);
 		setDrawn(d);
 	}
 
 	public Turn(Action a)
 	{
-		super();
+		json = new JSONObject();
 		setAction(a);
 	}
 
 	public Turn(Reader reader) throws JSONException
 	{
-		super(reader);
-		JSONData d = get("action");
+		json = new JSONObject(reader);
+		JSONData d = json.get("action");
 		if (d == null)
-			throw new JSONException("Missing action");
+			throw new JSONException("Attributo \"action\" mancante");
 		Action a = new Action(d.toString(0));
 		setAction(a);
 		if (a.getType() == ActionType.PLAY || a.getType() == ActionType.DISCARD)
 		{
-			d = get("drawn");
-/*			if (d == null)
-				throw new JSONException("Missing drawn card");
-*/
+			d = json.get("drawn");
 			if (d!=null)
 				setDrawn(new Card(d.toString(0)));
 		}
@@ -42,12 +39,12 @@ public class Turn extends JSONObject
 
 	public Action getAction()
 	{
-		return (Action)get("action");
+		return (Action)json.get("action");
 	}
 
 	public Card getDrawn()
 	{
-		JSONData c = get("drawn");
+		JSONData c = json.get("drawn");
 		if (c == null)
 			return null;
 		else
@@ -56,7 +53,7 @@ public class Turn extends JSONObject
 
 	public Turn setAction(Action action)
 	{
-		set("action",action);
+		json.set("action",action);
 		return this;
 	}
 
@@ -64,8 +61,8 @@ public class Turn extends JSONObject
 	{
 		ActionType type = getAction().getType();
 		if (type == ActionType.HINT_COLOR || type == ActionType.HINT_VALUE)
-			throw new JSONException("Hint actions do not draw");
-		set("drawn",card);
+			throw new JSONException("I suggerimenti non fanno pescare carte");
+		json.set("drawn",card);
 		return this;
 	}
 

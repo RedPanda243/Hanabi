@@ -1,5 +1,3 @@
-package api.client;
-
 import api.game.Card;
 import api.game.Color;
 import api.game.Game;

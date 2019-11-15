@@ -1,9 +1,8 @@
 /**
- * Il package HanAPI contiene le classi che permettono di rappresentare una partita di Hanabi.
- * HanAPI &egrave; progettato per essere usato insieme
- * Dato che HanabiEngine rappresenta i giocatori come connessioni tcp, gli elementi di gioco devono essere serializzabili.
- * A questo scopo HanAPI definisce ogni elemento che pu&ograve; essere comunicato ad un giocatore come
- * oggetto json estendendo le classi della libreria SJSON.
+ * Il package api.game contiene le classi che permettono di rappresentare una partita di Hanabi.
+ * Ogni elemento che pu&ograve; essere comunicato ad un giocatore deve poter essere convertito in oggetto json, affinch&egrave;
+ * HanabiEngine possa trasmetterlo.<br>
+ * Si &egrave; scelto di definire questi elementi come classi figlie delle classi di SJSON.
  * @author Francesco Pandolfi, Mihail Bida
  */
 package api.game;

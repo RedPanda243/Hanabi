@@ -7,7 +7,7 @@ import java.io.Reader;
 /**
  * Rappresenta il primo messaggio che viene inviato dal server quando ha trovato tutti i giocatori. D&agrave; informazioni generali e
  * immutabili sulla partita. Sfrutta il template Singleton, in modo che l'oggetto di questa classe sia referenziabile velocemente.
- * Come conseguenza, nella stessa JVM pu&ofrave; esistere un Game alla volta.
+ * Come conseguenza, nella stessa JVM pu&ograve; esistere un Game alla volta.
  */
 public class Game extends JSONObject
 {

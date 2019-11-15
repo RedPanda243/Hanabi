@@ -10,68 +10,82 @@ import java.io.StringReader;
  * Classe che rappresenta una carta dal punto di vista di un giocatore.
  * @author Francesco Pandolfi, Mihail Bida
  */
-public class Card extends JSONObject
+@SuppressWarnings({"WeakerAccess","unused"})
+public class Card extends TypedJSON<JSONObject>
 {
 
+	/**
+	 * Crea una carta di colore e valore dati. I valori "color_revealed" e "value_revealed" sono impostati a false
+	 * @param color valore dell'attributo "color"
+	 * @param value valore dell'attributo "value"
+	 * @throws JSONException se i valori passati non sono conformi a quelli di una carta Hanabi
+	 */
 	public Card(Color color, int value) throws JSONException
 	{
-		super();
-		setColor(color);
-		setValue(value);
-		setColorRevealed(false);
-		setValueRevealed(false);
+		json = new JSONObject();
+		setColor(color).setValue(value).setColorRevealed(false).setValueRevealed(false);
 	}
 
+	/**
+	 * @see JSONObject#JSONObject(String)
+	 * @param s rappresentazione testuale formattata della carta
+	 * @throws JSONException se la stringa non &egrave; conforme alla rappresentazione formattata di una carta Hanabi
+	 */
 	public Card(String s) throws JSONException
 	{
 		this(new StringReader(s));
 	}
 
 	/**
-	 * Costruisce una carta a partire da un json (ottenuto dal server di gioco)
-	 * @throws JSONException se il json non è conforme ad una carta Hanabi
+	 * @see JSONObject#JSONObject(Reader)
+	 * @param r Reader da cui leggere la carta
+	 * @throws JSONException se la stringa letta non &egrave; un json o se non &egrave; conforme ad una carta Hanabi
 	 **/
 	public Card(Reader r) throws JSONException
 	{
-		super(r);
+		json = new JSONObject(r);
+		checkValueRevealed();
+		checkColorRevealed();
+		checkColor();
+		checkValue();
 
 
-		String s = getString("color"); //get color
-		if (s == null)
-			throw new JSONException("Missing color!");
-		else if (Color.fromString(s)==null && !s.equals(""))
-			throw new JSONException("Unrecognized color! Color must be green, red, yellow, blue, white or void string \"\"");
 
-		s = getString("value"); //get value
-		if (s == null)
-			throw new JSONException("Missing value");
-		else
-		{
-			try
-			{
-				setValue(Integer.parseInt(s));
-			}
-			catch (NumberFormatException e)
-			{
-				throw new JSONException("Unrecognized value! Value must be an int 0<=x<=5");
-			}
-		}
 
-		s = getString("value_revealed"); //get value_revealed
-		if (s == null)
-			throw new JSONException("Missing value_revealed");
-		else if (!(s.equals("false")||s.equals("true")))
-			throw new JSONException("value_revealed must be a boolean");
-
-		s = getString("color_revealed"); //get color_revealed
-		if (s == null)
-			throw new JSONException("Missing color_revealed");
-		else if (!(s.equalsIgnoreCase("false")||s.equalsIgnoreCase("true")))
-			throw new JSONException("color_revealed must be a boolean");
 
 
 	}
 
+	/**
+	 * Usato nei costruttori, verifica l'integrit&agrave; del campo "color_revealed"
+	 * @throws JSONException se l'attributo "color_revealed" &egrave; mancante o se non &egrave; un boolean
+	 */
+	private void checkColorRevealed() throws JSONException
+	{
+		String s = json.getString("color_revealed"); //get value_revealed
+		if (s == null)
+			throw new JSONException("Attributo \"color_revealed\" mancante");
+		else if (!(s.equals("false")||s.equals("true")))
+			throw new JSONException("L'attributo \"color_revealed\" deve avere valore boolean");
+	}
+
+	/**
+	 * Usato nei costruttori, verifica l'integrit&agrave; del campo "value_revealed"
+	 * @throws JSONException se l'attributo "value_revealed" &egrave; mancante o se non &egrave; un boolean
+	 */
+	private void checkValueRevealed() throws JSONException
+	{
+		String s = json.getString("value_revealed"); //get value_revealed
+		if (s == null)
+			throw new JSONException("Attributo \"value_revealed\" mancante");
+		else if (!(s.equals("false")||s.equals("true")))
+			throw new JSONException("L'attributo \"value_revealed\" deve avere valore boolean");
+	}
+
+	/**
+	 * @see JSONObject#clone()
+	 * @return una copia di questa Card
+	 */
 	public Card clone()
 	{
 		try
@@ -99,9 +113,126 @@ public class Card extends JSONObject
 		return false;
 	}
 
+	/**
+	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "color"
+	 * @throws JSONException se l'attributo "color" &egrave; mancante, se il suo valore non &egrave; colore previsto (o stringa vuota) o se &grave; la stringa vuota mentre "color_revealed"="true"
+	 */
+	private void checkColor() throws JSONException
+	{
+		String s = json.getString("color"); //get color
+		if (s == null)
+			throw new JSONException("Attributo \"color\" mancante");
+		else if (Color.fromString(s)==null)
+		{
+			if (!s.equals(""))
+				throw new JSONException("Il valore dell'attributo \"color\" deve essere \"green\", \"red\", \"yellow\", \"blue\", \"white\" o la stringa vuota\"\"");
+			if (isColorRevealed())
+				throw new JSONException("Il valore dell'attributo \"color\" non può essere \"\" se \"color_revealed\"=\"true\"");
+		}
+	}
+
+	/**
+	 * @return Il colore della carta
+	 */
 	public Color getColor()
 	{
-		return Color.fromString(getString("color"));
+		return Color.fromString(json.getString("color"));
+	}
+
+	/**
+	 * Consente di impostare l'attributo "color" di questa Card
+	 * @param color il valore da assegnare all'attributo "color"
+	 * @return questa Card modificata
+	 * @throws JSONException in caso di errore nell'impostazione
+	 */
+	public Card setColor(Color color) throws JSONException
+	{
+		Color c = getColor();
+		if (color==null)
+			json.set("color","");
+		else
+			json.set("color",color.toString().toLowerCase());
+		try
+		{
+			checkColor();
+		}
+		catch(JSONException e)
+		{
+			if (c==null)
+				json.set("color","");
+			else
+				json.set("color",c.toString().toLowerCase());
+			throw e;
+		}
+		return this;
+	}
+
+	/**
+	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "value"
+	 * @throws JSONException se l'attributo "value" &egrave; mancante o se il suo valore non &egrave; un intero compreso tra 0 e 5 inclusi
+	 */
+	private void checkValue() throws JSONException
+	{
+		String s = json.getString("value"); //get value
+		if (s == null)
+			throw new JSONException("Attributo \"value\" mancante");
+		else
+		{
+			try
+			{
+				setValue(Integer.parseInt(s));
+			}
+			catch (NumberFormatException e)
+			{
+				throw new JSONException("L'attributo \"value\" deve avere valore intero compreso tra 0 e 5 inclusi");
+			}
+		}
+	}
+
+	/**
+	 * @return il valore della carta, 0 se sconosciuto
+	 */
+	public int getValue()
+	{
+		return Integer.parseInt(json.getString("value"));
+	}
+
+	/**
+	 * Consente di impostare l'attributo "value" di questa Card
+	 * @param v il valore da assegnare all'attributo "value"
+	 * @return questa Card modificata
+	 * @throws JSONException in caso di errore nell'impostazione
+	 */
+	public Card setValue(int v) throws JSONException
+	{
+		int v1 = getValue();
+		json.set("value",""+v);
+		try
+		{
+			checkValue();
+		}
+		catch(JSONException e)
+		{
+			json.set("value",""+v1);
+			throw e;
+		}
+		return this;
+	}
+
+	/**
+	 * @return il valore dell'attributo "value_revealed"
+	 */
+	public boolean isValueRevealed()
+	{
+		return Boolean.parseBoolean(json.getString("value_revealed"));
+	}
+
+	/**
+	 * @return il valore dell'attributo "color_revealed"
+	 */
+	public boolean isColorRevealed()
+	{
+		return Boolean.parseBoolean(json.getString("color_revealed"));
 	}
 
 	/**
@@ -110,52 +241,30 @@ public class Card extends JSONObject
 	public int getCount(){return (getValue()==1?3:(getValue()<5?2:1));}
 
 
-	public int getValue() {
-		return Integer.parseInt(getString("value"));
-	}
-
-	public boolean isValueRevealed()
-	{
-		return Boolean.parseBoolean(getString("value_revealed"));
-	}
-
-	public boolean isColorRevealed()
-	{
-		return Boolean.parseBoolean(getString("color_revealed"));
-	}
-
-	public Card setColor(Color color)
-	{
-		if (color==null)
-			set("color","");
-		else
-			set("color",color.toString().toLowerCase());
-		return this;
-	}
-
-	public Card setValue(int v) throws JSONException
-	{
-		if (v<0 || v>5)
-			throw new JSONException("Wrong value!");
-		set("value",""+v);
-		return this;
-	}
-
+	/**
+	 * Consente di impostare il valore dell'attributo "color_revealed"
+	 * @param b il valore da assegnare all'attributo "color_revealed"
+	 * @return questa Card modificata
+	 */
 	public Card setColorRevealed(boolean b)
 	{
-		set("color_revealed",""+b);
-		return this;
-	}
-
-	public Card setValueRevealed(boolean b)
-	{
-		set("value_revealed",""+b);
+		json.set("color_revealed",""+b);
 		return this;
 	}
 
 	/**
-	 * Ridefinisce il toString() di JSONData
-	 * @return la rappresentazione testuale della carta
+	 * Consente di impostare il valore dell'attributo "value_revealed"
+	 * @param b valore da assegnare all'attributo "value_revealed"
+	 * @return questa Card modificata
+	 */
+	public Card setValueRevealed(boolean b)
+	{
+		json.set("value_revealed",""+b);
+		return this;
+	}
+
+	/**
+	 * @return la rappresentazione testuale non formattata della carta
 	 */
 	public String toString()
 	{

@@ -18,12 +18,10 @@ public class JSONString extends JSONData
 	private String s;
 
 	/**
-	 * @see JSONData#JSONData(String)
 	 * @param s la rappresentazione testuale del dato stringa da creare
 	 */
 	public JSONString(String s)
 	{
-		super(s);
 		this.s=""+s;
 		if (s.startsWith("\"") && s.endsWith("\""))
 			this.s = s.substring(1,s.length()-1);
@@ -36,7 +34,6 @@ public class JSONString extends JSONData
 	 */
 	public JSONString(Reader r) throws JSONException
 	{
-		super("");
 		try
 		{
 			if (r.read() == '"')

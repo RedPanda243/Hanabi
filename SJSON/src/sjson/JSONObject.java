@@ -19,7 +19,6 @@ public class JSONObject extends JSONData
 	 */
 	public JSONObject()
 	{
-		super("");
 		map = new HashMap<>();
 	}
 

@@ -19,7 +19,6 @@ public class JSONArray extends JSONData implements Iterable<JSONData>
 	 */
 	public JSONArray()
 	{
-		super("[]");
 		list = new ArrayList<>();
 	}
 

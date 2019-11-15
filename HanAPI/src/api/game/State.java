@@ -10,14 +10,14 @@ import java.util.Stack;
  * Classe che rappresenta lo stato di una partita dal punto di vista di un giocatore
  */
 @SuppressWarnings({"WeakerAccess","unused"})
-public class State extends JSONObject
+public class State extends TypedJSON<JSONObject>
 {
 	public State(Stack<Card> deck) throws JSONException
 	{
 		super();
-		set("discarded",new JSONArray());
-		set("action", new JSONObject());
-		set("red",new Firework());
+		json.set("discarded",new JSONArray());
+		json.set("action", new JSONObject());
+		json.set("red",new Firework());
 		set("green",new Firework());
 		set("white",new Firework());
 		set("blue",new Firework());
@@ -187,13 +187,16 @@ public class State extends JSONObject
 	{
 		return getArray("discarded");
 	}
+
+
 	public Action getAction(){
 		return (Action) get("action");
 	}
 
 
 	/**
-	 * @return una copia dello stack di carte giocate del colore dato. La carta di valore più alto è in cima allo stack
+	 * @param c colore del Firework richiesto
+	 * @return il Firework associato al colore desiderato
 	 **/
 	public Firework getFirework(Color c)
 	{
@@ -300,12 +303,9 @@ public class State extends JSONObject
 	public int getScore(){
 		int score = 0;
 		if(getFuseTokens()==0) return 0;
-		JSONArray a;
 		for(Color c: Color.values())
 		{
-			a = getFirework(c);
-			if (a.size()>0)
-				score += ((Card)a.getObject(a.size()-1)).getValue();
+			score+= getFirework(c).peak();
 		}
 		return score;
 	}

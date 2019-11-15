@@ -44,7 +44,7 @@ import static api.game.ActionType.*;
  * </ul>
  */
 @SuppressWarnings({"WeakerAccess","unused"})
-public class Action extends JSONObject
+public class Action extends TypedJSON<JSONObject>
 {
 	/**
 	 * Costruttore per una mossa che rappresenta la giocata o lo scarto di una carta
@@ -106,9 +106,9 @@ public class Action extends JSONObject
 	 */
 	public Action(Reader reader) throws JSONException
 	{
-		super(reader);
+		json = new JSONObject(reader);
 
-		if (names().size()!=0)
+		if (json.names().size()!=0)
 		{
 			checkPlayer();
 			checkType();
@@ -139,7 +139,7 @@ public class Action extends JSONObject
 		if (!((type == PLAY) || (type == DISCARD)))
 			throw new JSONException("L'attributo \"card\" non è posseduto da Action rappresentanti un suggerimento");
 
-		String s = getString("card");
+		String s = json.getString("card");
 		if (s == null)
 			throw new JSONException("Attributo \"card\" mancante");
 
@@ -158,9 +158,9 @@ public class Action extends JSONObject
 	 **/
 	public int getCard()
 	{
-		String c = getString("card");
+		String c = json.getString("card");
 		if (c!=null)
-			return Integer.parseInt(getString("card"));
+			return Integer.parseInt(json.getString("card"));
 		else
 			return -1;
 	}
@@ -174,7 +174,7 @@ public class Action extends JSONObject
 	public Action setCard(int c) throws JSONException
 	{
 		int c1 = getCard();
-		set("card",""+c);
+		json.set("card",""+c);
 		try
 		{
 			checkCard();
@@ -182,7 +182,7 @@ public class Action extends JSONObject
 		catch (JSONException e)
 		{
 			if (c1>-1)
-				set("card",""+c1);
+				json.set("card",""+c1);
 			throw e;
 		}
 		return this;
@@ -198,7 +198,7 @@ public class Action extends JSONObject
 		if ((type == PLAY) || (type == DISCARD))
 			throw new JSONException("L'attributo \"cardsToReveal\" è posseduto solo da Action rappresentanti un suggerimento");
 
-		JSONArray a = getArray("cardsToReveal");
+		JSONArray a = json.getArray("cardsToReveal");
 		if (a == null)
 			throw new JSONException("Attributo \"cardsToReveal\" mancante");
 		else
@@ -226,7 +226,7 @@ public class Action extends JSONObject
 	 */
 	public List<Integer> getCardsToReveal()
 	{
-		JSONArray cards = getArray("cardsToReveal");
+		JSONArray cards = json.getArray("cardsToReveal");
 		if (cards != null)
 		{
 			ArrayList<Integer> c = new ArrayList<>();
@@ -245,12 +245,12 @@ public class Action extends JSONObject
 	 */
 	public Action setCardsToReveal(List<Integer> cardsToReveal) throws JSONException
 	{
-		JSONArray array1 = getArray("cardsToReveal");
+		JSONArray array1 = json.getArray("cardsToReveal");
 
 		JSONArray array = new JSONArray();
 		for (int i:cardsToReveal)
 			array.add("" + i);
-		set("cardsToReveal", array);
+		json.set("cardsToReveal", array);
 		try
 		{
 			checkCardsToReveal();
@@ -258,7 +258,7 @@ public class Action extends JSONObject
 		catch(JSONException e)
 		{
 			if (array1 != null)
-				set("cardsToReveal",array1);
+				json.set("cardsToReveal",array1);
 			throw e;
 		}
 		return this;
@@ -274,7 +274,7 @@ public class Action extends JSONObject
 		if (type != HINT_COLOR)
 			throw new JSONException("L'attributo \"color\" è posseduto solo da Action rappresentanti un suggerimento per colore");
 
-		String s = getString("color");
+		String s = json.getString("color");
 		if (s == null)
 			throw new JSONException("Attributo \"color\" mancante");
 		if (Color.fromString(s) == null)
@@ -286,7 +286,7 @@ public class Action extends JSONObject
 	 **/
 	public Color getColor()
 	{
-		String c = getString("color");
+		String c = json.getString("color");
 		if (c==null)
 			return null;
 		return Color.fromString(c);
@@ -301,7 +301,7 @@ public class Action extends JSONObject
 	public Action setColor(Color color) throws JSONException
 	{
 		Color c = getColor();
-		set("color",color.toString().toLowerCase());
+		json.set("color",color.toString().toLowerCase());
 		try
 		{
 			checkColor();
@@ -309,7 +309,7 @@ public class Action extends JSONObject
 		catch(JSONException e)
 		{
 			if (c!=null)
-				set("color",c.toString());
+				json.set("color",c.toString());
 			throw e;
 		}
 		return this;
@@ -321,7 +321,7 @@ public class Action extends JSONObject
 	 */
 	private void checkHinted() throws JSONException
 	{
-		String s = getString("hinted");
+		String s = json.getString("hinted");
 		if (s == null)
 			throw new JSONException("Attributo \"hinted\" mancante");
 		if (!Game.getInstance().isPlaying(s))
@@ -333,7 +333,7 @@ public class Action extends JSONObject
 	 **/
 	public String getHinted()
 	{
-		return getString("hinted");
+		return json.getString("hinted");
 	}
 
 	/**
@@ -345,7 +345,7 @@ public class Action extends JSONObject
 	public Action setHinted(String player) throws JSONException
 	{
 		String hinted = getHinted();
-		set("hinted",player);
+		json.set("hinted",player);
 		try
 		{
 			checkHinted();
@@ -353,7 +353,7 @@ public class Action extends JSONObject
 		catch(JSONException e)
 		{
 			if (hinted!=null)
-				set("hinted",hinted);
+				json.set("hinted",hinted);
 			throw e;
 		}
 		return this;
@@ -365,7 +365,7 @@ public class Action extends JSONObject
 	 */
 	private void checkPlayer() throws JSONException
 	{
-		String s = getString("player");
+		String s = json.getString("player");
 		if (s == null)
 			throw new JSONException("Attributo \"player\" mancante");
 		if (!Game.getInstance().isPlaying(s))
@@ -375,7 +375,7 @@ public class Action extends JSONObject
 	/**
 	 * @return il nome del giocatore che esegue l'azione, null se l'Action non possiede un attributo "player"
 	 **/
-	public String getPlayer(){return getString("player");}
+	public String getPlayer(){return json.getString("player");}
 
 	/**
 	 * Consente di impostare l'attributo "player" di questa Action
@@ -386,14 +386,14 @@ public class Action extends JSONObject
 	public Action setPlayer(String s) throws JSONException
 	{
 		String player = getPlayer();
-		set("player",s);
+		json.set("player",s);
 		try {
 			checkPlayer();
 		}
 		catch(JSONException e)
 		{
 			if (player != null)
-				set("player",player);
+				json.set("player",player);
 			throw e;
 		}
 		return this;
@@ -405,7 +405,7 @@ public class Action extends JSONObject
 	 */
 	private void checkType() throws JSONException
 	{
-		String t = getString("type");
+		String t = json.getString("type");
 		if (t == null)
 			throw new JSONException("Attributo \"type\" mancante");
 		if (ActionType.fromString(t) == null)
@@ -417,7 +417,7 @@ public class Action extends JSONObject
 	 * @see ActionType
 	 * @return il tipo di Action, null se l'Action non possiede un attributo "type"
 	 **/
-	public ActionType getType(){return ActionType.fromString(getString("type"));}
+	public ActionType getType(){return ActionType.fromString(json.getString("type"));}
 
 	/**
 	 * Consente di impostare l'attributo "type" di questa Action
@@ -427,7 +427,7 @@ public class Action extends JSONObject
 	public Action setType(ActionType type)
 	{
 		if ((type != null)&&(type.toString()!=null))
-			set("type",type.toString().toLowerCase());
+			json.set("type",type.toString().toLowerCase());
 		return this;
 	}
 
@@ -437,7 +437,7 @@ public class Action extends JSONObject
 	 */
 	private void checkValue() throws JSONException
 	{
-		String s = getString("value");
+		String s = json.getString("value");
 		if (s == null)
 			throw new JSONException("Attributo \"value\" mancante");
 		try
@@ -455,7 +455,7 @@ public class Action extends JSONObject
 	 **/
 	public int getValue()
 	{
-		String s = getString("value");
+		String s = json.getString("value");
 		if (s==null)
 			return -1;
 		return Integer.parseInt(s);
@@ -470,7 +470,7 @@ public class Action extends JSONObject
 	public Action setValue(int v) throws JSONException
 	{
 		int v1 = getValue();
-		set("value",""+v);
+		json.set("value",""+v);
 		try
 		{
 			checkValue();
@@ -478,7 +478,7 @@ public class Action extends JSONObject
 		catch(JSONException e)
 		{
 			if (v1>-1)
-				set("value",""+v1);
+				json.set("value",""+v1);
 			throw e;
 		}
 		return this;

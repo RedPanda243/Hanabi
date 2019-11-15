@@ -20,6 +20,9 @@ public class HanabiServer
 {
 	private static Socket[] players;
 	private static Card drawn = null;
+	private static boolean log = false;
+	private static PrintStream logfile;
+	private static String logpath = null;
 
 	/**
 	 * Il mescolamento delle carte del mazzo &egrave; simulato invertendo 2 carte random nel mazzo per 1000 volte
@@ -46,12 +49,12 @@ public class HanabiServer
 	 * La corretta partecipazione ad una partita richiede di rispettare il seguente protocollo:
 	 * <ul>
 	 *     <li>Invio del proprio nome come stringa terminata da un carattere '\n'</li>
-	 *     <li>Ricezione del proprio nome usato dal gioco (eventualmente modificato, succede in caso di nome gi&agrave; preso).</li>
+	 *     <li>Ricezione del proprio nome usato dal gioco (modificato in caso di nome ripetuto).</li>
 	 *     <li>Ricezione di un oggetto Game</li>
 	 *     <li>
 	 *         <ul>WHILE !GAMEOVER
 	 *             <li>Ricezione oggetto State</li>
-	 *             <li>Invio propria Action se &egrave; il proprio turno, ricezione di un Turn altrimenti</li>
+	 *             <li>Invio propria Action se &egrave; il proprio turno, altrimenti ricezione di un Turn</li>
 	 *         </ul>
 	 *     </li>
 	 * </ul>
@@ -72,11 +75,11 @@ public class HanabiServer
 		
 		int port = 9494;
 		int n = 2;
-		boolean log = false;
-		String logpath = null;
+
 		JSONArray playerNames = new JSONArray();
 		ArrayList<State> history = new ArrayList<>();
-		ArrayList<Turn> turns = new ArrayList<>();
+	//	ArrayList<Turn> turns = new ArrayList<>();
+
 
 		for (int i=0; i<args.length; i++)
 		{
@@ -103,13 +106,19 @@ public class HanabiServer
 					logpath=""+args[i];
 			}
 		}
+
+		if (logpath != null)
+			logfile = new PrintStream(System.getProperty("user.dir")+"/"+logpath);
+		else logfile = null;
+
 		ServerSocket ss = new ServerSocket(port);
-		System.out.println("Server avviato."); //TODO stampa tcp address (locale e remoto)
+		log("Server avviato."); //TODO stampa tcp address (locale e remoto)
 		int i = 0;
 		players = new Socket[n];
 		String pname;
 		while (i<n)
 		{ //Non c'è concorrenza, i giocatori sono accettati uno alla volta e giocheranno nell'ordine di arrivo
+			//TODO Rimescola i giocatori quando li hai tutti!
 			try
 			{
 				players[i] = ss.accept();
@@ -127,11 +136,13 @@ public class HanabiServer
 				playerNames.add(pname);
 				new PrintStream(players[i].getOutputStream()).println(pname);
 				players[i].getOutputStream().flush();
-				System.out.println("Giocatore "+i+" ("+pname+") connesso");
+				log("Giocatore "+i+" ("+pname+") connesso");
 				i++;
 			}
 			catch(IOException | ClassCastException e)
-			{e.printStackTrace(System.err);}
+			{
+				logException(e);
+			}
 		}
 
 		//Connessioni completate, avvio del gioco
@@ -173,8 +184,8 @@ public class HanabiServer
 		{
 			sendState(last,players);
 			Action a = receiveAction(last.getCurrentPlayer());
-			if(a.names().size() == 0)
-				throw new JSONException("Action null from player"+last.getCurrentPlayer());
+		/*	if(a.names().size() == 0)
+				throw new JSONException("Action null from player"+last.getCurrentPlayer());*/
 			next = nextState(last,a,deck);
 			history.add(last);
 			sendTurn(last.getCurrentPlayer(),a);
@@ -186,11 +197,29 @@ public class HanabiServer
 //			}
 		}
 		sendState(last,players);
+		if (logfile!=null)
+			logfile.close();
+	}
+
+	private static void log(String s)
+	{
+		if (log)
+			System.out.println(s);
+		if (logfile!=null)
+			logfile.println(s);
+	}
+
+	private static void logException(Exception e)
+	{
+		if (log)
+			e.printStackTrace(System.err);
+		if (logfile!=null)
+			e.printStackTrace(logfile);
 	}
 
 	private static State nextState(State current, Action move,Stack<Card> deck) throws IOException,JSONException
 	{
-		System.out.println("[ACTION "+move.getActionType().toString()+"] "+move.toString()+"\n"+"[DECK] = "+deck.size());
+		log("[ACTION "+move.getType().toString()+"] "+move.toString()+"\n"+"[DECK] = "+deck.size());
 		State next = current.clone();
 		next.setAction(move);
 		if(deck.size()==0) {
@@ -201,7 +230,7 @@ public class HanabiServer
 		else
 			drawn = deck.pop();
 
-		if (move.getActionType() == ActionType.PLAY)
+		if (move.getType() == ActionType.PLAY)
 		{
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
 			next.getHand(move.getPlayer()).remove(move.getCard());
@@ -221,10 +250,10 @@ public class HanabiServer
 					next.setFuseToken(next.getFuseTokens()-1);
 				}
 				catch (JSONException ex)//Impossibile
-				{ex.printStackTrace(System.err);}
+				{logException(ex);}
 			}
 		}
-		else if (move.getActionType() == ActionType.DISCARD)
+		else if (move.getType() == ActionType.DISCARD)
 		{
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
 			next.getHand(move.getPlayer()).remove(move.getCard());
@@ -236,15 +265,15 @@ public class HanabiServer
 				{
 					next.setHintToken(next.getHintTokens()+1);
 				}
-				catch(JSONException e){e.printStackTrace(System.err);} //Impossibile
+				catch(JSONException e){logException(e);} //Impossibile
 		}
 		else if (next.getHintTokens()>0)
 		{
 			drawn = null;
-			Hand hand = next.getHand(move.getHintReceiver());
+			Hand hand = next.getHand(move.getHinted());
 			int j;
 			//COLORE
-			if (move.getActionType() == ActionType.HINT_COLOR)
+			if (move.getType() == ActionType.HINT_COLOR)
 			{
 				j = 0;
 				for (int i = 0; i < hand.size(); i++)
@@ -276,7 +305,7 @@ public class HanabiServer
 			{
 				next.setHintToken(next.getHintTokens()-1);
 			}
-			catch (JSONException e){e.printStackTrace(System.err);} //Impossibile
+			catch (JSONException e){logException(e);} //Impossibile
 		}
 		else
 		{
@@ -296,7 +325,7 @@ public class HanabiServer
 		return new Action(new BufferedReader(new InputStreamReader(players[Game.getInstance().getPlayerTurn(player)].getInputStream())));
 	}
 
-	private static void sendState(State state, Socket[] players) throws IOException
+	private static void sendState(State state, Socket[] players) throws IOException,JSONException
 	{
 		State box;
 		for (int i=0; i<players.length; i++)
@@ -308,9 +337,9 @@ public class HanabiServer
 			{
 				card = hand.getCard(k);
 				if (!card.isColorRevealed())
-					card.set("color","");
+					card.setColor(null);
 				if (!card.isValueRevealed())
-					card.set("value","0");
+					card.setValue(0);
 				hand.replace(k,card);
 				//forse questo replace è inutile
 			}
@@ -325,7 +354,7 @@ public class HanabiServer
 	{
 		int x = Game.getInstance().getPlayerTurn(turnPlayer);
 		Turn t;
-		if (action.getActionType() == ActionType.PLAY || action.getActionType() == ActionType.DISCARD)
+		if (action.getType() == ActionType.PLAY || action.getType() == ActionType.DISCARD)
 			t = new Turn(action,drawn);
 		else
 			t = new Turn(action);
@@ -336,7 +365,7 @@ public class HanabiServer
 			{
 				ps = new PrintStream(players[i].getOutputStream());
 				ps.print(t.toString(0));
-	//			System.out.println("Sending to "+i+" "+t.toString(0));
+	//			log("Sending to "+i+" "+t.toString(0));
 				ps.flush();
 			}
 		}

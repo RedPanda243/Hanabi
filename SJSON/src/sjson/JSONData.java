@@ -20,17 +20,6 @@ public abstract class JSONData implements Cloneable
 	static final int baseindent = 3;
 
 	/**
-	 * JSONData non specifica operazioni nel costruttore, ma, visto che ogni tipo di dato json può essere convertito biunivocamente
-	 * in una stringa, prevede in ingresso una stringa da convertire in tipo di dato json.
-	 *
-	 * @param text rappresentazione testuale del dato json da costruire
-	 */
-	public JSONData(String text)
-	{
-
-	}
-
-	/**
 	 * Nel formato sjson, un dato pu&ograve; essere di 3 tipi: stringa, array o oggetto. Il package sjson fornisce una classe figlia
 	 * di JSONData per ognuno di questi tipi di dato.
 	 */

@@ -1,0 +1,8 @@
+-	I valori di playability e uselessness dipendono dall'indice delle carte nella mano del giocatore.
+	Se quando pesco traslo tutte le carte e metto la pescata in fondo perdo le associazioni. Correggi con un replace delle carte
+
+-	Al momento ho cambiato Strateg1 in modo che gli hint siano molto stupidi, fa quello che coinvolge più carte.
+	In teoria dovrebbe provare ogni possibile hint e controllare i nuovi parametri di playability e uselessness derivanti dall'hint.
+	Il problema è che dovrebbe immedesimarsi in un altro giocatore, cosa che non può fare con precisione perché non conosce le proprie carte.
+	Quindi per ogni combinazione possibile di proprie carte dovrebbe verificare l'effetto di ogni hint possibile. 
+	Sceglie l'hint a seconda della media di playability o uselessness ottenuta ruotando le proprie combinazioni possibili

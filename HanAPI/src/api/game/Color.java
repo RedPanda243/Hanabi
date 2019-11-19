@@ -7,6 +7,8 @@ public enum Color {
 
 	public static Color fromString(String s)
 	{
+		if (s==null)
+			return null;
 		if (s.equalsIgnoreCase("blue"))
 			return BLUE;
 		else if (s.equalsIgnoreCase("red"))

@@ -56,6 +56,7 @@ public class Action extends TypedJSON<JSONObject>
 	public Action(String player, ActionType type, int card) throws JSONException
 	{
 		super();
+		json = new JSONObject();
 		if (type == HINT_COLOR || type == HINT_VALUE)
 			throw new JSONException("Il parametro type deve essere "+PLAY+" o "+DISCARD);
 		setPlayer(player).setType(type).setCard(card);
@@ -66,13 +67,14 @@ public class Action extends TypedJSON<JSONObject>
 	 * @param player nome del giocatore che effettua il suggerimento
 	 * @param hinted nome del giocatore cui &egrave; rivolto il suggerimento
 	 * @param value valore da suggerire
-	 * @param cardsToReveal lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
+//	 * @param cardsToReveal lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
 	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
 	 */
-	public Action(String player, String hinted, int value, List<Integer> cardsToReveal) throws JSONException
+	public Action(String player, String hinted, int value/*, List<Integer> cardsToReveal*/) throws JSONException
 	{
 		super();
-		setPlayer(player).setType(HINT_VALUE).setHinted(hinted).setValue(value).setCardsToReveal(cardsToReveal);
+		json = new JSONObject();
+		setPlayer(player).setType(HINT_VALUE).setHinted(hinted).setValue(value)/*.setCardsToReveal(cardsToReveal)*/;
 	}
 
 	/**
@@ -80,13 +82,14 @@ public class Action extends TypedJSON<JSONObject>
 	 * @param player nome del giocatore che effettua il suggerimento
 	 * @param hinted nome del giocatore cui &egrave; rivolto il suggerimento
 	 * @param color colore da suggerire
-	 * @param cardsToReveal lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
+//	 * @param cardsToReveal lista degli indici delle carte suggerite nella mano del giocatore che riceve il suggerimento
 	 * @throws JSONException in caso di errore nella costruzione dell'oggetto json
 	 */
-	public Action(String player, String hinted, Color color, List<Integer> cardsToReveal) throws JSONException
+	public Action(String player, String hinted, Color color/*, List<Integer> cardsToReveal*/) throws JSONException
 	{
 		super();
-		setPlayer(player).setType(HINT_COLOR).setHinted(hinted).setCardsToReveal(cardsToReveal).setColor(color);
+		json = new JSONObject();
+		setPlayer(player).setType(HINT_COLOR).setHinted(hinted)/*.setCardsToReveal(cardsToReveal)*/.setColor(color);
 	}
 
 	/**
@@ -123,7 +126,7 @@ public class Action extends TypedJSON<JSONObject>
 					checkColor();
 				else
 					checkValue();
-				checkCardsToReveal();
+//				checkCardsToReveal();
 				checkHinted();
 			}
 		}
@@ -192,7 +195,7 @@ public class Action extends TypedJSON<JSONObject>
 	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "cardsToReveal"
 	 * @throws JSONException se l'attributo "cardsToReveal" &egrave; mancante, se non &egrave; un {@link JSONArray} di interi rappresentanti posizioni di carte in una mano, o se non &egrave; previsto dal tipo di Action
 	 */
-	private void checkCardsToReveal() throws JSONException
+/*	private void checkCardsToReveal() throws JSONException
 	{
 		ActionType type = getType();
 		if ((type == PLAY) || (type == DISCARD))
@@ -220,11 +223,35 @@ public class Action extends TypedJSON<JSONObject>
 			}
 		}
 	}
-
+*/
 	/**
 	 * @return un array contenente le posizioni nella mano del ricevente il suggerimento delle carte cui il suggerimento si riferisce
 	 */
-	public List<Integer> getCardsToReveal()
+	public List<Integer> getCardsToReveal(State current)
+	{
+		if (this.getType() == PLAY || this.getType() == DISCARD)
+			return null;
+		Hand hand = current.getHand(this.getHinted());
+		ArrayList<Integer> list = new ArrayList<>();
+		if (this.getType() == HINT_VALUE)
+		{
+			for (int i=0; i<hand.size(); i++)
+			{
+				if (hand.getCard(i).getValue() == this.getValue())
+					list.add(i);
+			}
+		}
+		else if (this.getType() == HINT_COLOR)
+		{
+			for (int i=0; i<hand.size(); i++)
+			{
+				if (hand.getCard(i).getColor() == this.getColor())
+					list.add(i);
+			}
+		}
+		return list;
+	}
+/*	public List<Integer> getCardsToReveal()
 	{
 		JSONArray cards = json.getArray("cardsToReveal");
 		if (cards != null)
@@ -236,14 +263,14 @@ public class Action extends TypedJSON<JSONObject>
 		}
 		return null;
 	}
-
+*/
 	/**
 	 * Consente di impostare l'attributo "cardsToReveal" di questa Action
 	 * @param cardsToReveal il valore da assegnare all'attributo "cardsToReveal"
 	 * @return questa Action modificata
 	 * @throws JSONException in caso di errori nell'impostazione
 	 */
-	public Action setCardsToReveal(List<Integer> cardsToReveal) throws JSONException
+/*	public Action setCardsToReveal(List<Integer> cardsToReveal) throws JSONException
 	{
 		JSONArray array1 = json.getArray("cardsToReveal");
 
@@ -263,7 +290,7 @@ public class Action extends TypedJSON<JSONObject>
 		}
 		return this;
 	}
-
+*/
 	/**
 	 * Usato nei costruttori e nel corrispondente metodo set, verifica l'integrit&agrave; del campo "color"
 	 * @throws JSONException se l'attributo "color" &egrave; mancante, se non &egrave; un valore previsto dalla classe {@link Color} o se non &egrave; previsto dal tipo di Action

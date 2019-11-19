@@ -50,7 +50,7 @@ public class Game extends TypedJSON<JSONObject>
 	 */
 	public int getNumberOfCardsPerPlayer()
 	{
-		return getPlayers().size()>3?4:5;
+		return getPlayers().length>3?4:5;
 	}
 
 	/**
@@ -59,15 +59,21 @@ public class Game extends TypedJSON<JSONObject>
 	 */
 	public String getPlayer(int index)
 	{
-		return getPlayers().getString(index);
+		return getPlayers()[index];
 	}
 
 	/**
 	 * @return un JSONArray contenenti i nomi di tutti i giocatori che partecipano alla partita, nell'ordine in cui tocca giocare
 	 */
-	public JSONArray getPlayers()
+	public String[] getPlayers()
 	{
-		return json.getArray("players");
+		JSONArray a = json.getArray("players");
+		String[] r = new String[a.size()];
+		for(int i=0; i<a.size(); i++)
+		{
+			r[i] = a.getString(i);
+		}
+		return r;
 	}
 
 	/**
@@ -76,11 +82,10 @@ public class Game extends TypedJSON<JSONObject>
 	 */
 	public int getPlayerTurn(String player)
 	{
-		JSONData d = new JSONString(player);
 		int i = 0;
-		for(JSONData ad: getPlayers())
+		for(String ad: getPlayers())
 		{
-			if (ad.equals(d))
+			if (ad.equals(player))
 				return i;
 			i++;
 		}

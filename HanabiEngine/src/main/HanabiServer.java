@@ -63,7 +63,7 @@ public class HanabiServer
 	 * <ul>
 	 * 		<li>-l = mostra il log della partita mossa per mossa</li>
 	 * 		<li>-p "port" = imposta la porta tcp locale. Default: 9494</li>
-	 *		<li>-g "numplayers" = imposta il numero di giocatori. Default: 2</li>
+	 *		<li>-n "numplayers" = imposta il numero di giocatori. Default: 2</li>
 	 *		<li>-f "logfilepath"|null = imposta il percorso del file nel quale memorizzare il log a partita finita.
 	 *									Se null (default) non verr&agrave; memorizzato</li>
 	 * </ul>
@@ -92,7 +92,7 @@ public class HanabiServer
 				i++;
 				port = Integer.parseInt(args[i]);
 			}
-			else if (args[i].equals("-g"))
+			else if (args[i].equals("-n"))
 			{
 				i++;
 				n = Integer.parseInt(args[i]);
@@ -188,7 +188,7 @@ public class HanabiServer
 				throw new JSONException("Action null from player"+last.getCurrentPlayer());*/
 			next = nextState(last,a,deck);
 			history.add(last);
-			sendTurn(last.getCurrentPlayer(),a);
+			sendTurn(last.getCurrentPlayer(),a,last);
 			last = next;
 
 			//PROVA *************************************
@@ -217,7 +217,7 @@ public class HanabiServer
 			e.printStackTrace(logfile);
 	}
 
-	private static State nextState(State current, Action move,Stack<Card> deck) throws IOException,JSONException
+	private static State nextState(State current, Action move,Stack<Card> deck) throws JSONException
 	{
 		log("[ACTION "+move.getType().toString()+"] "+move.toString()+"\n"+"[DECK] = "+deck.size());
 		State next = current.clone();
@@ -225,10 +225,10 @@ public class HanabiServer
 		if(deck.size()==0) {
 			drawn = null;
 			if(current.getFinalActionIndex() == -1)
-				next.setFinalActionIndex(current.getOrder()+Game.getInstance().getPlayers().size());
+				next.setFinalActionIndex(current.getOrder()+Game.getInstance().getPlayers().length);
 		}
 		else
-			drawn = deck.pop();
+			drawn = deck.pop(); //TODO Se l'Action è un suggerimento pesco a cazzo e la carta è persa!!!
 
 		if (move.getType() == ActionType.PLAY)
 		{
@@ -279,7 +279,7 @@ public class HanabiServer
 				for (int i = 0; i < hand.size(); i++)
 				{
 					if (hand.getCard(i).getColor().equals(move.getColor())) {
-						if(move.getCardsToReveal().get(j) == i) {
+						if(move.getCardsToReveal(current).get(j) == i) {
 							hand.getCard(i).setColorRevealed(true);
 							j++;
 						} else
@@ -293,7 +293,7 @@ public class HanabiServer
 				for (int i = 0; i < hand.size(); i++)
 				{
 					if (hand.getCard(i).getValue() == move.getValue()) {
-						if(move.getCardsToReveal().get(j) == i) {
+						if(move.getCardsToReveal(current).get(j) == i) {
 							hand.getCard(i).setValueRevealed(true);
 							j++;
 						} else
@@ -311,7 +311,7 @@ public class HanabiServer
 		{
 			return current; //Così il ciclo ricomincia.
 		}
-		if (Game.getInstance().getPlayerTurn(next.getCurrentPlayer())==Game.getInstance().getPlayers().size()-1)
+		if (Game.getInstance().getPlayerTurn(next.getCurrentPlayer())==Game.getInstance().getPlayers().length-1)
 			next.setCurrentPlayer(Game.getInstance().getPlayer(0));
 		else
 			next.setCurrentPlayer(Game.getInstance().getPlayer(Game.getInstance().getPlayerTurn(next.getCurrentPlayer())+1));
@@ -341,21 +341,21 @@ public class HanabiServer
 				if (!card.isValueRevealed())
 					card.setValue(0);
 			}
-			box.setHand(Game.getInstance().getPlayer(i),hand);
+	//		box.setHand(Game.getInstance().getPlayer(i),hand);
 			PrintStream ps = new PrintStream(players[i].getOutputStream());
 			ps.print(box.toString(0));
 			ps.flush();
 		}
 	}
 
-	private static void sendTurn(String turnPlayer, Action action) throws JSONException,IOException
+	private static void sendTurn(String turnPlayer, Action action, State current) throws JSONException,IOException
 	{
 		int x = Game.getInstance().getPlayerTurn(turnPlayer);
 		Turn t;
 		if (action.getType() == ActionType.PLAY || action.getType() == ActionType.DISCARD)
 			t = new Turn(action,drawn);
 		else
-			t = new Turn(action);
+			t = new Turn(action,action.getCardsToReveal(current));
 		PrintStream ps;
 		for (int i=0; i<players.length; i++)
 		{

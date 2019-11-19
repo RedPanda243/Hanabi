@@ -1,10 +1,13 @@
 package api.game;
 
+import sjson.JSONArray;
 import sjson.JSONData;
 import sjson.JSONException;
 import sjson.JSONObject;
 
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Turn extends TypedJSON<JSONObject>
 {
@@ -15,10 +18,11 @@ public class Turn extends TypedJSON<JSONObject>
 		setDrawn(d);
 	}
 
-	public Turn(Action a)
+	public Turn(Action a, List<Integer> r) throws JSONException
 	{
 		json = new JSONObject();
 		setAction(a);
+		setRevealed(r);
 	}
 
 	public Turn(Reader reader) throws JSONException
@@ -34,6 +38,18 @@ public class Turn extends TypedJSON<JSONObject>
 			d = json.get("drawn");
 			if (d!=null)
 				setDrawn(new Card(d.toString(0)));
+			else
+				throw new JSONException("Attributo \"drawn\" mancante");
+		}
+		else
+		{
+			d = json.getArray("revealed");
+			if (d == null)
+				throw new JSONException("Attributo \"revealed\" mancante");
+			else
+			{
+				//TODO, rivedi tutti i controlli non sono fatti bene
+			}
 		}
 	}
 
@@ -51,6 +67,15 @@ public class Turn extends TypedJSON<JSONObject>
 			return (Card)c;
 	}
 
+	public List<Integer> getRevealed()
+	{
+		JSONArray a = json.getArray("revealed");
+		ArrayList<Integer> list = new ArrayList<>();
+		for (JSONData d:a)
+			list.add(Integer.parseInt(d.toString().substring(1,d.toString().length()-1)));
+		return list;
+	}
+
 	public Turn setAction(Action action)
 	{
 		json.set("action",action);
@@ -66,9 +91,21 @@ public class Turn extends TypedJSON<JSONObject>
 		return this;
 	}
 
+	public Turn setRevealed(List<Integer> revealed) throws JSONException
+	{
+		ActionType type = getAction().getType();
+		if (type == ActionType.PLAY || type == ActionType.DISCARD)
+			throw new JSONException("Giocare o scartare carte non rivela nessuna carta");
+		JSONArray r = new JSONArray();
+		for (int i:revealed)
+			r.add(""+i);
+		json.set("revealed",r);
+		return this;
+	}
+
 	public String toString()
 	{
 		Card c = getDrawn();
-		return getAction().toString()+(c==null?"":"\nIl giocatore pesca "+c.toString());
+		return getAction().toString()+(c==null?"(Revealed: "+getRevealed()+")":"\nIl giocatore pesca "+c.toString());
 	}
 }

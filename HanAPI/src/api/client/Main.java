@@ -15,7 +15,7 @@ import java.net.Socket;
 public class Main
 {
 	public static BufferedReader keyboard;
-	public static String name;
+	public static String playerName;
 	private static AbstractAgent agent;
 	private static boolean running = false;
 
@@ -47,7 +47,7 @@ public class Main
 		}
 		else if (args.length == 1)
 		{
-			System.out.println("Inserisci porta remota");
+			System.out.println("Inserisci porta remota"); //TODO e se ti passo ip:port? Un solo parametro ma ha già la porta!
 			start(args[0],keyboard.readLine());
 		}
 		else if (args.length == 2)
@@ -55,22 +55,22 @@ public class Main
 			System.out.println("Inserisci nome giocatore");
 			start(args[0],args[1],keyboard.readLine());
 		}
-		else if (args.length == 3)
+/*		else if (args.length == 3)
 		{
 			System.out.println("Inserisci tipo giocatore");
 			start(args[0],args[1],args[2],keyboard.readLine());
-		}
+		}*/
 		else
 		{
 			String host = args[0];
 			int port = Integer.parseInt(args[1]);
-			name = args[2];
+			playerName = args[2];
 			Socket socket = new Socket(host, port);
 			PrintStream out = new PrintStream(socket.getOutputStream());
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			out.println(name);
+			out.println(playerName);
 			out.flush();
-			name = in.readLine();
+			playerName = in.readLine();
 
 			new Game(in);
 /*
@@ -86,13 +86,13 @@ public class Main
 			}
 */
 			State last = new State(in);
-			//		HandCardsProbability prob = new HandCardsProbability(name, last);
+			//		HandCardsProbability prob = new HandCardsProbability(playerName, last);
 
 			while(!last.gameOver())
 			{
-		//		System.out.println(last);
+	//			System.out.println(last);
 				agent.notifyState(last);
-				if (last.getCurrentPlayer().equals(name))
+				if (last.getCurrentPlayer().equals(playerName))
 				{
 					Action a = agent.chooseAction();
 					out.print(a.toString(0));

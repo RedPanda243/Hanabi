@@ -15,6 +15,7 @@ public class State extends TypedJSON<JSONObject>
 	public State(Stack<Card> deck) throws JSONException
 	{
 		super();
+		json = new JSONObject();
 		json.set("discarded",new JSONArray());
 		json.set("action", new JSONObject());
 		json.set("red",new Firework());
@@ -27,13 +28,12 @@ public class State extends TypedJSON<JSONObject>
 		json.set("fuse",""+3);
 		json.set("hints",""+8);
 		json.set("final",""+-1);
-		JSONArray names = Game.getInstance().getPlayers();
 		Card[] cards = new Card[Game.getInstance().getNumberOfCardsPerPlayer()];
-		for (JSONData n:names)
+		for (String n:Game.getInstance().getPlayers())
 		{
 			for (int i=0; i<cards.length; i++)
 				cards[i] = deck.pop();
-			json.set(n.toString(),new Hand(cards));
+			json.set(n,new Hand(cards));
 		}
 	}
 
@@ -81,12 +81,12 @@ public class State extends TypedJSON<JSONObject>
 		}
 
 
-		for(JSONData d: Game.getInstance().getPlayers())
+		for(String d: Game.getInstance().getPlayers())
 		{
-			array = json.getArray(d.toString());
+			array = json.getArray(d);
 			if (array == null)
-				throw new JSONException("Missing "+d.toString()+" hand!");
-			setHand(d.toString(),new Hand(array.toString(0)));
+				throw new JSONException("Missing "+d+" hand!");
+			setHand(d,new Hand(array.toString(0)));
 		}
 
 		s = json.getString("order");
@@ -323,7 +323,7 @@ public class State extends TypedJSON<JSONObject>
 	public String toString(){
 		String ret = "State: "+getOrder()+"\n";
 		ret+="Players' hands:\n";
-		for(int i=0; i<Game.getInstance().getPlayers().size(); i++){
+		for(int i=0; i<Game.getInstance().getPlayers().length; i++){
 			ret+="\t"+ Game.getInstance().getPlayer(i)+" ("+i+"): "+getHand(Game.getInstance().getPlayer(i))+"\n";
 		}
 //		System.err.println();

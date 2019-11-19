@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HanabiStrategy1">
+    <output-path>$PROJECT_DIR$/../</output-path>
+    <root id="archive" name="HanabiStrategy1.jar">
+      <element id="module-output" name="HanabiStrategy1" />
+      <element id="module-source" name="HanabiStrategy1" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

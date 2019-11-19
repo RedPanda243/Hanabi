@@ -1,9 +1,11 @@
 import api.client.AbstractAgent;
 import api.client.Main;
+import api.client.StatisticState;
 import api.game.Action;
 import api.game.ActionType;
 import api.game.Game;
 import api.game.State;
+import sjson.JSONData;
 import sjson.JSONException;
 
 import java.io.IOException;
@@ -69,12 +71,8 @@ public class HumanAgent extends AbstractAgent
 	}
  */
 
-	@Override
-	public void addHistory(State state) {
 
-	}
-
-	public Action chooseAction(State current)
+	public Action chooseAction()
 	{
 		System.out.println("\nChoose one action: (play <cardnum> | discard <cardnum> | hint <playernum> (<color>|<value>))");
 		Action action = null;
@@ -84,10 +82,10 @@ public class HumanAgent extends AbstractAgent
 			{
 				String[] parts = Main.keyboard.readLine().split(" ");
 				if (parts[0].equals("play"))
-					action = new Action(Main.name, ActionType.PLAY,Integer.parseInt(parts[1]));
+					action = new Action(Main.playerName, ActionType.PLAY,Integer.parseInt(parts[1]));
 				else if (parts[0].equals("discard"))
 				{
-					action = new Action(Main.name, ActionType.DISCARD,Integer.parseInt(parts[1]));
+					action = new Action(Main.playerName, ActionType.DISCARD,Integer.parseInt(parts[1]));
 				}
 				else if (parts[0].equals("hint"))
 				{
@@ -103,7 +101,7 @@ public class HumanAgent extends AbstractAgent
 					try
 					{
 						//TODO
-					//	action = new Action(Main.name,hinted,Integer.parseInt(parts[2]));
+						action = new Action(Main.playerName,hinted,Integer.parseInt(parts[2]));
 					}
 					catch(NumberFormatException nfe)
 					{
@@ -121,13 +119,38 @@ public class HumanAgent extends AbstractAgent
 		return action;
 	}
 
+	public void notifyState(State state)
+	{
+		super.notifyState(state);
+		try {
+			StatisticState sstate = new StatisticState(state, stats);
+			System.out.println(sstate);
+			if (state.getCurrentPlayer().equals(Main.playerName))
+			{
+				System.out.println("Suggerimenti possibili:");
+				for (String player: Game.getInstance().getPlayers())
+				{
+					if (!player.equals(Main.playerName))
+					{
+						System.out.println(player);
+						for (Action h:this.getPossibleHints(player))
+							System.out.println("\t"+h);
+					}
+				}
+			}
+		}
+		catch (JSONException e){}
+	}
+
 	/**
 	 *
 	 * @param args 0-host, 1-port, 2-name
 	 */
 	public static void main(String... args) throws IOException,JSONException
 	{
-
+		AbstractAgent agent = new HumanAgent();
+		Main.setAgent(agent);
+		Main.main(args);
 	}
 
 }

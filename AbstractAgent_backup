@@ -22,7 +22,7 @@ public abstract class Old_AbstractAgent
 	public void addHistory(State state){
 		history.add(state);
 		if (stats == null)
-			stats = new HandCardsProbability(Main.name,state);
+			stats = new HandCardsProbability(Main.playerName,state);
 		else {
 			try {
 				stats.updatePossibleCards(state);
@@ -73,7 +73,7 @@ public abstract class Old_AbstractAgent
 					if (hand.getCard(j).getValue() == value)
 						cardsHinted.add(j);
 				}
-				list.add(new Action(Main.name, receiver, value, cardsHinted));
+				list.add(new Action(Main.playerName, receiver, value, cardsHinted));
 			} //fine if value
 
 			if(colorAdded.indexOf(col)==-1){ //colore incontrato non ancora aggiunto
@@ -89,7 +89,7 @@ public abstract class Old_AbstractAgent
 						System.err.println("[POSSIBILE HINT]j="+j+" color="+col);
 					}
 				}
-				list.add(new Action(Main.name, receiver, col, cardsHinted));
+				list.add(new Action(Main.playerName, receiver, col, cardsHinted));
 			} //fine if color
 		} //fine for HAND
 
@@ -109,7 +109,7 @@ public abstract class Old_AbstractAgent
 //
 //			}
 //			if(cardsHinted.size()>0) {
-//				list.add(new Action(Main.name, receiver, i, cardsHinted));
+//				list.add(new Action(Main.playerName, receiver, i, cardsHinted));
 //				System.out.println("TOHINT CARDS: "+ Arrays.toString(cardsHinted.toArray()));
 //			}
 //		}
@@ -125,7 +125,7 @@ public abstract class Old_AbstractAgent
 //
 //			}
 //			if(cardsHinted.size()>0)
-//				list.add(new Action(Main.name,receiver,color,cardsHinted));
+//				list.add(new Action(Main.playerName,receiver,color,cardsHinted));
 //		}
 		return list;
 	}
@@ -133,7 +133,7 @@ public abstract class Old_AbstractAgent
 	public JSONArray sortPlayers() {
 		//Riordino i giocatori e tolgo me stesso, riordino a partire dal mio successivo
 		JSONArray players = Game.getInstance().getPlayers().clone();
-		int myturn = Game.getInstance().getPlayerTurn(Main.name);
+		int myturn = Game.getInstance().getPlayerTurn(Main.playerName);
 		for (int i = 0; i < myturn; i++)
 			players.add(players.get(i));
 
@@ -142,7 +142,7 @@ public abstract class Old_AbstractAgent
 		return players;
 	}
 
-	public abstract Action chooseAction(State current);
+	public abstract Action getAction(State current);
 
  */
 }

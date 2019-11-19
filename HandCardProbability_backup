@@ -1,3 +1,5 @@
+package api.client;
+
 import api.game.*;
 import sjson.JSONArray;
 import sjson.JSONData;

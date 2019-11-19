@@ -1,10 +1,14 @@
 package api.game;
 
+import sjson.JSONData;
 import sjson.JSONException;
 import sjson.JSONObject;
 
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Classe che rappresenta una carta Hanabi.
@@ -102,14 +106,14 @@ public class Card extends TypedJSON<JSONObject>
 	 * Due Card sono uguali se lo sono i loro colori e valori. Un colore o un valore sconosciuto non &egrave; mai uguale ad un altro.
 	 * @return true se il parametro &egrave; una Card e se &egrave; uguale a questa carta.
 	 **/
-	public boolean equals(Object o){
+	public boolean equals(JSONData o){
 		if(o instanceof Card){
 			Card c = (Card)o;
 			if (c.getColor() == null || getColor() == null || c.getValue() == 0 || getValue() == 0)
 				return false;
 			return c.getColor() == getColor() && c.getValue()==getValue();
 		}
-		return false;
+		return super.equals(o);
 	}
 
 	/**
@@ -179,7 +183,9 @@ public class Card extends TypedJSON<JSONObject>
 		{
 			try
 			{
-				setValue(Integer.parseInt(s));
+				int i = Integer.parseInt(s);
+				if (i<0 || i>5)
+					throw new NumberFormatException();
 			}
 			catch (NumberFormatException e)
 			{
@@ -193,7 +199,14 @@ public class Card extends TypedJSON<JSONObject>
 	 */
 	public int getValue()
 	{
-		return Integer.parseInt(json.getString("value"));
+		try
+		{
+			return Integer.parseInt(json.getString("value"));
+		}
+		catch(NumberFormatException e)
+		{
+			return 0;
+		}
 	}
 
 	/**
@@ -278,6 +291,22 @@ public class Card extends TypedJSON<JSONObject>
 		else
 			sb.append("   ");
 		return sb.toString();
+	}
+
+	public static List<Card> getAllCards() throws JSONException
+	{
+		ArrayList<Card> list = new ArrayList<>();
+		Card card;
+		for (Color color: Color.values())
+		{
+			for (int i=1; i<6; i++)
+			{
+				card = new Card(color,i);
+				for (int j=0; j<card.getCount(); j++)
+					list.add(card.clone());
+			}
+		}
+		return list;
 	}
 }
 

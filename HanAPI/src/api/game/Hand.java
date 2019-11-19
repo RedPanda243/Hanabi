@@ -6,11 +6,12 @@ import sjson.JSONException;
 
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.Iterator;
 
 /**
  * Rappresenta la mano di un giocatore come json array di Card
  */
-public class Hand extends TypedJSON<JSONArray>
+public class Hand extends TypedJSON<JSONArray> implements Iterable<Card>
 {
 
 	public Hand(Card[] cards)
@@ -86,5 +87,26 @@ public class Hand extends TypedJSON<JSONArray>
 		for (JSONData c:json)
 			sb.append(c).append(",");
 		return sb.replace(sb.length()-1,sb.length(),"}").toString();
+	}
+
+	@Override
+	public Iterator<Card> iterator()
+	{
+		return new Iterator<Card>()
+		{
+			int index = 0;
+			@Override
+			public boolean hasNext()
+			{
+				return (index<size());
+			}
+
+			@Override
+			public Card next()
+			{
+				index++;
+				return getCard(index-1);
+			}
+		};
 	}
 }

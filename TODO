@@ -6,3 +6,8 @@
 	Il problema è che dovrebbe immedesimarsi in un altro giocatore, cosa che non può fare con precisione perché non conosce le proprie carte.
 	Quindi per ogni combinazione possibile di proprie carte dovrebbe verificare l'effetto di ogni hint possibile. 
 	Sceglie l'hint a seconda della media di playability o uselessness ottenuta ruotando le proprie combinazioni possibili
+
+-	Tutti i controlli sugli oggetti che estendono TypedJSON sono arbitrari e non formalizzati.
+	Costruisci un formalismo che dica come controllare tali oggetti e poi implementalo per ogni classe
+
+-	Molti metodi sono ancora senza documentazione

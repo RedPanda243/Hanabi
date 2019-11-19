@@ -233,9 +233,9 @@ public class HanabiServer
 		if (move.getType() == ActionType.PLAY)
 		{
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
-			next.getHand(move.getPlayer()).remove(move.getCard());
+			next.getHand(move.getPlayer()).removeCard(move.getCard());
 			if (drawn != null)
-				next.getHand(move.getPlayer()).add(drawn);
+				next.getHand(move.getPlayer()).addCard(drawn);
 			try
 			{
 				next.getFirework(played.getColor()).addCard(played);
@@ -256,9 +256,9 @@ public class HanabiServer
 		else if (move.getType() == ActionType.DISCARD)
 		{
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
-			next.getHand(move.getPlayer()).remove(move.getCard());
+			next.getHand(move.getPlayer()).removeCard(move.getCard());
 			if (drawn != null)
-				next.getHand(move.getPlayer()).add(drawn);
+				next.getHand(move.getPlayer()).addCard(drawn);
 			next.getDiscards().add(played);
 			if (next.getHintTokens()<8)
 				try
@@ -340,8 +340,6 @@ public class HanabiServer
 					card.setColor(null);
 				if (!card.isValueRevealed())
 					card.setValue(0);
-				hand.replace(k,card);
-				//forse questo replace è inutile
 			}
 			box.setHand(Game.getInstance().getPlayer(i),hand);
 			PrintStream ps = new PrintStream(players[i].getOutputStream());

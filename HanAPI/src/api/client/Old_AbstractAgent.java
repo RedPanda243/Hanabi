@@ -39,7 +39,7 @@ public abstract class Old_AbstractAgent
 */
 
 	/**
-	 * Dà la lista di hint che aggiungerebbero informazioni alla mano del giocatore receiver
+	 * Restituisce una lista di hint che aggiungerebbero informazioni alla mano del giocatore receiver
 	 * @param receiver
 	 * @return
 	 * @throws JSONException

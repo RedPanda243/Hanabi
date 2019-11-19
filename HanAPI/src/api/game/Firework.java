@@ -7,7 +7,7 @@ import java.io.Reader;
 import java.io.StringReader;
 
 /**
- *  Classe che implementa un Firework Hanabi, rappresentato per mezzo di un json array di {@link Card}
+ *  Classe che implementa un Firework Hanabi, rappresentato come json array di {@link Card}
  */
 public class Firework extends TypedJSON<JSONArray>
 {

@@ -8,15 +8,14 @@ import java.io.Reader;
 import java.io.StringReader;
 
 /**
- *
+ * Rappresenta la mano di un giocatore come json array di Card
  */
 public class Hand extends TypedJSON<JSONArray>
 {
 
-	public Hand(Card[] cards) throws JSONException
+	public Hand(Card[] cards)
 	{
 		json = new JSONArray();
-
 		for(Card c:cards)
 			json.add(c);
 	}
@@ -36,6 +35,7 @@ public class Hand extends TypedJSON<JSONArray>
 		checkHand();
 	}
 
+
 	private void checkHand() throws JSONException
 	{
 		int n = Game.getInstance().getNumberOfCardsPerPlayer();
@@ -52,6 +52,12 @@ public class Hand extends TypedJSON<JSONArray>
 		catch (JSONException e){return null;}
 	}
 
+	public Hand addCard(Card card)
+	{
+		json.add(card);
+		return this;
+	}
+
 	public Card getCard(int i)
 	{
 		return (Card)json.get(i);
@@ -66,6 +72,12 @@ public class Hand extends TypedJSON<JSONArray>
 	public int size()
 	{
 		return json.size();
+	}
+
+	public Hand removeCard(int card)
+	{
+		json.remove(card);
+		return this;
 	}
 
 	public String toString()

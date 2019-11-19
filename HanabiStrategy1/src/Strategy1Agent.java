@@ -1,8 +1,11 @@
+import api.client.Main;
 import api.game.*;
+import api.client.AbstractAgent;
 import sjson.JSONArray;
 import sjson.JSONData;
 import sjson.JSONException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,12 +38,16 @@ import java.util.List;
  */
 public class Strategy1Agent extends AbstractAgent {
 
+	private HandCardsProbability stats;
+	private List<State> history;
+
 	public Strategy1Agent() {
 		super();
+		history = new ArrayList<>();
 	}
 
 	@Override
-	public Action chooseAction(State state) //State è inutile ma mi serve nell'astratta per casi generali
+	public Action chooseAction()
 	{
 		try {
 			System.out.println(Arrays.toString(stats.getPlayability(Main.name)));
@@ -61,6 +68,19 @@ public class Strategy1Agent extends AbstractAgent {
 		if (action == null)
 			action = playMost();
 		return action;
+	}
+
+	@Override
+	public void notifyState(State state)
+	{
+		if (history.size()==0)
+			stats = new HandCardsProbability();
+	}
+
+	@Override
+	public void notifyTurn(Turn turn)
+	{
+
 	}
 
 

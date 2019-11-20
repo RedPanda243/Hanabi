@@ -34,6 +34,7 @@ public class StatisticState extends State
 			double p[] = stats.getPlayability(player);
 			for (int j=0; j<hand.size(); j++)
 				ret+= df.format(p[j])+"; ";
+//				ret+=p[j]+"; ";
 			ret = ret.substring(0,ret.length()-2)+"}\n";
 			ret+="\t\t"+"Uselessness: {";
 			double u[] = stats.getUselessness(player);

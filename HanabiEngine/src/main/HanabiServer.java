@@ -353,19 +353,19 @@ public class HanabiServer
 		int x = Game.getInstance().getPlayerTurn(turnPlayer);
 		Turn t;
 		if (action.getType() == ActionType.PLAY || action.getType() == ActionType.DISCARD)
-			t = new Turn(action,drawn);
+			t = new Turn(action,current.getHand(turnPlayer).getCard(action.getCard()),drawn);
 		else
 			t = new Turn(action,action.getCardsToReveal(current));
 		PrintStream ps;
 		for (int i=0; i<players.length; i++)
 		{
-			if (i!=x)
-			{
+		//	if (i!=x)
+		//	{
 				ps = new PrintStream(players[i].getOutputStream());
 				ps.print(t.toString(0));
 	//			log("Sending to "+i+" "+t.toString(0));
 				ps.flush();
-			}
+		//	}
 		}
 	}
 }

@@ -551,7 +551,31 @@ public class Action extends TypedJSON<JSONObject>
 		return "";
 	}
 
+	public static List<Action> getAllAction(String player)
+	{
+		try {
+			ArrayList<Action> list = new ArrayList<>();
 
+			for (int i = 0; i < Game.getInstance().getNumberOfCardsPerPlayer(); i++)
+			{
+				list.add(new Action(player, PLAY, i));
+				list.add(new Action(player,DISCARD,i));
+			}
 
+			for (String name : Game.getInstance().getPlayers())
+			{
+				if (!name.equals(player))
+				{
+					for (int i=1; i<6; i++)
+						list.add(new Action(player,name,i));
+					for (Color color:Color.values())
+						list.add(new Action(player,name,color));
+				}
+			}
+
+			return list;
+		}
+		catch(JSONException e){return null;}
+	}
 
 }

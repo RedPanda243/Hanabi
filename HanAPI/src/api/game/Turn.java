@@ -11,11 +11,12 @@ import java.util.List;
 
 public class Turn extends TypedJSON<JSONObject>
 {
-	public Turn(Action a, Card d) throws JSONException
+	public Turn(Action a, Card oldcard, Card newcard) throws JSONException
 	{
 		json = new JSONObject();
 		setAction(a);
-		setDrawn(d);
+		setDrawn(newcard);
+		setCard(oldcard);
 	}
 
 	public Turn(Action a, List<Integer> r) throws JSONException
@@ -40,6 +41,12 @@ public class Turn extends TypedJSON<JSONObject>
 				setDrawn(new Card(d.toString(0)));
 			else
 				throw new JSONException("Attributo \"drawn\" mancante");
+
+			d = json.get("card");
+			if (d!=null)
+				setCard(new Card(d.toString(0)));
+			else
+				throw new JSONException("Attributo \"card\" mancante");
 		}
 		else
 		{
@@ -56,6 +63,15 @@ public class Turn extends TypedJSON<JSONObject>
 	public Action getAction()
 	{
 		return (Action)json.get("action");
+	}
+
+	public Card getCard()
+	{
+		JSONData c = json.get("card");
+		if (c == null)
+			return null;
+		else
+			return (Card)c;
 	}
 
 	public Card getDrawn()
@@ -82,6 +98,15 @@ public class Turn extends TypedJSON<JSONObject>
 		return this;
 	}
 
+	public Turn setCard(Card card) throws JSONException
+	{
+		ActionType type = getAction().getType();
+		if (type == ActionType.HINT_COLOR || type == ActionType.HINT_VALUE)
+			throw new JSONException("I suggerimenti non fanno giocare|scartare carte");
+		json.set("card",card);
+		return this;
+	}
+
 	public Turn setDrawn(Card card) throws JSONException
 	{
 		ActionType type = getAction().getType();
@@ -105,7 +130,28 @@ public class Turn extends TypedJSON<JSONObject>
 
 	public String toString()
 	{
-		Card c = getDrawn();
-		return getAction().toString()+(c==null?"(Revealed: "+getRevealed()+")":"\nIl giocatore pesca "+c.toString());
+		String s ="";
+		String player = getAction().getPlayer();
+		s = s+"Il giocatore "+player+"("+Game.getInstance().getPlayerTurn(player)+") ";
+		if (getAction().getType() == ActionType.PLAY)
+			s = s+"gioca "+getCard()+" e pesca "+getDrawn();
+		else if (getAction().getType() == ActionType.DISCARD)
+			s = s+"gioca "+getCard()+" e pesca "+getDrawn();
+		else
+		{
+			String hinted = getAction().getHinted();
+			if (getAction().getType() == ActionType.HINT_COLOR)
+			{
+				s = s+  "suggerisce  a"+hinted+"("+Game.getInstance().getPlayerTurn(hinted)+") le carte " +
+						getRevealed()+" di colore "+getAction().getColor();
+			}
+			else
+			{
+				s = s+  "suggerisce  a"+hinted+"("+Game.getInstance().getPlayerTurn(hinted)+") le carte " +
+						getRevealed()+" di valore "+getAction().getValue();
+			}
+
+		}
+		return s;
 	}
 }

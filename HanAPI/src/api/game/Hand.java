@@ -81,6 +81,12 @@ public class Hand extends TypedJSON<JSONArray> implements Iterable<Card>
 		return this;
 	}
 
+	public Hand replaceCard(int index, Card newvalue)
+	{
+		json.replace(index,newvalue);
+		return this;
+	}
+
 	public String toString()
 	{
 		StringBuilder sb = new StringBuilder("{");

@@ -72,9 +72,12 @@ public abstract class JSONData implements Cloneable
 	 * @param d JSONData da confrontare con questo
 	 * @return true se le rappresentazioni testuali dei due dati sono uguali, false altrimenti
 	 */
-	public boolean equals(JSONData d)
+	public boolean equals(Object d)
 	{
-		return this.toStringLine().equals(d.toStringLine());
+		if (d instanceof JSONData)
+			return this.toStringLine().equals(((JSONData)d).toStringLine());
+		else
+			return super.equals(d);
 	}
 
 	/**

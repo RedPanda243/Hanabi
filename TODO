@@ -1,13 +1,35 @@
--	I valori di playability e uselessness dipendono dall'indice delle carte nella mano del giocatore.
-	Se quando pesco traslo tutte le carte e metto la pescata in fondo perdo le associazioni. Correggi con un replace delle carte
+1-	I valori di playability e uselessness dipendono dall'indice delle carte nella mano del giocatore.
+	Se quando pesco traslo tutte le carte e metto la pescata in fondo perdo le associazioni. Correggi prevedendo una traslazione delle associazioni e un reset
+	dell'ultima.
 
--	Al momento ho cambiato Strateg1 in modo che gli hint siano molto stupidi, fa quello che coinvolge più carte.
+2-	Al momento ho cambiato Strateg1 in modo che gli hint siano molto stupidi, fa quello che coinvolge più carte.
 	In teoria dovrebbe provare ogni possibile hint e controllare i nuovi parametri di playability e uselessness derivanti dall'hint.
 	Il problema è che dovrebbe immedesimarsi in un altro giocatore, cosa che non può fare con precisione perché non conosce le proprie carte.
 	Quindi per ogni combinazione possibile di proprie carte dovrebbe verificare l'effetto di ogni hint possibile. 
 	Sceglie l'hint a seconda della media di playability o uselessness ottenuta ruotando le proprie combinazioni possibili
 
--	Tutti i controlli sugli oggetti che estendono TypedJSON sono arbitrari e non formalizzati.
+3-	Tutti i controlli sugli oggetti che estendono TypedJSON sono arbitrari e non formalizzati.
 	Costruisci un formalismo che dica come controllare tali oggetti e poi implementalo per ogni classe
 
--	Molti metodi sono ancora senza documentazione
+4-	Molti metodi sono ancora senza documentazione
+
+5-	Pur riuscendo a simulare l'effetto di un hint sulle probabilità delle carte del ricevente l'hint (vedi punto 2) rimane il problema di come usare 
+	i parametri di playability e uselessness per scegliere una mossa. Una soluzione può essere implementare l'algoritmo di scelta come rete neurale 
+	con i pesi sui nodi ottimizzati tramite algoritmo genetico.
+	Ad esempio, ogni stato di una partita a n giocatori può essere rappresentato come m*n variabili playability e m*n variabili uselessness con m numero di carte
+	per giocatore. Queste 2mn variabili costituiscono il layer di input e hanno tutte valore double 0<=d<=1.
+	Il layer di output deve restituire un risultato che consenta di riconoscere la mossa da effettuare. Il numero di mosse possibili è limitato:
+		- m giocate
+		- m scartate
+		- 10 consigli (5 per valore e 5 per colore) * (n-1)
+	per un totale di 2m+10(n-1).
+	Costruisco quindi 2m+10(n-1) nodi di output e collego una volta tutti i nodi di input con tutti i nodi di output. Ogni connessione richiede un peso p, quindi 
+	il numero di pesi da calcolare sarà (2m+10(n-1))(2mn).
+	n = 2, m = 5 ---> (10+10)*(20)	= 400
+	n = 3, m = 5 ---> (10+20)*(30)	= 900
+	n = 4, m = 4 ---> (8+30)*(32)	= 1216
+	n = 5, m = 4 ---> (8+40)*(40)	= 1920
+
+	Sia I_j il j-esimo nodo di input (1<=j<=2mn). Il valore di ogni nodo di output è calcolato come somma pesata dei 2mn valori di ingresso con pesi calcolati
+	geneticamente. Così facendo però ottengo per ogni nodo un valore double che può essere visto come indice di quanto quella mossa è consigliata.
+	Resta da determinare se scegliere quella mossa a seconda del suo indice. Potrei prendere la mossa di indice maggiore.

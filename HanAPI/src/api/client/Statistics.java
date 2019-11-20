@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,6 +32,12 @@ public class Statistics
 		ownedByOthers = new ArrayList<>();
 	}
 
+	public Statistics(State initState)
+	{
+		this();
+		firstState(initState);
+	}
+
 	public void addState(State state)
 	{
 		int expected = this.currentTurn();
@@ -40,7 +47,6 @@ public class Statistics
 			throw new IllegalStateException("Errore nell'attributo \"order\": mi aspetto "+expected+" e ho "+state.getOrder());
 		if (expected == 0)
 			firstState(state);
-
 	}
 
 	public int currentTurn()
@@ -67,7 +73,9 @@ public class Statistics
 						cont++;
 				}
 				p[i] = cont / possibleCards[i].size();
+//				System.out.println("[PLAYABILITY"+i+"]: p="+p[i]+" t="+possibleCards[i].size());
 			}
+
 		}
 		else
 		{
@@ -79,6 +87,7 @@ public class Statistics
 					p[i] = 0;
 			}
 		}
+
 		return p;
 	}
 
@@ -151,12 +160,10 @@ public class Statistics
 		System.out.println("[TURN]: "+turn);
 		Card drawn = turn.getDrawn();
 		Action action = turn.getAction();
-		if (drawn!=null)
+		if (action.getType() == ActionType.PLAY)
 		{
-			Card old_card = getLastState().getHand(action.getPlayer()).getCard(action.getCard());
-
-			//Controllo che la vecchia carta sia stata giocata e sia legittima. Se non lo è la aggiungo alle carte scartate
-			if (action.getType() == ActionType.PLAY && getLastState().getFirework(old_card.getColor()).peak() == old_card.getValue()+1)
+			Card old_card = turn.getCard();
+			if (getLastState().getFirework(old_card.getColor()).peak() == old_card.getValue()+1)
 			{
 				played.add(old_card);
 			}
@@ -164,10 +171,51 @@ public class Statistics
 			{
 				discarded.add(old_card);
 			}
-
-			//Tolgo la vecchia carta dalla lista di carte possedute dagli altri e aggiungo la nuova
-			ownedByOthers.remove(old_card);
-			ownedByOthers.add(drawn);
+			if (action.getPlayer().equals(Main.playerName))
+			{
+				//Ho pescato una nuova carta che viene messa in fondo alla mano
+				//Scalo le possibleCards e resetto l'ultima
+				int i;
+				for (i=action.getCard(); i<getLastState().getHand(Main.playerName).size()-1; i++)
+				{
+					possibleCards[i] = possibleCards[i+1];
+				}
+				if (drawn!=null)
+					initCards(i);
+				else
+					possibleCards[i] = new ArrayList<>();
+			}
+			else
+			{//Tolgo la vecchia carta dalla lista di carte possedute dagli altri e aggiungo la nuova
+				ownedByOthers.remove(old_card);
+				if (drawn!=null)
+					ownedByOthers.add(drawn);
+			}
+		}
+		else if (action.getType() == ActionType.DISCARD)
+		{
+			Card old_card = turn.getCard();
+			discarded.add(old_card);
+			if (action.getPlayer().equals(Main.playerName))
+			{
+				//Ho pescato una nuova carta che viene messa in fondo alla mano
+				//Scalo le possibleCards e resetto l'ultima
+				int i;
+				for (i=action.getCard(); i<getLastState().getHand(Main.playerName).size()-1; i++)
+				{
+					possibleCards[i] = possibleCards[i+1];
+				}
+				if (drawn!=null)
+					initCards(i);
+				else
+					possibleCards[i] = new ArrayList<>();
+			}
+			else
+			{//Tolgo la vecchia carta dalla lista di carte possedute dagli altri e aggiungo la nuova
+				ownedByOthers.remove(old_card);
+				if (drawn!=null)
+					ownedByOthers.add(drawn);
+			}
 		}
 		else if (action.getHinted().equals(Main.playerName))
 		{ //Nel caso in cui il turn rappresenti un suggerimento, se è rivolto a me aggiorno le carte possibili
@@ -221,6 +269,8 @@ public class Statistics
 			}
 		}
 
+//		System.out.println("[FIRSTSTATE]: ownedByOthers: "+ownedByOthers.size());
+
 		for (int i=0; i<possibleCards.length; i++)
 			initCards(i);
 	}
@@ -230,6 +280,7 @@ public class Statistics
 	 */
 	private void initCards(int i)
 	{
+//		System.out.println("[InitCards]: ownedByOthers: "+ownedByOthers.size());
 		try {
 			possibleCards[i] = Card.getAllCards();
 		}

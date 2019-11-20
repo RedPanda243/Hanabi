@@ -99,8 +99,7 @@ public class Main
 					out.flush();
 					//		System.err.println(a.toString(0));
 				}
-				else
-					agent.notifyTurn(new Turn(in));
+				agent.notifyTurn(new Turn(in));
 				last = new State(in);
 			}
 	//		System.out.println(last);

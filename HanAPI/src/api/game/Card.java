@@ -106,7 +106,7 @@ public class Card extends TypedJSON<JSONObject>
 	 * Due Card sono uguali se lo sono i loro colori e valori. Un colore o un valore sconosciuto non &egrave; mai uguale ad un altro.
 	 * @return true se il parametro &egrave; una Card e se &egrave; uguale a questa carta.
 	 **/
-	public boolean equals(JSONData o){
+	public boolean equals(Object o){
 		if(o instanceof Card){
 			Card c = (Card)o;
 			if (c.getColor() == null || getColor() == null || c.getValue() == 0 || getValue() == 0)

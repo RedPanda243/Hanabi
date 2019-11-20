@@ -51,7 +51,7 @@ public class Strategy1Agent extends AbstractAgent {
 		try {
 			StatisticState sstate = new StatisticState(state, stats);
 			System.out.println(sstate);
-			stats.printPossibilities(System.out);
+//			stats.printPossibilities(System.out);
 		/*	System.out.println("Suggerimenti possibili:");
 			for (String player: Game.getInstance().getPlayers())
 			{

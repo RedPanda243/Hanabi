@@ -1,10 +1,7 @@
 import api.client.AbstractAgent;
 import api.client.Main;
 import api.client.StatisticState;
-import api.game.Action;
-import api.game.ActionType;
-import api.game.Game;
-import api.game.State;
+import api.game.*;
 import sjson.JSONData;
 import sjson.JSONException;
 
@@ -106,7 +103,7 @@ public class HumanAgent extends AbstractAgent
 					catch(NumberFormatException nfe)
 					{
 						//TODO
-					//	action = new Action(Main.name,hinted,Color.fromString(parts[2]));
+						action = new Action(Main.playerName,hinted,Color.fromString(parts[2]));
 					}
 				}
 				else {
@@ -116,6 +113,7 @@ public class HumanAgent extends AbstractAgent
 			catch (IOException ioe){ioe.printStackTrace(System.err); System.exit(1);}
 			catch(Exception e){e.printStackTrace(System.err);}
 		}
+		System.out.println();
 		return action;
 	}
 
@@ -140,6 +138,12 @@ public class HumanAgent extends AbstractAgent
 			}
 		}
 		catch (JSONException e){}
+	}
+
+	public void notifyTurn(Turn turn)
+	{
+		super.notifyTurn(turn);
+		System.out.println(turn+"\n");
 	}
 
 	/**

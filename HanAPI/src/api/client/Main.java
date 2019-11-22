@@ -104,6 +104,7 @@ public class Main
 			}
 	//		System.out.println(last);
 	//		System.out.println("Score: "+last.getScore());
+
 		}
 	}
 

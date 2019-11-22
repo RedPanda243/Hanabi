@@ -131,13 +131,20 @@ public abstract class AbstractAgent
 	public String[] sortPlayers()
 	{
 		//Riordino i giocatori a partire dal mio successivo e tolgo me stesso
-		List<String> players = Arrays.asList(Game.getInstance().getPlayers());
+		String[] players = Game.getInstance().getPlayers();
+		String[] ret = new String[players.length-1];
 		int myturn = Game.getInstance().getPlayerTurn(Main.playerName);
-		for (int i = 0; i < myturn; i++) //per ogni giocatore prima di me
-			players.add(players.get(i)); //lo aggiungo in coda alla lista
-
-		for (int i = 0; i <= myturn; i++) //per ogni giocatore prima di me e me stesso
-			players.remove(0); //cancello la copia in testa alla lista, le altre shiftano a sinistra
-		return players.toArray(new String[0]);
+		int cont = 0;
+		for (int i=myturn+1; i<players.length; i++)
+		{
+			ret[cont] = players[i];
+			cont++;
+		}
+		for (int i=0; i<myturn; i++)
+		{
+			ret[cont] = players[i];
+			cont++;
+		}
+		return ret;
 	}
 }

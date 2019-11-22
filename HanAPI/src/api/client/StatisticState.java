@@ -66,8 +66,9 @@ public class StatisticState extends State
 		}
 		ret+= "Hints: "+getHintTokens()+"\nFuse: "+getFuseTokens()+"\n";
 
-		ret+= "Final "+ getFinalActionIndex()+"\n";
+		ret+= "Final: "+ getFinalActionIndex()+"\n";
 
+		ret+= "Deck: "+getDeck()+"\n";
 		return ret;
 	}
 }

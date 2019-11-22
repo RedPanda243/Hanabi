@@ -7,58 +7,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cfd5aea-7663-46a3-8dec-3998cf53392a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/StatisticState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/Statistics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/HanabiHuman.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HanabiStrategy1/.idea/artifacts/HanabiStrategy1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HanabiStrategy1/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/Hint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/AbstractAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/AbstractAgent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/HandCardsProbability$PairCardCount.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/HandCardsProbability.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/HumanAgent.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/MathCalc.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/MathState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Old_AbstractAgent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Strategy1Agent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Color.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Hand.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Hand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/StatisticState.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/StatisticState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Statistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Statistics.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/client/AbstractAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/AbstractAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/client/Old_AbstractAgent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/client/StatisticState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/StatisticState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/client/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/Statistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Turn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiHuman.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiHuman.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanabiHuman/HumanAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanabiHuman/HumanAgent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HumanAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HumanAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/src/HandCardsProbability.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/src/MathCalc.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/src/MathState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/out/production/HanabiStrategy1/Strategy1Agent.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/out/production/HanabiStrategy1/Strategy1Agent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/src/Strategy1Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/src/Strategy1Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TODO" beforeDir="false" afterPath="$PROJECT_DIR$/../TODO" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../log.txt" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -76,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HumanAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="129" column="62" selection-start-line="129" selection-start-column="62" selection-end-line="129" selection-end-column="62" />
+            <state relative-caret-position="363">
+              <caret line="115" column="29" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -165,14 +141,13 @@
     <frame x="-1" y="0" width="1368" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25378788" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49919742" visible="true" weight="0.25757575" />
+      <window_info id="Structure" order="1" sideWeight="0.5008026" side_tool="true" visible="true" weight="0.25757575" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.32744783" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -183,6 +158,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32744783" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -224,8 +200,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HumanAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="129" column="62" selection-start-line="129" selection-start-column="62" selection-end-line="129" selection-end-column="62" />
+        <state relative-caret-position="363">
+          <caret line="115" column="29" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

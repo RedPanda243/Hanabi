@@ -35,6 +35,7 @@ public class State extends TypedJSON<JSONObject>
 				cards[i] = deck.pop();
 			json.set(n,new Hand(cards));
 		}
+		json.set("deck",""+deck.size());
 	}
 
 	public State(String s) throws JSONException
@@ -119,6 +120,18 @@ public class State extends TypedJSON<JSONObject>
 		try
 		{
 			setFuseToken(Integer.parseInt(s));
+		}
+		catch (NumberFormatException e)
+		{
+			throw new JSONException(e);
+		}
+
+		s = json.getString("deck");
+		if (s==null)
+			throw new JSONException("Missing deck!");
+		try
+		{
+			setDeck(Integer.parseInt(s));
 		}
 		catch (NumberFormatException e)
 		{
@@ -237,6 +250,18 @@ public class State extends TypedJSON<JSONObject>
 	 **/
 	public int getOrder(){return Integer.parseInt(json.getString("order"));}
 
+	public int getDeck(){
+		return Integer.parseInt(json.getString("deck"));
+	}
+
+	public State setDeck(int deck) throws JSONException
+	{
+		if (deck<0)
+			throw new JSONException("Negative Deck");
+		json.set("deck",""+deck);
+		return this;
+	}
+
 	/**
 	 * Per azione finale si intende l'azione che fa pescare l'ultima carta del mazzo. Dopo l'azione finale tutti i giocatori hanno un ultimo turno
 	 * @return il numero di turno dell'azione finale, -1 se il mazzo non è vuoto
@@ -333,7 +358,7 @@ public class State extends TypedJSON<JSONObject>
 			fireworks = getFirework(c);
 			ret += "\t" + c + "  " + (fireworks.peak() == 0 ? "-" : fireworks.peak()) + "\n";
 		}
-		ret+= "Hints: "+getHintTokens()+"\nFuse: "+getFuseTokens()+"\n";
+		ret+= "Hints: "+getHintTokens()+"\nFuse: "+getFuseTokens()+"\nDeck: "+getDeck()+"\n";
 
 		return ret;
 	}

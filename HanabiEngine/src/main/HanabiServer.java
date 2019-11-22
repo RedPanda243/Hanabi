@@ -197,6 +197,7 @@ public class HanabiServer
 //			}
 		}
 		sendState(last,players);
+		log(""+last.getScore());
 		if (logfile!=null)
 			logfile.close();
 	}
@@ -222,16 +223,19 @@ public class HanabiServer
 		log("[ACTION "+move.getType().toString()+"] "+move.toString()+"\n"+"[DECK] = "+deck.size());
 		State next = current.clone();
 		next.setAction(move);
-		if(deck.size()==0) {
-			drawn = null;
-			if(current.getFinalActionIndex() == -1)
-				next.setFinalActionIndex(current.getOrder()+Game.getInstance().getPlayers().length);
-		}
-		else
-			drawn = deck.pop(); //TODO Se l'Action è un suggerimento pesco a cazzo e la carta è persa!!!
+		 //TODO Se l'Action è un suggerimento pesco a cazzo e la carta è persa!!!
 
 		if (move.getType() == ActionType.PLAY)
 		{
+			if(deck.size()==0) {
+				drawn = null;
+			}
+			else {
+				drawn = deck.pop();
+				if(deck.size() == 0 && current.getFinalActionIndex() == -1)
+					next.setFinalActionIndex(current.getOrder()+Game.getInstance().getPlayers().length);
+			}
+
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
 			next.getHand(move.getPlayer()).removeCard(move.getCard());
 			if (drawn != null)
@@ -255,6 +259,14 @@ public class HanabiServer
 		}
 		else if (move.getType() == ActionType.DISCARD)
 		{
+			if(deck.size()==0) {
+				drawn = null;
+			}
+			else {
+				drawn = deck.pop();
+				if(deck.size() == 0 && current.getFinalActionIndex() == -1)
+					next.setFinalActionIndex(current.getOrder()+Game.getInstance().getPlayers().length);
+			}
 			Card played = next.getHand(move.getPlayer()).getCard(move.getCard());
 			next.getHand(move.getPlayer()).removeCard(move.getCard());
 			if (drawn != null)
@@ -317,6 +329,7 @@ public class HanabiServer
 			next.setCurrentPlayer(Game.getInstance().getPlayer(Game.getInstance().getPlayerTurn(next.getCurrentPlayer())+1));
 
 		next.setOrder(next.getOrder()+1);
+		next.setDeck(deck.size());
 		return next;
 	}
 
@@ -350,22 +363,36 @@ public class HanabiServer
 
 	private static void sendTurn(String turnPlayer, Action action, State current) throws JSONException,IOException
 	{
-		int x = Game.getInstance().getPlayerTurn(turnPlayer);
-		Turn t;
-		if (action.getType() == ActionType.PLAY || action.getType() == ActionType.DISCARD)
-			t = new Turn(action,current.getHand(turnPlayer).getCard(action.getCard()),drawn);
+		Turn t,t1;
+		if (action.getType() == ActionType.PLAY || action.getType() == ActionType.DISCARD) {
+			if (drawn==null)
+			{
+				t = new Turn(action, current.getHand(turnPlayer).getCard(action.getCard()), null);
+				t1 = new Turn(action, current.getHand(turnPlayer).getCard(action.getCard()), null);
+			}
+			else
+			{
+				t = new Turn(action, current.getHand(turnPlayer).getCard(action.getCard()), drawn);
+				t1 = new Turn(action, current.getHand(turnPlayer).getCard(action.getCard()), new Card(null, 0));
+			}
+		}
 		else
-			t = new Turn(action,action.getCardsToReveal(current));
+		{
+			t = new Turn(action, action.getCardsToReveal(current));
+			t1 = new Turn(action, action.getCardsToReveal(current));
+		}
 		PrintStream ps;
+		int x = Game.getInstance().getPlayerTurn(action.getPlayer());
 		for (int i=0; i<players.length; i++)
 		{
-		//	if (i!=x)
-		//	{
-				ps = new PrintStream(players[i].getOutputStream());
+			ps = new PrintStream(players[i].getOutputStream());
+			if (i!=x)
 				ps.print(t.toString(0));
+			else
+				ps.print(t1.toString(0));
 	//			log("Sending to "+i+" "+t.toString(0));
-				ps.flush();
-		//	}
+			ps.flush();
 		}
+
 	}
 }

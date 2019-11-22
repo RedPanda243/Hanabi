@@ -13,7 +13,11 @@
 
 4-	Molti metodi sono ancora senza documentazione
 
-5-	Pur riuscendo a simulare l'effetto di un hint sulle probabilità delle carte del ricevente l'hint (vedi punto 2) rimane il problema di come usare 
+5-	
+
+
+
+(-	Pur riuscendo a simulare l'effetto di un hint sulle probabilità delle carte del ricevente l'hint (vedi punto 2) rimane il problema di come usare 
 	i parametri di playability e uselessness per scegliere una mossa. Una soluzione può essere implementare l'algoritmo di scelta come rete neurale 
 	con i pesi sui nodi ottimizzati tramite algoritmo genetico.
 	Ad esempio, ogni stato di una partita a n giocatori può essere rappresentato come m*n variabili playability e m*n variabili uselessness con m numero di carte
@@ -33,3 +37,4 @@
 	Sia I_j il j-esimo nodo di input (1<=j<=2mn). Il valore di ogni nodo di output è calcolato come somma pesata dei 2mn valori di ingresso con pesi calcolati
 	geneticamente. Così facendo però ottengo per ogni nodo un valore double che può essere visto come indice di quanto quella mossa è consigliata.
 	Resta da determinare se scegliere quella mossa a seconda del suo indice. Potrei prendere la mossa di indice maggiore.
+)

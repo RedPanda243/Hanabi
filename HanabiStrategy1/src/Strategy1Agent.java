@@ -45,12 +45,18 @@ public class Strategy1Agent extends AbstractAgent {
 
 	}
 
+	public void notifyTurn(Turn turn)
+	{
+		super.notifyTurn(turn);
+		System.out.println(turn+"\n");
+	}
+
 	public void notifyState(State state)
 	{
 		super.notifyState(state);
 		try {
 			StatisticState sstate = new StatisticState(state, stats);
-			System.out.println(sstate);
+			System.out.println(""+sstate);
 //			stats.printPossibilities(System.out);
 		/*	System.out.println("Suggerimenti possibili:");
 			for (String player: Game.getInstance().getPlayers())

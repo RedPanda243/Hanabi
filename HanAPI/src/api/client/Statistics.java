@@ -18,24 +18,22 @@ import java.util.List;
 public class Statistics
 {
 	private List<State> history;
-	private List<Card>[] possibleCards;
+//	private List<Card>[] possibleCards;
 	private List<Card> played; //Contiene le sole carte nei Fireworks. Se una carta viene giocata ma provoca un errore è da considerarsi scartata!
 	private List<Card> discarded;
 	private List<Card> ownedByOthers;
+	private List<Hint>[] hints;
 
 	public Statistics()
 	{
 		history = new ArrayList<>();
-		possibleCards = new List[Game.getInstance().getNumberOfCardsPerPlayer()];
+//		possibleCards = new List[Game.getInstance().getNumberOfCardsPerPlayer()];
 		played = new ArrayList<>();
 		discarded = new ArrayList<>();
 		ownedByOthers = new ArrayList<>();
-	}
-
-	public Statistics(State initState)
-	{
-		this();
-		firstState(initState);
+		hints = new List[Game.getInstance().getNumberOfCardsPerPlayer()];
+		for (int i=0; i<hints.length; i++)
+			hints[i] = new ArrayList<>();
 	}
 
 	public void addState(State state)
@@ -47,6 +45,26 @@ public class Statistics
 			throw new IllegalStateException("Errore nell'attributo \"order\": mi aspetto "+expected+" e ho "+state.getOrder());
 		if (expected == 0)
 			firstState(state);
+	}
+
+	public List<Card> calcCards(int i)
+	{
+		try {
+			List<Card> list = Card.getAllCards();
+			for (Card c : played)
+				list.remove(c);
+			for (Card c : discarded)
+				list.remove(c);
+			for (Card c : ownedByOthers)
+				list.remove(c);
+			for (Hint h : hints[i])
+				h.apply(list);
+			return list;
+		}
+		catch(JSONException e)
+		{
+			return null;
+		}
 	}
 
 	public int currentTurn()
@@ -65,14 +83,17 @@ public class Statistics
 		double[] p = new double[hand.size()];
 		if (player.equals(Main.playerName))
 		{
+			List<Card> possibleCards;
 			double cont;
-			for (int i = 0; i < p.length; i++) {
+			for (int i = 0; i < p.length; i++)
+			{
+				possibleCards = calcCards(i);
 				cont = 0;
-				for (Card card : possibleCards[i]) {
+				for (Card card : possibleCards) {
 					if (isPlayable(card))
 						cont++;
 				}
-				p[i] = cont / possibleCards[i].size();
+				p[i] = cont / possibleCards.size();
 //				System.out.println("[PLAYABILITY"+i+"]: p="+p[i]+" t="+possibleCards[i].size());
 			}
 
@@ -102,14 +123,16 @@ public class Statistics
 		double[] u = new double[hand.size()];
 		if (player.equals(Main.playerName))
 		{
+			List<Card> possibleCards;
 			double cont;
 			for (int i = 0; i < u.length; i++) {
+				possibleCards = calcCards(i);
 				cont = 0;
-				for (Card card : possibleCards[i]) {
+				for (Card card : possibleCards) {
 					if (isUseless(card))
 						cont++;
 				}
-				u[i] = cont / possibleCards[i].size();
+				u[i] = cont / possibleCards.size();
 			}
 		}
 		else
@@ -130,8 +153,9 @@ public class Statistics
 		DecimalFormat df = new DecimalFormat("#.###");
 		df.setRoundingMode(RoundingMode.HALF_UP);
 		out.println("[POSSIBILITIES]:");
-		for (int i=0; i<possibleCards.length; i++)
+		for (int i=0; i<Game.getInstance().getNumberOfCardsPerPlayer(); i++)
 		{
+			List<Card> l = calcCards(i);
 			out.print(i+":\t");
 			Card card;
 			for (Color color:Color.values())
@@ -141,7 +165,7 @@ public class Statistics
 					try {
 						card = new Card(color,j);
 						card.setValueRevealed(true).setColorRevealed(true);
-						out.print(card+" = "+df.format((double)countCard(card,possibleCards[i])/possibleCards[i].size())+"\n\t");
+						out.print(card+" = "+df.format((double)countCard(card,l)/l.size())+"\n\t");
 					}
 					catch (JSONException e){}
 				}
@@ -157,13 +181,13 @@ public class Statistics
 	 */
 	public void updateTurn(Turn turn)
 	{
-		System.out.println("[TURN]: "+turn);
+//		System.out.println("[TURN]: "+turn);
 		Card drawn = turn.getDrawn();
 		Action action = turn.getAction();
 		if (action.getType() == ActionType.PLAY)
 		{
 			Card old_card = turn.getCard();
-			if (getLastState().getFirework(old_card.getColor()).peak() == old_card.getValue()+1)
+			if (getLastState().getFirework(old_card.getColor()).peak()+1 == old_card.getValue())
 			{
 				played.add(old_card);
 			}
@@ -174,16 +198,16 @@ public class Statistics
 			if (action.getPlayer().equals(Main.playerName))
 			{
 				//Ho pescato una nuova carta che viene messa in fondo alla mano
-				//Scalo le possibleCards e resetto l'ultima
+				//Scalo gli hint e annullo gli ultimi
 				int i;
 				for (i=action.getCard(); i<getLastState().getHand(Main.playerName).size()-1; i++)
 				{
-					possibleCards[i] = possibleCards[i+1];
+					hints[i] = hints[i+1];
 				}
 				if (drawn!=null)
-					initCards(i);
+					hints[i] = new ArrayList<>();
 				else
-					possibleCards[i] = new ArrayList<>();
+					hints[i] = null;
 			}
 			else
 			{//Tolgo la vecchia carta dalla lista di carte possedute dagli altri e aggiungo la nuova
@@ -203,12 +227,12 @@ public class Statistics
 				int i;
 				for (i=action.getCard(); i<getLastState().getHand(Main.playerName).size()-1; i++)
 				{
-					possibleCards[i] = possibleCards[i+1];
+					hints[i] = hints[i+1];
 				}
 				if (drawn!=null)
-					initCards(i);
+					hints[i] = new ArrayList<>();
 				else
-					possibleCards[i] = new ArrayList<>();
+					hints[i] = null;
 			}
 			else
 			{//Tolgo la vecchia carta dalla lista di carte possedute dagli altri e aggiungo la nuova
@@ -218,28 +242,22 @@ public class Statistics
 			}
 		}
 		else if (action.getHinted().equals(Main.playerName))
-		{ //Nel caso in cui il turn rappresenti un suggerimento, se è rivolto a me aggiorno le carte possibili
+		{ //Nel caso in cui il turn rappresenti un suggerimento, se è rivolto a me lo aggiungo alle carte indicate e
+			//aggiungo il suo negato alle altre
 			Hand myHand = getLastState().getHand(Main.playerName);
 			if (action.getType() == ActionType.HINT_COLOR)
 			{
 				for (int i=0; i<myHand.size(); i++)
-				{
-					if (turn.getRevealed().contains(i))
-						maintainColor(action.getColor(),possibleCards[i]);
-					else
-						removeColor(action.getColor(),possibleCards[i]);
-				}
+					hints[i].add(new Hint(turn.getRevealed().contains(i),action.getColor()));
+
 			}
 			else
 			{
 				for (int i=0; i<myHand.size(); i++)
-				{
-					if (turn.getRevealed().contains(i))
-						maintainValue(action.getValue(),possibleCards[i]);
-					else
-						removeValue(action.getValue(),possibleCards[i]);
-				}
+					hints[i].add(new Hint(turn.getRevealed().contains(i),action.getValue()));
+
 			}
+
 		}
 	}
 
@@ -271,14 +289,16 @@ public class Statistics
 
 //		System.out.println("[FIRSTSTATE]: ownedByOthers: "+ownedByOthers.size());
 
-		for (int i=0; i<possibleCards.length; i++)
+/*		for (int i=0; i<possibleCards.length; i++)
 			initCards(i);
+
+ */
 	}
 
-	/**
+/*	/**
 	 * @param i la posizione nella mano del giocatore della carta da resettare
 	 */
-	private void initCards(int i)
+/*	private void initCards(int i)
 	{
 //		System.out.println("[InitCards]: ownedByOthers: "+ownedByOthers.size());
 		try {
@@ -293,7 +313,7 @@ public class Statistics
 		for(Card c:ownedByOthers)
 			possibleCards[i].remove(c);
 	}
-
+*/
 	private boolean isPlayable(Card card)
 	{
 		State last = getLastState();
@@ -316,7 +336,7 @@ public class Statistics
 		return (card.getCount()-1!=count);
 	}
 
-	private void maintainColor(Color color, List<Card> list)
+	public static void maintainColor(Color color, List<Card> list)
 	{
 		for (int i=0; i<list.size(); i++)
 		{
@@ -328,7 +348,7 @@ public class Statistics
 		}
 	}
 
-	private void maintainValue(int value, List<Card> list)
+	public static void maintainValue(int value, List<Card> list)
 	{
 		for (int i=0; i<list.size(); i++)
 		{
@@ -340,7 +360,7 @@ public class Statistics
 		}
 	}
 
-	private void removeColor(Color color, List<Card> list)
+	public static void removeColor(Color color, List<Card> list)
 	{
 		for (int i=0; i<list.size(); i++)
 		{
@@ -352,7 +372,7 @@ public class Statistics
 		}
 	}
 
-	private void removeValue(int value, List<Card> list)
+	public static void removeValue(int value, List<Card> list)
 	{
 		for (int i=0; i<list.size(); i++)
 		{

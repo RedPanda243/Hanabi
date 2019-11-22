@@ -39,8 +39,8 @@ public class Turn extends TypedJSON<JSONObject>
 			d = json.get("drawn");
 			if (d!=null)
 				setDrawn(new Card(d.toString(0)));
-			else
-				throw new JSONException("Attributo \"drawn\" mancante");
+		/*	else
+				throw new JSONException("Attributo \"drawn\" mancante");*/
 
 			d = json.get("card");
 			if (d!=null)
@@ -56,6 +56,7 @@ public class Turn extends TypedJSON<JSONObject>
 			else
 			{
 				//TODO, rivedi tutti i controlli non sono fatti bene
+				//Questi dovrebbero essere int che indicano posizioni nella mano del giocatore
 			}
 		}
 	}
@@ -136,18 +137,18 @@ public class Turn extends TypedJSON<JSONObject>
 		if (getAction().getType() == ActionType.PLAY)
 			s = s+"gioca "+getCard()+" e pesca "+getDrawn();
 		else if (getAction().getType() == ActionType.DISCARD)
-			s = s+"gioca "+getCard()+" e pesca "+getDrawn();
+			s = s+"scarta "+getCard()+" e pesca "+getDrawn();
 		else
 		{
 			String hinted = getAction().getHinted();
 			if (getAction().getType() == ActionType.HINT_COLOR)
 			{
-				s = s+  "suggerisce  a"+hinted+"("+Game.getInstance().getPlayerTurn(hinted)+") le carte " +
+				s = s+  "suggerisce a "+hinted+"("+Game.getInstance().getPlayerTurn(hinted)+") le carte " +
 						getRevealed()+" di colore "+getAction().getColor();
 			}
 			else
 			{
-				s = s+  "suggerisce  a"+hinted+"("+Game.getInstance().getPlayerTurn(hinted)+") le carte " +
+				s = s+  "suggerisce a "+hinted+"("+Game.getInstance().getPlayerTurn(hinted)+") le carte " +
 						getRevealed()+" di valore "+getAction().getValue();
 			}
 

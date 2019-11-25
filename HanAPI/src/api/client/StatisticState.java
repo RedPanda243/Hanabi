@@ -6,6 +6,7 @@ import sjson.JSONException;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 
 public class StatisticState extends State
 {
@@ -20,6 +21,7 @@ public class StatisticState extends State
 	public String toString()
 	{
 		String ret = "State: "+getOrder()+"\n";
+		ret+="Current player: "+getCurrentPlayer()+"\n";
 		ret+="Players' hands:\n";
 		Hand hand;
 		String player;

@@ -3,6 +3,7 @@ package api.game;
 import sjson.*;
 
 import java.io.Reader;
+import java.util.List;
 
 /**
  * Rappresenta il primo messaggio che viene inviato dal server quando ha trovato tutti i giocatori. D&agrave; informazioni generali e
@@ -18,7 +19,7 @@ public class Game extends TypedJSON<JSONObject>
 	 * @param players
 	 * @throws JSONException
 	 */
-	public Game(JSONArray players) throws JSONException
+	public Game(List<String> players) throws JSONException
 	{
 		json = new JSONObject();
 		if (instance != null)
@@ -40,7 +41,7 @@ public class Game extends TypedJSON<JSONObject>
 	/**
 	 * Chiude il gioco. L'esecuzione di questo metodo consente la futura istanziazione di un nuovo oggetto Game
 	 */
-	public void close()
+	public static void close()
 	{
 		instance = null;
 	}
@@ -121,12 +122,15 @@ public class Game extends TypedJSON<JSONObject>
 
 	/**
 	 * Consente di impostare l'attributo "players" di questo Game
-	 * @param array JSONArray che contiene i nomi dei giocatori, nell'ordine in cui giocano
+	 * @param players List che contiene i nomi dei giocatori, nell'ordine in cui giocano
 	 * @return questo Game modificato
 	 * @throws JSONException in caso di errore nell'impostazione
 	 */
-	public Game setPlayers(JSONArray array) throws JSONException
+	public Game setPlayers(List<String> players) throws JSONException
 	{
+		JSONArray array = new JSONArray();
+		for (String p:players)
+			array.add(p);
 		json.set("players",array);
 		return this;
 	}

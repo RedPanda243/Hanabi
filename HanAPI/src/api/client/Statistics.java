@@ -317,6 +317,7 @@ public class Statistics
 	private boolean isPlayable(Card card)
 	{
 		State last = getLastState();
+	//	System.out.println("Checking if "+card+" is playable");
 		Firework fire = last.getFirework(card.getColor());
 		return (card.getValue() == fire.peak()+1);
 	}

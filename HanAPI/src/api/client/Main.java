@@ -33,79 +33,58 @@ public class Main
 
 	private static void start(String... args) throws IOException, JSONException
 	{
-		if (args.length == 0)
+		String host = "0";
+		int port = 9494;
+		playerName = "Player";
+
+		for (int i=0; i<args.length; i++)
 		{
-			System.out.println("Inserisci indirizzo remoto");
-			String s = keyboard.readLine();
-			if (s.contains(":"))
+			if (args[i].equals("-a"))
 			{
-				String[] split = s.split(":");
-				start(split[0],split[1]);
+				i++;
+				host = args[i];
 			}
-			else
-				start(s);
-		}
-		else if (args.length == 1)
-		{
-			System.out.println("Inserisci porta remota"); //TODO e se ti passo ip:port? Un solo parametro ma ha già la porta!
-			start(args[0],keyboard.readLine());
-		}
-		else if (args.length == 2)
-		{
-			System.out.println("Inserisci nome giocatore");
-			start(args[0],args[1],keyboard.readLine());
-		}
-/*		else if (args.length == 3)
-		{
-			System.out.println("Inserisci tipo giocatore");
-			start(args[0],args[1],args[2],keyboard.readLine());
-		}*/
-		else
-		{
-			String host = args[0];
-			int port = Integer.parseInt(args[1]);
-			playerName = args[2];
-			Socket socket = new Socket(host, port);
-			PrintStream out = new PrintStream(socket.getOutputStream());
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			out.println(playerName);
-			out.flush();
-			playerName = in.readLine();
-
-			new Game(in);
-/*
-			AbstractAgent agent = null;
-
-			if (args[3].equalsIgnoreCase("human")) //TODO controlla solo gli agent automatici
-				agent = new HumanAgent();
-			else if (args[3].equalsIgnoreCase("strategy1"))
-				agent = new Strategy1Agent();
-			else
+			else if (args[i].equals("-p"))
 			{
-				start(args[0],args[1],args[2]);
+				i++;
+				port = Integer.parseInt(args[i]);
 			}
-*/
-			State last = new State(in);
-			//		HandCardsProbability prob = new HandCardsProbability(playerName, last);
-
-			while(!last.gameOver())
+			else if (args[i].equals("-n"))
 			{
-	//			System.out.println(last);
-				agent.notifyState(last);
-				if (last.getCurrentPlayer().equals(playerName))
-				{
-					Action a = agent.chooseAction();
-					out.print(a.toString(0));
-					out.flush();
-					//		System.err.println(a.toString(0));
-				}
-				agent.notifyTurn(new Turn(in));
-				last = new State(in);
+				i++;
+				playerName = args[i];
 			}
-	//		System.out.println(last);
-	//		System.out.println("Score: "+last.getScore());
-
 		}
+
+		Socket socket = new Socket(host, port);
+		PrintStream out = new PrintStream(socket.getOutputStream());
+		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		out.println(playerName);
+		out.flush();
+		playerName = in.readLine();
+
+		new Game(in);
+
+		State last = new State(in);
+		//		HandCardsProbability prob = new HandCardsProbability(playerName, last);
+
+		while(!last.gameOver())
+		{
+//			System.out.println(last);
+			agent.notifyState(last);
+			if (last.getCurrentPlayer().equals(playerName))
+			{
+				Action a = agent.chooseAction();
+				out.print(a.toString(0));
+				out.flush();
+				//		System.err.println(a.toString(0));
+			}
+			agent.notifyTurn(new Turn(in));
+			last = new State(in);
+		}
+//		System.out.println(last);
+//		System.out.println("Score: "+last.getScore());
+
 	}
 
 	public static void main(String... args) throws IOException, JSONException

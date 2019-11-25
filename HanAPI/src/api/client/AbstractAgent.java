@@ -4,6 +4,8 @@ import api.game.*;
 import sjson.JSONArray;
 import sjson.JSONException;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,9 +13,17 @@ import java.util.List;
 public abstract class AbstractAgent
 {
 	protected Statistics stats;
+	protected boolean log;
+	protected PrintStream logfile;
 
-	public AbstractAgent() {
+	public AbstractAgent(boolean log, String logpath) throws FileNotFoundException
+	{
 		stats = null;
+		this.log = log;
+		if (logpath == null)
+			logfile = null;
+		else
+			logfile = new PrintStream(System.getProperty("user.dir")+"/"+logpath);
 	}
 
 	public abstract Action chooseAction();
@@ -25,6 +35,23 @@ public abstract class AbstractAgent
 		return action;
 	}
 */
+
+	public void log(String s)
+	{
+		if (log)
+			System.out.println(s);
+		if (logfile!=null)
+			logfile.println(s);
+	}
+
+	public void log(Exception e)
+	{
+		if (log)
+			e.printStackTrace(System.out);
+		if (logfile!=null)
+			e.printStackTrace(logfile);
+	}
+
 	public void notifyState(State state)
 	{
 		if (stats == null)

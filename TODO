@@ -1,6 +1,6 @@
 1-	I valori di playability e uselessness dipendono dall'indice delle carte nella mano del giocatore.
-	Se quando pesco traslo tutte le carte e metto la pescata in fondo perdo le associazioni. Correggi prevedendo una traslazione delle associazioni e un reset
-	dell'ultima.
+	Se quando pesco traslo tutte le carte e metto la pescata in fondo perdo le associazioni. 
+	Correggi prevedendo una traslazione delle associazioni e un reset dell'ultima.
 
 2-	Al momento ho cambiato Strateg1 in modo che gli hint siano molto stupidi, fa quello che coinvolge più carte.
 	In teoria dovrebbe provare ogni possibile hint e controllare i nuovi parametri di playability e uselessness derivanti dall'hint.
@@ -38,3 +38,5 @@
 	geneticamente. Così facendo però ottengo per ogni nodo un valore double che può essere visto come indice di quanto quella mossa è consigliata.
 	Resta da determinare se scegliere quella mossa a seconda del suo indice. Potrei prendere la mossa di indice maggiore.
 )
+
+java -jar HanabiEngine.jar -g 2 -a "java -jar HanabiStrategy1.jar -n Player0 -f log.txt" -a "java -jar HanabiStrategy1.jar -n Player1" -l

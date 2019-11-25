@@ -1,3 +1,2266 @@
-Server avviato.
-Giocatore 0 (1) connesso
-Giocatore 1 (0) connesso
+State: 0
+Current player: Player1
+Players' hands:
+	Player1 (0): {Red-1,White-2,White-3,Yellow-1,Blue-1}
+		Playability: {1; 0; 0; 1; 1}
+		Uselessness: {1; 1; 1; 1; 1}
+
+	Player0 (1): {   -   ,   -   ,   -   ,   -   ,   -   }
+		Playability: {0,267; 0,267; 0,267; 0,267; 0,267}
+		Uselessness: {0,889; 0,889; 0,889; 0,889; 0,889}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  -
+	White  -
+	Yellow  -
+Hints: 8
+Fuse: 3
+Final: -1
+Deck: 40
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [0, 4] di colore Yellow
+
+State: 1
+Current player: Player0
+Players' hands:
+	Player1 (0): {Red-1,White-2,White-3,Yellow-1,Blue-1}
+		Playability: {1; 0; 0; 1; 1}
+		Uselessness: {1; 1; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,278; 0,278; 0,278; 0,222}
+		Uselessness: {0,889; 0,889; 0,889; 0,889; 0,889}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  -
+	White  -
+	Yellow  -
+Hints: 7
+Fuse: 3
+Final: -1
+Deck: 40
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 1 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [0, 3, 4] di valore 1
+
+State: 2
+Current player: Player1
+Players' hands:
+	Player1 (0): {Red-1,White-2,White-3,Yellow-1,Blue-1}
+		Playability: {1; 0; 0; 1; 1}
+		Uselessness: {1; 1; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,278; 0,278; 0,278; 0,222}
+		Uselessness: {0,889; 0,889; 0,889; 0,889; 0,889}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 40
+
+Il giocatore Player1(0) gioca Red-1 e pesca White-4
+
+State: 3
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-2,White-3,Yellow-1,Blue-1,White-4}
+		Playability: {0; 0; 1; 1; 0}
+		Uselessness: {1; 1; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,286; 0,286; 0,286; 0,222}
+		Uselessness: {0,889; 0,886; 0,886; 0,886; 0,889}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 39
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di colore White a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [0, 1, 4] di colore White
+
+State: 4
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-2,White-3,Yellow-1,Blue-1,White-4}
+		Playability: {0; 0; 1; 1; 0}
+		Uselessness: {1; 1; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,286; 0,286; 0,286; 0,222}
+		Uselessness: {0,889; 0,886; 0,886; 0,886; 0,889}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 39
+
+Il giocatore Player1(0) scarta Yellow-1 e pesca White-3
+
+State: 5
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-2,White-3,Blue-1,White-4,White-3}
+		Playability: {0; 0; 1; 0; 0}
+		Uselessness: {1; 1; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,294; 0,294; 0,294; 0,222}
+		Uselessness: {0,889; 0,882; 0,882; 0,882; 0,889}
+
+Discarded: {Yellow-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 38
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 3 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [1, 4] di valore 3
+
+State: 6
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-2,White-3,Blue-1,White-4,White-3}
+		Playability: {0; 0; 1; 0; 0}
+		Uselessness: {1; 1; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,294; 0,294; 0,294; 0,222}
+		Uselessness: {0,889; 0,882; 0,882; 0,882; 0,889}
+
+Discarded: {Yellow-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 38
+
+Il giocatore Player1(0) scarta White-3 e pesca Red-5
+
+State: 7
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-2,Blue-1,White-4,White-3,Red-5}
+		Playability: {0; 1; 0; 0; 0}
+		Uselessness: {1; 1; 1; 0; 0}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,303; 0,303; 0,303; 0,222}
+		Uselessness: {0,889; 0,909; 0,909; 0,909; 0,889}
+
+Discarded: {Yellow-1, White-3}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 37
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 2 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [0] di valore 2
+
+State: 8
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-2,Blue-1,White-4,White-3,Red-5}
+		Playability: {0; 1; 0; 0; 0}
+		Uselessness: {1; 1; 1; 0; 0}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,303; 0,303; 0,303; 0,222}
+		Uselessness: {0,889; 0,909; 0,909; 0,909; 0,889}
+
+Discarded: {Yellow-1, White-3}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 37
+
+Il giocatore Player1(0) scarta White-2 e pesca Red-4
+
+State: 9
+Current player: Player0
+Players' hands:
+	Player1 (0): {Blue-1,White-4,White-3,Red-5,Red-4}
+		Playability: {1; 0; 0; 0; 0}
+		Uselessness: {1; 1; 0; 0; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,313; 0,313; 0,313; 0,222}
+		Uselessness: {0,889; 0,875; 0,875; 0,875; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 36
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 4 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [1, 4] di valore 4
+
+State: 10
+Current player: Player1
+Players' hands:
+	Player1 (0): {Blue-1,White-4,White-3,Red-5,Red-4}
+		Playability: {1; 0; 0; 0; 0}
+		Uselessness: {1; 1; 0; 0; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,313; 0,313; 0,313; 0,222}
+		Uselessness: {0,889; 0,875; 0,875; 0,875; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 36
+
+Il giocatore Player1(0) scarta Blue-1 e pesca Blue-2
+
+State: 11
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-4,White-3,Red-5,Red-4,Blue-2}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {1; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,323; 0,323; 0,323; 0,222}
+		Uselessness: {0,889; 0,871; 0,871; 0,871; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 35
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di colore Red a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [2, 3] di colore Red
+
+State: 12
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-4,White-3,Red-5,Red-4,Blue-2}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {1; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,323; 0,323; 0,323; 0,222}
+		Uselessness: {0,889; 0,871; 0,871; 0,871; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 35
+
+Il giocatore Player1(0) scarta White-4 e pesca Red-3
+
+State: 13
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-4,Blue-2,Red-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,333; 0,333; 0,333; 0,222}
+		Uselessness: {0,889; 0,833; 0,833; 0,833; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 34
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di colore White a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [0] di colore White
+
+State: 14
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-4,Blue-2,Red-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,333; 0,333; 0,333; 0,222}
+		Uselessness: {0,889; 0,833; 0,833; 0,833; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 34
+
+Il giocatore Player1(0) scarta Red-4 e pesca Green-1
+
+State: 15
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Blue-2,Red-3,Green-1}
+		Playability: {0; 0; 0; 0; 1}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,31; 0,31; 0,31; 0,222}
+		Uselessness: {0,889; 0,793; 0,793; 0,793; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 33
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 5 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [1] di valore 5
+
+State: 16
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Blue-2,Red-3,Green-1}
+		Playability: {0; 0; 0; 0; 1}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,31; 0,31; 0,31; 0,222}
+		Uselessness: {0,889; 0,793; 0,793; 0,793; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 33
+
+Il giocatore Player1(0) scarta Blue-2 e pesca Green-2
+
+State: 17
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-3,Green-1,Green-2}
+		Playability: {0; 0; 0; 1; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,321; 0,321; 0,321; 0,222}
+		Uselessness: {0,889; 0,75; 0,75; 0,75; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 32
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di colore Green a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [3, 4] di colore Green
+
+State: 18
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-3,Green-1,Green-2}
+		Playability: {0; 0; 0; 1; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,222; 0,321; 0,321; 0,321; 0,222}
+		Uselessness: {0,889; 0,75; 0,75; 0,75; 0,889}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 32
+
+Il giocatore Player1(0) scarta Green-1 e pesca Yellow-2
+
+State: 19
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-3,Green-2,Yellow-2}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,25; 0,321; 0,321; 0,321; 0,25}
+		Uselessness: {0,875; 0,75; 0,75; 0,75; 0,875}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 31
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 2 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [3, 4] di valore 2
+
+State: 20
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-3,Green-2,Yellow-2}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,25; 0,321; 0,321; 0,321; 0,25}
+		Uselessness: {0,875; 0,75; 0,75; 0,75; 0,875}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 31
+
+Il giocatore Player1(0) scarta Green-2 e pesca Green-4
+
+State: 21
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-3,Yellow-2,Green-4}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,25; 0,333; 0,333; 0,333; 0,25}
+		Uselessness: {0,875; 0,704; 0,704; 0,704; 0,875}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 30
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 3 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [0, 2] di valore 3
+
+State: 22
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-3,Yellow-2,Green-4}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,25; 0,333; 0,333; 0,333; 0,25}
+		Uselessness: {0,875; 0,704; 0,704; 0,704; 0,875}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 30
+
+Il giocatore Player1(0) scarta Red-3 e pesca Red-2
+
+State: 23
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Yellow-2,Green-4,Red-2}
+		Playability: {0; 0; 0; 0; 1}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,25; 0,308; 0,308; 0,308; 0,25}
+		Uselessness: {0,875; 0,654; 0,654; 0,654; 0,875}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 29
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di colore Yellow a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [2] di colore Yellow
+
+State: 24
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Yellow-2,Green-4,Red-2}
+		Playability: {0; 0; 0; 0; 1}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,25; 0,308; 0,308; 0,308; 0,25}
+		Uselessness: {0,875; 0,654; 0,654; 0,654; 0,875}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 29
+
+Il giocatore Player1(0) scarta Yellow-2 e pesca Green-4
+
+State: 25
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Red-2,Green-4}
+		Playability: {0; 0; 0; 1; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,25; 0,32; 0,32; 0,32; 0,25}
+		Uselessness: {0,75; 0,64; 0,64; 0,64; 0,75}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 6
+Fuse: 3
+Final: -1
+Deck: 28
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 4 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [2, 4] di valore 4
+
+State: 26
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Red-2,Green-4}
+		Playability: {0; 0; 0; 1; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -   ,   -   ,Yellow-   }
+		Playability: {0,25; 0,32; 0,32; 0,32; 0,25}
+		Uselessness: {0,75; 0,64; 0,64; 0,64; 0,75}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 28
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [1, 3] di valore 1
+
+State: 27
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Red-2,Green-4}
+		Playability: {0; 0; 0; 1; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -1,   -   ,   -1,Yellow-   }
+		Playability: {0; 0,778; 0,063; 0,778; 0}
+		Uselessness: {0,667; 1; 0,438; 1; 0,667}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 4
+Fuse: 3
+Final: -1
+Deck: 28
+
+Impossibile giocare una carta sicura
+Player0(1) scarta la carta in posizione 1 nella propria mano
+Il giocatore Player0(1) scarta Blue-1 e pesca    -   
+
+State: 28
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Red-2,Green-4}
+		Playability: {0; 0; 0; 1; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -   ,   -1,Yellow-   ,   -   }
+		Playability: {0; 0,063; 0,75; 0; 0,281}
+		Uselessness: {0,667; 0,438; 0,875; 0,667; 0,625}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 5
+Fuse: 3
+Final: -1
+Deck: 27
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [1, 3] di valore 2
+
+State: 29
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Red-2,Green-4}
+		Playability: {0; 0; 0; 1; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -2,   -1,Yellow-2,   -   }
+		Playability: {0; 0,25; 0,75; 0; 0,296}
+		Uselessness: {0,8; 0,25; 0,875; 0; 0,704}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 4
+Fuse: 3
+Final: -1
+Deck: 27
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di colore Green a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [2, 4] di colore Green
+
+State: 30
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Red-2,Green-4}
+		Playability: {0; 0; 0; 1; 0}
+		Uselessness: {0; 0; 1; 1; 1}
+
+	Player0 (1): {Yellow-   ,   -2,   -1,Yellow-2,   -   }
+		Playability: {0; 0,25; 0,75; 0; 0,296}
+		Uselessness: {0,8; 0,25; 0,875; 0; 0,704}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 3
+Fuse: 3
+Final: -1
+Deck: 27
+
+Il giocatore Player1(0) scarta Green-4 e pesca Blue-4
+
+State: 31
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-2,Green-4,Blue-4}
+		Playability: {0; 0; 1; 0; 0}
+		Uselessness: {0; 0; 1; 0; 1}
+
+	Player0 (1): {Yellow-   ,   -2,   -1,Yellow-2,   -   }
+		Playability: {0; 0,25; 0,75; 0; 0,308}
+		Uselessness: {0,8; 0,25; 0,875; 0; 0,692}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 4
+Fuse: 3
+Final: -1
+Deck: 26
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 2 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [2] di valore 2
+
+State: 32
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-2,Green-4,Blue-4}
+		Playability: {0; 0; 1; 0; 0}
+		Uselessness: {0; 0; 1; 0; 1}
+
+	Player0 (1): {Yellow-   ,   -2,   -1,Yellow-2,   -   }
+		Playability: {0; 0,25; 0,75; 0; 0,308}
+		Uselessness: {0,8; 0,25; 0,875; 0; 0,692}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 3
+Fuse: 3
+Final: -1
+Deck: 26
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [2, 4] di colore White
+
+State: 33
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-2,Green-4,Blue-4}
+		Playability: {0; 0; 1; 0; 0}
+		Uselessness: {0; 0; 1; 0; 1}
+
+	Player0 (1): {Yellow-   ,   -2,White-1,Yellow-2,White-   }
+		Playability: {0; 0,333; 1; 0; 0,6}
+		Uselessness: {0,8; 0,333; 1; 0; 0,6}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  -
+	Yellow  -
+Hints: 2
+Fuse: 3
+Final: -1
+Deck: 26
+
+Player0(1) gioca la carta in posizione 2 nella propria mano
+Il giocatore Player0(1) gioca White-1 e pesca    -   
+
+State: 34
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-2,Green-4,Blue-4}
+		Playability: {0; 0; 1; 0; 0}
+		Uselessness: {0; 0; 1; 0; 1}
+
+	Player0 (1): {Yellow-   ,   -2,Yellow-2,White-   ,   -   }
+		Playability: {0; 0,333; 0; 0; 0,233}
+		Uselessness: {0,8; 0,333; 0; 0,5; 0,6}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  1
+	Yellow  -
+Hints: 2
+Fuse: 3
+Final: -1
+Deck: 25
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [0] di valore 5
+
+State: 35
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-2,Green-4,Blue-4}
+		Playability: {0; 0; 1; 0; 0}
+		Uselessness: {0; 0; 1; 0; 1}
+
+	Player0 (1): {Yellow-5,   -2,Yellow-2,White-   ,   -   }
+		Playability: {0; 0,333; 0; 0; 0,269}
+		Uselessness: {0; 0,333; 0; 0,667; 0,692}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 25
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di colore Red a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [1, 2] di colore Red
+
+State: 36
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Red-2,Green-4,Blue-4}
+		Playability: {0; 0; 1; 0; 0}
+		Uselessness: {0; 0; 1; 0; 1}
+
+	Player0 (1): {Yellow-5,   -2,Yellow-2,White-   ,   -   }
+		Playability: {0; 0,333; 0; 0; 0,269}
+		Uselessness: {0; 0,333; 0; 0,667; 0,692}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 25
+
+Il giocatore Player1(0) gioca Red-2 e pesca Blue-3
+
+State: 37
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,   -2,Yellow-2,White-   ,   -   }
+		Playability: {0; 0; 0; 0; 0,28}
+		Uselessness: {0; 0,333; 0; 0,667; 0,68}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 24
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta White-2 e pesca    -   
+
+State: 38
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,   -2,Yellow-2,White-   ,   -   }
+		Playability: {0; 0; 0; 0; 0,214}
+		Uselessness: {0; 0,333; 0; 0,667; 0,607}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 23
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [1] di colore Red
+
+State: 39
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Red-2,Yellow-2,White-   ,   -   }
+		Playability: {0; 0; 0; 0; 0,217}
+		Uselessness: {0; 1; 0; 0,667; 0,609}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 23
+
+Impossibile giocare una carta sicura
+Player0(1) scarta la carta in posizione 1 nella propria mano
+Il giocatore Player0(1) scarta Red-2 e pesca    -   
+
+State: 40
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,White-   ,   -   ,   -   }
+		Playability: {0; 0; 0; 0,217; 0,222}
+		Uselessness: {0; 0; 0,667; 0,609; 0,593}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 22
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [3, 4] di colore Blue
+
+State: 41
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,White-   ,Blue-   ,Blue-   }
+		Playability: {0; 0; 0; 0,2; 0,2}
+		Uselessness: {0; 0; 0,667; 0,4; 0,4}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 22
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 2 nella propria mano
+Il giocatore Player0(1) scarta White-1 e pesca    -   
+
+State: 42
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-   ,Blue-   ,   -   }
+		Playability: {0; 0; 0,2; 0,2; 0,231}
+		Uselessness: {0; 0; 0,4; 0,4; 0,577}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 21
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [0, 2] di valore 5
+
+State: 43
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-   ,   -   }
+		Playability: {0; 0; 0; 0,25; 0,273}
+		Uselessness: {0; 0; 0; 0,5; 0,682}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 21
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Blue-1 e pesca    -   
+
+State: 44
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-   ,   -   }
+		Playability: {0; 0; 0; 0; 0,2}
+		Uselessness: {0; 0; 0; 0,667; 0,6}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 20
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [1, 3] di valore 2
+
+State: 45
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,227}
+		Uselessness: {0; 0; 0; 0; 0,682}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 20
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Green-1 e pesca    -   
+
+State: 46
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,167}
+		Uselessness: {0; 0; 0; 0; 0,542}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 19
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 4
+
+State: 47
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -4}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0,6}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 19
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta White-4 e pesca    -   
+
+State: 48
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,174}
+		Uselessness: {0; 0; 0; 0; 0,565}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 18
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 4
+
+State: 49
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -4}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0,75}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 18
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Yellow-4 e pesca    -   
+
+State: 50
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,182}
+		Uselessness: {0; 0; 0; 0; 0,5}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 17
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 1
+
+State: 51
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -1}
+		Playability: {0; 0; 0; 0; 0,5}
+		Uselessness: {0; 0; 0; 0; 0,833}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 17
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta White-1 e pesca    -   
+
+State: 52
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,19}
+		Uselessness: {0; 0; 0; 0; 0,476}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 16
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 3
+
+State: 53
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 1}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -3}
+		Playability: {0; 0; 0; 0; 0,167}
+		Uselessness: {0; 0; 0; 0; 0,833}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 16
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Blue-3 e pesca    -   
+
+State: 54
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,2}
+		Uselessness: {0; 0; 0; 0; 0,45}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 15
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 1
+
+State: 55
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -1}
+		Playability: {0; 0; 0; 0; 0,6}
+		Uselessness: {0; 0; 0; 0; 0,8}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 15
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Yellow-1 e pesca    -   
+
+State: 56
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,158}
+		Uselessness: {0; 0; 0; 0; 0,368}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 14
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 3
+
+State: 57
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -3}
+		Playability: {0; 0; 0; 0; 0,2}
+		Uselessness: {0; 0; 0; 0; 0,8}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 14
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Yellow-3 e pesca    -   
+
+State: 58
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,167}
+		Uselessness: {0; 0; 0; 0; 0,278}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 13
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 1
+
+State: 59
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -1}
+		Playability: {0; 0; 0; 0; 0,5}
+		Uselessness: {0; 0; 0; 0; 0,5}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 13
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Green-1 e pesca    -   
+
+State: 60
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,118}
+		Uselessness: {0; 0; 0; 0; 0,294}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 12
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 4
+
+State: 61
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -4}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0,333}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 12
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Yellow-4 e pesca    -   
+
+State: 62
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -   }
+		Playability: {0; 0; 0; 0; 0,125}
+		Uselessness: {0; 0; 0; 0; 0,313}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 11
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [0, 2, 4] di valore 5
+
+State: 63
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-5,Yellow-2,Blue-5,Blue-2,   -5}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 11
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 0 nella propria mano
+Il giocatore Player0(1) scarta Yellow-5 e pesca    -   
+
+State: 64
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-2,Blue-5,Blue-2,   -5,   -   }
+		Playability: {0; 0; 0; 0; 0,133}
+		Uselessness: {0; 0; 0; 0; 0,333}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 10
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [3, 4] di colore Green
+
+State: 65
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-2,Blue-5,Blue-2,Green-5,Green-   }
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0,5}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 10
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Green-2 e pesca    -   
+
+State: 66
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-2,Blue-5,Blue-2,Green-5,   -   }
+		Playability: {0; 0; 0; 0; 0,143}
+		Uselessness: {0; 0; 0; 0; 0,357}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 9
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 3
+
+State: 67
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-2,Blue-5,Blue-2,Green-5,   -3}
+		Playability: {0; 0; 0; 0; 0,25}
+		Uselessness: {0; 0; 0; 0; 0,5}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 9
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Green-3 e pesca    -   
+
+State: 68
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-2,Blue-5,Blue-2,Green-5,   -   }
+		Playability: {0; 0; 0; 0; 0,154}
+		Uselessness: {0; 0; 0; 0; 0,231}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 8
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 1
+
+State: 69
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-2,Blue-5,Blue-2,Green-5,   -1}
+		Playability: {0; 0; 0; 0; 0,333}
+		Uselessness: {0; 0; 0; 0; 0,667}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 8
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Red-1 e pesca    -   
+
+State: 70
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-2,Blue-5,Blue-2,Green-5,   -   }
+		Playability: {0; 0; 0; 0; 0,167}
+		Uselessness: {0; 0; 0; 0; 0,167}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 7
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [1, 3, 4] di valore 5
+
+State: 71
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Yellow-2,Blue-5,Blue-2,Green-5,   -5}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 7
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 0 nella propria mano
+Il giocatore Player0(1) scarta Yellow-2 e pesca    -   
+
+State: 72
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Blue-5,Blue-2,Green-5,   -5,   -   }
+		Playability: {0; 0; 0; 0; 0,182}
+		Uselessness: {0; 0; 0; 0; 0,182}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 6
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [3] di colore White
+
+State: 73
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 1; 0}
+
+	Player0 (1): {Blue-5,Blue-2,Green-5,White-5,   -   }
+		Playability: {0; 0; 0; 0; 0,2}
+		Uselessness: {0; 0; 0; 0; 0,2}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 6
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Blue-4 e pesca    -   
+
+State: 74
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Blue-5,Blue-2,Green-5,White-5,   -   }
+		Playability: {0; 0; 0; 0; 0,2}
+		Uselessness: {0; 0; 0; 0; 0,1}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 5
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [4] di valore 3
+
+State: 75
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Blue-5,Blue-2,Green-5,White-5,   -3}
+		Playability: {0; 0; 0; 0; 0,333}
+		Uselessness: {0; 0; 0; 0; 0}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 5
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 0 nella propria mano
+Il giocatore Player0(1) scarta Blue-5 e pesca    -   
+
+State: 76
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Blue-2,Green-5,White-5,   -3,   -   }
+		Playability: {0; 0; 0; 0,333; 0,222}
+		Uselessness: {0; 0; 0; 0; 0,111}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4, Blue-5}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 4
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [1, 3] di colore Green
+
+State: 77
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Blue-2,Green-5,White-5,Green-3,   -   }
+		Playability: {0; 0; 0; 0; 0,286}
+		Uselessness: {0; 0; 0; 0; 0,143}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4, Blue-5}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 4
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player0(1) scarta Yellow-3 e pesca    -   
+
+State: 78
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Blue-2,Green-5,White-5,Green-3,   -   }
+		Playability: {0; 0; 0; 0; 0,25}
+		Uselessness: {0; 0; 0; 0; 0,125}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4, Blue-5, Yellow-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 3
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [3, 4] di valore 3
+
+State: 79
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Blue-2,Green-5,White-5,Green-3,   -3}
+		Playability: {0; 0; 0; 0; 0,5}
+		Uselessness: {0; 0; 0; 0; 0}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4, Blue-5, Yellow-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 3
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Impossibile suggerire
+Player0(1) scarta la carta in posizione 0 nella propria mano
+Il giocatore Player0(1) scarta Blue-2 e pesca    -   
+
+State: 80
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Green-5,White-5,Green-3,   -3,   -   }
+		Playability: {0; 0; 0; 0,5; 0,286}
+		Uselessness: {0; 0; 0; 0; 0,143}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4, Blue-5, Yellow-3, Blue-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 2
+
+Il giocatore Player1(0) suggerisce a Player0(1) le carte [3] di colore Red
+
+State: 81
+Current player: Player0
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Green-5,White-5,Green-3,Red-3,   -   }
+		Playability: {0; 0; 0; 1; 0,25}
+		Uselessness: {0; 0; 0; 0; 0}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4, Blue-5, Yellow-3, Blue-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 2
+
+Player0(1) gioca la carta in posizione 3 nella propria mano
+Il giocatore Player0(1) gioca Red-3 e pesca    -   
+
+State: 82
+Current player: Player1
+Players' hands:
+	Player1 (0): {White-3,Red-5,Green-4,Blue-4,Blue-3}
+		Playability: {0; 0; 0; 0; 0}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Green-5,White-5,Green-3,   -   ,   -   }
+		Playability: {0; 0; 0; 0,25; 0,333}
+		Uselessness: {0; 0; 0; 0; 0,167}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4, Blue-5, Yellow-3, Blue-2}
+Fireworks:
+	Blue  -
+	Red  3
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 1
+
+Il giocatore Player1(0) scarta White-3 e pesca Red-4
+
+State: 83
+Current player: Player0
+Players' hands:
+	Player1 (0): {Red-5,Green-4,Blue-4,Blue-3,Red-4}
+		Playability: {0; 0; 0; 0; 1}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Green-5,White-5,Green-3,   -   ,   -   }
+		Playability: {0; 0; 0; 0,25; 0,2}
+		Uselessness: {0; 0; 0; 0; 0,2}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4, Blue-5, Yellow-3, Blue-2, White-3}
+Fireworks:
+	Blue  -
+	Red  3
+	Green  -
+	White  1
+	Yellow  -
+Hints: 1
+Fuse: 3
+Final: 84
+Deck: 0
+
+Impossibile giocare una carta sicura
+Impossibile scartare una carta sicura
+Player0(1) mostra le carte di valore 4 a Player1(0)
+Il giocatore Player0(1) suggerisce a Player1(0) le carte [1, 2, 4] di valore 4
+
+State: 84
+Current player: Player1
+Players' hands:
+	Player1 (0): {Red-5,Green-4,Blue-4,Blue-3,Red-4}
+		Playability: {0; 0; 0; 0; 1}
+		Uselessness: {0; 0; 0; 0; 0}
+
+	Player0 (1): {Green-5,White-5,Green-3,   -   ,   -   }
+		Playability: {0; 0; 0; 0,25; 0,2}
+		Uselessness: {0; 0; 0; 0; 0,2}
+
+Discarded: {Yellow-1, White-3, White-2, Blue-1, White-4, Red-4, Blue-2, Green-1, Green-2, Red-3, Yellow-2, Blue-1, Green-4, White-2, Red-2, White-1, Blue-1, Green-1, White-4, Yellow-4, White-1, Blue-3, Yellow-1, Yellow-3, Green-1, Yellow-4, Yellow-5, Green-2, Green-3, Red-1, Yellow-2, Blue-4, Blue-5, Yellow-3, Blue-2, White-3}
+Fireworks:
+	Blue  -
+	Red  3
+	Green  -
+	White  1
+	Yellow  -
+Hints: 0
+Fuse: 3
+Final: 84
+Deck: 0
+
+Il giocatore Player1(0) scarta Red-5 e pesca null
+

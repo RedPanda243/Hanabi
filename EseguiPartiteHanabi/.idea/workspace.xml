@@ -7,146 +7,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad105d19-c0b6-4eaa-9aef-94f0a8e9d7cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/EseguiPartite.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EseguiPartiteHanabi.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/TypedJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/allclasses-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/allclasses-noframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/Action.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/Action.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/ActionType.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/ActionType.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/Card.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/Card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/Color.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/Color.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/Firework.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/Firework.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/Game.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/Game.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/Hand.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/Hand.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/State.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/State.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/Turn.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/Turn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/game/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/game/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/main/HanabiClient.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/main/HanabiClient.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/main/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/main/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/main/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/main/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/api/main/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/api/main/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/constant-values.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/deprecated-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/help-doc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-11.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-12.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-13.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-14.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index-files/index-9.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/overview-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/overview-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/overview-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/overview-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/docs/package-list" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/docs/package-list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Action.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/ActionType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/ActionType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/AbstractAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/AbstractAgent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/StatisticState.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/StatisticState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Statistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/client/Statistics.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/game/Turn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/main/HanabiClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/out/production/HanAPI/api/main/HanabiClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/client/AbstractAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/AbstractAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/client/StatisticState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/StatisticState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/client/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/client/Statistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI/src/api/game/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI/src/api/game/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/artifacts/HanabiAgent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/libraries/HanAPI.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/libraries/SJSON.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/HanabiAgent.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/agents/AbstractAgent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/agents/BasicAgent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/agents/Strategy1Agent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/main/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/HandCardsProbability$PairCardCount.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/HandCardsProbability.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/math/MathCalc.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/out/production/HanabiAgent/search/HandGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/AbstractAgent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/BasicAgent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/HumanAgent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/agents/Strategy1Agent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/game/MathState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/main/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/math/HandCardsProbability.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/math/MathCalc.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiAgent/src/search/HandGenerator.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/allclasses-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/allclasses-noframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/constant-values.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/deprecated-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/help-doc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-11.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-12.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-13.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-14.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-15.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-16.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-17.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index-files/index-9.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/overview-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/serialized-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONArray.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONArray.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONData.Type.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONData.Type.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONData.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONException.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONException.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONObject.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONObject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONString.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONString.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONUtils.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/JSONUtils.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/docs/sjson/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/docs/sjson/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONData$Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONData$Type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONData.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONString.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/out/production/SJSON/sjson/JSONString.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/src/sjson/JSONArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/src/sjson/JSONData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/src/sjson/JSONObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SJSON/src/sjson/JSONString.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SJSON/src/sjson/JSONString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/out/production/HanabiStrategy1/Strategy1Agent.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/out/production/HanabiStrategy1/Strategy1Agent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/src/Strategy1Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/src/Strategy1Agent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TODO" beforeDir="false" afterPath="$PROJECT_DIR$/../TODO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../log.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -160,15 +50,24 @@
     <option name="delegatedBuild" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="175" column="57" selection-start-line="175" selection-start-column="57" selection-end-line="175" selection-end-column="57" />
+            <state relative-caret-position="340">
+              <caret line="80" column="49" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Runtime.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1036">
+              <caret line="345" column="19" selection-start-line="345" selection-start-column="19" selection-end-line="345" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -197,7 +96,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="37" />
     <option name="y" value="51" />
     <option name="width" value="1330" />
@@ -209,7 +108,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,11 +120,12 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/META-INF" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -257,20 +156,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1368" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25358167" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -278,27 +173,36 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/log.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/log.txt" />
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="175" column="57" selection-start-line="175" selection-start-column="57" selection-end-line="175" selection-end-column="57" />
+        <state relative-caret-position="340">
+          <caret line="80" column="49" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Runtime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1036">
+          <caret line="345" column="19" selection-start-line="345" selection-start-column="19" selection-end-line="345" selection-end-column="19" />
         </state>
       </provider>
     </entry>

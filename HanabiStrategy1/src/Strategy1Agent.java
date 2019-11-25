@@ -6,6 +6,7 @@ import sjson.JSONArray;
 import sjson.JSONData;
 import sjson.JSONException;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,16 +40,15 @@ import java.util.List;
  */
 public class Strategy1Agent extends AbstractAgent {
 
-
-	public Strategy1Agent() {
-		super();
-
+	public Strategy1Agent(boolean log, String logpath) throws FileNotFoundException
+	{
+		super(log,logpath);
 	}
 
 	public void notifyTurn(Turn turn)
 	{
 		super.notifyTurn(turn);
-		System.out.println(turn+"\n");
+		log(turn+"\n");
 	}
 
 	public void notifyState(State state)
@@ -56,7 +56,7 @@ public class Strategy1Agent extends AbstractAgent {
 		super.notifyState(state);
 		try {
 			StatisticState sstate = new StatisticState(state, stats);
-			System.out.println(""+sstate);
+			log(""+sstate);
 //			stats.printPossibilities(System.out);
 		/*	System.out.println("Suggerimenti possibili:");
 			for (String player: Game.getInstance().getPlayers())
@@ -82,27 +82,27 @@ public class Strategy1Agent extends AbstractAgent {
 		if (action == null)
 			action = hint0();
 		if (action == null)*/
-			System.out.println("Impossibile giocare una carta sicura");
+			log("Impossibile giocare una carta sicura");
 			action = discard100();
 		}
 		if (action == null) {
-			System.out.println("Impossibile scartare una carta sicura");
+			log("Impossibile scartare una carta sicura");
 			action = hintMost();
 		}
 		if (action == null) {
-			System.out.println("Impossibile suggerire");
+			log("Impossibile suggerire");
 			action = discardMost();
 		}
 		if (action == null) {
-			System.out.println("Impossibile scartare");
+			log("Impossibile scartare");
 			action = playMost();
 		}
-		System.out.println(action);
+		log(action.toString());
 		return action;
 	}
 
 	public Action play100() {
-		double[] p = p = stats.getPlayability(Main.playerName);
+		double[] p = stats.getPlayability(Main.playerName);
 
 		try {
 			for (int i = 0; i < p.length; i++) {
@@ -110,7 +110,7 @@ public class Strategy1Agent extends AbstractAgent {
 					return new Action(Main.playerName, ActionType.PLAY, i);
 			}
 		} catch (JSONException e) {
-			e.printStackTrace(System.err);
+			log(e);
 		}
 		return null;
 	}
@@ -191,7 +191,7 @@ public class Strategy1Agent extends AbstractAgent {
 						return new Action(Main.playerName, ActionType.DISCARD, i);
 				}
 			} catch (JSONException e) {
-				e.printStackTrace(System.err);
+				log(e);
 			}
 		}
 		return null;
@@ -239,7 +239,7 @@ public class Strategy1Agent extends AbstractAgent {
 				return best;
 			}
 		} catch (JSONException e) {
-			e.printStackTrace(System.err);
+			log(e);
 		}
 		return null;
 	}
@@ -259,7 +259,7 @@ public class Strategy1Agent extends AbstractAgent {
 			}
 			return new Action(Main.playerName, ActionType.DISCARD, card);
 		} catch (JSONException e) {
-			e.printStackTrace(System.err);
+			log(e);
 		}
 		return null;
 	}
@@ -279,14 +279,28 @@ public class Strategy1Agent extends AbstractAgent {
 			}
 			return new Action(Main.playerName, ActionType.PLAY, card);
 		} catch (JSONException e) {
-			e.printStackTrace(System.err);
+			log(e);
 		}
 		return null;
 	}
 
 	public static void main(String[] args) throws Exception
 	{
-		AbstractAgent agent = new Strategy1Agent();
+		boolean log = false;
+		String logpath = null;
+		for (int i=0; i<args.length; i++)
+		{
+			if (args[i].equals("-l"))
+			{
+				log = true;
+			}
+			else if (args[i].equals("-f"))
+			{
+				i++;
+				logpath = args[i];
+			}
+		}
+		AbstractAgent agent = new Strategy1Agent(log,logpath);
 		Main.setAgent(agent);
 		Main.main(args);
 	}

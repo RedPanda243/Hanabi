@@ -4,13 +4,11 @@ import api.game.*;
 import sjson.JSONArray;
 import sjson.JSONException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -18,28 +16,140 @@ import java.util.Stack;
  */
 public class HanabiServer
 {
-	private static Socket[] players;
-	private static Card drawn = null;
-	private static boolean log = false;
-	private static PrintStream logfile;
-	private static String logpath = null;
+	private Socket[] players;
+	private Card drawn = null;
+	private boolean log;
+	private PrintStream logfile;
+	private int port;
+	private int n;
+	private List<String> playerNames;
+	private int games;
+	private int score;
+
+	private HanabiServer(int games, int port, int n, boolean log, String logpath) throws IOException
+	{
+		this.games = games;
+		this.port = port;
+		this.n = n;
+		this.log = log;
+		if (logpath != null)
+			logfile = new PrintStream(System.getProperty("user.dir")+"/"+logpath);
+		else logfile = null;
+
+	}
+
+	private void initAgents(List<String> local) throws IOException
+	{
+		playerNames = new ArrayList<>();
+		ServerSocket ss = new ServerSocket(port);
+//		log("Server avviato."); //TODO stampa tcp address (locale e remoto)
+		players = new Socket[n];
+		String pname;
+
+		if(local!=null)
+			launch(local);
+
+
+		for (int i=0; i<n; i++)
+		{ //Non c'è concorrenza, i giocatori sono accettati uno alla volta
+			try
+			{
+				players[i] = ss.accept();
+				pname = new BufferedReader(new InputStreamReader(players[i].getInputStream())).readLine();
+				if (playerNames.contains(pname))
+				{ //Risoluzione conflitti per stesso nome
+					int p=2;
+					pname = pname+p;
+					while(playerNames.contains(pname))
+					{
+						p++;
+						pname = pname.substring(0,pname.length()-1)+p;
+					}
+				}
+				playerNames.add(pname);
+				new PrintStream(players[i].getOutputStream()).println(pname);
+				players[i].getOutputStream().flush();
+//				log("Giocatore "+i+" ("+pname+") connesso");
+			}
+			catch(IOException | ClassCastException e)
+			{
+				log(e);
+			}
+		}
+
+		//Shuffle dei giocatori, per stabilire l'ordine di gioco. Effettuo al massimo n scambi.
+		java.util.Random r = new java.util.Random();
+		int a,b;
+		Socket s;
+		String n;
+		for (int i=0; i<players.length; i++)
+		{
+			a = r.nextInt(players.length);
+			b = r.nextInt(players.length);
+			s = players[a];
+			players[a] = players[b];
+			players[b] = s;
+			n = playerNames.get(a);
+			playerNames.set(a,playerNames.get(b));
+			playerNames.set(b,n);
+		}
+
+
+	}
+
+	private void launch(List<String> cmds) throws IOException
+	{
+		File dir = new File(System.getProperty("user.dir"));
+
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run()
+			{
+				for(String c:cmds)
+				{
+					try
+					{
+						Runtime.getRuntime().exec(c,null,dir);
+					}
+					catch(IOException e)
+					{
+						log(e);
+					}
+				}
+			}
+		});
+		t.start();
+	}
 
 	/**
 	 * Il mescolamento delle carte del mazzo &egrave; simulato invertendo 2 carte random nel mazzo per 1000 volte
-	 * @return Uno Stack di ServerCard in ordine casuale rappresentante un mazzo di carte mescolato.
+	 * @return Uno Stack di Card in ordine casuale rappresentante un mazzo di carte mescolato.
 	 **/
-	private static Stack<Card> shuffle(Card[] cards){
-		Card[] d = cards.clone();
+	private static Stack<Card> shuffle(List<Card> cards)
+	{
 		java.util.Random r = new java.util.Random();
 		for(int i = 0; i<1000; i++){
 			int a = r.nextInt(50);
 			int b = r.nextInt(50);
-			Card c = d[a];
-			d[a]= d[b];
-			d[b]=c;
+			Card c = cards.get(a);
+			cards.set(a,cards.get(b));
+			cards.set(b,c);
 		}
 		Stack<Card> shuffle = new Stack<>();
-		for(Card c: d) shuffle.push(c);
+		for(Card c: cards) shuffle.push(c);
+		return shuffle;
+	}
+
+	/**
+	 * Il mescolamento delle carte del mazzo &egrave; simulato riempendo lo stack una carta casuale alla volta
+	 * @return Uno Stack di Card in ordine casuale rappresentante un mazzo di carte mescolato.
+	 **/
+	private static Stack<Card> shuffle1(List<Card> cards)
+	{
+		java.util.Random r = new java.util.Random();
+		Stack<Card> shuffle = new Stack<>();
+		while (cards.size()>0)
+			shuffle.push(cards.remove(r.nextInt(cards.size())));
 		return shuffle;
 	}
 
@@ -48,42 +158,65 @@ public class HanabiServer
 	 * previsto, poi avvier&agrave; la partita.</br>
 	 * La corretta partecipazione ad una partita richiede di rispettare il seguente protocollo:
 	 * <ul>
-	 *     <li>Invio del proprio nome come stringa terminata da un carattere '\n'</li>
-	 *     <li>Ricezione del proprio nome usato dal gioco (modificato in caso di nome ripetuto).</li>
+	 *     <li>Invio del proprio nome preferito come stringa terminata da un carattere '\n'</li>
+	 *     <li>Ricezione del proprio nome usato dal gioco (modificato in caso di nome chiesto da più giocatori).</li>
 	 *     <li>Ricezione di un oggetto Game</li>
 	 *     <li>
 	 *         <ul>WHILE !GAMEOVER
 	 *             <li>Ricezione oggetto State</li>
-	 *             <li>Invio propria Action se &egrave; il proprio turno, altrimenti ricezione di un Turn</li>
+	 *             <li>Invio propria Action se &egrave; il proprio turno</li>
+	 *             <li>Ricezione oggetto Turn</li>
 	 *         </ul>
 	 *     </li>
 	 * </ul>
 	 * </br></br>
 	 * Opzioni di avvio:
 	 * <ul>
-	 * 		<li>-l = mostra il log della partita mossa per mossa</li>
-	 * 		<li>-p "port" = imposta la porta tcp locale. Default: 9494</li>
-	 *		<li>-n "numplayers" = imposta il numero di giocatori. Default: 2</li>
-	 *		<li>-f "logfilepath"|null = imposta il percorso del file nel quale memorizzare il log a partita finita.
-	 *									Se null (default) non verr&agrave; memorizzato</li>
+	 * 		<li>-g "games"				= imposta il numero di partite da effettuare. Default: 1. Le partite verranno effettuate
+	 * 									  una alla volta.</li>
+	 * 		<li>-l			 			= mostra il log delle partite mossa per mossa</li>
+	 * 		<li>-p "port" 				= imposta la porta tcp locale. Default: 9494</li>
+	 *		<li>-n "numplayers" 		= imposta il numero di giocatori. Default: 2</li>
+	 *		<li>-f "logfilepath"|null 	= imposta il percorso del file nel quale memorizzare il log a partita finita.
+	 *									  Se null (default) non verr&agrave; memorizzato</li>
+	 *		<li>-a "agent"				= imposta il tipo di un giocatore avviato in automatico. Pu&ograve; essere ripetuto
+	 *									  per impostare più giocatori automatici. Richiede il comando shell di avvio del giocatore</li>
 	 * </ul>
+	 *
+	 * Esempi di comandi di lancio (con terminale aperto nella root del progetto):
+	 *
+	 * java -jar HanabiServer -n 4 -a "java -jar HanabiStrategy1.jar 0 9494 PlayerStrategy1"
+	 * Avvio di una sola partita tra 4 giocatori di cui 1 Strategy1 locale chiamato PlayerStrategy1.
+	 *
+	 * java -jar HanabiServer -g 2 -a "java -jar HanabiStrategy1.jar 0 9494 PlayerStrategy1" -n 3 -a "java -jar HanabiHuman.jar 0 9494"
+	 * Avvio di 2 partite (eseguite sequenzialmente) tra 3 giocatori di cui 2 locali, uno Human e uno Strategy1
 	 * @param args
 	 */
 	public static void main(String[] args) throws IOException,JSONException
 	{
 		//Settaggio impostazioni, avvio e attesa delle connessioni dei giocatori.
-		
+
 		int port = 9494;
 		int n = 2;
-
-		JSONArray playerNames = new JSONArray();
-		ArrayList<State> history = new ArrayList<>();
-	//	ArrayList<Turn> turns = new ArrayList<>();
+		int g = 1;
+		boolean log = false;
+		ArrayList<String> lcmd = new ArrayList<>();
+		String logpath = null;
 
 
 		for (int i=0; i<args.length; i++)
 		{
-			if (args[i].equals("-l"))
+			if (args[i].equals("-g"))
+			{
+				i++;
+				g = Integer.parseInt(args[i]);
+			}
+			else if (args[i].equals("-a"))
+			{
+				i++;
+				lcmd.add(args[i]);
+			}
+			else if (args[i].equals("-l"))
 			{
 				log = true;
 			}
@@ -107,46 +240,33 @@ public class HanabiServer
 			}
 		}
 
-		if (logpath != null)
-			logfile = new PrintStream(System.getProperty("user.dir")+"/"+logpath);
-		else logfile = null;
 
-		ServerSocket ss = new ServerSocket(port);
-		log("Server avviato."); //TODO stampa tcp address (locale e remoto)
-		int i = 0;
-		players = new Socket[n];
-		String pname;
-		while (i<n)
-		{ //Non c'è concorrenza, i giocatori sono accettati uno alla volta e giocheranno nell'ordine di arrivo
-			//TODO Rimescola i giocatori quando li hai tutti!
-			try
-			{
-				players[i] = ss.accept();
-				pname = new BufferedReader(new InputStreamReader(players[i].getInputStream())).readLine();
-				if (playerNames.has(pname))
-				{ //Risoluzione conflitti per stesso nome
-					int p=2;
-					pname = pname+p;
-					while(playerNames.has(pname))
-					{
-						p++;
-						pname = pname.substring(0,pname.length()-1)+p;
-					}
-				}
-				playerNames.add(pname);
-				new PrintStream(players[i].getOutputStream()).println(pname);
-				players[i].getOutputStream().flush();
-				log("Giocatore "+i+" ("+pname+") connesso");
-				i++;
-			}
-			catch(IOException | ClassCastException e)
-			{
-				logException(e);
-			}
+		HanabiServer server = new HanabiServer(g,port,n,log,logpath);
+
+		double score = 0;
+		double t;
+		double max=0,min=25;
+		for (int i=0; i<server.games; i++) {
+			server.log("Partita "+(i+1)+" su "+server.games);
+			server.initAgents(lcmd);
+			//Connessioni completate, avvio del gioco
+			t = server.startGame();
+			if (t>max)
+				max = t;
+			if (t<min)
+				min = t;
+			score+=t;
 		}
+		score = score/server.games;
+		server.log("MEDIUM SCORE: "+score);
+		server.log("MAX SCORE: "+max);
+		server.log("MIN SCORE: "+min);
+		if (server.logfile!=null)
+			server.logfile.close();
+	}
 
-		//Connessioni completate, avvio del gioco
-
+	private int startGame() throws IOException,JSONException
+	{
 		new Game(playerNames);
 //		System.err.println(Game.getInstance().getPlayers());
 		PrintStream ps;
@@ -157,25 +277,7 @@ public class HanabiServer
 			ps.flush();
 		}
 
-		Card[] cards = {
-				new Card(Color.BLUE,1),new Card(Color.BLUE,1), new Card(Color.BLUE,1),
-				new Card(Color.BLUE,2),new Card(Color.BLUE,2),new Card(Color.BLUE,3),new Card(Color.BLUE,3),
-				new Card(Color.BLUE,4),new Card(Color.BLUE,4),new Card(Color.BLUE,5),
-				new Card(Color.RED,1),new Card(Color.RED,1), new Card(Color.RED,1),
-				new Card(Color.RED,2),new Card(Color.RED,2),new Card(Color.RED,3),new Card(Color.RED,3),
-				new Card(Color.RED,4),new Card(Color.RED,4),new Card(Color.RED,5),
-				new Card(Color.GREEN,1),new Card(Color.GREEN,1), new Card(Color.GREEN,1),
-				new Card(Color.GREEN,2),new Card(Color.GREEN,2),new Card(Color.GREEN,3),new Card(Color.GREEN,3),
-				new Card(Color.GREEN,4),new Card(Color.GREEN,4),new Card(Color.GREEN,5),
-				new Card(Color.WHITE,1),new Card(Color.WHITE,1), new Card(Color.WHITE,1),
-				new Card(Color.WHITE,2),new Card(Color.WHITE,2),new Card(Color.WHITE,3),new Card(Color.WHITE,3),
-				new Card(Color.WHITE,4),new Card(Color.WHITE,4),new Card(Color.WHITE,5),
-				new Card(Color.YELLOW,1),new Card(Color.YELLOW,1), new Card(Color.YELLOW,1),
-				new Card(Color.YELLOW,2),new Card(Color.YELLOW,2),new Card(Color.YELLOW,3),new Card(Color.YELLOW,3),
-				new Card(Color.YELLOW,4),new Card(Color.YELLOW,4),new Card(Color.YELLOW,5)
-		};
-
-		Stack<Card> deck = shuffle(cards);
+		Stack<Card> deck = shuffle(Card.getAllCards());
 //		System.err.println(Game.getInstance().getNumberOfCardsPerPlayer());
 		State last = new State(deck);
 		State next;
@@ -187,7 +289,7 @@ public class HanabiServer
 		/*	if(a.names().size() == 0)
 				throw new JSONException("Action null from player"+last.getCurrentPlayer());*/
 			next = nextState(last,a,deck);
-			history.add(last);
+		//	history.add(last);
 			sendTurn(last.getCurrentPlayer(),a,last);
 			last = next;
 
@@ -198,11 +300,16 @@ public class HanabiServer
 		}
 		sendState(last,players);
 		log(""+last.getScore());
-		if (logfile!=null)
-			logfile.close();
+
+		for (Socket s: players)
+			s.close();
+
+		Game.close();
+
+		return last.getScore();
 	}
 
-	private static void log(String s)
+	private void log(String s)
 	{
 		if (log)
 			System.out.println(s);
@@ -210,17 +317,17 @@ public class HanabiServer
 			logfile.println(s);
 	}
 
-	private static void logException(Exception e)
+	private void log(Exception e)
 	{
 		if (log)
-			e.printStackTrace(System.err);
+			e.printStackTrace(System.out);
 		if (logfile!=null)
 			e.printStackTrace(logfile);
 	}
 
-	private static State nextState(State current, Action move,Stack<Card> deck) throws JSONException
+	private State nextState(State current, Action move,Stack<Card> deck) throws JSONException
 	{
-		log("[ACTION "+move.getType().toString()+"] "+move.toString()+"\n"+"[DECK] = "+deck.size());
+//		log("[ACTION "+move.getType().toString()+"] "+move.toString()+"\n"+"[DECK] = "+deck.size());
 		State next = current.clone();
 		next.setAction(move);
 		 //TODO Se l'Action è un suggerimento pesco a cazzo e la carta è persa!!!
@@ -254,7 +361,8 @@ public class HanabiServer
 					next.setFuseToken(next.getFuseTokens()-1);
 				}
 				catch (JSONException ex)//Impossibile
-				{logException(ex);}
+				{
+					log(ex);}
 			}
 		}
 		else if (move.getType() == ActionType.DISCARD)
@@ -277,7 +385,8 @@ public class HanabiServer
 				{
 					next.setHintToken(next.getHintTokens()+1);
 				}
-				catch(JSONException e){logException(e);} //Impossibile
+				catch(JSONException e){
+					log(e);} //Impossibile
 		}
 		else if (next.getHintTokens()>0)
 		{
@@ -317,7 +426,8 @@ public class HanabiServer
 			{
 				next.setHintToken(next.getHintTokens()-1);
 			}
-			catch (JSONException e){logException(e);} //Impossibile
+			catch (JSONException e){
+				log(e);} //Impossibile
 		}
 		else
 		{
@@ -333,13 +443,14 @@ public class HanabiServer
 		return next;
 	}
 
-	private static Action receiveAction(String player) throws IOException,JSONException
+	private Action receiveAction(String player) throws IOException,JSONException
 	{
 		return new Action(new BufferedReader(new InputStreamReader(players[Game.getInstance().getPlayerTurn(player)].getInputStream())));
 	}
 
-	private static void sendState(State state, Socket[] players) throws IOException,JSONException
+	private void sendState(State state, Socket[] players) throws IOException,JSONException
 	{
+//		log(state.toString());
 		State box;
 		for (int i=0; i<players.length; i++)
 		{
@@ -361,7 +472,7 @@ public class HanabiServer
 		}
 	}
 
-	private static void sendTurn(String turnPlayer, Action action, State current) throws JSONException,IOException
+	private void sendTurn(String turnPlayer, Action action, State current) throws JSONException,IOException
 	{
 		Turn t,t1;
 		if (action.getType() == ActionType.PLAY || action.getType() == ActionType.DISCARD) {

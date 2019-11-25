@@ -347,6 +347,7 @@ public class State extends TypedJSON<JSONObject>
 
 	public String toString(){
 		String ret = "State: "+getOrder()+"\n";
+		ret+="Current player: "+getCurrentPlayer()+"\n";
 		ret+="Players' hands:\n";
 		for(int i=0; i<Game.getInstance().getPlayers().length; i++){
 			ret+="\t"+ Game.getInstance().getPlayer(i)+" ("+i+"): "+getHand(Game.getInstance().getPlayer(i))+"\n";

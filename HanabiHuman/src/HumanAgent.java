@@ -5,73 +5,19 @@ import api.game.*;
 import sjson.JSONData;
 import sjson.JSONException;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class HumanAgent extends AbstractAgent
 {
-/*
-	public HumanAgent(String name, int index)
+	public HumanAgent(String logpath) throws FileNotFoundException
 	{
-		br = new BufferedReader(new InputStreamReader(System.in));
-		playerName = name;
-		this.index = index;
+		super(true,logpath);
 	}
-
-	@Override
-	public int getIndex() {
-		return index;
-	}
-
-	@Override
-	public Action doAction()
-	{
-		System.out.println("\nChoose one action: (play <cardnum> | discard <cardnum> | hint <playernum> (<color>|<value>))");
-		Action action = null;
-		while(action == null)
-		{
-			try
-			{
-				String[] parts = br.readLine().split(" ");
-				if (parts[0].equals("play"))
-				{
-					action = play(Integer.parseInt(parts[1]));
-				}
-				else if (parts[0].equals("discard"))
-				{
-					action =  discard(Integer.parseInt(parts[1]));
-				}
-				else if (parts[0].equals("hint"))
-				{
-					try
-					{
-						action = hint(Integer.parseInt(parts[2]),Integer.parseInt(parts[1]));
-					}
-					catch(NumberFormatException nfe)
-					{
-						action = hint(Color.fromString(parts[2]),Integer.parseInt(parts[1]));
-					}
-				}
-				else {
-					System.out.println("unrecognized, retry");
-				}
-			}
-			catch (IOException ioe){ioe.printStackTrace(System.err); System.exit(1);}
-			catch(Exception e){e.printStackTrace(System.err);}
-		}
-		return action;
-	}
-
-	@Override
-	public String getName()
-	{
-		return playerName;
-	}
- */
-
 
 	public Action chooseAction()
 	{
-		System.out.println("\nChoose one action: (play <cardnum> | discard <cardnum> | hint <playernum> (<color>|<value>))");
+		log("\nChoose one action: (play <cardnum> | discard <cardnum> | hint <playernum> (<color>|<value>))");
 		Action action = null;
 		while(action == null)
 		{
@@ -110,10 +56,10 @@ public class HumanAgent extends AbstractAgent
 					System.out.println("unrecognized, retry");
 				}
 			}
-			catch (IOException ioe){ioe.printStackTrace(System.err); System.exit(1);}
-			catch(Exception e){e.printStackTrace(System.err);}
+			catch (IOException ioe){log(ioe); System.exit(1);}
+			catch(Exception e){log(e);}
 		}
-		System.out.println();
+		log("");
 		return action;
 	}
 
@@ -122,17 +68,17 @@ public class HumanAgent extends AbstractAgent
 		super.notifyState(state);
 		try {
 			StatisticState sstate = new StatisticState(state, stats);
-			System.out.println(sstate);
+			log(sstate.toString());
 			if (state.getCurrentPlayer().equals(Main.playerName))
 			{
-				System.out.println("Suggerimenti possibili:");
+				log("Suggerimenti possibili:");
 				for (String player: Game.getInstance().getPlayers())
 				{
 					if (!player.equals(Main.playerName))
 					{
-						System.out.println(player);
+						log(player);
 						for (Action h:this.getPossibleHints(player))
-							System.out.println("\t"+h);
+							log("\t"+h);
 					}
 				}
 			}
@@ -152,7 +98,16 @@ public class HumanAgent extends AbstractAgent
 	 */
 	public static void main(String... args) throws IOException,JSONException
 	{
-		AbstractAgent agent = new HumanAgent();
+		String logpath = null;
+		for (int i=0; i<args.length; i++)
+		{
+			if (args[i].equals("-f"))
+			{
+				i++;
+				logpath = args[i];
+			}
+		}
+		AbstractAgent agent = new HumanAgent(logpath);
 		Main.setAgent(agent);
 		Main.main(args);
 	}

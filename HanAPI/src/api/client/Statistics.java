@@ -6,34 +6,41 @@ import sjson.JSONException;
 import java.io.PrintStream;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Questa classe mantiene per ogni carta in mano al giocatore una lista di possibili coppie valore-colore che la carta pu&ograve;
  * assumere.
  */
 @SuppressWarnings({"unchecked"})
-public class Statistics
+public class Statistics implements Cloneable
 {
 	private List<State> history;
-//	private List<Card>[] possibleCards;
 	private List<Card> played; //Contiene le sole carte nei Fireworks. Se una carta viene giocata ma provoca un errore è da considerarsi scartata!
 	private List<Card> discarded;
 	private List<Card> ownedByOthers;
-	private List<Hint>[] hints;
+	private List<Hint>[][] hints;
+	private Map<String,double[]> playbox;
+	private Map<String,double[]> discbox;
+	private Map<String,double[]> entrbox;
+
+//	private List<Hint>[] hints;
 
 	public Statistics()
 	{
 		history = new ArrayList<>();
-//		possibleCards = new List[Game.getInstance().getNumberOfCardsPerPlayer()];
 		played = new ArrayList<>();
 		discarded = new ArrayList<>();
 		ownedByOthers = new ArrayList<>();
-		hints = new List[Game.getInstance().getNumberOfCardsPerPlayer()];
+		hints = new List[Game.getInstance().getPlayers().length][Game.getInstance().getNumberOfCardsPerPlayer()];
 		for (int i=0; i<hints.length; i++)
-			hints[i] = new ArrayList<>();
+		{
+			for (int j=0; j<hints[0].length; j++)
+				hints[i][j] = new ArrayList<>();
+		}
+		playbox = new HashMap<>();
+		discbox = new HashMap<>();
+		entrbox = new HashMap<>();
 	}
 
 	public void addState(State state)
@@ -47,17 +54,22 @@ public class Statistics
 			firstState(state);
 	}
 
-	public List<Card> calcCards(int i)
+	public List<Card> calcCards(String player, int i)
 	{
 		try {
 			List<Card> list = Card.getAllCards();
+			if (!player.equals(Main.playerName))
+			{//devo riaggiungere alle carte possibili quelle possedute da player (che di default ho messo in ownedByOthers)
+				for (Card card: getLastState().getHand(player))
+					list.add(card);
+			}
 			for (Card c : played)
 				list.remove(c);
 			for (Card c : discarded)
 				list.remove(c);
 			for (Card c : ownedByOthers)
 				list.remove(c);
-			for (Hint h : hints[i])
+			for (Hint h : hints[Game.getInstance().getPlayerTurn(player)][i])
 				h.apply(list);
 			return list;
 		}
@@ -65,6 +77,33 @@ public class Statistics
 		{
 			return null;
 		}
+	}
+
+	public Statistics clone()
+	{
+		try
+		{
+			super.clone();
+		}
+		catch(CloneNotSupportedException e){}
+		Statistics clone = new Statistics();
+		for (State state:history)
+			clone.history.add(state.clone());
+		for (Card card:played)
+			clone.played.add(card.clone());
+		for (Card card:discarded)
+			clone.discarded.add(card.clone());
+		for (Card card:ownedByOthers)
+			clone.ownedByOthers.add(card.clone());
+		for (int i=0; i<Game.getInstance().getPlayers().length; i++)
+		{
+			for (int j=0; j<Game.getInstance().getNumberOfCardsPerPlayer(); j++)
+			{
+				for (Hint h: hints[i][j])
+					clone.hints[i][j].add(h.clone());
+			}
+		}
+		return clone;
 	}
 
 	public int currentTurn()
@@ -77,38 +116,34 @@ public class Statistics
 		return getState(currentTurn()-1);
 	}
 
+	public List<Hint>[] getHints(String player)
+	{
+		return hints[Game.getInstance().getPlayerTurn(player)];
+	}
+
+	/**
+	 * Le Playability calcolate per gli altri giocatori non sono mai affidabili!!!
+	 * @param player
+	 * @return
+	 */
 	public double[] getPlayability(String player)
 	{
-		Hand hand = getLastState().getHand(player);
-		double[] p = new double[hand.size()];
-		if (player.equals(Main.playerName))
-		{
+		double[] p = playbox.get(player);
+		if (p == null) {
+			p = new double[getLastState().getHand(player).size()];
 			List<Card> possibleCards;
 			double cont;
-			for (int i = 0; i < p.length; i++)
-			{
-				possibleCards = calcCards(i);
+			for (int i = 0; i < p.length; i++) {
+				possibleCards = calcCards(player, i);
 				cont = 0;
 				for (Card card : possibleCards) {
 					if (isPlayable(card))
 						cont++;
 				}
 				p[i] = cont / possibleCards.size();
-//				System.out.println("[PLAYABILITY"+i+"]: p="+p[i]+" t="+possibleCards[i].size());
 			}
-
+			playbox.put(player,p);
 		}
-		else
-		{
-			for (int i=0; i<p.length; i++)
-			{
-				if (isPlayable(hand.getCard(i)))
-					p[i] = 1;
-				else
-					p[i] = 0;
-			}
-		}
-
 		return p;
 	}
 
@@ -119,14 +154,14 @@ public class Statistics
 
 	public double[] getUselessness(String player)
 	{
-		Hand hand = getLastState().getHand(player);
-		double[] u = new double[hand.size()];
-		if (player.equals(Main.playerName))
+		double[] u = discbox.get(player);
+		if (u == null)
 		{
+			u = new double[getLastState().getHand(player).size()];
 			List<Card> possibleCards;
 			double cont;
 			for (int i = 0; i < u.length; i++) {
-				possibleCards = calcCards(i);
+				possibleCards = calcCards(player, i);
 				cont = 0;
 				for (Card card : possibleCards) {
 					if (isUseless(card))
@@ -134,21 +169,58 @@ public class Statistics
 				}
 				u[i] = cont / possibleCards.size();
 			}
-		}
-		else
-		{
-			for (int i=0; i<u.length; i++)
-			{
-				if (isUseless(hand.getCard(i)))
-					u[i] = 1;
-				else
-					u[i] = 0;
-			}
+			discbox.put(player,u);
 		}
 		return u;
 	}
 
-	public void printPossibilities(PrintStream out)
+
+
+	public double[] getCardEntropy(String player)
+	{
+		double[] e = entrbox.get(player);
+		if (e == null) {
+			e = new double[getLastState().getHand(player).size()];
+			Map<Card, Double> prob;
+			for (int i = 0; i < e.length; i++)
+			{
+				List<Card> possibleCards =calcCards(player, i);
+				prob = fromCountToProb(possibleCards);
+				e[i] = 0;
+				for (double d : prob.values())
+					e[i] -= d * Math.log(d);
+				e[i] = e[i] / Math.log(2);
+			}
+			entrbox.put(player,e);
+		}
+		return e;
+	}
+
+	public Statistics getStatisticsIf(Turn turn)
+	{
+		Statistics stats = this.clone();
+		stats.updateTurn(turn);
+		return stats;
+	}
+
+	private Map<Card,Double> fromCountToProb(List<Card> list)
+	{
+		HashMap<Card,Double> map = new HashMap();
+		Card card;
+		double tot = list.size();
+		double cont;
+		while(list.size()>0)
+		{
+			cont = 0;
+			card = list.get(0);
+			while(list.remove(card))
+				cont++;
+			map.put(card,cont/tot);
+		}
+		return map;
+	}
+
+/*	public void printPossibilities(PrintStream out)
 	{
 		DecimalFormat df = new DecimalFormat("#.###");
 		df.setRoundingMode(RoundingMode.HALF_UP);
@@ -173,7 +245,7 @@ public class Statistics
 			out.println();
 		}
 	}
-
+*/
 	/**
 	 * Aggiorna le carte possibili in funzione del Turn ricevuto.
 	 * Ricorda che si ottiene un oggetto Turn solo in seguito ad una mossa degli altri giocatori
@@ -183,9 +255,15 @@ public class Statistics
 	{
 //		System.out.println("[TURN]: "+turn);
 		Card drawn = turn.getDrawn();
+//		System.out.println("[DRAWN]: "+drawn);
 		Action action = turn.getAction();
+		int p = Game.getInstance().getPlayerTurn(action.getPlayer());
+		playbox.clear();
+		entrbox.clear();
+		discbox.clear();
 		if (action.getType() == ActionType.PLAY)
 		{
+			//Controllo se la carta è giocata con successo
 			Card old_card = turn.getCard();
 			if (getLastState().getFirework(old_card.getColor()).peak()+1 == old_card.getValue())
 			{
@@ -195,21 +273,21 @@ public class Statistics
 			{
 				discarded.add(old_card);
 			}
-			if (action.getPlayer().equals(Main.playerName))
+
+			//Aggiorno gli hint del giocatore che ha giocato
+			int i;
+			for (i=action.getCard(); i<getLastState().getHand(action.getPlayer()).size()-1; i++)
 			{
-				//Ho pescato una nuova carta che viene messa in fondo alla mano
-				//Scalo gli hint e annullo gli ultimi
-				int i;
-				for (i=action.getCard(); i<getLastState().getHand(Main.playerName).size()-1; i++)
-				{
-					hints[i] = hints[i+1];
-				}
-				if (drawn!=null)
-					hints[i] = new ArrayList<>();
-				else
-					hints[i] = null;
+				hints[p][i] = hints[p][i+1];
 			}
+			hints[p][i] = new ArrayList<>();
+			/*if (drawn!=null)
+				hints[p][i] = new ArrayList<>();
 			else
+				hints[p][i] = null;*/
+
+			//Se il giocatore non sono io aggiorno ownedByOthers
+			if (!action.getPlayer().equals(Main.playerName))
 			{//Tolgo la vecchia carta dalla lista di carte possedute dagli altri e aggiungo la nuova
 				ownedByOthers.remove(old_card);
 				if (drawn!=null)
@@ -218,48 +296,48 @@ public class Statistics
 		}
 		else if (action.getType() == ActionType.DISCARD)
 		{
+			//Scarto la carta
 			Card old_card = turn.getCard();
 			discarded.add(old_card);
-			if (action.getPlayer().equals(Main.playerName))
+
+			//Aggiorno gli hint del giocatore che ha giocato
+			int i;
+			for (i=action.getCard(); i<getLastState().getHand(action.getPlayer()).size()-1; i++)
 			{
-				//Ho pescato una nuova carta che viene messa in fondo alla mano
-				//Scalo le possibleCards e resetto l'ultima
-				int i;
-				for (i=action.getCard(); i<getLastState().getHand(Main.playerName).size()-1; i++)
-				{
-					hints[i] = hints[i+1];
-				}
-				if (drawn!=null)
-					hints[i] = new ArrayList<>();
-				else
-					hints[i] = null;
+				hints[p][i] = hints[p][i+1];
 			}
+			hints[p][i] = new ArrayList<>();
+	/*		if (drawn!=null)
+				hints[p][i] = new ArrayList<>();
 			else
+				hints[p][i] = null;*/
+
+			//Se il giocatore non sono io aggiorno ownedByOthers
+			if (!action.getPlayer().equals(Main.playerName))
 			{//Tolgo la vecchia carta dalla lista di carte possedute dagli altri e aggiungo la nuova
 				ownedByOthers.remove(old_card);
 				if (drawn!=null)
 					ownedByOthers.add(drawn);
 			}
 		}
-		else if (action.getHinted().equals(Main.playerName))
-		{ //Nel caso in cui il turn rappresenti un suggerimento, se è rivolto a me lo aggiungo alle carte indicate e
-			//aggiungo il suo negato alle altre
+		else
+		{ //Nel caso in cui il turn rappresenti un suggerimento, lo aggiungo al giocatore cui è rivolto
 			Hand myHand = getLastState().getHand(Main.playerName);
+			p = Game.getInstance().getPlayerTurn(action.getHinted());
 			if (action.getType() == ActionType.HINT_COLOR)
 			{
 				for (int i=0; i<myHand.size(); i++)
-					hints[i].add(new Hint(turn.getRevealed().contains(i),action.getColor()));
-
+					hints[p][i].add(new Hint(turn.getRevealed().contains(i),action.getColor()));
 			}
 			else
 			{
 				for (int i=0; i<myHand.size(); i++)
-					hints[i].add(new Hint(turn.getRevealed().contains(i),action.getValue()));
-
+					hints[p][i].add(new Hint(turn.getRevealed().contains(i),action.getValue()));
 			}
 
 		}
 	}
+
 
 	private int countCard(Card card, List<Card> list)
 	{
@@ -314,7 +392,7 @@ public class Statistics
 			possibleCards[i].remove(c);
 	}
 */
-	private boolean isPlayable(Card card)
+	public boolean isPlayable(Card card)
 	{
 		State last = getLastState();
 	//	System.out.println("Checking if "+card+" is playable");
@@ -322,7 +400,7 @@ public class Statistics
 		return (card.getValue() == fire.peak()+1);
 	}
 
-	private boolean isUseless(Card card)
+	public boolean isUseless(Card card)
 	{
 		int count = countCard(card,played);
 		if (count > 0) //Se la carta è già stata giocata allora è inutile

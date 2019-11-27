@@ -243,11 +243,11 @@ public class HanabiServer
 
 		HanabiServer server = new HanabiServer(g,port,n,log,logpath);
 
-		double score = 0;
+		double med = 0;
 		double t;
 		double max=0,min=25;
-		for (int i=0; i<server.games; i++) {
-			server.log("Partita "+(i+1)+" su "+server.games);
+		for (int i=1; i<server.games+1; i++) {
+			server.log("Partita "+(i)+" su "+server.games);
 			server.initAgents(lcmd);
 			//Connessioni completate, avvio del gioco
 			t = server.startGame();
@@ -255,12 +255,13 @@ public class HanabiServer
 				max = t;
 			if (t<min)
 				min = t;
-			score+=t;
+			med = (med*(i-1)+t)/i;
+			server.log("GAME SCORE: "+t);
+			server.log("MEDIUM SCORE: "+med);
+			server.log("MAX SCORE: "+max);
+			server.log("MIN SCORE: "+min+"\n");
 		}
-		score = score/server.games;
-		server.log("MEDIUM SCORE: "+score);
-		server.log("MAX SCORE: "+max);
-		server.log("MIN SCORE: "+min);
+
 		if (server.logfile!=null)
 			server.logfile.close();
 	}

@@ -5,7 +5,7 @@ import api.game.Color;
 
 import java.util.List;
 
-public class Hint
+public class Hint implements Cloneable
 {
 	private boolean is;
 	private int value;
@@ -44,6 +44,16 @@ public class Hint
 			else
 				Statistics.removeColor(color,list);
 		}
+	}
+
+	public Hint clone()
+	{
+		try
+		{
+			super.clone();
+		}
+		catch (CloneNotSupportedException e){}
+		return new Hint(is,color,value);
 	}
 
 	public Hint not()

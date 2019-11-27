@@ -64,7 +64,6 @@ public abstract class AbstractAgent
 		stats.updateTurn(turn);
 	}
 
-
 	public List<Action> getPossibleHints(String receiver) throws JSONException
 	{
 		ArrayList<Action> list = new ArrayList<>();
@@ -72,7 +71,7 @@ public abstract class AbstractAgent
 		Card card;
 		List<Integer> valueAdded = new ArrayList<>();
 		List<Color> colorAdded = new ArrayList<>();
-		List<Integer> cardsHinted;
+//		List<Integer> cardsHinted;
 //		for (int j=0; j<hand.size(); j++){
 //			System.out.println("[CARD] "+hand.getCard(j).getValue()+"-"+hand.getCard(j).getColor()+" //pos j= "+j+" //indexOf="+hand.indexOf(hand.getCard(j)));
 //		}
@@ -87,32 +86,32 @@ public abstract class AbstractAgent
 			col = hand.getCard(i).getColor();
 
 			if(!hand.getCard(i).isValueRevealed() && valueAdded.indexOf(value)==-1){ //numero incontrato non ancora aggiunto
-				cardsHinted = new ArrayList<>();
-				cardsHinted.add(i);
+//				cardsHinted = new ArrayList<>();
+//				cardsHinted.add(i);
 				valueAdded.add(value);
-				for(int j=i+1; j<hand.size(); j++) {
-					if (hand.getCard(j).getValue() == value)
-						cardsHinted.add(j);
-				}
+//				for(int j=i+1; j<hand.size(); j++) {
+//					if (hand.getCard(j).getValue() == value)
+//						cardsHinted.add(j);
+//				}
 				list.add(new Action(Main.playerName, receiver, value/*, cardsHinted*/));
 			} //fine if value
 
 			if(!hand.getCard(i).isColorRevealed() && colorAdded.indexOf(col)==-1){ //colore incontrato non ancora aggiunto
-				cardsHinted = new ArrayList<>();
-				cardsHinted.add(i);
+//				cardsHinted = new ArrayList<>();
+//				cardsHinted.add(i);
 				colorAdded.add(col);
-				for(int j=i+1; j<hand.size(); j++){
-					try {
-						if(hand.getCard(j).getColor().equals(col))
-							cardsHinted.add(j);
-					} catch (Exception e) {
-						e.printStackTrace();
-						System.err.println("[POSSIBILE HINT]j="+j+" color="+col);
-					}
+//				for(int j=i+1; j<hand.size(); j++){
+//					try {
+//						if(hand.getCard(j).getColor().equals(col))
+//							cardsHinted.add(j);
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//						System.err.println("[POSSIBILE HINT]j="+j+" color="+col);
+//					}
 				}
 				list.add(new Action(Main.playerName, receiver, col/*, cardsHinted*/));
 			} //fine if color
-		} //fine for HAND
+//		} //fine for HAND
 
 //        for(Action a : list)
 //            System.out.println("[HINT POSSIBLE] "+a.toString()+ " --pos "+a.getCardsToReveal().toString());

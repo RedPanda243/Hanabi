@@ -7,51 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="644e2846-9d4a-4fbd-95f8-f21cfdbcf6f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../HanabiStrategyG/.idea/artifacts/HanabiStrategyG.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HanabiStrategyG/src/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/.idea/artifacts/EseguiPartite.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategyG/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategyG/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategyG/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/EseguiPartite.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/EseguiPartiteHanabi.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategyG/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/out/production/EseguiPartiteHanabi/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EseguiPartiteHanabi/src/Main.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy2/.idea/libraries/HanAPI.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy2/.idea/libraries/SJSON.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy2/src/Agent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/AbstractAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanAPI/api/client/AbstractAgent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/Hint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanAPI/api/client/Hint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanAPI/api/client/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/StatisticState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanAPI/api/client/StatisticState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/Statistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanAPI/api/client/Statistics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/client/AbstractAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/client/AbstractAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/client/Hint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/client/Hint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/client/StatisticState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/client/StatisticState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/client/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/client/Statistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/out/production/HanabiEngine/main/HanabiServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/src/main/HanabiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiHuman.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiHuman.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiHuman/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiHuman/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiHuman/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiHuman/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiHuman/out/production/HanabiHuman/HumanAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiHuman/out/production/HanabiHuman/HumanAgent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiHuman/src/HumanAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiHuman/src/HumanAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/.idea/libraries/HanAPI.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategyG/.idea/libraries/HanAPI.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/.idea/libraries/SJSON.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategyG/.idea/libraries/SJSON.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategyG/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/StrategyG.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategyG/HanabiStrategyG.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/src/Agent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/src/InputNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StrategyG/src/OutputNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../log.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,8 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/client/AbstractAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="113" column="2" selection-start-line="113" selection-start-column="2" selection-end-line="113" selection-end-column="2" />
+            <state relative-caret-position="1530">
+              <caret line="139" column="2" selection-start-line="139" selection-start-column="2" selection-end-line="139" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,16 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/client/Statistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="312" column="37" selection-start-line="312" selection-start-column="37" selection-end-line="312" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2961#2962#0" expanded="true" />
-                <element signature="e#3033#3034#0" expanded="true" />
-                <element signature="e#3082#3083#0" expanded="true" />
-                <element signature="e#3121#3122#0" expanded="true" />
-                <element signature="e#3811#3812#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1723">
+              <caret line="390" column="33" selection-start-line="390" selection-start-column="33" selection-end-line="390" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -96,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/client/StatisticState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
+            <state relative-caret-position="675">
+              <caret line="81" column="19" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -108,12 +66,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/client/Hint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-238">
+            <state relative-caret-position="60">
               <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#212#213#0" expanded="true" />
-                <element signature="e#238#239#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,7 +78,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/game/Turn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1496">
+            <state relative-caret-position="1275">
               <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
               <folding>
                 <element signature="e#1497#1498#0" expanded="true" />
@@ -135,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/client/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
+            <state relative-caret-position="810">
+              <caret line="67" selection-start-line="67" selection-end-line="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -216,8 +172,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -254,6 +208,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -306,11 +262,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1" y="0" width="1368" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47375506" visible="true" weight="0.27363896" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.52624494" side_tool="true" visible="true" weight="0.27363896" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47191012" visible="true" weight="0.2780303" />
+      <window_info active="true" id="Structure" order="1" sideWeight="0.5280899" side_tool="true" visible="true" weight="0.2780303" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -539,28 +494,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/List.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/List.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Map.java" />
+    <entry file="file://$PROJECT_DIR$/src/api/client/AbstractAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="260" column="12" selection-start-line="260" selection-start-column="12" selection-end-line="260" selection-end-column="12" />
+        <state relative-caret-position="1530">
+          <caret line="139" column="2" selection-start-line="139" selection-start-column="2" selection-end-line="139" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/client/StatisticState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="81" column="19" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/client/Hint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
+        <state relative-caret-position="60">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#212#213#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/game/Turn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
+        <state relative-caret-position="1275">
           <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
           <folding>
             <element signature="e#1497#1498#0" expanded="true" />
@@ -569,37 +537,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="211" column="6" selection-start-line="211" selection-start-column="6" selection-end-line="211" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/client/StatisticState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/client/AbstractAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="113" column="2" selection-start-line="113" selection-start-column="2" selection-end-line="113" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/client/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
+        <state relative-caret-position="810">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -608,16 +549,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/client/Statistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="312" column="37" selection-start-line="312" selection-start-column="37" selection-end-line="312" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2961#2962#0" expanded="true" />
-            <element signature="e#3033#3034#0" expanded="true" />
-            <element signature="e#3082#3083#0" expanded="true" />
-            <element signature="e#3121#3122#0" expanded="true" />
-            <element signature="e#3811#3812#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1723">
+          <caret line="390" column="33" selection-start-line="390" selection-start-column="33" selection-end-line="390" selection-end-column="33" />
         </state>
       </provider>
     </entry>

@@ -3,9 +3,6 @@ package api.client;
 import api.game.*;
 import sjson.JSONException;
 
-import java.io.PrintStream;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.*;
 
 /**
@@ -394,25 +391,42 @@ public class Statistics implements Cloneable
 */
 	public boolean isPlayable(Card card)
 	{
-		State last = getLastState();
 	//	System.out.println("Checking if "+card+" is playable");
-		Firework fire = last.getFirework(card.getColor());
+		Firework fire = getLastState().getFirework(card.getColor());
 		return (card.getValue() == fire.peak()+1);
 	}
 
+	/**
+	 * Una carta &egrave; inutile se ne esiste una copia nel mazzo o nelle mani dei giocatori o se non pu&ograve; pi&ugrave;
+	 * essere giocata
+	 * @param card
+	 * @return
+	 */
 	public boolean isUseless(Card card)
 	{
-		int count = countCard(card,played);
-		if (count > 0) //Se la carta è già stata giocata allora è inutile
-			return true;
+		return countCardsInGame(card)>1 || !isPlayableYet(card);
+	}
 
-		count = count + countCard(card,discarded);
+	private int countCardsInGame(Card card)
+	{
+		int count = countCard(card,played)+countCard(card,discarded);
+		return card.getCount()-count;
+	}
 
-		/*
-			Se ho scartato card.getCount()-1 carte uguali a questa significa che questa è l'ultima che può essere giocata
-			e quindi NON è inutile
-		 */
-		return (card.getCount()-1!=count);
+	private boolean isPlayableYet(Card card)
+	{
+		Firework fire = getLastState().getFirework(card.getColor());
+		if (card.getValue()<=fire.peak())
+			return false;
+		for (int i = fire.peak()+1; i<=card.getValue(); i++)
+		{
+			try {
+				if (countCardsInGame(new Card(card.getColor(),i))==0)
+					return false;
+			}
+			catch (JSONException e){e.printStackTrace(System.err);System.exit(2);}
+		}
+		return true;
 	}
 
 	public static void maintainColor(Color color, List<Card> list)

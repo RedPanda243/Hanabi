@@ -1,48 +1,50 @@
 import api.client.Main;
 import api.client.StatisticState;
+import api.client.Statistics;
 import api.game.*;
 import api.client.AbstractAgent;
-import sjson.JSONArray;
 import sjson.JSONData;
 import sjson.JSONException;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Agente che segue questa strategia:
  * <ol>
  *     <li>
- *         Gioca una carta con 100% di playability
+ *         Gioca una carta sicura. Se ne hai più d'una gioca quella con valore pi&ugrave; alto.
  *     </li>
  *     <li>
- *         Se hai hint token ed è possibile rendere giocabile al 100% una carta di un compagno fallo
+ *         Se hai hint token dai il suggerimento che rende sicure il maggior numero di carte.
+ *         Se pi&ugrave; suggerimenti rendono sicuri lo stesso numero di carte dai quello che produce
+ *         la miglior diminuzione di entropia.
+ *         Se nessun suggerimento porta al 100% la playability di nessuna carta passa al prossimo punto
  *     </li>
  *     <li>
- *         Se hai hint token e un compagno ha una carta con 0% uselessness indicagliela
- *     </li>
- *     <li>
- *         Scarta una carta con 100% di uselessness se non hai 8 hint token
- *     </li>
- *     <li>
- *         Se hai hint token dai il suggerimento che coinvolge più carte
- *     </li>
- *     Da qui in poi spero di non arrivarci mai
- *     <li>
- *         Scarto carta con uselessness maggiore (sopra un certo limite)
- *     </li>
- *     <li>
- *         Gioco carta con playability maggiore
+ *         Se hai hint token dai il suggerimento che produce la miglior diminuzione di entropia
+ *         altrimenti scarta la carta con uselessness maggiore
  *     </li>
  * </ol>
+ *
+ * L'algoritmo implementato ottimizza i punti 2 e 4 facendo un'unica esplorazione dei suggerimenti e applicando i controlli a
+ * posteriori.
+ *
  */
-public class Strategy1Agent extends AbstractAgent {
+public class Strategy1Agent extends AbstractAgent
+{
 
-	public Strategy1Agent(boolean log, String logpath) throws FileNotFoundException
+	private double SECURE_PLAYABILITY = 1;
+	private boolean confirm;
+
+	public Strategy1Agent(boolean log, String logpath,boolean confirm) throws FileNotFoundException
 	{
 		super(log,logpath);
+		this.confirm = confirm;
 	}
 
 	public void notifyTurn(Turn turn)
@@ -75,44 +77,145 @@ public class Strategy1Agent extends AbstractAgent {
 	@Override
 	public Action chooseAction()
 	{
-		Action action = play100();
-		if (action == null)
+		if (confirm)
 		{
-	/*		action = hint100();
-		if (action == null)
-			action = hint0();
-		if (action == null)*/
-			log("Impossibile giocare una carta sicura");
-			action = discard100();
+			log("\nPremi INVIO per prossimo turno...");
+			try
+			{
+				new BufferedReader(new InputStreamReader(System.in)).readLine();
+			}
+			catch(IOException e){}
 		}
-		if (action == null) {
-			log("Impossibile scartare una carta sicura");
-			action = hintMost();
+		try {
+			int tokens = stats.getLastState().getHintTokens();
+			Action action = playSecure();
+			List<Action> hints = new ArrayList<>();
+			if (action == null) {
+				log("Impossibile giocare una carta sicura");
+				if (tokens > 0) {
+
+					for (String p : sortPlayers())
+						hints.addAll(getPossibleHints(p));
+
+					if (getBestHintForPlayability(hints) > 0)
+						action = getBestHintForEntropy(hints);
+					if (action == null)
+					{
+						log("Impossibile suggerire carte sicure");
+						action = getBestHintForEntropy(hints);
+					}
+				}
+				else
+				{
+					log("Impossibile suggerire");
+					action = discardMost();
+				}
+			}
+			log(action.toString());
+			return action;
 		}
-		if (action == null) {
-			log("Impossibile suggerire");
-			action = discardMost();
+		catch(JSONException e)
+		{
+			log(e);
+			return null;
 		}
-		if (action == null) {
-			log("Impossibile scartare");
-			action = playMost();
-		}
-		log(action.toString());
-		return action;
 	}
 
-	public Action play100() {
+	public Action playSecure() {
 		double[] p = stats.getPlayability(Main.playerName);
-
-		try {
-			for (int i = 0; i < p.length; i++) {
-				if (p[i] == 1)
-					return new Action(Main.playerName, ActionType.PLAY, i);
-			}
-		} catch (JSONException e) {
+		Hand hand = stats.getLastState().getHand(Main.playerName);
+		List<Integer> list = new ArrayList<>();
+		for (int i = 0; i < p.length; i++)
+		{
+			if (p[i] >= 1)
+				list.add(i);
+		}
+		while(list.size()>1)
+		{
+			if (hand.getCard(list.get(1)).getValue()>hand.getCard(list.get(0)).getValue())
+				list.remove(0);
+			else
+				list.remove(1);
+		}
+		try
+		{
+			if (list.size()>0)
+				return new Action(Main.playerName, ActionType.PLAY, list.get(0));
+		}
+		catch(JSONException e)
+		{
 			log(e);
+
 		}
 		return null;
+	}
+
+	/**
+	 * Restuisce il numero massimo di carte rese giocabili. La lista parametro viene modificata in modo da tenere solo i
+	 * suggerimenti che raggiungono il valore ritornato se questo è maggiore di 0
+	 * @param list
+	 * @return
+	 * @throws JSONException
+	 */
+	public int getBestHintForPlayability(List<Action> list) throws JSONException
+	{
+		List<Action> l = new ArrayList<>(list);
+		list.clear();
+		int max = 0;
+		for(Action hint:l)
+		{
+			double[] p = stats.getPlayability(hint.getHinted());
+			Statistics statsif = stats.getStatisticsIf(new Turn(hint,hint.getCardsToReveal(stats.getLastState())));
+			double[] p1 = statsif.getPlayability(hint.getHinted());
+			int cont = 0;
+			for (int i=0; i<p.length; i++)
+			{
+				if (p[i]<SECURE_PLAYABILITY && p1[i]>=SECURE_PLAYABILITY)
+					cont++;
+			}
+			if (cont>max)
+			{
+				max = cont;
+				list.clear();
+			}
+			if (cont==max)
+				list.add(hint);
+		}
+		return max;
+	}
+
+	public Action getBestHintForEntropy(List<Action> list) throws JSONException
+	{
+		Action best = list.get(0);
+		double e,max = calcE(list.get(0));
+
+		for (int i=1; i<list.size(); i++)
+		{
+			e = calcE(list.get(i));
+			if (e>max)
+			{
+				max = e;
+				best = list.get(i);
+			}
+		}
+		return best;
+	}
+
+	/**
+	 * Calcola il decremento di entropia dovuto al suggerimento passato come parametro
+	 * @param hint
+	 * @return
+	 * @throws JSONException
+	 */
+	private double calcE(Action hint) throws JSONException
+	{
+		double c = 0;
+		double[] e = stats.getCardEntropy(hint.getHinted());
+		Statistics stats1 = stats.getStatisticsIf(new Turn(hint,hint.getCardsToReveal(stats.getLastState())));
+		double[] e1 = stats1.getCardEntropy(hint.getHinted());
+		for (int i=0; i<e.length; i++)
+			c+=e[i]-e1[i];
+		return c;
 	}
 
 /*	public Action hint100() {
@@ -181,7 +284,7 @@ public class Strategy1Agent extends AbstractAgent {
 		return null;
 	}
 */
-	public Action discard100() {
+	public Action discardSecure() {
 		double[] p = stats.getUselessness(Main.playerName);
 
 		if (stats.getLastState().getHintTokens() < 8) {
@@ -249,11 +352,9 @@ public class Strategy1Agent extends AbstractAgent {
 			double[] p = stats.getUselessness(Main.playerName);
 			int card = 0;
 			double max = p[card];
-			double box;
 			for (int i = 1; i < p.length; i++) {
-				box = p[i];
-				if (box > max) {
-					max = box;
+				if (p[i] > max) {
+					max = p[i];
 					card = i;
 				}
 			}
@@ -288,6 +389,7 @@ public class Strategy1Agent extends AbstractAgent {
 	{
 		boolean log = false;
 		String logpath = null;
+		boolean confirm = false;
 		for (int i=0; i<args.length; i++)
 		{
 			if (args[i].equals("-l"))
@@ -299,8 +401,10 @@ public class Strategy1Agent extends AbstractAgent {
 				i++;
 				logpath = args[i];
 			}
+			if (args[i].equals("-c"))
+				confirm = true;
 		}
-		AbstractAgent agent = new Strategy1Agent(log,logpath);
+		AbstractAgent agent = new Strategy1Agent(log,logpath,confirm);
 		Main.setAgent(agent);
 		Main.main(args);
 	}

@@ -1,19 +1,19 @@
 State: 0
 Current player: Player
 Players' hands:
-	Player (0):	{   -   ,   -   ,   -   ,   -   ,   -   }
-		Playability:	{0,333; 0,333; 0,333; 0,333; 0,333}
-		Uselessness:	{0,889; 0,889; 0,889; 0,889; 0,889}
-		Entropy:	{4,519; 4,519; 4,519; 4,519; 4,519}
-		isPlayable:	{?; ?; ?; ?; ?}
-		isUseless:	{?; ?; ?; ?; ?}
+	Player (0):		{   -   ,   -   ,   -   ,   -   ,   -   }
+		Playability:	{0,311	0,311	0,311	0,311	0,311}
+		Uselessness:	{0,889	0,889	0,889	0,889	0,889}
+		Entropy:	{4,536	4,536	4,536	4,536	4,536}
+		isPlayable:	{?	?	?	?	?}
+		isUseless:	{?	?	?	?	?}
 
-	Player2 (1):	{White-3,Blue-2,Green-3,Green-2,Yellow-3}
-		Playability:	{0,3; 0,3; 0,3; 0,3; 0,3}
-		Uselessness:	{0,9; 0,9; 0,9; 0,9; 0,9}
-		Entropy:	{4,568; 4,568; 4,568; 4,568; 4,568}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 1}
+	Player2 (1):		{White-3,Green-2,Green-1,Green-3,Red-2}
+		Playability:	{0,3	0,3	0,3	0,3	0,3}
+		Uselessness:	{0,9	0,9	0,9	0,9	0,9}
+		Entropy:	{4,568	4,568	4,568	4,568	4,568}
+		isPlayable:	{0	0	1	0	0}
+		isUseless:	{1	1	1	1	1}
 
 Discarded: {}
 Fireworks:
@@ -27,75 +27,26 @@ Fuse: 3
 Final: -1
 Deck: 40
 
-Player2 e' in pericolo.
-Ho abbastanza hint token
-Studio cosa succede se Player(0) mostra le carte di valore 3 a Player2(1)
-[0.0, 0.375, 0.0, 0.375, 0.0]
-Decremento entropia: 7.420918598895941
-Massimizzazioni playability: 0
-Massimizzazioni uselessness: 3
-Minimizzazioni playability: 3
-Minimizzazioni uselessness: 0
-Studio cosa succede se Player(0) mostra le carte di colore White a Player2(1)
-[0.3, 0.3, 0.3, 0.3, 0.3]
-Decremento entropia: 3.609640474436808
-Massimizzazioni playability: 0
-Massimizzazioni uselessness: 0
-Minimizzazioni playability: 0
-Minimizzazioni uselessness: 0
-Studio cosa succede se Player(0) mostra le carte di valore 2 a Player2(1)
-[0.375, 0.0, 0.375, 0.0, 0.375]
-Decremento entropia: 5.515279536666373
-Massimizzazioni playability: 0
-Massimizzazioni uselessness: 2
-Minimizzazioni playability: 2
-Minimizzazioni uselessness: 0
-Studio cosa succede se Player(0) mostra le carte di colore Blue a Player2(1)
-[0.3, 0.3, 0.3, 0.3, 0.3]
-Decremento entropia: 3.6096404744368087
-Massimizzazioni playability: 0
-Massimizzazioni uselessness: 0
-Minimizzazioni playability: 0
-Minimizzazioni uselessness: 0
-Studio cosa succede se Player(0) mostra le carte di colore Green a Player2(1)
-[0.3, 0.3, 0.3, 0.3, 0.3]
-Decremento entropia: 5.609640474436809
-Massimizzazioni playability: 0
-Massimizzazioni uselessness: 0
-Minimizzazioni playability: 0
-Minimizzazioni uselessness: 0
-Studio cosa succede se Player(0) mostra le carte di colore Green a Player2(1)
-[0.3, 0.3, 0.3, 0.3, 0.3]
-Decremento entropia: 5.609640474436809
-Massimizzazioni playability: 0
-Massimizzazioni uselessness: 0
-Minimizzazioni playability: 0
-Minimizzazioni uselessness: 0
-Studio cosa succede se Player(0) mostra le carte di colore Yellow a Player2(1)
-[0.3, 0.3, 0.3, 0.3, 0.3]
-Decremento entropia: 3.609640474436807
-Massimizzazioni playability: 0
-Massimizzazioni uselessness: 0
-Minimizzazioni playability: 0
-Minimizzazioni uselessness: 0
-Trovato un consiglio che decrementa le playability
-Il giocatore Player(0) suggerisce a Player2(1) le carte [0, 2, 4] di valore 3
+Impossibile giocare una carta sicura
+Player(0) mostra le carte di valore 1 a Player2(1)
+Il giocatore Player(0) suggerisce a Player2(1) le carte [2] di valore 1
+
 State: 1
 Current player: Player2
 Players' hands:
-	Player (0):	{   -   ,   -   ,   -   ,   -   ,   -   }
-		Playability:	{0,333; 0,333; 0,333; 0,333; 0,333}
-		Uselessness:	{0,889; 0,889; 0,889; 0,889; 0,889}
-		Entropy:	{4,519; 4,519; 4,519; 4,519; 4,519}
-		isPlayable:	{?; ?; ?; ?; ?}
-		isUseless:	{?; ?; ?; ?; ?}
+	Player (0):		{   -   ,   -   ,   -   ,   -   ,   -   }
+		Playability:	{0,311	0,311	0,311	0,311	0,311}
+		Uselessness:	{0,889	0,889	0,889	0,889	0,889}
+		Entropy:	{4,536	4,536	4,536	4,536	4,536}
+		isPlayable:	{?	?	?	?	?}
+		isUseless:	{?	?	?	?	?}
 
-	Player2 (1):	{White-3,Blue-2,Green-3,Green-2,Yellow-3}
-		Playability:	{0; 0,375; 0; 0,375; 0}
-		Uselessness:	{1; 0,875; 1; 0,875; 1}
-		Entropy:	{2,322; 4,228; 2,322; 4,228; 2,322}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 1}
+	Player2 (1):		{White-3,Green-2,Green-1,Green-3,Red-2}
+		Playability:	{0	0	1	0	0}
+		Uselessness:	{0,857	0,857	1	0,857	0,857}
+		Entropy:	{4,272	4,272	2,322	4,272	4,272}
+		isPlayable:	{0	0	1	0	0}
+		isUseless:	{1	1	1	1	1}
 
 Discarded: {}
 Fireworks:
@@ -109,228 +60,2359 @@ Fuse: 3
 Final: -1
 Deck: 40
 
-Il giocatore Player2(1) suggerisce a Player(0) le carte [1] di valore 1
+Il giocatore Player2(1) gioca Green-1 e pesca Red-5
+
 State: 2
 Current player: Player
 Players' hands:
-	Player (0):	{   -   ,   -1,   -   ,   -   ,   -   }
-		Playability:	{0; 1; 0; 0; 0}
-		Uselessness:	{0,833; 1; 0,833; 0,833; 0,833}
-		Entropy:	{4,24; 2,322; 4,24; 4,24; 4,24}
-		isPlayable:	{0; 1; 0; 0; 0}
-		isUseless:	{?; 1; ?; ?; ?}
+	Player (0):		{   -   ,   -   ,   -   ,   -   ,   -   }
+		Playability:	{0,295	0,295	0,295	0,295	0,295}
+		Uselessness:	{0,909	0,909	0,909	0,909	0,909}
+		Entropy:	{4,482	4,482	4,482	4,482	4,482}
+		isPlayable:	{?	?	?	?	?}
+		isUseless:	{?	?	?	?	?}
 
-	Player2 (1):	{White-3,Blue-2,Green-3,Green-2,Yellow-3}
-		Playability:	{0; 0,375; 0; 0,375; 0}
-		Uselessness:	{1; 0,875; 1; 0,875; 1}
-		Entropy:	{2,322; 4,228; 2,322; 4,228; 2,322}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 1}
+	Player2 (1):		{White-3,Green-2,Green-3,Red-2,Red-5}
+		Playability:	{0,057	0,057	0,057	0,057	0,286}
+		Uselessness:	{0,857	0,857	0,857	0,857	0,898}
+		Entropy:	{4,272	4,272	4,272	4,272	4,573}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	1	0}
 
 Discarded: {}
 Fireworks:
 	Blue  -
 	Red  -
-	Green  -
+	Green  1
+	White  -
+	Yellow  -
+Hints: 7
+Fuse: 3
+Final: -1
+Deck: 39
+
+Impossibile giocare una carta sicura
+Impossibile suggerire carte sicure
+Player(0) mostra le carte di colore Red a Player2(1)
+Il giocatore Player(0) suggerisce a Player2(1) le carte [3, 4] di colore Red
+
+State: 3
+Current player: Player2
+Players' hands:
+	Player (0):		{   -   ,   -   ,   -   ,   -   ,   -   }
+		Playability:	{0,295	0,295	0,295	0,295	0,295}
+		Uselessness:	{0,909	0,909	0,909	0,909	0,909}
+		Entropy:	{4,482	4,482	4,482	4,482	4,482}
+		isPlayable:	{?	?	?	?	?}
+		isUseless:	{?	?	?	?	?}
+
+	Player2 (1):		{White-3,Green-2,Green-3,Red-2,Red-5}
+		Playability:	{0,071	0,071	0,071	0	0,3}
+		Uselessness:	{0,857	0,857	0,857	0,857	0,9}
+		Entropy:	{3,95	3,95	3,95	1,95	2,246}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	1	0}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  1
 	White  -
 	Yellow  -
 Hints: 6
 Fuse: 3
 Final: -1
-Deck: 40
-
-Nessuno e' in pericolo.
-Provo a giocare una carta
-Il giocatore Player(0) gioca Yellow-1 e pesca    -   
-State: 3
-Current player: Player2
-Players' hands:
-	Player (0):	{   -   ,   -   ,   -   ,   -   ,   -   }
-		Playability:	{0,067; 0,067; 0,067; 0,067; 0,318}
-		Uselessness:	{0,833; 0,833; 0,833; 0,833; 0,886}
-		Entropy:	{4,24; 4,24; 4,24; 4,24; 4,527}
-		isPlayable:	{?; ?; ?; ?; ?}
-		isUseless:	{?; ?; ?; ?; ?}
-
-	Player2 (1):	{White-3,Blue-2,Green-3,Green-2,Yellow-3}
-		Playability:	{0; 0,359; 0; 0,359; 0}
-		Uselessness:	{1; 0,872; 1; 0,872; 1}
-		Entropy:	{2,322; 4,234; 2,322; 4,234; 2,322}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 1}
-
-Discarded: {}
-Fireworks:
-	Blue  -
-	Red  -
-	Green  -
-	White  -
-	Yellow  1
-Hints: 6
-Fuse: 3
-Final: -1
 Deck: 39
 
-Il giocatore Player2(1) suggerisce a Player(0) le carte [4] di valore 5
+Il giocatore Player2(1) suggerisce a Player(0) le carte [0, 1] di colore Yellow
+
 State: 4
 Current player: Player
 Players' hands:
-	Player (0):	{   -   ,   -   ,   -   ,   -   ,   -5}
-		Playability:	{0,08; 0,08; 0,08; 0,08; 0}
-		Uselessness:	{1; 1; 1; 1; 0}
-		Entropy:	{3,844; 3,844; 3,844; 3,844; 2,322}
-		isPlayable:	{?; ?; ?; ?; 0}
-		isUseless:	{1; 1; 1; 1; 0}
+	Player (0):		{Yellow-   ,Yellow-   ,   -   ,   -   ,   -   }
+		Playability:	{0,3	0,3	0,294	0,294	0,294}
+		Uselessness:	{0,9	0,9	0,912	0,912	0,912}
+		Entropy:	{2,246	2,246	4,139	4,139	4,139}
+		isPlayable:	{?	?	?	?	?}
+		isUseless:	{?	?	?	?	?}
 
-	Player2 (1):	{White-3,Blue-2,Green-3,Green-2,Yellow-3}
-		Playability:	{0; 0,359; 0; 0,359; 0}
-		Uselessness:	{1; 0,872; 1; 0,872; 1}
-		Entropy:	{2,322; 4,234; 2,322; 4,234; 2,322}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 1}
+	Player2 (1):		{White-3,Green-2,Green-3,Red-2,Red-5}
+		Playability:	{0,071	0,071	0,071	0	0,3}
+		Uselessness:	{0,857	0,857	0,857	0,857	0,9}
+		Entropy:	{3,95	3,95	3,95	1,95	2,246}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	1	0}
 
 Discarded: {}
 Fireworks:
 	Blue  -
 	Red  -
-	Green  -
+	Green  1
 	White  -
-	Yellow  1
+	Yellow  -
 Hints: 5
 Fuse: 3
 Final: -1
 Deck: 39
 
-Nessuno e' in pericolo.
-Provo a giocare una carta
-Do' il suggerimento migliore
+Impossibile giocare una carta sicura
+Impossibile suggerire carte sicure
+Player(0) mostra le carte di valore 2 a Player2(1)
 Il giocatore Player(0) suggerisce a Player2(1) le carte [1, 3] di valore 2
+
 State: 5
 Current player: Player2
 Players' hands:
-	Player (0):	{   -   ,   -   ,   -   ,   -   ,   -5}
-		Playability:	{0,08; 0,08; 0,08; 0,08; 0}
-		Uselessness:	{1; 1; 1; 1; 0}
-		Entropy:	{3,844; 3,844; 3,844; 3,844; 2,322}
-		isPlayable:	{?; ?; ?; ?; 0}
-		isUseless:	{1; 1; 1; 1; 0}
+	Player (0):		{Yellow-   ,Yellow-   ,   -   ,   -   ,   -   }
+		Playability:	{0,3	0,3	0,294	0,294	0,294}
+		Uselessness:	{0,9	0,9	0,912	0,912	0,912}
+		Entropy:	{2,246	2,246	4,139	4,139	4,139}
+		isPlayable:	{?	?	?	?	?}
+		isUseless:	{?	?	?	?	?}
 
-	Player2 (1):	{White-3,Blue-2,Green-3,Green-2,Yellow-3}
-		Playability:	{0; 0,2; 0; 0,2; 0}
-		Uselessness:	{1; 1; 1; 1; 1}
-		Entropy:	{2,322; 2,322; 2,322; 2,322; 2,322}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 1}
+	Player2 (1):		{White-3,Green-2,Green-3,Red-2,Red-5}
+		Playability:	{0	0,25	0	0	0,375}
+		Uselessness:	{0,8	1	0,8	1	0,875}
+		Entropy:	{3,522	2	3,522	0	1,906}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	1	0}
 
 Discarded: {}
 Fireworks:
 	Blue  -
 	Red  -
-	Green  -
+	Green  1
 	White  -
-	Yellow  1
+	Yellow  -
 Hints: 4
 Fuse: 3
 Final: -1
 Deck: 39
 
-Il giocatore Player2(1) suggerisce a Player(0) le carte [0, 1] di valore 2
+Il giocatore Player2(1) suggerisce a Player(0) le carte [0, 1] di valore 1
+
 State: 6
 Current player: Player
 Players' hands:
-	Player (0):	{   -2,   -2,   -   ,   -   ,   -5}
-		Playability:	{0,25; 0,25; 0; 0; 0}
-		Uselessness:	{1; 1; 1; 1; 0}
-		Entropy:	{2,25; 2,25; 3,264; 3,264; 2,322}
-		isPlayable:	{?; ?; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 0}
+	Player (0):		{Yellow-1,Yellow-1,   -   ,   -   ,   -   }
+		Playability:	{1	1	0,043	0,043	0,043}
+		Uselessness:	{1	1	0,87	0,87	0,87}
+		Entropy:	{0	0	3,828	3,828	3,828}
+		isPlayable:	{1	1	?	?	?}
+		isUseless:	{1	1	?	?	?}
 
-	Player2 (1):	{White-3,Blue-2,Green-3,Green-2,Yellow-3}
-		Playability:	{0; 0,2; 0; 0,2; 0}
-		Uselessness:	{1; 1; 1; 1; 1}
-		Entropy:	{2,322; 2,322; 2,322; 2,322; 2,322}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 1}
+	Player2 (1):		{White-3,Green-2,Green-3,Red-2,Red-5}
+		Playability:	{0	0,25	0	0	0,375}
+		Uselessness:	{0,8	1	0,8	1	0,875}
+		Entropy:	{3,522	2	3,522	0	1,906}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	1	0}
 
 Discarded: {}
 Fireworks:
 	Blue  -
 	Red  -
-	Green  -
+	Green  1
 	White  -
-	Yellow  1
+	Yellow  -
 Hints: 3
 Fuse: 3
 Final: -1
 Deck: 39
 
-Nessuno e' in pericolo.
-Provo a giocare una carta
-Do' il suggerimento migliore
-Il giocatore Player(0) suggerisce a Player2(1) le carte [4] di colore Yellow
+Player(0) gioca la carta in posizione 0 nella propria mano
+Il giocatore Player(0) gioca Yellow-1 e pesca    -   
+
 State: 7
 Current player: Player2
 Players' hands:
-	Player (0):	{   -2,   -2,   -   ,   -   ,   -5}
-		Playability:	{0,25; 0,25; 0; 0; 0}
-		Uselessness:	{1; 1; 1; 1; 0}
-		Entropy:	{2,25; 2,25; 3,264; 3,264; 2,322}
-		isPlayable:	{?; ?; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 0}
+	Player (0):		{Yellow-1,   -   ,   -   ,   -   ,   -   }
+		Playability:	{0	0,043	0,043	0,043	0,279}
+		Uselessness:	{1	0,87	0,87	0,87	0,907}
+		Entropy:	{0	3,828	3,828	3,828	4,49}
+		isPlayable:	{0	?	?	?	?}
+		isUseless:	{1	?	?	?	?}
 
-	Player2 (1):	{White-3,Blue-2,Green-3,Green-2,Yellow-3}
-		Playability:	{0; 0; 0; 0; 0}
-		Uselessness:	{1; 1; 1; 1; 1}
-		Entropy:	{2; 2; 2; 2; 0}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 1}
+	Player2 (1):		{White-3,Green-2,Green-3,Red-2,Red-5}
+		Playability:	{0	0,5	0	0	0,375}
+		Uselessness:	{0,8	1	0,8	1	0,875}
+		Entropy:	{3,522	2	3,522	0	1,906}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	1	0}
 
 Discarded: {}
 Fireworks:
 	Blue  -
 	Red  -
-	Green  -
+	Green  1
+	White  -
+	Yellow  1
+Hints: 3
+Fuse: 3
+Final: -1
+Deck: 38
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [3, 4] di colore Blue
+
+State: 8
+Current player: Player
+Players' hands:
+	Player (0):		{Yellow-1,   -   ,   -   ,Blue-   ,Blue-   }
+		Playability:	{0	0,063	0,063	0	0,3}
+		Uselessness:	{1	0,875	0,875	0,857	0,9}
+		Entropy:	{0	3,375	3,375	1,95	2,246}
+		isPlayable:	{0	?	?	0	?}
+		isUseless:	{1	?	?	?	?}
+
+	Player2 (1):		{White-3,Green-2,Green-3,Red-2,Red-5}
+		Playability:	{0	0,5	0	0	0,375}
+		Uselessness:	{0,8	1	0,8	1	0,875}
+		Entropy:	{3,522	2	3,522	0	1,906}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	1	0}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  1
 	White  -
 	Yellow  1
 Hints: 2
 Fuse: 3
 Final: -1
-Deck: 39
+Deck: 38
 
-Il giocatore Player2(1) suggerisce a Player(0) le carte [0, 1, 4] di colore Red
-State: 8
-Current player: Player
+Impossibile giocare una carta sicura
+Player(0) mostra le carte di colore Green a Player2(1)
+Il giocatore Player(0) suggerisce a Player2(1) le carte [1, 2] di colore Green
+
+State: 9
+Current player: Player2
 Players' hands:
-	Player (0):	{Red-2,Red-2,   -   ,   -   ,Red-5}
-		Playability:	{0; 0; 0; 0; 0}
-		Uselessness:	{1; 1; 1; 1; 0}
-		Entropy:	{0; 0; 2,931; 2,931; 0}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 0}
+	Player (0):		{Yellow-1,   -   ,   -   ,Blue-   ,Blue-   }
+		Playability:	{0	0,063	0,063	0	0,3}
+		Uselessness:	{1	0,875	0,875	0,857	0,9}
+		Entropy:	{0	3,375	3,375	1,95	2,246}
+		isPlayable:	{0	?	?	0	?}
+		isUseless:	{1	?	?	?	?}
 
-	Player2 (1):	{White-3,Blue-2,Green-3,Green-2,Yellow-3}
-		Playability:	{0; 0; 0; 0; 0}
-		Uselessness:	{1; 1; 1; 1; 1}
-		Entropy:	{2; 2; 2; 2; 0}
-		isPlayable:	{0; 0; 0; 0; 0}
-		isUseless:	{1; 1; 1; 1; 1}
+	Player2 (1):		{White-3,Green-2,Green-3,Red-2,Red-5}
+		Playability:	{0	1	0	0	0,375}
+		Uselessness:	{0,8	1	0,8	1	0,875}
+		Entropy:	{3,107	0	1,522	0	1,906}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	1	0}
 
 Discarded: {}
 Fireworks:
 	Blue  -
 	Red  -
-	Green  -
+	Green  1
 	White  -
 	Yellow  1
 Hints: 1
 Fuse: 3
 Final: -1
-Deck: 39
+Deck: 38
 
-Nessuno e' in pericolo.
-Provo a giocare una carta
-Do' il suggerimento migliore
-java.lang.NullPointerException
-	at api.client.Main.start(Main.java:71)
-	at api.client.Main.main(Main.java:90)
-	at Agent.main(Agent.java:509)
+Il giocatore Player2(1) gioca Green-2 e pesca Red-4
+
+State: 10
+Current player: Player
+Players' hands:
+	Player (0):		{Yellow-1,   -   ,   -   ,Blue-   ,Blue-   }
+		Playability:	{0	0,067	0,067	0	0,3}
+		Uselessness:	{1	0,867	0,867	0,857	0,9}
+		Entropy:	{0	3,374	3,374	1,95	2,246}
+		isPlayable:	{0	?	?	0	?}
+		isUseless:	{1	?	?	?	?}
+
+	Player2 (1):		{White-3,Green-3,Red-2,Red-5,Red-4}
+		Playability:	{0	0,4	0	0,375	0,277}
+		Uselessness:	{0,8	0,8	1	0,875	0,894}
+		Entropy:	{3,107	1,522	0	1,906	4,57}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	0	1}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  2
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 37
+
+Impossibile giocare una carta sicura
+Player(0) mostra le carte di valore 3 a Player2(1)
+Il giocatore Player(0) suggerisce a Player2(1) le carte [0, 1] di valore 3
+
+State: 11
+Current player: Player2
+Players' hands:
+	Player (0):		{Yellow-1,   -   ,   -   ,Blue-   ,Blue-   }
+		Playability:	{0	0,067	0,067	0	0,3}
+		Uselessness:	{1	0,867	0,867	0,857	0,9}
+		Entropy:	{0	3,374	3,374	1,95	2,246}
+		isPlayable:	{0	?	?	0	?}
+		isUseless:	{1	?	?	?	?}
+
+	Player2 (1):		{White-3,Green-3,Red-2,Red-5,Red-4}
+		Playability:	{0	1	0	0,5	0,297}
+		Uselessness:	{1	1	1	0,833	0,865}
+		Entropy:	{1,585	0	0	1,459	4,229}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{1	1	1	0	1}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  2
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 37
+
+Il giocatore Player2(1) gioca Green-3 e pesca White-1
+
+State: 12
+Current player: Player
+Players' hands:
+	Player (0):		{Yellow-1,   -   ,   -   ,Blue-   ,Blue-   }
+		Playability:	{0	0,133	0,133	0	0,3}
+		Uselessness:	{1	0,867	0,867	0,857	0,9}
+		Entropy:	{0	3,374	3,374	1,95	2,246}
+		isPlayable:	{0	?	?	0	?}
+		isUseless:	{1	?	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,351	0,283}
+		Uselessness:	{1	1	0,833	0,865	0,891}
+		Entropy:	{1,585	0	1,459	4,229	4,561}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 36
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 0 nella propria mano
+Il giocatore Player(0) scarta Yellow-1 e pesca    -   
+
+State: 13
+Current player: Player2
+Players' hands:
+	Player (0):		{   -   ,   -   ,Blue-   ,Blue-   ,   -   }
+		Playability:	{0,133	0,133	0	0,3	0,3}
+		Uselessness:	{0,867	0,867	0,857	0,9	0,9}
+		Entropy:	{3,374	3,374	1,95	2,246	4,484}
+		isPlayable:	{?	?	0	?	?}
+		isUseless:	{?	?	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,361	0,289}
+		Uselessness:	{1	1	0,833	0,861	0,889}
+		Entropy:	{1,585	0	1,459	4,218	4,553}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 35
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [3, 4] di valore 4
+
+State: 14
+Current player: Player
+Players' hands:
+	Player (0):		{   -   ,   -   ,Blue-   ,Blue-4,   -4}
+		Playability:	{0	0	0	0	0,222}
+		Uselessness:	{0,8	0,8	0,8	1	1}
+		Entropy:	{2,922	2,922	1,522	0	2,281}
+		isPlayable:	{0	0	0	0	?}
+		isUseless:	{?	?	?	1	1}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,361	0,289}
+		Uselessness:	{1	1	0,833	0,861	0,889}
+		Entropy:	{1,585	0	1,459	4,218	4,553}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 35
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 3 nella propria mano
+Il giocatore Player(0) scarta Blue-4 e pesca    -   
+
+State: 15
+Current player: Player2
+Players' hands:
+	Player (0):		{   -   ,   -   ,Blue-   ,   -4,   -   }
+		Playability:	{0	0	0	0,25	0,308}
+		Uselessness:	{0,8	0,8	0,8	0,875	0,872}
+		Entropy:	{2,922	2,922	1,522	2,25	4,477}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{?	?	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,371	0,295}
+		Uselessness:	{1	1	0,833	0,829	0,864}
+		Entropy:	{1,585	0	1,459	4,207	4,544}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 34
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [1, 3] di colore White
+
+State: 16
+Current player: Player
+Players' hands:
+	Player (0):		{   -   ,White-   ,Blue-   ,White-4,   -   }
+		Playability:	{0	0	0	0	0,323}
+		Uselessness:	{0,833	0,75	0,8	1	0,871}
+		Entropy:	{2,252	1,5	1,522	0	4,131}
+		isPlayable:	{0	0	0	0	?}
+		isUseless:	{?	?	?	1	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,371	0,295}
+		Uselessness:	{1	1	0,833	0,829	0,864}
+		Entropy:	{1,585	0	1,459	4,207	4,544}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 34
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 3 nella propria mano
+Il giocatore Player(0) scarta White-4 e pesca    -   
+
+State: 17
+Current player: Player2
+Players' hands:
+	Player (0):		{   -   ,White-   ,Blue-   ,   -   ,   -   }
+		Playability:	{0	0	0	0,323	0,316}
+		Uselessness:	{0,833	0,75	0,8	0,871	0,842}
+		Entropy:	{2,252	1,5	1,522	4,131	4,471}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{?	?	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,382	0,302}
+		Uselessness:	{1	1	0,833	0,794	0,837}
+		Entropy:	{1,585	0	1,459	4,197	4,536}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 33
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [4] di valore 2
+
+State: 18
+Current player: Player
+Players' hands:
+	Player (0):		{   -   ,White-   ,Blue-   ,   -   ,   -2}
+		Playability:	{0	0	0	0,32	0,25}
+		Uselessness:	{0,75	0,5	0,667	0,84	1}
+		Entropy:	{1,5	1	0,918	3,783	2,25}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{?	?	?	?	1}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,382	0,302}
+		Uselessness:	{1	1	0,833	0,794	0,837}
+		Entropy:	{1,585	0	1,459	4,197	4,536}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 33
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player(0) scarta Yellow-2 e pesca    -   
+
+State: 19
+Current player: Player2
+Players' hands:
+	Player (0):		{   -   ,White-   ,Blue-   ,   -   ,   -   }
+		Playability:	{0	0	0	0,32	0,297}
+		Uselessness:	{0,75	0,5	0,667	0,84	0,811}
+		Entropy:	{1,5	1	0,918	3,783	4,466}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{?	?	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,364	0,286}
+		Uselessness:	{1	1	0,833	0,758	0,81}
+		Entropy:	{1,585	0	1,459	4,188	4,529}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 32
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [0, 4] di valore 3
+
+State: 20
+Current player: Player
+Players' hands:
+	Player (0):		{   -3,White-   ,Blue-   ,   -   ,   -3}
+		Playability:	{0	0	0	0,444	0}
+		Uselessness:	{1	0	0	0,778	1}
+		Entropy:	{0,918	0	0	3,308	2,25}
+		isPlayable:	{0	0	0	?	0}
+		isUseless:	{1	0	0	?	1}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,364	0,286}
+		Uselessness:	{1	1	0,833	0,758	0,81}
+		Entropy:	{1,585	0	1,459	4,188	4,529}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 32
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 0 nella propria mano
+Il giocatore Player(0) scarta Green-3 e pesca    -   
+
+State: 21
+Current player: Player2
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,   -   ,   -3,   -   }
+		Playability:	{0	0	0,444	0	0,306}
+		Uselessness:	{0	0	0,778	1	0,806}
+		Entropy:	{0	0	3,308	1,95	4,406}
+		isPlayable:	{0	0	?	0	?}
+		isUseless:	{0	0	?	1	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,364	0,293}
+		Uselessness:	{1	1	0,833	0,758	0,805}
+		Entropy:	{1,585	0	1,459	4,188	4,473}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 31
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [2, 3] di colore Yellow
+
+State: 22
+Current player: Player
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,Yellow-   ,Yellow-3,   -   }
+		Playability:	{0	0	0	0	0,345}
+		Uselessness:	{0	0	0,75	1	0,828}
+		Entropy:	{0	0	1,5	0	4,047}
+		isPlayable:	{0	0	0	0	?}
+		isUseless:	{0	0	?	1	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,364	0,293}
+		Uselessness:	{1	1	0,833	0,758	0,805}
+		Entropy:	{1,585	0	1,459	4,188	4,473}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 31
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 3 nella propria mano
+Il giocatore Player(0) scarta Yellow-3 e pesca    -   
+
+State: 23
+Current player: Player2
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,Yellow-   ,   -   ,   -   }
+		Playability:	{0	0	0	0,345	0,314}
+		Uselessness:	{0	0	0,75	0,828	0,771}
+		Entropy:	{0	0	1,5	4,047	4,4}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,364	0,3}
+		Uselessness:	{0,8	1	0,833	0,758	0,775}
+		Entropy:	{1,522	0	1,459	4,188	4,465}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 30
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [4] di valore 1
+
+State: 24
+Current player: Player
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,Yellow-   ,   -   ,   -1}
+		Playability:	{0	0	0	0,105	0,727}
+		Uselessness:	{0	0	0,667	0,737	1}
+		Entropy:	{0	0	0,918	3,722	2,231}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	?	?	1}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,364	0,3}
+		Uselessness:	{0,8	1	0,833	0,758	0,775}
+		Entropy:	{1,522	0	1,459	4,188	4,465}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 30
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player(0) scarta Green-1 e pesca    -   
+
+State: 25
+Current player: Player2
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,Yellow-   ,   -   ,   -   }
+		Playability:	{0	0	0	0,105	0,324}
+		Uselessness:	{0	0	0,667	0,737	0,765}
+		Entropy:	{0	0	0,918	3,722	4,396}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,375	0,308}
+		Uselessness:	{0,8	1	0,833	0,75	0,769}
+		Entropy:	{1,522	0	1,459	4,179	4,458}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 29
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [4] di valore 2
+
+State: 26
+Current player: Player
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,Yellow-   ,   -   ,   -2}
+		Playability:	{0	0	0	0,154	0,143}
+		Uselessness:	{0	0	0,667	0,615	0,857}
+		Entropy:	{0	0	0,918	3,239	2,236}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,375	0,308}
+		Uselessness:	{0,8	1	0,833	0,75	0,769}
+		Entropy:	{1,522	0	1,459	4,179	4,458}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 29
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player(0) scarta Yellow-2 e pesca    -   
+
+State: 27
+Current player: Player2
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,Yellow-   ,   -   ,   -   }
+		Playability:	{0	0	0	0,154	0,303}
+		Uselessness:	{0	0	1	0,615	0,848}
+		Entropy:	{0	0	0,918	3,239	4,332}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	1	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,355	0,289}
+		Uselessness:	{1	1	0,833	0,806	0,842}
+		Entropy:	{1,522	0	1,459	4,107	4,399}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 28
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [0, 4] di colore White
+
+State: 28
+Current player: Player
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,Yellow-   ,   -   ,White-   }
+		Playability:	{0	0	0	0,2	0,286}
+		Uselessness:	{0	0	1	0,7	0,714}
+		Entropy:	{0	0	0,918	2,722	2,236}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	1	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,355	0,289}
+		Uselessness:	{1	1	0,833	0,806	0,842}
+		Entropy:	{1,522	0	1,459	4,107	4,399}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 28
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 2 nella propria mano
+Il giocatore Player(0) scarta Yellow-4 e pesca    -   
+
+State: 29
+Current player: Player2
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,   -   ,White-   ,   -   }
+		Playability:	{0	0	0,2	0,286	0,313}
+		Uselessness:	{0	0	0,7	0,714	0,844}
+		Entropy:	{0	0	2,722	2,236	4,328}
+		isPlayable:	{0	0	?	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,367	0,297}
+		Uselessness:	{1	1	0,833	0,8	0,838}
+		Entropy:	{1,522	0	1,459	4,098	4,391}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 27
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [4] di valore 4
+
+State: 30
+Current player: Player
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,   -   ,White-   ,   -4}
+		Playability:	{0	0	0	0,333	0,333}
+		Uselessness:	{0	0	0,667	0,833	0,667}
+		Entropy:	{0	0	1,918	1,918	2,252}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,367	0,297}
+		Uselessness:	{1	1	0,833	0,8	0,838}
+		Entropy:	{1,522	0	1,459	4,098	4,391}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 27
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 3 nella propria mano
+Il giocatore Player(0) scarta White-2 e pesca    -   
+
+State: 31
+Current player: Player2
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,   -   ,   -4,   -   }
+		Playability:	{0	0	0	0,333	0,323}
+		Uselessness:	{0	0	0,667	0,667	0,806}
+		Entropy:	{0	0	1,918	2,252	4,325}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,379	0,306}
+		Uselessness:	{1	1	0,833	0,759	0,806}
+		Entropy:	{1,522	0	1,459	4,09	4,385}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 26
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [1, 3] di colore Blue
+
+State: 32
+Current player: Player
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,   -   ,Blue-4,   -   }
+		Playability:	{0	0	0	0	0,318}
+		Uselessness:	{0	0	0,667	0	0,818}
+		Entropy:	{0	0	0,918	0	3,971}
+		isPlayable:	{0	0	0	0	?}
+		isUseless:	{0	0	?	0	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,379	0,306}
+		Uselessness:	{1	1	0,833	0,759	0,806}
+		Entropy:	{1,522	0	1,459	4,09	4,385}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 26
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player(0) scarta White-4 e pesca    -   
+
+State: 33
+Current player: Player2
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,   -   ,Blue-4,   -   }
+		Playability:	{0	0	0	0	0,333}
+		Uselessness:	{1	0	0,667	0	0,867}
+		Entropy:	{0	0	0,918	0	4,257}
+		isPlayable:	{0	0	0	0	?}
+		isUseless:	{1	0	?	0	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,393	0,314}
+		Uselessness:	{1	1	0,833	0,821	0,857}
+		Entropy:	{1,522	0	1,459	4,012	4,322}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 25
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [4] di colore Yellow
+
+State: 34
+Current player: Player
+Players' hands:
+	Player (0):		{White-   ,Blue-   ,   -   ,Blue-4,Yellow-   }
+		Playability:	{0	0	0	0	0}
+		Uselessness:	{1	0	0,667	0	1}
+		Entropy:	{0	0	0,918	0	2}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{1	0	?	0	1}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,393	0,314}
+		Uselessness:	{1	1	0,833	0,821	0,857}
+		Entropy:	{1,522	0	1,459	4,012	4,322}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 25
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 0 nella propria mano
+Il giocatore Player(0) scarta White-5 e pesca    -   
+
+State: 35
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,   -   ,Blue-4,Yellow-   ,   -   }
+		Playability:	{0	0	0	0	0,345}
+		Uselessness:	{0	0,667	0	1	0,862}
+		Entropy:	{0	0,918	0	2	4,185}
+		isPlayable:	{0	0	0	0	?}
+		isUseless:	{0	?	0	1	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,407	0,324}
+		Uselessness:	{1	1	0,833	0,815	0,853}
+		Entropy:	{1,522	0	1,459	3,93	4,256}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 24
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [4] di colore Green
+
+State: 36
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,   -   ,Blue-4,Yellow-   ,Green-   }
+		Playability:	{0	0	0	0	0,4}
+		Uselessness:	{0	1	0	1	0,8}
+		Entropy:	{0	0	0	2	1,922}
+		isPlayable:	{0	0	0	0	?}
+		isUseless:	{0	1	0	1	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,407	0,324}
+		Uselessness:	{1	1	0,833	0,815	0,853}
+		Entropy:	{1,522	0	1,459	3,93	4,256}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 24
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 1 nella propria mano
+Il giocatore Player(0) scarta Red-3 e pesca    -   
+
+State: 37
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Yellow-   ,Green-   ,   -   }
+		Playability:	{0	0	0	0,4	0,357}
+		Uselessness:	{0	0	1	0,8	0,821}
+		Entropy:	{0	0	2	1,922	4,182}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	1	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,407	0,333}
+		Uselessness:	{1	1	0,833	0,815	0,818}
+		Entropy:	{1,522	0	1,459	3,93	4,248}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 23
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [1, 3] di valore 4
+
+State: 38
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Yellow-   ,Green-4,   -   }
+		Playability:	{0	0	0	1	0,348}
+		Uselessness:	{0	0	1	1	0,826}
+		Entropy:	{0	0	1,585	0	3,849}
+		isPlayable:	{0	0	0	1	?}
+		isUseless:	{0	0	1	1	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,407	0,333}
+		Uselessness:	{1	1	0,833	0,815	0,818}
+		Entropy:	{1,522	0	1,459	3,93	4,248}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  3
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 23
+
+Player(0) gioca la carta in posizione 3 nella propria mano
+Il giocatore Player(0) gioca Green-4 e pesca    -   
+
+State: 39
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Yellow-   ,   -   ,   -   }
+		Playability:	{0	0	0	0,391	0,333}
+		Uselessness:	{0	0	1	0,826	0,815}
+		Entropy:	{0	0	1,585	3,849	4,18}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	1	?	?}
+
+	Player2 (1):		{White-3,Red-2,Red-5,Red-4,White-1}
+		Playability:	{0	0	0,5	0,385	0,313}
+		Uselessness:	{1	1	0,833	0,808	0,813}
+		Entropy:	{1,522	0	1,459	3,921	4,242}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  4
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 22
+
+Il giocatore Player2(1) scarta White-3 e pesca Blue-2
+
+State: 40
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Yellow-   ,   -   ,   -   }
+		Playability:	{0	0	0	0,409	0,346}
+		Uselessness:	{0	0	1	0,773	0,769}
+		Entropy:	{0	0	1,585	3,845	4,181}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	1	?	?}
+
+	Player2 (1):		{Red-2,Red-5,Red-4,White-1,Blue-2}
+		Playability:	{0	0,5	0,385	0,323	0,323}
+		Uselessness:	{1	0,833	0,808	0,774	0,774}
+		Entropy:	{0	1,459	3,921	4,236	4,236}
+		isPlayable:	{0	0	0	1	0}
+		isUseless:	{1	0	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  4
+	White  -
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 21
+
+Impossibile giocare una carta sicura
+Impossibile suggerire carte sicure
+Player(0) mostra le carte di valore 1 a Player2(1)
+Il giocatore Player(0) suggerisce a Player2(1) le carte [3] di valore 1
+
+State: 41
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Yellow-   ,   -   ,   -   }
+		Playability:	{0	0	0	0,409	0,346}
+		Uselessness:	{0	0	1	0,773	0,769}
+		Entropy:	{0	0	1,585	3,845	4,181}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	1	?	?}
+
+	Player2 (1):		{Red-2,Red-5,Red-4,White-1,Blue-2}
+		Playability:	{0	0	0,067	0,818	0,05}
+		Uselessness:	{1	0,667	0,667	1	0,65}
+		Entropy:	{0	0,918	3,507	2,163	3,922}
+		isPlayable:	{0	0	0	1	0}
+		isUseless:	{1	0	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  4
+	White  -
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 21
+
+Il giocatore Player2(1) gioca White-1 e pesca Red-1
+
+State: 42
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Yellow-   ,   -   ,   -   }
+		Playability:	{0	0	0	0,333	0,28}
+		Uselessness:	{0	0	1	0,762	0,76}
+		Entropy:	{0	0	1,585	3,88	4,214}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	1	?	?}
+
+	Player2 (1):		{Red-2,Red-5,Red-4,Blue-2,Red-1}
+		Playability:	{0	0	0,133	0,1	0,267}
+		Uselessness:	{1	0,667	0,667	0,65	0,767}
+		Entropy:	{0	0,918	3,507	3,922	4,257}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	0	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 20
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 2 nella propria mano
+Il giocatore Player(0) scarta Yellow-1 e pesca    -   
+
+State: 43
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -   ,   -   }
+		Playability:	{0	0	0,35	0,292	0,292}
+		Uselessness:	{0	0	0,75	0,75	0,75}
+		Entropy:	{0	0	3,784	4,137	4,137}
+		isPlayable:	{0	0	?	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{Red-2,Red-5,Red-4,Blue-2,Red-1}
+		Playability:	{0	0	0,133	0,1	0,276}
+		Uselessness:	{1	0,667	0,667	0,65	0,759}
+		Entropy:	{0	0,918	3,507	3,922	4,185}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	0	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  4
+	White  1
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 19
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [3, 4] di valore 1
+
+State: 44
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -1,   -1}
+		Playability:	{0	0	0,167	0,625	0,625}
+		Uselessness:	{0	0	0,583	1	1}
+		Entropy:	{0	0	3,418	1,906	1,906}
+		isPlayable:	{0	0	?	?	?}
+		isUseless:	{0	0	?	1	1}
+
+	Player2 (1):		{Red-2,Red-5,Red-4,Blue-2,Red-1}
+		Playability:	{0	0	0,133	0,1	0,276}
+		Uselessness:	{1	0,667	0,667	0,65	0,759}
+		Entropy:	{0	0,918	3,507	3,922	4,185}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	0	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 19
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 3 nella propria mano
+Il giocatore Player(0) scarta Green-1 e pesca    -   
+
+State: 45
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -1,   -   }
+		Playability:	{0	0	0,167	0,714	0,304}
+		Uselessness:	{0	0	0,583	1	0,739}
+		Entropy:	{0	0	3,418	1,557	4,056}
+		isPlayable:	{0	0	?	?	?}
+		isUseless:	{0	0	?	1	?}
+
+	Player2 (1):		{Red-2,Red-5,Red-4,Blue-2,Red-1}
+		Playability:	{0	0	0,133	0,1	0,286}
+		Uselessness:	{1	0,667	0,667	0,65	0,75}
+		Entropy:	{0	0,918	3,507	3,922	4,111}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	0	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  4
+	White  1
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 18
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [3] di colore Red
+
+State: 46
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,Red-1,   -   }
+		Playability:	{0	0	0,2	1	0,278}
+		Uselessness:	{0	0	0,6	1	0,722}
+		Entropy:	{0	0	3,122	0	3,684}
+		isPlayable:	{0	0	?	1	?}
+		isUseless:	{0	0	?	1	?}
+
+	Player2 (1):		{Red-2,Red-5,Red-4,Blue-2,Red-1}
+		Playability:	{0	0	0,133	0,1	0,286}
+		Uselessness:	{1	0,667	0,667	0,65	0,75}
+		Entropy:	{0	0,918	3,507	3,922	4,111}
+		isPlayable:	{0	0	0	0	1}
+		isUseless:	{1	0	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1}
+Fireworks:
+	Blue  -
+	Red  -
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 18
+
+Player(0) gioca la carta in posizione 3 nella propria mano
+Il giocatore Player(0) gioca Red-1 e pesca    -   
+
+State: 47
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -   ,   -   }
+		Playability:	{0	0	0,2	0,278	0,273}
+		Uselessness:	{0	0	0,6	0,722	0,727}
+		Entropy:	{0	0	3,122	3,684	4,061}
+		isPlayable:	{0	0	?	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{Red-2,Red-5,Red-4,Blue-2,Red-1}
+		Playability:	{1	0	0,267	0,2	0,259}
+		Uselessness:	{1	0,667	0,667	0,65	0,741}
+		Entropy:	{0	0,918	3,507	3,922	4,134}
+		isPlayable:	{1	0	0	0	0}
+		isUseless:	{1	0	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1}
+Fireworks:
+	Blue  -
+	Red  1
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 17
+
+Il giocatore Player2(1) gioca Red-2 e pesca Blue-2
+
+State: 48
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -   ,   -   }
+		Playability:	{0	0	0,222	0,294	0,286}
+		Uselessness:	{0	0	0,556	0,706	0,714}
+		Entropy:	{0	0	2,948	3,572	3,975}
+		isPlayable:	{0	0	?	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,143	0,158	0,231	0,231}
+		Uselessness:	{0,667	0,643	0,632	0,731	0,731}
+		Entropy:	{0,918	3,522	3,932	4,133	4,133}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 16
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player(0) scarta Yellow-4 e pesca    -   
+
+State: 49
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -   ,   -   }
+		Playability:	{0	0	0,222	0,313	0,3}
+		Uselessness:	{0	0	0,556	0,688	0,7}
+		Entropy:	{0	0	2,948	3,453	3,884}
+		isPlayable:	{0	0	?	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,154	0,167	0,24	0,24}
+		Uselessness:	{0,667	0,615	0,611	0,72	0,72}
+		Entropy:	{0,918	3,393	3,837	4,054	4,054}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 15
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [3, 4] di valore 3
+
+State: 50
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -3,   -3}
+		Playability:	{0	0	0,4	0	0,2}
+		Uselessness:	{0	0	0,4	0,75	0,6}
+		Entropy:	{0	0	2,322	1,5	1,922}
+		isPlayable:	{0	0	?	0	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,154	0,167	0,24	0,24}
+		Uselessness:	{0,667	0,615	0,611	0,72	0,72}
+		Entropy:	{0,918	3,393	3,837	4,054	4,054}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 15
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 3 nella propria mano
+Il giocatore Player(0) scarta Blue-3 e pesca    -   
+
+State: 51
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -3,   -   }
+		Playability:	{0	0	0,4	0,25	0,316}
+		Uselessness:	{0	0	0,4	0,25	0,632}
+		Entropy:	{0	0	2,322	2	3,892}
+		isPlayable:	{0	0	?	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,154	0,176	0,25	0,25}
+		Uselessness:	{0,667	0,615	0,529	0,667	0,667}
+		Entropy:	{0,918	3,393	3,852	4,054	4,054}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 14
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [2, 4] di colore Green
+
+State: 52
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Green-   ,   -3,Green-   }
+		Playability:	{0	0	0,5	0,25	0,333}
+		Uselessness:	{0	0	0,5	0,25	0,667}
+		Entropy:	{0	0	1	2	1,585}
+		isPlayable:	{0	0	?	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,154	0,176	0,25	0,25}
+		Uselessness:	{0,667	0,615	0,529	0,667	0,667}
+		Entropy:	{0,918	3,393	3,852	4,054	4,054}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 14
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 4 nella propria mano
+Il giocatore Player(0) scarta Green-5 e pesca    -   
+
+State: 53
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Green-   ,   -3,   -   }
+		Playability:	{0	0	0	0,25	0,278}
+		Uselessness:	{0	0	1	0,25	0,667}
+		Entropy:	{0	0	0	2	3,795}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	1	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,083	0,125	0,217	0,217}
+		Uselessness:	{0,667	0,667	0,563	0,696	0,696}
+		Entropy:	{0,918	3,252	3,75	3,969	3,969}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 13
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [4] di colore Yellow
+
+State: 54
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Green-   ,   -3,Yellow-   }
+		Playability:	{0	0	0	0,333	0}
+		Uselessness:	{0	0	1	0	1}
+		Entropy:	{0	0	0	1,585	1}
+		isPlayable:	{0	0	0	?	0}
+		isUseless:	{0	0	1	0	1}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,083	0,125	0,217	0,217}
+		Uselessness:	{0,667	0,667	0,563	0,696	0,696}
+		Entropy:	{0,918	3,252	3,75	3,969	3,969}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 13
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 2 nella propria mano
+Il giocatore Player(0) scarta Green-2 e pesca    -   
+
+State: 55
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -3,Yellow-   ,   -   }
+		Playability:	{0	0	0,333	0	0,294}
+		Uselessness:	{0	0	0	1	0,647}
+		Entropy:	{0	0	1,585	1	3,69}
+		isPlayable:	{0	0	?	0	?}
+		isUseless:	{0	0	0	1	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,091	0,133	0,227	0,227}
+		Uselessness:	{0,667	0,636	0,533	0,682	0,682}
+		Entropy:	{0,918	3,096	3,64	3,88	3,88}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 12
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [0, 1, 2, 4] di colore Blue
+
+State: 56
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Blue-3,Yellow-   ,Blue-   }
+		Playability:	{0	0	0	0	0,5}
+		Uselessness:	{0	0	0	1	0,5}
+		Entropy:	{0	0	0	1	1,792}
+		isPlayable:	{0	0	0	0	?}
+		isUseless:	{0	0	0	1	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,091	0,133	0,227	0,227}
+		Uselessness:	{0,667	0,636	0,533	0,682	0,682}
+		Entropy:	{0,918	3,096	3,64	3,88	3,88}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 12
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 3 nella propria mano
+Il giocatore Player(0) scarta Yellow-5 e pesca    -   
+
+State: 57
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Blue-3,Blue-   ,   -   }
+		Playability:	{0	0	0	0,5	0,313}
+		Uselessness:	{0	0	0	0,5	0,625}
+		Entropy:	{0	0	0	1,792	3,578}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	0	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,1	0,143	0,238	0,238}
+		Uselessness:	{0,667	0,6	0,5	0,667	0,667}
+		Entropy:	{0,918	2,922	3,522	3,785	3,785}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 11
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [3] di valore 1
+
+State: 58
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Blue-3,Blue-1,   -   }
+		Playability:	{0	0	0	1	0,2}
+		Uselessness:	{0	0	0	1	0,4}
+		Entropy:	{0	0	0	0	3,322}
+		isPlayable:	{0	0	0	1	?}
+		isUseless:	{0	0	0	1	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,1	0,143	0,238	0,238}
+		Uselessness:	{0,667	0,6	0,5	0,667	0,667}
+		Entropy:	{0,918	2,922	3,522	3,785	3,785}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5}
+Fireworks:
+	Blue  -
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 11
+
+Player(0) gioca la carta in posizione 3 nella propria mano
+Il giocatore Player(0) gioca Blue-1 e pesca    -   
+
+State: 59
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Blue-3,   -   ,   -   }
+		Playability:	{0	0	0	0,2	0,133}
+		Uselessness:	{0	0	0	0,4	0,6}
+		Entropy:	{0	0	0	3,322	3,64}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	0	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Red-1,Blue-2}
+		Playability:	{0	0,3	0,286	0,2	0,2}
+		Uselessness:	{0,667	0,6	0,5	0,65	0,65}
+		Entropy:	{0,918	2,922	3,522	3,822	3,822}
+		isPlayable:	{0	0	1	0	1}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5}
+Fireworks:
+	Blue  1
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 10
+
+Il giocatore Player2(1) scarta Red-1 e pesca White-2
+
+State: 60
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Blue-3,   -   ,   -   }
+		Playability:	{0	0	0	0,111	0,071}
+		Uselessness:	{0	0	0	0,444	0,643}
+		Entropy:	{0	0	0	3,17	3,522}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	0	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Blue-2,White-2}
+		Playability:	{0	0,3	0,286	0,211	0,211}
+		Uselessness:	{0,667	0,6	0,5	0,632	0,632}
+		Entropy:	{0,918	2,922	3,522	3,827	3,827}
+		isPlayable:	{0	0	1	1	1}
+		isUseless:	{0	1	1	1	0}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1}
+Fireworks:
+	Blue  1
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 9
+
+Impossibile giocare una carta sicura
+Impossibile suggerire carte sicure
+Player(0) mostra le carte di valore 2 a Player2(1)
+Il giocatore Player(0) suggerisce a Player2(1) le carte [2, 3, 4] di valore 2
+
+State: 61
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Blue-3,   -   ,   -   }
+		Playability:	{0	0	0	0,111	0,071}
+		Uselessness:	{0	0	0	0,444	0,643}
+		Entropy:	{0	0	0	3,17	3,522}
+		isPlayable:	{0	0	0	?	?}
+		isUseless:	{0	0	0	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,Blue-2,White-2}
+		Playability:	{0	0	0,75	0,75	0,75}
+		Uselessness:	{0,667	0,5	0,75	0,75	0,75}
+		Entropy:	{0,918	2,252	1,5	1,5	1,5}
+		isPlayable:	{0	0	1	1	1}
+		isUseless:	{0	1	1	1	0}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1}
+Fireworks:
+	Blue  1
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 9
+
+Il giocatore Player2(1) scarta Blue-2 e pesca Red-3
+
+State: 62
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Blue-3,   -   ,   -   }
+		Playability:	{0	0	0	0	0}
+		Uselessness:	{0	0	0	0,5	0,692}
+		Entropy:	{0	0	0	3	3,393}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	0	0	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,White-2,Red-3}
+		Playability:	{0	0	0,667	0,667	0,167}
+		Uselessness:	{0,667	0,5	0,333	0,333	0,556}
+		Entropy:	{0,918	2,252	1,585	1,585	3,837}
+		isPlayable:	{0	0	1	1	1}
+		isUseless:	{0	1	0	0	0}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2}
+Fireworks:
+	Blue  1
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 8
+
+Impossibile giocare una carta sicura
+Player(0) mostra le carte di colore Red a Player2(1)
+Il giocatore Player(0) suggerisce a Player2(1) le carte [0, 1, 4] di colore Red
+
+State: 63
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Blue-3,   -   ,   -   }
+		Playability:	{0	0	0	0	0}
+		Uselessness:	{0	0	0	0,5	0,692}
+		Entropy:	{0	0	0	3	3,393}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{0	0	0	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Blue-2,White-2,Red-3}
+		Playability:	{0	0	1	1	0,167}
+		Uselessness:	{0,667	0,667	0	0	0,667}
+		Entropy:	{0,918	0,918	1	1	2,252}
+		isPlayable:	{0	0	1	1	1}
+		isUseless:	{0	1	0	0	0}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2}
+Fireworks:
+	Blue  1
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 8
+
+Il giocatore Player2(1) gioca Blue-2 e pesca White-3
+
+State: 64
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,Blue-3,   -   ,   -   }
+		Playability:	{0	0	1	0,143	0,083}
+		Uselessness:	{0	0	0	0,571	0,75}
+		Entropy:	{0	0	0	2,807	3,252}
+		isPlayable:	{0	0	1	?	?}
+		isUseless:	{0	0	0	?	?}
+
+	Player2 (1):		{Red-5,Red-4,White-2,Red-3,White-3}
+		Playability:	{0	0	1	0,167	0,176}
+		Uselessness:	{0,667	0,667	0	0,667	0,588}
+		Entropy:	{0,918	0,918	0	2,252	3,735}
+		isPlayable:	{0	0	1	1	0}
+		isUseless:	{0	1	0	0	0}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2}
+Fireworks:
+	Blue  2
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 7
+
+Player(0) gioca la carta in posizione 2 nella propria mano
+Il giocatore Player(0) gioca Blue-3 e pesca    -   
+
+State: 65
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -   ,   -   }
+		Playability:	{0	1	0,167	0,091	0,091}
+		Uselessness:	{0	0	0,667	0,818	0,818}
+		Entropy:	{0	0	2,585	3,096	3,096}
+		isPlayable:	{0	1	?	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{Red-5,Red-4,White-2,Red-3,White-3}
+		Playability:	{0	0	1	0,167	0,188}
+		Uselessness:	{0,667	0,667	0	0,667	0,625}
+		Entropy:	{0,918	0,918	0	2,252	3,625}
+		isPlayable:	{0	0	1	1	0}
+		isUseless:	{0	1	0	0	0}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2}
+Fireworks:
+	Blue  3
+	Red  2
+	Green  4
+	White  1
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 6
+
+Il giocatore Player2(1) gioca White-2 e pesca Blue-1
+
+State: 66
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,Blue-4,   -   ,   -   ,   -   }
+		Playability:	{0	1	0,167	0,1	0,1}
+		Uselessness:	{0	0	0,667	0,8	0,8}
+		Entropy:	{0	0	2,585	3,122	3,122}
+		isPlayable:	{0	1	?	?	?}
+		isUseless:	{0	0	?	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Red-3,White-3,Blue-1}
+		Playability:	{0	0	0,167	0,2	0,2}
+		Uselessness:	{0,667	0,667	0,667	0,667	0,667}
+		Entropy:	{0,918	0,918	2,252	3,507	3,507}
+		isPlayable:	{0	0	1	1	0}
+		isUseless:	{0	1	0	0	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2}
+Fireworks:
+	Blue  3
+	Red  2
+	Green  4
+	White  2
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 5
+
+Player(0) gioca la carta in posizione 1 nella propria mano
+Il giocatore Player(0) gioca Blue-4 e pesca    -   
+
+State: 67
+Current player: Player2
+Players' hands:
+	Player (0):		{Blue-   ,   -   ,   -   ,   -   ,   -   }
+		Playability:	{1	0,2	0,111	0,111	0,111}
+		Uselessness:	{0	0,8	0,889	0,889	0,889}
+		Entropy:	{0	2,322	2,948	2,948	2,948}
+		isPlayable:	{1	?	?	?	?}
+		isUseless:	{0	?	?	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Red-3,White-3,Blue-1}
+		Playability:	{0	0	0,167	0,214	0,214}
+		Uselessness:	{0,667	0,667	0,667	0,714	0,714}
+		Entropy:	{0,918	0,918	2,252	3,379	3,379}
+		isPlayable:	{0	0	1	1	0}
+		isUseless:	{0	1	0	0	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2}
+Fireworks:
+	Blue  4
+	Red  2
+	Green  4
+	White  2
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 4
+
+Il giocatore Player2(1) scarta White-3 e pesca Green-4
+
+State: 68
+Current player: Player
+Players' hands:
+	Player (0):		{Blue-   ,   -   ,   -   ,   -   ,   -   }
+		Playability:	{1	0,25	0,125	0,125	0,125}
+		Uselessness:	{0	0,75	0,875	0,875	0,875}
+		Entropy:	{0	2	2,75	2,75	2,75}
+		isPlayable:	{1	?	?	?	?}
+		isUseless:	{0	?	?	?	?}
+
+	Player2 (1):		{Red-5,Red-4,Red-3,Blue-1,Green-4}
+		Playability:	{0	0	0,167	0,154	0,154}
+		Uselessness:	{0,667	0,667	0,667	0,769	0,769}
+		Entropy:	{0,918	0,918	2,252	3,239	3,239}
+		isPlayable:	{0	0	1	0	0}
+		isUseless:	{0	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2, White-3}
+Fireworks:
+	Blue  4
+	Red  2
+	Green  4
+	White  2
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 3
+
+Player(0) gioca la carta in posizione 0 nella propria mano
+Il giocatore Player(0) gioca Blue-5 e pesca    -   
+
+State: 69
+Current player: Player2
+Players' hands:
+	Player (0):		{   -   ,   -   ,   -   ,   -   ,   -   }
+		Playability:	{0	0	0	0	0}
+		Uselessness:	{1	1	1	1	1}
+		Entropy:	{1,585	2,522	2,522	2,522	2,522}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{1	1	1	1	1}
+
+	Player2 (1):		{Red-5,Red-4,Red-3,Blue-1,Green-4}
+		Playability:	{0	0	0,167	0,083	0,083}
+		Uselessness:	{0,667	0,667	0,667	0,833	0,833}
+		Entropy:	{0,918	0,918	2,252	3,085	3,085}
+		isPlayable:	{0	0	1	0	0}
+		isUseless:	{0	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2, White-3}
+Fireworks:
+	Blue  5
+	Red  2
+	Green  4
+	White  2
+	Yellow  1
+Hints: 2
+Fuse: 3
+Final: -1
+Deck: 2
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [2, 3] di colore White
+
+State: 70
+Current player: Player
+Players' hands:
+	Player (0):		{   -   ,   -   ,White-   ,White-   ,   -   }
+		Playability:	{0	0	0	0	0}
+		Uselessness:	{1	1	1	1	1}
+		Entropy:	{1,585	2,322	0	0	2,322}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{1	1	1	1	1}
+
+	Player2 (1):		{Red-5,Red-4,Red-3,Blue-1,Green-4}
+		Playability:	{0	0	0,167	0,083	0,083}
+		Uselessness:	{0,667	0,667	0,667	0,833	0,833}
+		Entropy:	{0,918	0,918	2,252	3,085	3,085}
+		isPlayable:	{0	0	1	0	0}
+		isUseless:	{0	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2, White-3}
+Fireworks:
+	Blue  5
+	Red  2
+	Green  4
+	White  2
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: -1
+Deck: 2
+
+Impossibile giocare una carta sicura
+Player(0) mostra le carte di valore 3 a Player2(1)
+Il giocatore Player(0) suggerisce a Player2(1) le carte [2] di valore 3
+
+State: 71
+Current player: Player2
+Players' hands:
+	Player (0):		{   -   ,   -   ,White-   ,White-   ,   -   }
+		Playability:	{0	0	0	0	0}
+		Uselessness:	{1	1	1	1	1}
+		Entropy:	{1,585	2,322	0	0	2,322}
+		isPlayable:	{0	0	0	0	0}
+		isUseless:	{1	1	1	1	1}
+
+	Player2 (1):		{Red-5,Red-4,Red-3,Blue-1,Green-4}
+		Playability:	{0	0	1	0	0}
+		Uselessness:	{0,667	0,667	0	0,9	0,9}
+		Entropy:	{0,918	0,918	0	2,722	2,722}
+		isPlayable:	{0	0	1	0	0}
+		isUseless:	{0	1	0	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2, White-3}
+Fireworks:
+	Blue  5
+	Red  2
+	Green  4
+	White  2
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 2
+
+Il giocatore Player2(1) gioca Red-3 e pesca Red-2
+
+State: 72
+Current player: Player
+Players' hands:
+	Player (0):		{   -   ,   -   ,White-   ,White-   ,   -   }
+		Playability:	{0,5	0,25	0	0	0,25}
+		Uselessness:	{1	1	1	1	1}
+		Entropy:	{1	2	0	0	2}
+		isPlayable:	{?	?	0	0	?}
+		isUseless:	{1	1	1	1	1}
+
+	Player2 (1):		{Red-5,Red-4,Blue-1,Green-4,Red-2}
+		Playability:	{0,667	0,667	0,2	0,2	0,182}
+		Uselessness:	{0,667	0,667	0,9	0,9	0,909}
+		Entropy:	{0,918	0,918	2,722	2,722	2,914}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2, White-3}
+Fireworks:
+	Blue  5
+	Red  3
+	Green  4
+	White  2
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: -1
+Deck: 1
+
+Impossibile giocare una carta sicura
+Impossibile suggerire
+Player(0) scarta la carta in posizione 0 nella propria mano
+Il giocatore Player(0) scarta Yellow-3 e pesca    -   
+
+State: 73
+Current player: Player2
+Players' hands:
+	Player (0):		{   -   ,White-   ,White-   ,   -   ,   -   }
+		Playability:	{0,333	0	0	0,333	0,2}
+		Uselessness:	{1	1	1	1	1}
+		Entropy:	{1,585	0	0	1,585	1,922}
+		isPlayable:	{?	0	0	?	?}
+		isUseless:	{1	1	1	1	1}
+
+	Player2 (1):		{Red-5,Red-4,Blue-1,Green-4,Red-2}
+		Playability:	{0,667	0,667	0,2	0,2	0,2}
+		Uselessness:	{0,667	0,667	0,9	0,9	0,9}
+		Entropy:	{0,918	0,918	2,722	2,722	2,722}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2, White-3, Yellow-3}
+Fireworks:
+	Blue  5
+	Red  3
+	Green  4
+	White  2
+	Yellow  1
+Hints: 1
+Fuse: 3
+Final: 74
+Deck: 0
+
+Il giocatore Player2(1) suggerisce a Player(0) le carte [1, 2, 3, 4] di valore 1
+
+State: 74
+Current player: Player
+Players' hands:
+	Player (0):		{   -   ,White-1,White-1,   -1,   -1}
+		Playability:	{1	0	0	0	0}
+		Uselessness:	{1	1	1	1	1}
+		Entropy:	{0	0	0	1	1,5}
+		isPlayable:	{1	0	0	0	0}
+		isUseless:	{1	1	1	1	1}
+
+	Player2 (1):		{Red-5,Red-4,Blue-1,Green-4,Red-2}
+		Playability:	{0,667	0,667	0,2	0,2	0,2}
+		Uselessness:	{0,667	0,667	0,9	0,9	0,9}
+		Entropy:	{0,918	0,918	2,722	2,722	2,722}
+		isPlayable:	{0	1	0	0	0}
+		isUseless:	{0	1	1	1	1}
+
+Discarded: {Yellow-1, Blue-4, White-4, Yellow-2, Green-3, Yellow-3, Green-1, Yellow-2, Yellow-4, White-2, White-4, White-5, Red-3, White-3, Yellow-1, Green-1, Yellow-4, Blue-3, Green-5, Green-2, Yellow-5, Red-1, Blue-2, White-3, Yellow-3}
+Fireworks:
+	Blue  5
+	Red  3
+	Green  4
+	White  2
+	Yellow  1
+Hints: 0
+Fuse: 3
+Final: 74
+Deck: 0
+
+Player(0) gioca la carta in posizione 0 nella propria mano
+Il giocatore Player(0) gioca Red-4 e pesca null
+

@@ -31,47 +31,47 @@ public class StatisticState extends State
 		{
 			player = Game.getInstance().getPlayer(i);
 			hand = getHand(player);
-			ret+="\t"+player+" ("+i+"):\t"+hand+"\n";
+			ret+="\t"+player+" ("+i+"):\t\t"+hand+"\n";
 
 			ret+="\t\t"+"Playability:\t{";
 			double p[] = stats.getPlayability(player);
 			for (int j=0; j<hand.size(); j++)
-				ret+= df.format(p[j])+"; ";
-			ret = ret.substring(0,ret.length()-2)+"}\n";
+				ret+= df.format(p[j])+"\t";
+			ret = ret.substring(0,ret.length()-1)+"}\n";
 
 			ret+="\t\t"+"Uselessness:\t{";
 			double u[] = stats.getUselessness(player);
 			for (int j=0; j<hand.size(); j++)
-				ret+= df.format(u[j])+"; ";
-			ret = ret.substring(0,ret.length()-2)+"}\n";
+				ret+= df.format(u[j])+"\t";
+			ret = ret.substring(0,ret.length()-1)+"}\n";
 
 			ret+="\t\t"+"Entropy:\t{";
 			double e[] = stats.getCardEntropy(player);
 			for (int j=0; j<hand.size(); j++)
-				ret+= df.format(e[j])+"; ";
-			ret = ret.substring(0,ret.length()-2)+"}\n";
+				ret+= df.format(e[j])+"\t";
+			ret = ret.substring(0,ret.length()-1)+"}\n";
 
 			ret+="\t\t"+"isPlayable:\t{";
 			for (int j=0; j<hand.size(); j++)
 			{
 				Card card = hand.getCard(j);
 				if (!player.equals(Main.playerName))
-					ret+= (stats.isPlayable(card)?"1":"0")+"; ";
+					ret+= (stats.isPlayable(card)?"1":"0")+"\t";
 				else
-					ret+= ((p[j]==1||p[j]==0)?df.format(p[j]):"?")+"; ";
+					ret+= ((p[j]==1||p[j]==0)?df.format(p[j]):"?")+"\t";
 			}
-			ret = ret.substring(0,ret.length()-2)+"}\n";
+			ret = ret.substring(0,ret.length()-1)+"}\n";
 
 			ret+="\t\t"+"isUseless:\t{";
 			for (int j=0; j<hand.size(); j++)
 			{
 				Card card = hand.getCard(j);
 				if (!player.equals(Main.playerName))
-					ret+= (stats.isUseless(card)?"1":"0")+"; ";
+					ret+= (stats.isUseless(card)?"1":"0")+"\t";
 				else
-					ret+= ((u[j]==1||u[j]==0)?""+df.format(u[j]):"?")+"; ";
+					ret+= ((u[j]==1||u[j]==0)?""+df.format(u[j]):"?")+"\t";
 			}
-			ret = ret.substring(0,ret.length()-2)+"}\n\n";
+			ret = ret.substring(0,ret.length()-1)+"}\n\n";
 		}
 		ret+="Discarded: {";
 		if (getDiscards().size()>0) {

@@ -7,24 +7,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="644e2846-9d4a-4fbd-95f8-f21cfdbcf6f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../HanabiStrategy2/.idea/artifacts/HanabiStrategy2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HanabiStrategy2/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanAPI.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanAPI.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/.idea/artifacts/HanabiStrategy3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/.idea/libraries/HanAPI.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/.idea/libraries/SJSON.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/HanabiStrategy3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy3/src/Agent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy4/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy4/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy4/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy4/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy4/HanabiStrategy4.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HanabiStrategy4/src/Agent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/StatisticState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanAPI/api/client/StatisticState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/Statistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HanAPI/api/client/Statistics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/client/StatisticState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/client/StatisticState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/client/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/client/Statistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiEngine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/AbstractAgent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/Hint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/StatisticState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/client/Statistics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Action.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/ActionType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Card.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Color$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Firework.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Hand$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Hand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/Turn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/game/TypedJSON.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HanAPI/api/main/HanabiClient.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/out/production/HanabiStrategy1/Strategy1Agent.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/out/production/HanabiStrategy1/Strategy1Agent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/src/Strategy1Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy1/src/Strategy1Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy2/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HanabiStrategy2/src/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HanabiStrategy2/src/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../log1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../log1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HanabiStrategy1/out/production/HanabiStrategy1/Strategy1Agent.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +61,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/client/AbstractAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="1920">
               <caret line="139" column="2" selection-start-line="139" selection-start-column="2" selection-end-line="139" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -53,12 +74,7 @@
         <entry file="file://$PROJECT_DIR$/src/api/client/Statistics.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="528">
-              <caret line="423" column="68" selection-start-line="423" selection-start-column="68" selection-end-line="423" selection-end-column="68" />
-              <folding>
-                <element signature="e#332#364#0" expanded="true" />
-                <element signature="e#10174#10175#0" expanded="true" />
-                <element signature="e#10228#10229#0" expanded="true" />
-              </folding>
+              <caret line="437" column="31" selection-start-line="437" selection-start-column="31" selection-end-line="437" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -66,7 +82,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/client/StatisticState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
+            <state relative-caret-position="405">
               <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -78,7 +94,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/client/Hint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
+            <state relative-caret-position="60">
               <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -90,7 +106,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/game/Turn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
+            <state relative-caret-position="1275">
               <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
               <folding>
                 <element signature="e#1497#1498#0" expanded="true" />
@@ -103,7 +119,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/client/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
+            <state relative-caret-position="810">
               <caret line="67" selection-start-line="67" selection-end-line="67" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -170,10 +186,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="37" />
-    <option name="y" value="51" />
-    <option name="width" value="1330" />
-    <option name="height" value="693" />
+    <option name="x" value="683" />
+    <option name="width" value="683" />
+    <option name="height" value="743" />
   </component>
   <component name="ProjectId" id="1RsClSzfOJD7ovyWYqzYPXqv9yn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -184,6 +199,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -221,7 +237,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -274,10 +289,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-1" y="0" width="1368" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47106326" visible="true" weight="0.28223497" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.52893674" side_tool="true" visible="true" weight="0.28223497" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47030497" visible="true" weight="0.2871212" />
+      <window_info active="true" id="Structure" order="1" sideWeight="0.52969503" side_tool="true" visible="true" weight="0.2871212" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -501,10 +517,27 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/List.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Map.java" />
+    <entry file="file://$PROJECT_DIR$/src/api/game/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="252" column="15" selection-start-line="252" selection-start-column="15" selection-end-line="252" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/client/AbstractAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="1920">
           <caret line="139" column="2" selection-start-line="139" selection-start-column="2" selection-end-line="139" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/client/StatisticState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -513,7 +546,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/client/Hint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="60">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -523,7 +556,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/game/Turn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
+        <state relative-caret-position="1275">
           <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
           <folding>
             <element signature="e#1497#1498#0" expanded="true" />
@@ -534,7 +567,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/client/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
+        <state relative-caret-position="810">
           <caret line="67" selection-start-line="67" selection-end-line="67" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -542,32 +575,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/client/StatisticState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/game/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="252" column="15" selection-start-line="252" selection-start-column="15" selection-end-line="252" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/client/Statistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
-          <caret line="423" column="68" selection-start-line="423" selection-start-column="68" selection-end-line="423" selection-end-column="68" />
-          <folding>
-            <element signature="e#332#364#0" expanded="true" />
-            <element signature="e#10174#10175#0" expanded="true" />
-            <element signature="e#10228#10229#0" expanded="true" />
-          </folding>
+          <caret line="437" column="31" selection-start-line="437" selection-start-column="31" selection-end-line="437" selection-end-column="31" />
         </state>
       </provider>
     </entry>

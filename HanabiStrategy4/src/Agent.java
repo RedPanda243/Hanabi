@@ -50,7 +50,6 @@ public class Agent extends AbstractAgent
 		super.notifyTurn(turn); //aggiorno stats
 		dropConv(turn); //Dopo devo eliminare le eventuali convenzioni su carte che sono diventate certe!
 		log(turn+"\n");
-
 	}
 
 	private void dropConv(String player)
@@ -86,22 +85,23 @@ public class Agent extends AbstractAgent
 			double[] p = stats.getPlayability(hinted);
 			Statistics s = stats.getStatisticsIf(turn);
 			double[] p1 = s.getPlayability(hinted);
-			for (int i = p.length - 1; i > -1; i--) {
-				if (p1[i] > p[i])
+			List<Integer> revealed = turn.getAction().getCardsToReveal(stats.getLastState());
+			for (int i = revealed.size()-1; i > -1; i--) {
+				if (p1[revealed.get(i)] > p[revealed.get(i)])
 				{
-					if (!cmap.get(hinted)[0].contains(i))
+					if (!cmap.get(hinted)[0].contains(revealed.get(i)))
 					{
-						cmap.get(hinted)[0].add(i);
-						cmap.get(hinted)[1].remove((Integer)i);
+						cmap.get(hinted)[0].add(revealed.get(i));
+						cmap.get(hinted)[1].remove(revealed.get(i));
 						break;
 					}
 				}
 				if (p1[i] < p[i])
 				{
-					if (!cmap.get(hinted)[1].contains(i))
+					if (!cmap.get(hinted)[1].contains(revealed.get(i)))
 					{
-						cmap.get(hinted)[1].add(i);
-						cmap.get(hinted)[0].remove((Integer)i);
+						cmap.get(hinted)[1].add(revealed.get(i));
+						cmap.get(hinted)[0].remove(revealed.get(i));
 						break;
 					}
 				}
@@ -208,10 +208,24 @@ public class Agent extends AbstractAgent
 			Action action = null;
 			Hand hand = stats.getLastState().getHand(Main.playerName);
 			log("Cerco di giocare una carta sicura");
-			List<Integer> cp = cmap.get(Main.playerName)[0];
-			if (cp.size() > 0) {
-				int max = cp.get(0);
+			double[] p = stats.getPlayability(Main.playerName);
+			int index = -1;
+			for (int i=0; i<p.length; i++)
+			{
+				if (p[i] == 1) {
+					index = i;
+					if (hand.getCard(i).getValue() == 5)
+						break;
+				}
+			}
+			if (index >-1)
+				return new Action(Main.playerName,ActionType.PLAY,index);
+			log("Nessuna carta sicura per playability = 100%");
 
+			List<Integer> cp = cmap.get(Main.playerName)[0];
+			if (cp.size() > 0)
+			{
+				int max = cp.get(0);
 				for (int i = 1; i < cp.size(); i++) {
 					if (hand.getCard(cp.get(i)).getValue() == 5) {
 						max = cp.get(i);
@@ -223,38 +237,125 @@ public class Agent extends AbstractAgent
 				return new Action(Main.playerName, ActionType.PLAY, max);
 			}
 			log("Nessuna sicura per convenzione");
-			double[] p = stats.getPlayability(Main.playerName);
-			int index = -1;
-			for (int i=0; i<p.length; i++)
-			{
-				if (p[i] == 1)
-					index = i;
-				if (hand.getCard(i).getValue() == 5)
-					break;
-			}
-			if (index >-1)
-				return new Action(Main.playerName,ActionType.PLAY,index);
+
 
 			if (stats.getLastState().getHintTokens()>0)
 			{
-				//TODO
+				//Cerco le carte giocabili nella mano del compagno
+				String hinted = sortPlayers()[0];
+				ArrayList<Integer> playable = new ArrayList<>();
+				hand = stats.getLastState().getHand(hinted);
+				p = stats.getPlayability(hinted);
+				for (int i=0; i<hand.size(); i++)
+				{
+					if (stats.isPlayable(hand.getCard(i)) && p[i]<1)
+					{
+						//Se c'è un 5 indico quello
+						if (hand.getCard(i).getValue() == 5)
+						{
+							playable.clear();
+							playable.add(i);
+							break;
+						}
+						playable.add(i);
+					}
+
+				}
+				if (playable.size()>0) {
+					//Genero i suggerimenti disponibili su carte giocabili
+					List<Action> possibleHints = getPossibleHints(hinted);
+					List<Action> hints = new ArrayList<>();
+					List<Integer> l_index;
+					for (Action possibile : possibleHints) {
+						for (int i : playable) {
+							l_index = possibile.getCardsToReveal(stats.getLastState());
+							if (l_index.contains(i)) //La carta giocabile è suggerita
+							{
+								Statistics s1 = stats.getStatisticsIf(new Turn(possibile, l_index));
+								if (l_index.lastIndexOf(i) == l_index.size() - 1 || s1.getPlayability(hinted)[i] == 1) { //La carta giocabile è la più a destra oppure raggiunge playability 1
+									hints.add(possibile);
+									break;
+								}
+							}
+						}
+					}
+					//hints contiene tutti i suggerimenti fattibili seguendo la convenzione
+					//Adesso filtro per numero di reveal
+					int r = 0;
+					possibleHints = hints;
+					hints = new ArrayList<>();
+					for (Action h : possibleHints) {
+						l_index = h.getCardsToReveal(stats.getLastState());
+						int cont = 0;
+						for (int i : l_index) {
+							if (h.getColor() != null) {
+								if (!hand.getCard(i).isColorRevealed())
+									cont++;
+							} else {
+								if (!hand.getCard(i).isValueRevealed())
+									cont++;
+							}
+						}
+						if (cont > r) {
+							r = cont;
+							hints.clear();
+						}
+						if (cont == r)
+							hints.add(h);
+					}
+
+					if (hints.size() > 1)
+					{ //Filtro per uselessness minore
+
+					}
+				}
+				else
+				{ //Suggerisco per non scartare: prendo quello che rende minore la playability della carta da non scartare
+
+				}
 			}
 
+			//Scarto una carta
 			double[] u = stats.getUselessness(Main.playerName);
 			double umax = 0;
-			int dis = -1;
-			for (int i=0; i<u.length; i++)
+			List<Integer> dis = new ArrayList<>();
+			int leftmargin = Game.getInstance().getNumberOfCardsPerPlayer()/2;
+			for (int i = 0; i<Game.getInstance().getNumberOfCardsPerPlayer()/2 && leftmargin<hand.size(); i++)
+			{
+				if (hand.getCard(i).getValue() == 5)
+					leftmargin++;
+			}
+			for (int i=0; i<leftmargin; i++)
 			{
 				if (!cmap.get(Main.playerName)[1].contains(i))
 				{
 					if (u[i] > umax)
 					{
-						dis = i;
 						umax = u[i];
+						dis.clear();
 					}
+					if (u[i] == umax)
+						dis.add(i);
 				}
 			}
-			return new Action(Main.playerName,ActionType.DISCARD,dis);
+
+			if (dis.size()>1)
+			{
+				p = stats.getPlayability(Main.playerName);
+				int min = 0;
+				double pmin = p[dis.get(0)];
+				for (int i = 1; i<dis.size(); i++)
+				{
+					if (p[dis.get(i)]<pmin)
+					{
+						pmin = p[dis.get(i)];
+						min = i;
+					}
+				}
+				return new Action(Main.playerName,ActionType.DISCARD,dis.get(min));
+			}
+
+			return new Action(Main.playerName,ActionType.DISCARD,dis.get(0));
 		}
 		catch(JSONException e)
 		{

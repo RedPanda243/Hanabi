@@ -39,4 +39,4 @@
 	Resta da determinare se scegliere quella mossa a seconda del suo indice. Potrei prendere la mossa di indice maggiore.
 )
 
-java -jar HanabiEngine.jar -g 2 -a "java -jar HanabiStrategy1.jar -n Player0 -f log.txt" -a "java -jar HanabiStrategy1.jar -n Player1" -l
+java -jar HanabiEngine.jar -g 1000 -n 5 -l -p 9496 -a "java -jar HanabiStrategy1.jar -p 9496" -a "java -jar HanabiStrategy1.jar -p 9496" -a "java -jar HanabiStrategy1.jar -p 9496" -a "java -jar HanabiStrategy1.jar -p 9496" -a "java -jar HanabiStrategy1.jar -p 9496"

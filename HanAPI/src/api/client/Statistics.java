@@ -278,10 +278,8 @@ public class Statistics implements Cloneable
 				hints[p][i] = hints[p][i+1];
 			}
 			hints[p][i] = new ArrayList<>();
-			/*if (drawn!=null)
-				hints[p][i] = new ArrayList<>();
-			else
-				hints[p][i] = null;*/
+			//NOTA: non posso usare clear perché nel for ho fatto una copia per indirizzi.
+
 
 			//Se il giocatore non sono io aggiorno ownedByOthers
 			if (!action.getPlayer().equals(Main.playerName))
@@ -304,10 +302,7 @@ public class Statistics implements Cloneable
 				hints[p][i] = hints[p][i+1];
 			}
 			hints[p][i] = new ArrayList<>();
-	/*		if (drawn!=null)
-				hints[p][i] = new ArrayList<>();
-			else
-				hints[p][i] = null;*/
+			//NOTA: non posso usare clear perché nel for ho fatto una copia per indirizzi.
 
 			//Se il giocatore non sono io aggiorno ownedByOthers
 			if (!action.getPlayer().equals(Main.playerName))

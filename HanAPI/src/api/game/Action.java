@@ -227,7 +227,7 @@ public class Action extends TypedJSON<JSONObject>
 	/**
 	 * @return un array contenente le posizioni nella mano del ricevente il suggerimento delle carte cui il suggerimento si riferisce
 	 */
-	public List<Integer> getCardsToReveal(State current)
+	public List<Integer> getCardsToReveal(State current) throws IllegalStateException
 	{
 		if (this.getType() == PLAY || this.getType() == DISCARD)
 			return null;
@@ -237,6 +237,8 @@ public class Action extends TypedJSON<JSONObject>
 		{
 			for (int i=0; i<hand.size(); i++)
 			{
+				if (hand.getCard(i).getValue() == 0)
+					throw new IllegalStateException("Carta "+i+" sconosciuta");
 				if (hand.getCard(i).getValue() == this.getValue())
 					list.add(i);
 			}
@@ -245,6 +247,8 @@ public class Action extends TypedJSON<JSONObject>
 		{
 			for (int i=0; i<hand.size(); i++)
 			{
+				if (hand.getCard(i).getColor() == null)
+					throw new IllegalStateException("Carta "+i+" sconosciuta");
 				if (hand.getCard(i).getColor() == this.getColor())
 					list.add(i);
 			}

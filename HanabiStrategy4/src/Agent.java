@@ -5,7 +5,12 @@ import api.game.*;
 import api.client.AbstractAgent;
 import sjson.JSONException;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,13 +33,7 @@ public class Agent extends AbstractAgent
 		next = null;
 		cmap = new HashMap<>();
 
-		for (String s:Game.getInstance().getPlayers())
-		{
-			ArrayList<Integer>[] a = new ArrayList[2];
-			a[0] = new ArrayList<>(); //0 = giocabili per convenzione
-			a[1] = new ArrayList<>(); //1 = non scartabili per convenzione
-			cmap.put(s,a);
-		}
+
 	}
 
 	private String getNextPlayer()
@@ -46,60 +45,91 @@ public class Agent extends AbstractAgent
 
 	public void notifyTurn(Turn turn)
 	{
+		log("\n"+turn);
+		dropPlay(); //Le convenzioni su carte da giocare devono valere solo per un mio turno
 		updateConv(turn); //Le convenzioni derivanti dal turno vanno aggiornate prima di stats!
 		super.notifyTurn(turn); //aggiorno stats
-		dropConv(turn); //Dopo devo eliminare le eventuali convenzioni su carte che sono diventate certe!
-		log(turn+"\n");
+
+		dropKeep(turn); //Dopo devo eliminare le eventuali convenzioni su carte che sono diventate certe!
+
+		log("\tConvenzioni aggiornate:");
+		for (String pl:Game.getInstance().getPlayers())
+		{
+			log("\t\t"+pl+":");
+			log("\t\t\tDa giocare: " + cmap.get(pl)[0]);
+			log("\t\t\tDa tenere: " + cmap.get(pl)[1]);
+		}
+		/*	log(turn+"\n");
+		log("Convenzioni dopo drop:");
+		log("\tDa giocare: "+cmap.get(Main.playerName)[0]);
+		log("\tDa tenere: "+cmap.get(Main.playerName)[1]);*/
 	}
 
-	private void dropConv(String player)
+	private void dropKeep(String player)
 	{
 		double[] p = stats.getPlayability(player);
 		double[] u = stats.getUselessness(player);
 		for (int i=0; i<p.length; i++)
 		{
-			if (p[i] == 0 || p[i] == 1)
-				cmap.get(player)[0].remove((Integer)i);
-			if (u[i] == 0 || u[i] == 1)
+			if (u[i] == 0 || u[i] == 1 || p[i] == 1)
 				cmap.get(player)[1].remove((Integer)i);
 		}
 	}
 
-	private void dropConv(Turn turn)
+	private void dropKeep(Turn turn)
 	{
 		String hinted = turn.getAction().getHinted();
 		if (hinted != null)
-			dropConv(hinted);
+			dropKeep(hinted);
 		else
 		{
 			for (String p:Game.getInstance().getPlayers())
-				dropConv(p);
+				dropKeep(p);
 		}
 	}
 
 	private void updateConv(Turn turn)
 	{
+		log("\nUpdate convenzioni:");
 		String hinted = turn.getAction().getHinted();
+		String l;
+		DecimalFormat df = new DecimalFormat("#.###");
+		df.setRoundingMode(RoundingMode.HALF_UP);
 		if (hinted != null)
 		{
 			double[] p = stats.getPlayability(hinted);
+			l = "{";
+			for (int j=0; j<p.length; j++)
+				l+= df.format(p[j])+", ";
+			l = l.substring(0,l.length()-2)+"}\n";
+			log("\tPlayability corrente: "+l);
+
 			Statistics s = stats.getStatisticsIf(turn);
 			double[] p1 = s.getPlayability(hinted);
-			List<Integer> revealed = turn.getAction().getCardsToReveal(stats.getLastState());
+			l = "{";
+			for (int j=0; j<p1.length; j++)
+				l+= df.format(p1[j])+", ";
+			l = l.substring(0,l.length()-2)+"}\n";
+			log("\tPlayability futura: "+ l);
+
+			List<Integer> revealed = turn.getRevealed();
+			log("\tCarte rivelate: "+revealed);
 			for (int i = revealed.size()-1; i > -1; i--) {
 				if (p1[revealed.get(i)] > p[revealed.get(i)])
 				{
 					if (!cmap.get(hinted)[0].contains(revealed.get(i)))
 					{
+						log("\tla carta "+revealed.get(i)+" e' da giocare");
 						cmap.get(hinted)[0].add(revealed.get(i));
 						cmap.get(hinted)[1].remove(revealed.get(i));
 						break;
 					}
 				}
-				if (p1[i] < p[i])
+				if (p1[revealed.get(i)] < p[revealed.get(i)])
 				{
 					if (!cmap.get(hinted)[1].contains(revealed.get(i)))
 					{
+						log("\tla carta "+revealed.get(i)+" e' da tenere");
 						cmap.get(hinted)[1].add(revealed.get(i));
 						cmap.get(hinted)[0].remove(revealed.get(i));
 						break;
@@ -110,28 +140,47 @@ public class Agent extends AbstractAgent
 		else
 		{
 			int i = turn.getAction().getCard();
-			cmap.get(turn.getAction().getPlayer())[0].remove((Integer)i);
-			cmap.get(turn.getAction().getPlayer())[1].remove((Integer)i);
+
+			List<Integer> list = cmap.get(turn.getAction().getPlayer())[0];
+			list.remove((Integer)i);
+			for (int j = 0; j<list.size(); j++)
+			{
+				if (list.get(j)>i)
+					list.set(j,list.get(j)-1);
+			}
+
+			list = cmap.get(turn.getAction().getPlayer())[1];
+			list.remove((Integer)i);
+			for (int j = 0; j<list.size(); j++)
+			{
+				if (list.get(j)>i)
+					list.set(j,list.get(j)-1);
+			}
 		}
 	}
 
 	public void notifyState(State state)
 	{
+		if (cmap.size() == 0)
+		{
+			for (String s:Game.getInstance().getPlayers())
+			{
+				ArrayList<Integer>[] a = new ArrayList[2];
+				a[0] = new ArrayList<>(); //0 = giocabili per convenzione
+				a[1] = new ArrayList<>(); //1 = non scartabili per convenzione
+				cmap.put(s,a);
+			}
+		}
 		super.notifyState(state);
-		try {
+		try
+		{
 			StatisticState sstate = new StatisticState(state, stats);
 			log(""+sstate);
-//			stats.printPossibilities(System.out);
-		/*	System.out.println("Suggerimenti possibili:");
-			for (String player: Game.getInstance().getPlayers())
+			log("Possibili carte possedute:");
+			for (int i=0; i<state.getHand(Main.playerName).size(); i++)
 			{
-				if (!player.equals(Main.playerName))
-				{
-					System.out.println(player);
-					for (Action h:this.getPossibleHints(player))
-						System.out.println("\t"+h);
-				}
-			}*/
+				log("\t"+i+": "+stats.calcCards(Main.playerName,i));
+			}
 		}
 		catch (JSONException e){}
 	}
@@ -188,7 +237,7 @@ public class Agent extends AbstractAgent
 	 * 	 				Se non &egrave; possibile dare un suggerimento adeguato provo con la prossima carta.
 	 * 	 	 		</li>
 	 * 	 	 		<li>
-	 * 	 	 		 	Ciclo di nuovo tra i miei compagni: se uno ha un a carta non scartabile ma non lo sa
+	 * 	 	 		 	Ciclo di nuovo tra i miei compagni: se uno ha una carta non scartabile ma non lo sa
 	 * 	 	 		 	(ne per uselessness ne per convenzione) gli suggerisco in modo adeguato (come prima
 	 * 	 	 		 	ma le carte devono diminuire la playability).
 	 * 	 	 		 	Se non &egrave; possibile dare un suggerimento adeguato provo con la prossima carta.
@@ -204,158 +253,107 @@ public class Agent extends AbstractAgent
 	 */
 	public Action chooseAction()
 	{
-		try {
+		if (confirm)
+		{
+			log("\nPremi INVIO per prossimo turno...");
+			try
+			{
+				new BufferedReader(new InputStreamReader(System.in)).readLine();
+			}
+			catch(IOException e){}
+		}
+		try
+		{
 			Action action = null;
-			Hand hand = stats.getLastState().getHand(Main.playerName);
-			log("Cerco di giocare una carta sicura");
-			double[] p = stats.getPlayability(Main.playerName);
-			int index = -1;
-			for (int i=0; i<p.length; i++)
-			{
-				if (p[i] == 1) {
-					index = i;
-					if (hand.getCard(i).getValue() == 5)
-						break;
-				}
-			}
-			if (index >-1)
-				return new Action(Main.playerName,ActionType.PLAY,index);
-			log("Nessuna carta sicura per playability = 100%");
+			int tokens = stats.getLastState().getHintTokens();
+			log("\nTocca a me");
+			//Provo a giocare una carta sicura per playability o convenzione
+			action = playSecure();
 
-			List<Integer> cp = cmap.get(Main.playerName)[0];
-			if (cp.size() > 0)
+			if (action == null && tokens>0)
 			{
-				int max = cp.get(0);
-				for (int i = 1; i < cp.size(); i++) {
-					if (hand.getCard(cp.get(i)).getValue() == 5) {
-						max = cp.get(i);
-						break;
-					} else if (cp.get(i) > max) {
-						max = cp.get(i);
-					}
-				}
-				return new Action(Main.playerName, ActionType.PLAY, max);
-			}
-			log("Nessuna sicura per convenzione");
-
-
-			if (stats.getLastState().getHintTokens()>0)
-			{
-				//Cerco le carte giocabili nella mano del compagno
-				String hinted = sortPlayers()[0];
-				ArrayList<Integer> playable = new ArrayList<>();
-				hand = stats.getLastState().getHand(hinted);
-				p = stats.getPlayability(hinted);
-				for (int i=0; i<hand.size(); i++)
+				for (String hinted:sortPlayers())
 				{
-					if (stats.isPlayable(hand.getCard(i)) && p[i]<1)
+					/*
+					Genero i suggerimenti disponibili su carte giocabili del compagno.
+					Tutti questi suggerimenti seguono la convenzione dell'agente.
+				 	*/
+					List<Action> hints = getHintsOnPlayableCards(hinted);
+
+				/*	if (hints.size()>1)
 					{
-						//Se c'è un 5 indico quello
-						if (hand.getCard(i).getValue() == 5)
+						//Filtro per numero di reveal
+						hints = filterForRevealNumber(hinted,hints);
+					}
+				 */
+
+					if (hints.size()>1)
+					{
+						//Filtro prendendo i suggerimenti sulle carte con uselessness attuale minore
+						hints = filterForMinorUselessness(hinted, hints);
+					}
+
+					if (hints.size()>1)
+					{
+						//Filtro prendendo il suggerimento che dà il massimo aumento di playability
+						hints = filterForBestPlayabilityIncrement(hinted,hints);
+					}
+
+					if (hints.size() > 0) {
+						action = hints.get(0);
+						break;
+					}
+					else
+					{
+						//Se non riesco a suggerire per giocare, suggerisco per non scartare
+						hints = getHintsForKeepingCards(hinted);
+
+						if (hints.size() > 0)
 						{
-							playable.clear();
-							playable.add(i);
+							//Filtro prendendo i suggerimenti che danno la miglior diminuzione di playability totale
+							hints = filterForBestPlayabilityDecrement(hinted,hints);
+						}
+
+						if (hints.size() > 0) {
+							action = hints.get(0);
 							break;
 						}
-						playable.add(i);
 					}
-
 				}
-				if (playable.size()>0) {
-					//Genero i suggerimenti disponibili su carte giocabili
-					List<Action> possibleHints = getPossibleHints(hinted);
-					List<Action> hints = new ArrayList<>();
-					List<Integer> l_index;
-					for (Action possibile : possibleHints) {
-						for (int i : playable) {
-							l_index = possibile.getCardsToReveal(stats.getLastState());
-							if (l_index.contains(i)) //La carta giocabile è suggerita
-							{
-								Statistics s1 = stats.getStatisticsIf(new Turn(possibile, l_index));
-								if (l_index.lastIndexOf(i) == l_index.size() - 1 || s1.getPlayability(hinted)[i] == 1) { //La carta giocabile è la più a destra oppure raggiunge playability 1
-									hints.add(possibile);
-									break;
-								}
-							}
-						}
-					}
-					//hints contiene tutti i suggerimenti fattibili seguendo la convenzione
-					//Adesso filtro per numero di reveal
-					int r = 0;
-					possibleHints = hints;
-					hints = new ArrayList<>();
-					for (Action h : possibleHints) {
-						l_index = h.getCardsToReveal(stats.getLastState());
-						int cont = 0;
-						for (int i : l_index) {
-							if (h.getColor() != null) {
-								if (!hand.getCard(i).isColorRevealed())
-									cont++;
-							} else {
-								if (!hand.getCard(i).isValueRevealed())
-									cont++;
-							}
-						}
-						if (cont > r) {
-							r = cont;
-							hints.clear();
-						}
-						if (cont == r)
-							hints.add(h);
-					}
+			}
 
-					if (hints.size() > 1)
-					{ //Filtro per uselessness minore
+			if (action == null)
+			{
+				//Arrivo a questo punto se non ho hint token o se non riesco a suggerire ne per giocare ne per tenere.
 
+				//Ora potrei dover scartare quindi inizio con il calcolarmi il margin
+				int margin = getMargin();
+				log("\nMargin = "+margin+", Tokens = "+tokens);
+				//Se tokens < 8 provo a recuperarne scartando una carta sicura
+				if (tokens < 8) {
+					log("Provo a giocare una carta sicura nelle prime "+margin+" a sinistra");
+					action = discardSecure(margin);
+					if (action == null)
+					{
+						log("Non ho trovato carte sicure");
+						if (tokens > 0)
+						{
+							action = discard(margin);
+						}
+						else
+							action = bestHintForEntropy();
 					}
 				}
 				else
-				{ //Suggerisco per non scartare: prendo quello che rende minore la playability della carta da non scartare
-
-				}
-			}
-
-			//Scarto una carta
-			double[] u = stats.getUselessness(Main.playerName);
-			double umax = 0;
-			List<Integer> dis = new ArrayList<>();
-			int leftmargin = Game.getInstance().getNumberOfCardsPerPlayer()/2;
-			for (int i = 0; i<Game.getInstance().getNumberOfCardsPerPlayer()/2 && leftmargin<hand.size(); i++)
-			{
-				if (hand.getCard(i).getValue() == 5)
-					leftmargin++;
-			}
-			for (int i=0; i<leftmargin; i++)
-			{
-				if (!cmap.get(Main.playerName)[1].contains(i))
 				{
-					if (u[i] > umax)
-					{
-						umax = u[i];
-						dis.clear();
-					}
-					if (u[i] == umax)
-						dis.add(i);
+					//Se ho 8 tokens scartare non serve a niente, quindi dò il miglior suggerimento per entropia
+					action = bestHintForEntropy();
 				}
 			}
 
-			if (dis.size()>1)
-			{
-				p = stats.getPlayability(Main.playerName);
-				int min = 0;
-				double pmin = p[dis.get(0)];
-				for (int i = 1; i<dis.size(); i++)
-				{
-					if (p[dis.get(i)]<pmin)
-					{
-						pmin = p[dis.get(i)];
-						min = i;
-					}
-				}
-				return new Action(Main.playerName,ActionType.DISCARD,dis.get(min));
-			}
+			return action;
 
-			return new Action(Main.playerName,ActionType.DISCARD,dis.get(0));
+
 		}
 		catch(JSONException e)
 		{
@@ -364,31 +362,388 @@ public class Agent extends AbstractAgent
 		}
 	}
 
-	public Action playSecure() {
-		double[] p = stats.getPlayability(Main.playerName);
+	public Action bestHintForEntropy() throws JSONException
+	{
+		log("Cerco il consiglio migliore per diminuzione di entropia tra tutti i miei compagni");
+		double best = 0,cont;
+		Action action = null;
+		double[] e,e1;
+		Statistics stats1;
+		for (String s:sortPlayers())
+		{
+			e = stats.getCardEntropy(s);
+			for(Action h:getPossibleHints(s))
+			{
+				stats1 = stats.getStatisticsIf(new Turn(h,h.getCardsToReveal(stats.getLastState())));
+				e1 = stats1.getCardEntropy(s);
+				cont = 0;
+				for (int i=0; i<e1.length; i++)
+					cont = cont+e[i]-e1[i];
+				if (cont > best)
+				{
+					best = cont;
+					action = h;
+				}
+			}
+		}
+		return action;
+	}
+
+	public int getMargin()
+	{
+		//Definisco "margin" come numero di carte massime / 2 + numero di 5.
 		Hand hand = stats.getLastState().getHand(Main.playerName);
-		List<Integer> list = new ArrayList<>();
-		for (int i = 0; i < p.length; i++)
+		int margin = Game.getInstance().getNumberOfCardsPerPlayer()/2;
+		for (int i = 0; i<Game.getInstance().getNumberOfCardsPerPlayer()/2 && margin<hand.size(); i++)
 		{
-			if (p[i] >= 1)
-				list.add(i);
+			if (hand.getCard(i).getValue() == 5)
+				margin++;
 		}
-		while(list.size()>1)
+		return margin;
+	}
+
+	public Action discardSecure(int margin) throws JSONException
+	{
+		//Cerco nelle prime "margin" carte a sinistra. Se ne ho con uselessness 1 scarto quella più a sinistra.
+		double[] u = stats.getUselessness(Main.playerName);
+		for (int i=0; i<margin; i++)
 		{
-			if (hand.getCard(list.get(1)).getValue()>hand.getCard(list.get(0)).getValue())
-				list.remove(0);
-			else
-				list.remove(1);
+			if (!cmap.get(Main.playerName)[1].contains(i) && u[i] == 1)
+				return new Action(Main.playerName,ActionType.DISCARD,i);
 		}
+		return null;
+	}
+
+	public Action discard(int margin) throws JSONException
+	{
+
+		//Scarto la carta più a sinistra delle prime "margin" con minor playability tra quelle con maggior uselessness.
+		//Ovviamente la carta non deve essere da tenere per convenzione
+
+		Hand hand = stats.getLastState().getHand(Main.playerName);
+		double[] u = stats.getUselessness(Main.playerName);
+
+
+		log("Scarto la carta più a sinistra con minor playability tra quelle con maggior uselessness");
+
+		double umax = 0;
+		List<Integer> dis = new ArrayList<>(); //Contiene le carte con maggior uselessness
+
+		for (int i=0; i<margin; i++)
+		{
+			if (!cmap.get(Main.playerName)[1].contains(i))
+			{
+				if (u[i] > umax)
+				{
+					umax = u[i];
+					dis.clear();
+				}
+				if (u[i] == umax)
+					dis.add(i);
+			}
+		}
+
+		if (dis.size()>1)
+		{
+			double[] p = stats.getPlayability(Main.playerName);
+			int min = 0;
+			double pmin = p[dis.get(0)];
+			for (int i = 1; i<dis.size(); i++)
+			{
+				if (p[dis.get(i)]<pmin)
+				{
+					pmin = p[dis.get(i)];
+					min = i;
+				}
+			}
+			return new Action(Main.playerName,ActionType.DISCARD,dis.get(min));
+		}
+
+		return new Action(Main.playerName,ActionType.DISCARD,dis.get(0));
+	}
+
+	public List<Action> filterForBestPlayabilityDecrement(String hinted, List<Action> possibleHints) throws JSONException
+	{
+		log("Filtro prendendo i suggerimenti che producono la miglior diminuzione di playability");
+		double[]p = stats.getPlayability(hinted);
+		double[] p1;
+		double decrement = Double.MIN_VALUE;
+		double boxd;
+		List<Action> hints = new ArrayList<>();
+		Statistics s1;
+		for (Action h:possibleHints)
+		{
+			boxd = 0;
+			s1 = stats.getStatisticsIf(new Turn(h,h.getCardsToReveal(stats.getLastState())));
+			p1 = s1.getPlayability(hinted);
+			for (int i=0; i<p1.length; i++)
+				boxd = boxd+p[i]-p1[i];
+			if (boxd>decrement)
+			{
+				decrement = boxd;
+				hints.clear();
+			}
+
+			if (boxd == decrement)
+				hints.add(h);
+		}
+		log("Rimangono "+hints.size()+" suggerimenti");
+		for (Action h:hints)
+			log("\t"+h);
+		return hints;
+	}
+
+	public List<Action> filterForMinorUselessness(String hinted, List<Action> possibleHints)
+	{
+		log("Filtro prendendo i suggerimenti che coinvolgono le carte con minor uselessness");
+		double[] u = stats.getUselessness(hinted);
+		List<Action> hints = new ArrayList<>();
+		//Cerco gli indici delle carte di minor uselessness
+		List<Integer> i_min = new ArrayList<>();
+		double umin = 1;
+		for (int i=0; i<stats.getLastState().getHand(hinted).size(); i++)
+		{
+			if (u[i]<umin)
+			{
+				i_min.clear();
+				umin = u[i];
+			}
+			else if (u[i] == umin)
+				i_min.add(i);
+		}
+
+		//Prendo i suggerimenti che coinvolgono almeno una delle carte di minor uselessness
+
+		for (Action h:possibleHints)
+		{
+			for(int i:i_min)
+			{
+				if (h.getCardsToReveal(stats.getLastState()).contains(i))
+				{
+					hints.add(h);
+					break;
+				}
+			}
+		}
+		log("Rimangono "+hints.size()+" suggerimenti");
+		for (Action h:hints)
+			log("\t"+h);
+		return hints;
+	}
+
+	public List<Action> filterForBestPlayabilityIncrement(String hinted, List<Action> possibleHints) throws JSONException
+	{
+		log("Filtro per incremento di playability della carta più a destra tra quelle indicate");
+		List<Action> hints = new ArrayList<>();
+		double increment = Double.MIN_VALUE;
+		double boxi;
+		//double[] p = stats.getPlayability(hinted);
+		//double[] p1;
+		Statistics s1;
+		double p,p1;
+		for (Action h: possibleHints)
+		{
+			List<Integer> revealed = h.getCardsToReveal(stats.getLastState());
+			p = stats.getPlayability(hinted)[revealed.get(revealed.size()-1)];
+			s1 = stats.getStatisticsIf(new Turn(h,h.getCardsToReveal(stats.getLastState())));
+			p1 = s1.getPlayability(hinted)[revealed.get(revealed.size()-1)];
+			boxi = p1-p;
+	/*		for (int i=0; i<p1.length; i++)
+			{
+				boxi = boxi + (p1[i]-p[i]);
+			}
+	 */
+			if (increment<boxi)
+			{
+				increment = boxi;
+				hints.clear();
+			}
+			if (boxi == increment)
+				hints.add(h);
+		}
+		log("Rimangono "+hints.size()+" suggerimenti");
+		for (Action h:hints)
+			log("\t"+h);
+		return hints;
+	}
+
+	public List<Action> filterForRevealNumber(String hinted, List<Action> possibleHints)
+	{
+		log("Filtro per numero di reveal");
+		int r = 0;
+		List<Action> hints = new ArrayList<>();
+		List<Integer> l_index;
+		Hand hand = stats.getLastState().getHand(hinted);
+		for (Action h : possibleHints) {
+			l_index = h.getCardsToReveal(stats.getLastState());
+			int cont = 0;
+			for (int i : l_index) {
+				if (h.getColor() != null) {
+					if (!hand.getCard(i).isColorRevealed())
+						cont++;
+				} else {
+					if (!hand.getCard(i).isValueRevealed())
+						cont++;
+				}
+			}
+			if (cont > r) {
+				r = cont;
+				hints.clear();
+			}
+			if (cont == r)
+				hints.add(h);
+		}
+		log("Rimangono "+hints.size()+" suggerimenti");
+		for (Action h:hints)
+			log("\t"+h);
+		return hints;
+	}
+
+	public List<Action> getHintsForKeepingCards(String hinted) throws JSONException
+	{
+		List<Action> hints = new ArrayList<>();
+		log("\nCerco suggerimenti su carte da tenere di "+hinted+" conformi alla convenzione");
+		ArrayList<Integer> keep = new ArrayList<>();
+		Hand hand = stats.getLastState().getHand(hinted);
+		double[] u = stats.getUselessness(hinted);
+		double[] p = stats.getPlayability(hinted);
+		for (int i=0; i<hand.size(); i++)
+		{
+			if (!stats.isPlayable(hand.getCard(i)) && p[i]>0 && !stats.isUseless(hand.getCard(i)) && u[i]>0 && !cmap.get(hinted)[1].contains(i))
+				keep.add(i);
+		}
+		log("Trovate "+keep.size()+" carte da tenere");
+		if (keep.size()>0)
+		{
+			List<Action> possibleHints = getPossibleHints(hinted);
+			List<Integer> l_index;
+			for (Action h:possibleHints)
+			{
+				l_index = h.getCardsToReveal(stats.getLastState());
+				for (int i:keep) {
+					if (l_index.contains(i)) //Una carta da tenere è suggerita
+					{
+						Statistics s1 = stats.getStatisticsIf(new Turn(h, l_index));
+						if ((l_index.lastIndexOf(i) == l_index.size() - 1 && s1.getPlayability(hinted)[i]<stats.getPlayability(hinted)[i])
+								|| (s1.getPlayability(hinted)[i] == 0 && s1.getUselessness(hinted)[i] == 0))
+						{ //La carta da tenere è la più a destra oppure raggiunge playability 0 e uselessness 0
+							hints.add(h);
+							break;
+						}
+					}
+				}
+			}
+		}
+		log("Trovati "+hints.size()+" suggerimenti su carte da tenere");
+		for (Action h:hints)
+			log("\t"+h);
+		return hints;
+	}
+
+	public List<Action> getHintsOnPlayableCards(String hinted) throws JSONException
+	{
+		List<Action> hints = new ArrayList<>();
+		log("Cerco suggerimenti su carte giocabili di "+hinted+" conformi alla convenzione");
+		ArrayList<Integer> playable = new ArrayList<>();
+		Hand hand = stats.getLastState().getHand(hinted);
+		double[] p = stats.getPlayability(hinted);
+		for (int i=0; i<hand.size(); i++)
+		{
+			//Per ogni carta del compagno verifico che sia giocabile e non già sicura (per convenzione o playability)
+			if (stats.isPlayable(hand.getCard(i)) && p[i]<1 && !cmap.get(hinted)[0].contains(i))
+			{
+				//Se c'è un 5 indico quello
+				if (hand.getCard(i).getValue() == 5)
+				{
+					playable.clear();
+					playable.add(i);
+					break;
+				}
+				//Altrimenti aggiungo la carta alla lista delle giocabili
+				playable.add(i);
+			}
+
+		}
+		log("Trovate "+playable.size()+" carte giocabili");
+		if (playable.size()>0)
+		{
+			//Se ha carte giocabili cerco tutti i suggerimenti conformi alla convenzione che potrei dare su quella carta
+			List<Action> possibleHints = getPossibleHints(hinted);
+			//Quindi filtro tutti i suggerimenti possibili
+			List<Integer> l_index;
+			log("Filtro dai seguenti possibili hints:");
+			for (Action h:possibleHints)
+				log("\t"+h);
+			for (Action possibile : possibleHints) {
+				l_index = possibile.getCardsToReveal(stats.getLastState());
+				for (int i : playable)
+				{
+					if (l_index.contains(i)) //Una carta giocabile è suggerita
+					{
+						Statistics s1 = stats.getStatisticsIf(new Turn(possibile, l_index));
+						if ((l_index.lastIndexOf(i) == l_index.size() - 1 && s1.getPlayability(hinted)[i]>stats.getPlayability(hinted)[i])
+							|| s1.getPlayability(hinted)[i] == 1)
+						{ //La carta giocabile è la più a destra oppure raggiunge playability 1
+							hints.add(possibile);
+							break;
+						}
+					}
+				}
+			}
+		}
+		log("Trovati "+hints.size()+" suggerimenti su carte giocabili");
+		for (Action h:hints)
+			log("\t"+h);
+
+		return hints;
+	}
+
+	public Action playSecure()
+	{
 		try
 		{
-			if (list.size()>0)
-				return new Action(Main.playerName, ActionType.PLAY, list.get(0));
+			Hand hand = stats.getLastState().getHand(Main.playerName);
+			int index = -1;
+
+			log("Cerco di giocare una carta sicura per playability");
+			double[] p = stats.getPlayability(Main.playerName);
+			for (int i = 0; i < p.length; i++)
+			{
+				if (p[i] == 1)
+				{
+					index = i;
+					if (hand.getCard(i).getValue() == 5) //Se ho un 5 con 100% di playability lo gioco subito
+						break;
+				}
+			}
+			if (index > -1)
+			{
+				log("Trovata: gioco la carta "+hand.getCard(index)+" in posizione "+index);
+				return new Action(Main.playerName, ActionType.PLAY, index);
+			}
+			log("Nessuna carta sicura per playability = 100%");
+
+			log("Cerco di giocare una carta sicura per convenzione");
+			List<Integer> cp = cmap.get(Main.playerName)[0];
+			if (cp.size() > 0)
+			{
+				index = cp.get(0);
+				for (int i = 1; i < cp.size(); i++) {
+					if (hand.getCard(cp.get(i)).getValue() == 5) {
+						index = cp.get(i);
+						break;
+					} else if (cp.get(i) > index) {
+						index = cp.get(i);
+					}
+				}
+				log("Trovata: gioco la carta "+hand.getCard(index)+" in posizione "+index);
+				return new Action(Main.playerName, ActionType.PLAY, index);
+			}
+			log("Nessuna carta sicura per convenzione");
 		}
 		catch(JSONException e)
 		{
 			log(e);
-
 		}
 		return null;
 	}

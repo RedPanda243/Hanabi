@@ -41,6 +41,8 @@ public class HumanAgent extends AbstractAgent
 					{
 						hinted = parts[1];
 					}
+					if (hinted.equals(Main.playerName))
+						return chooseAction();
 					try
 					{
 						//TODO
